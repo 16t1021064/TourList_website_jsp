@@ -1,6 +1,13 @@
 package com.van.travel.models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.UUID;
+
+import com.van.travel.common.Database;
 
 public class Activity extends AbstractModel {
 	protected String id;
@@ -42,5 +49,63 @@ public class Activity extends AbstractModel {
 			return this.rowToObj(rs);
 		}
 	}
-	
+	@Override
+	public Object save(boolean isNew) {
+		Connection conn = (new Database()).getConnection();
+		try {
+			String sql;
+			if(isNew) {
+				sql = " INSERT INTO "+this.tableName+" ";
+				sql += "			(id, name) ";
+				sql += "    VALUES  (?, ?) ";
+			}else {
+				sql = " UPDATE "+this.tableName+" ";
+				sql += " 	SET name=? ";
+				sql += "	WHERE id=? ";
+			}
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			if(isNew) {
+				stmt.setString(1, this.id);
+				stmt.setString(2, this.name);
+			}else {
+				stmt.setString(1, this.name);
+				stmt.setString(2, this.id);
+			}
+			
+			stmt.executeUpdate();
+			return this;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	@Override
+	public int delete() {
+		return this.delete(this.id);
+	}
+	public Activity create(String name) {
+		Activity activity = new Activity();
+		activity.setId(UUID.randomUUID().toString());
+		activity.setName(name);
+		activity.save(true);
+		return activity;
+	}
+	public Activity update(String name) {
+		this.setName(name);
+		this.save(false);
+		return this;
+	}
+	public ArrayList<Activity> all(){
+		ArrayList<Activity> arr = new ArrayList<Activity>();
+		ResultSet rs = this.allRS();
+		try {
+			while(rs.next()) {
+				arr.add((Activity)this.rowToObj(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arr;
+	}
 }

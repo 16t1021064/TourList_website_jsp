@@ -57,37 +57,6 @@ public class Destination extends AbstractModel {
 			return this.rowToObj(rs);
 		}
 	}
-	
-	public Destination create(String name, String thumbnail) {
-		Destination destination = new Destination();
-		destination.setId(UUID.randomUUID().toString());
-		destination.setName(name);
-		destination.setThumbnail(thumbnail);
-		destination.save(true);
-		return destination;
-	}
-	
-	public Destination update(String name, String thumbnail) {
-		this.setName(name);
-		this.setThumbnail(thumbnail);
-		this.save(false);
-		return this;
-	}
-	
-	public ArrayList<Destination> all(){
-		ArrayList<Destination> arr = new ArrayList<Destination>();
-		ResultSet rs = this.allRS();
-		try {
-			while(rs.next()) {
-				arr.add((Destination)this.rowToObj(rs));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return arr;
-	}
-	
 	@Override
 	public Object save(boolean isNew) {
 		Connection conn = (new Database()).getConnection();
@@ -124,5 +93,31 @@ public class Destination extends AbstractModel {
 	public int delete() {
 		return this.delete(this.id);
 	}
-	
+	public Destination create(String name, String thumbnail) {
+		Destination destination = new Destination();
+		destination.setId(UUID.randomUUID().toString());
+		destination.setName(name);
+		destination.setThumbnail(thumbnail);
+		destination.save(true);
+		return destination;
+	}
+	public Destination update(String name, String thumbnail) {
+		this.setName(name);
+		this.setThumbnail(thumbnail);
+		this.save(false);
+		return this;
+	}
+	public ArrayList<Destination> all(){
+		ArrayList<Destination> arr = new ArrayList<Destination>();
+		ResultSet rs = this.allRS();
+		try {
+			while(rs.next()) {
+				arr.add((Destination)this.rowToObj(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arr;
+	}
 }
