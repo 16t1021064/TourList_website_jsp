@@ -1,3 +1,10 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.van.travel.models.Destination"%>
+<%
+
+	ArrayList<Destination> listDestination = (ArrayList<Destination>) request.getAttribute("listDestination");
+
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,7 +48,7 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="formCreate" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="formCreate" action="/travel/admin/tour/create" method="post" data-parsley-validate class="form-horizontal form-label-left">
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Name <span class="required">*</span>
@@ -323,11 +330,10 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="form-group">
-		                     <select class="form-control" required>
-	                            <option value="">Choose..</option>
-	                            <option value="press">Press</option>
-	                            <option value="net">Internet</option>
-	                            <option value="mouth">Word of mouth</option>
+		                     <select name="destination_id" class="form-control" required>
+		                     	<% for(Destination des : listDestination){ %>
+	                            <option value="<%= des.getId() %>"><%= des.getName() %></option>
+	                            <% } %>
 	                          </select>
 		                    </div>
                         </div>

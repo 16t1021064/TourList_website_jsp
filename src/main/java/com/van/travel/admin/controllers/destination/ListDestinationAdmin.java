@@ -34,7 +34,7 @@ public class ListDestinationAdmin extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		ArrayList<Destination> list = (new Destination()).all();
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/Admin/list-destination.jsp").forward(request, response);
+		request.getRequestDispatcher("/Admin/destination-list.jsp").forward(request, response);
 	}
 
 	/**

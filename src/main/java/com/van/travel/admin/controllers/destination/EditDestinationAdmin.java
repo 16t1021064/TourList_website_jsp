@@ -36,7 +36,7 @@ public class EditDestinationAdmin extends HttpServlet {
 		
 		request.setAttribute("destination", destination);
 		
-		request.getRequestDispatcher("/Admin/edit-destination.jsp").forward(request, response);
+		request.getRequestDispatcher("/Admin/destination-edit.jsp").forward(request, response);
 	}
 
 	/**
