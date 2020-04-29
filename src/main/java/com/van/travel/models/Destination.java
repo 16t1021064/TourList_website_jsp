@@ -120,5 +120,9 @@ public class Destination extends AbstractModel {
 			return null;
 		}
 	}
+	@Override
+	public int delete() {
+		return this.delete(this.id);
+	}
 	
 }

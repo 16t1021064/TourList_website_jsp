@@ -35,6 +35,27 @@ public abstract class AbstractModel {
 	public abstract Object save(boolean isNew);
 	
 	/**
+	 * Delete object
+	 * @return
+	 */
+	public abstract int delete();
+	
+	/**
+	 * Delete object
+	 */
+	public int delete(String id) {
+		Connection conn = (new Database()).getConnection();
+		try {
+			PreparedStatement stmt = conn.prepareStatement("delete from "+this.tableName+" where id=?");
+			stmt.setString(1, id);
+			return stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	/**
 	 * Find result set by id
 	 * @param id
 	 * @return

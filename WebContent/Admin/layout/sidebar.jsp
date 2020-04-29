@@ -33,6 +33,12 @@
                       <li><a href="/travel/admin/tour/create">Create</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-home"></i> Destination <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/travel/admin/destination">List</a></li>
+                      <li><a href="/travel/admin/destination/create">Create</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>

@@ -67,7 +67,7 @@
                           <td><a href="<%= des.getThumbnail() %>" target="_blank"><%= des.getThumbnail() %></a></td>
                           <td>
                           	<a href="/travel/admin/destination/edit?id=<%= des.getId() %>" class="btn btn-primary btn-xs">Edit</a>
-                          	<a href="#" class="btn btn-danger btn-xs">Delete</a>
+                          	<a href="javascript:void(0)" data-id="<%= des.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
                         <% } %>
@@ -79,11 +79,20 @@
 			</div>
 		</div>
 		
-		
+		<form id="formDelete" method="post" action="/travel/admin/destination/delete" style="display: none;">
+			<input type="hidden" name="id">
+		</form>
 		
 		<%@include file="./layout/footer.jsp" %>
       </div>
     </div>
     <%@include file="./layout/scripts.jsp" %>
+    <script>
+    	$(document).on('click', '.btn-delete' , function(){
+    		var dataId = $(this).attr('data-id');
+    		$('#formDelete input[name="id"]').val(dataId);
+    		$('#formDelete').submit();
+    	});
+    </script>
   </body>
 </html>
