@@ -41,7 +41,7 @@ public class DeleteActivityAdmin extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		String id =  request.getParameter("id");
-		Activity activity = (Activity) (new Activity()).find(id);
+		Activity activity = (new Activity()).find(id);
 		activity.delete();
 		
 		response.sendRedirect("/travel/admin/activity");

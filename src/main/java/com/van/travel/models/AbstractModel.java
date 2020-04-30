@@ -52,7 +52,14 @@ public abstract class AbstractModel {
 	 * @param id
 	 * @return
 	 */
-	public abstract Object find(String id);
+	public Object findObject(String id) {
+		ResultSet rs = this.findRS(id);
+		if(rs == null) {
+			return null;
+		}else {
+			return this.rowToObj(rs);
+		}
+	}
 	
 	/**
 	 * Save object

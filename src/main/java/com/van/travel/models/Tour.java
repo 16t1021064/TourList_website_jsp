@@ -243,5 +243,17 @@ public class Tour extends AbstractModel {
 			return this.rowToObj(rs);
 		}
 	}
+
+	@Override
+	public Object save(boolean isNew) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int delete() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

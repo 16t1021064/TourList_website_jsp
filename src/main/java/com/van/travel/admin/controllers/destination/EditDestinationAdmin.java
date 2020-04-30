@@ -32,7 +32,7 @@ public class EditDestinationAdmin extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		String id =  request.getParameter("id");
-		Destination destination = (Destination) (new Destination()).find(id);
+		Destination destination = (new Destination()).find(id);
 		
 		request.setAttribute("destination", destination);
 		
@@ -47,7 +47,7 @@ public class EditDestinationAdmin extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		String id =  request.getParameter("id");
-		Destination destination = (Destination) (new Destination()).find(id);
+		Destination destination = (new Destination()).find(id);
 		
 		String name = request.getParameter("name");
 		String thumbnail = request.getParameter("thumbnail");

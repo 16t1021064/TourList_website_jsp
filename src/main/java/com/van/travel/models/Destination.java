@@ -49,15 +49,6 @@ public class Destination extends AbstractModel {
 		}
 	}
 	@Override
-	public Object find(String id) {
-		ResultSet rs = this.findRS(id);
-		if(rs == null) {
-			return null;
-		}else {
-			return this.rowToObj(rs);
-		}
-	}
-	@Override
 	public Object save(boolean isNew) {
 		Connection conn = (new Database()).getConnection();
 		try {
@@ -93,31 +84,39 @@ public class Destination extends AbstractModel {
 	public int delete() {
 		return this.delete(this.id);
 	}
+	public ArrayList<Destination> toSelfList(ArrayList<Object> oArr){
+		ArrayList<Destination> arr = new ArrayList<Destination>();
+		for(Object o: oArr) {
+			arr.add((Destination) o);
+		}
+		return arr;
+	}
+	public Destination find(String id) {
+		Object o = this.findObject(id);
+		if(o == null) {
+			return null;
+		}else {
+			return (Destination) o;
+		}
+	}
 	public Destination create(String name, String thumbnail) {
 		Destination destination = new Destination();
 		destination.setId(UUID.randomUUID().toString());
 		destination.setName(name);
 		destination.setThumbnail(thumbnail);
-		destination.save(true);
-		return destination;
+		return (Destination) destination.save(true);
 	}
 	public Destination update(String name, String thumbnail) {
 		this.setName(name);
 		this.setThumbnail(thumbnail);
-		this.save(false);
-		return this;
+		return (Destination) this.save(false);
 	}
 	public ArrayList<Destination> all(){
-		ArrayList<Destination> arr = new ArrayList<Destination>();
-		ResultSet rs = this.allRS();
-		try {
-			while(rs.next()) {
-				arr.add((Destination)this.rowToObj(rs));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.all(arr);
+	}
+	public ArrayList<Destination> all(ArrayList<Object[]> whereConditions){
+		ArrayList<Destination> arr = this.toSelfList(this.allObject(whereConditions));
 		return arr;
 	}
 }

@@ -40,7 +40,7 @@ public class DeleteDestinationAdmin extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		String id =  request.getParameter("id");
-		Destination destination = (Destination) (new Destination()).find(id);
+		Destination destination = (new Destination()).find(id);
 		destination.delete();
 		
 		response.sendRedirect("/travel/admin/destination");

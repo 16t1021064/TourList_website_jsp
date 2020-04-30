@@ -41,15 +41,6 @@ public class Activity extends AbstractModel {
 		}
 	}
 	@Override
-	public Object find(String id) {
-		ResultSet rs = this.findRS(id);
-		if(rs == null) {
-			return null;
-		}else {
-			return this.rowToObj(rs);
-		}
-	}
-	@Override
 	public Object save(boolean isNew) {
 		Connection conn = (new Database()).getConnection();
 		try {
@@ -90,17 +81,23 @@ public class Activity extends AbstractModel {
 		}
 		return arr;
 	}
+	public Activity find(String id) {
+		Object o = this.findObject(id);
+		if(o == null) {
+			return null;
+		}else {
+			return (Activity) o;
+		}
+	}
 	public Activity create(String name) {
 		Activity activity = new Activity();
 		activity.setId(UUID.randomUUID().toString());
 		activity.setName(name);
-		activity.save(true);
-		return activity;
+		return (Activity) activity.save(true);
 	}
 	public Activity update(String name) {
 		this.setName(name);
-		this.save(false);
-		return this;
+		return (Activity) this.save(false);
 	}
 	public ArrayList<Activity> all(){
 		ArrayList<Object[]> arr = new ArrayList<Object[]>();

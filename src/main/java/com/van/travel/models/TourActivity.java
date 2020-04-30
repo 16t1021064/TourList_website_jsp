@@ -49,15 +49,6 @@ public class TourActivity extends AbstractModel {
 		}
 	}
 	@Override
-	public Object find(String id) {
-		ResultSet rs = this.findRS(id);
-		if(rs == null) {
-			return null;
-		}else {
-			return this.rowToObj(rs);
-		}
-	}
-	@Override
 	public Object save(boolean isNew) {
 		Connection conn = (new Database()).getConnection();
 		try {
@@ -100,35 +91,33 @@ public class TourActivity extends AbstractModel {
 		}
 		return arr;
 	}
+	public TourActivity find(String id) {
+		Object o = this.findObject(id);
+		if(o == null) {
+			return null;
+		}else {
+			return (TourActivity) o;
+		}
+	}
 	public TourActivity create(String tourId, String activityId) {
 		TourActivity tourActivity = new TourActivity();
 		tourActivity.setId(UUID.randomUUID().toString());
 		tourActivity.setTourId(tourId);
 		tourActivity.setActivityId(activityId);
 		tourActivity.save(true);
-		return tourActivity;
+		return (TourActivity) tourActivity.save(true);
 	}
 	public TourActivity update(String tourId, String activityId) {
 		this.setTourId(tourId);
 		this.setActivityId(activityId);
-		this.save(false);
-		return this;
+		return (TourActivity) this.save(false);
 	}
 	public ArrayList<TourActivity> all(){
 		ArrayList<Object[]> arr = new ArrayList<Object[]>();
 		return this.all(arr);
 	}
 	public ArrayList<TourActivity> all(ArrayList<Object[]> whereConditions){
-		ArrayList<TourActivity> arr = new ArrayList<TourActivity>();
-		ResultSet rs = this.allRS(whereConditions);
-		try {
-			while(rs.next()) {
-				arr.add((TourActivity)this.rowToObj(rs));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ArrayList<TourActivity> arr = this.toSelfList(this.allObject(whereConditions));
 		return arr;
 	}
 	

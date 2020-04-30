@@ -33,7 +33,7 @@ public class EditActivityAdmin extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		String id =  request.getParameter("id");
-		Activity activity = (Activity) (new Activity()).find(id);
+		Activity activity = (new Activity()).find(id);
 		
 		request.setAttribute("activity", activity);
 		
@@ -48,7 +48,7 @@ public class EditActivityAdmin extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		String id =  request.getParameter("id");
-		Activity activity = (Activity) (new Activity()).find(id);
+		Activity activity = (new Activity()).find(id);
 		
 		String name = request.getParameter("name");
 		
