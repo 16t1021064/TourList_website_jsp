@@ -4,14 +4,40 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import com.van.travel.common.Database;
 
 public abstract class AbstractModel {
 	public String tableName;
+	
+	protected ArrayList<Object[]> hasMany_repos = new ArrayList<Object[]>();
+	
+	protected ArrayList<Object[]> belongsTo_repos = new ArrayList<Object[]>();
+	
 	public AbstractModel() {
 		super();
+	}
+	
+	protected Object getHasManyRepos(String key) {
+		for(Object[] hasMany : this.hasMany_repos) {
+			String keyRepos = (String) hasMany[0];
+			if(keyRepos.equals(key)) {
+				return hasMany[1];
+			}
+		}
+		return null;
+	}
+	
+	protected Object getBelongsToRepos(String key) {
+		for(Object[] belongsTo : this.belongsTo_repos) {
+			String keyRepos = (String) belongsTo[0];
+			if(keyRepos.equals(key)) {
+				return belongsTo[1];
+			}
+		}
+		return null;
 	}
 	
 	/**
@@ -78,14 +104,71 @@ public abstract class AbstractModel {
 	}
 	
 	protected ResultSet allRS() {
+		ArrayList<Object[]> arr  = new ArrayList<Object[]>();
+		return this.allRS(arr);
+	}
+	
+	/**
+	 * Note: Condition {column, operator, value, type['INT', 'STRING']}
+	 * @param whereConditions
+	 * @return
+	 */
+	protected ResultSet allRS(ArrayList<Object[]> whereConditions) {
+//		String[] defaultOperators = new String[] {"INT", "STRING"};
 		Connection conn = (new Database()).getConnection();
 		try {
-			PreparedStatement stmt = conn.prepareStatement("select * from " + this.tableName);
+			String sql = "select * from " + this.tableName + " ";
+			int index = 0;
+			for(Object[] conditions : whereConditions) {
+				index++;
+				String col = (String) conditions[0];
+				String operator = (String) conditions[1];
+				if(index == 1) {
+					sql += " where ";
+				}else {
+					sql += " and ";
+				}
+				sql += " " + col + " " + operator + " ? ";
+			}
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			int cnt = 0;
+			for(Object[] conditions : whereConditions) {
+				cnt = cnt + 1;
+				String type = (String) conditions[3];
+				switch (type) {
+					case "INT":
+						int valueINT = (Integer) conditions[2];
+						stmt.setInt(cnt, valueINT);
+						break;
+					case "STRING":
+						String valueSTRING = (String) conditions[2];
+						stmt.setString(cnt, valueSTRING);
+						break;
+				}
+			}
+			System.out.println(stmt.toString());
 			ResultSet rs = stmt.executeQuery();
 			return rs;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	protected ArrayList<Object> allObject(){
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.allObject(arr);
+	}
+	protected ArrayList<Object> allObject(ArrayList<Object[]> whereConditions){
+		ArrayList<Object> arr = new ArrayList<Object>();
+		ResultSet rs = this.allRS(whereConditions);
+		try {
+			while(rs.next()) {
+				arr.add(this.rowToObj(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arr;
 	}
 }
