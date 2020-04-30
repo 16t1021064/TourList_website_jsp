@@ -83,6 +83,13 @@ public class Activity extends AbstractModel {
 	public int delete() {
 		return this.delete(this.id);
 	}
+	public ArrayList<Activity> toSelfList(ArrayList<Object> oArr){
+		ArrayList<Activity> arr = new ArrayList<Activity>();
+		for(Object o: oArr) {
+			arr.add((Activity) o);
+		}
+		return arr;
+	}
 	public Activity create(String name) {
 		Activity activity = new Activity();
 		activity.setId(UUID.randomUUID().toString());
@@ -96,49 +103,26 @@ public class Activity extends AbstractModel {
 		return this;
 	}
 	public ArrayList<Activity> all(){
-//		ArrayList<Activity> arr = new ArrayList<Activity>();
-//		ResultSet rs = this.allRS();
-//		try {
-//			while(rs.next()) {
-//				arr.add((Activity)this.rowToObj(rs));
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return arr;
 		ArrayList<Object[]> arr = new ArrayList<Object[]>();
-//		arr.add(new Object[] {"name", "!=", "DEMO", "STRING"});
 		return this.all(arr);
 	}
 	public ArrayList<Activity> all(ArrayList<Object[]> whereConditions){
-		ArrayList<Activity> arr = new ArrayList<Activity>();
-		ResultSet rs = this.allRS(whereConditions);
-		try {
-			while(rs.next()) {
-				arr.add((Activity)this.rowToObj(rs));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ArrayList<Activity> arr = this.toSelfList(this.allObject(whereConditions));
 		return arr;
 	}
 	public ArrayList<TourActivity> getTourActivities(boolean saveResources){
-		String key = "activity_touractivity";
-		if(saveResources) {
-			Object repos =  this.getHasManyRepos(key);
-			if(repos != null) {
-				return (ArrayList<TourActivity>) repos;
-			}
-		}
-		
-		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
-		whereConditions.add(new Object[] {"activity_id", "=", this.id, "STRING"});
-		TourActivity tourActivity = new TourActivity();
-//		tourActivity.all
-		
-		ArrayList<TourActivity> tourActivities = new ArrayList<TourActivity>();
+//		String key = "activity_touractivity";
+//		if(saveResources) {
+//			Object repos =  this.getHasManyRepos(key);
+//			if(repos != null) {
+//				return (ArrayList<TourActivity>) repos;
+//			}
+//		}
+//		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+//		whereConditions.add(new Object[] {"activity_id", "=", this.id, "STRING"});
+//		TourActivity tourActivity = new TourActivity();
+//		
+//		ArrayList<TourActivity> tourActivities = new ArrayList<TourActivity>();
 		
 		return null;
 	}
