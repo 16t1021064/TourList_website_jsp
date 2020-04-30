@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.van.travel.common.DateConvertion;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Destination;
+import com.van.travel.models.Itinerary;
 import com.van.travel.models.Tour;
 import com.van.travel.models.TourActivity;
 
@@ -89,7 +90,15 @@ public class CreateTourAdmin extends HttpServlet {
 		for(String activityId : request.getParameterValues("activities[]")){
           (new TourActivity()).create(tour.getId(), activityId);      
 		}
-//		System.out.println(request.getParameter("activities[]"));
+		String[] itineraries_sequence = request.getParameterValues("itineraries_sequence[]");
+		String[] itineraries_name = request.getParameterValues("itineraries_name[]");
+		String[] itineraries_description = request.getParameterValues("itineraries_description[]");
+		if(itineraries_sequence.length == itineraries_name.length && itineraries_name.length == itineraries_description.length) {
+			for(int i=0; i < itineraries_sequence.length; i=i+1) {
+				(new Itinerary()).create(tour.getId(), Integer.parseInt(itineraries_sequence[i]), itineraries_name[i], itineraries_description[i]);
+			}
+			
+		}
 		response.sendRedirect("/travel/admin/tour/edit?id="+tour.getId());
 //		doGet(request, response);
 	}

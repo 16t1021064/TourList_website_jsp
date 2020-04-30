@@ -343,6 +343,16 @@
                         </div>
                       </div>
                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Itineraries <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+		                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+		                      
+		                    </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 col-xs-12"><button id="btnAddItinerary" type="button" class="btn btn-primary">Add Itinerary</button></div>
+                      </div>
+                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Activities <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -384,10 +394,61 @@
 		$('#myDatepicker').datetimepicker({format: 'MM-DD-YYYY HH:mm:ss', defaultDate: new Date()});
 	</script>
     <script>
-	    $('#formCreate [type="submit"]').on('click', function() {
+	    $('#formCreate').on('submit', function() {
 		  $('#formCreate input[name="detail_text"]').val($('#editor-one').html());
 		  $('#formCreate input[name="expect_text"]').val($('#editor-two').html());
+		  $('#formCreate .editor-itinerary').each(function(){
+			  var content = $(this).html();
+			  $(this).siblings('input[name="itineraries_description[]"]').val(content);
+		  });
 		});
+    </script>
+    <script>
+    	var binCountAddItinerary = 0;
+    	$('#btnAddItinerary').click(function(){
+    		binCountAddItinerary++;
+    		var tempMark = "tempMark" + binCountAddItinerary;
+    		var templateToolbarEditor = '<div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor-'+tempMark+'"> <div class="btn-group"> <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a> <ul class="dropdown-menu"> </ul> </div><div class="btn-group"> <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a> <ul class="dropdown-menu"> <li> <a data-edit="fontSize 5"> <p style="font-size:17px">Huge</p></a> </li><li> <a data-edit="fontSize 3"> <p style="font-size:14px">Normal</p></a> </li><li> <a data-edit="fontSize 1"> <p style="font-size:11px">Small</p></a> </li></ul> </div><div class="btn-group"> <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a> <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a> <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a> <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a> </div><div class="btn-group"> <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a> <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a> <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a> <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a> </div><div class="btn-group"> <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a> <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a> <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a> <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a> </div><div class="btn-group"> <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a> <div class="dropdown-menu input-append"> <input class="span2" placeholder="URL" type="text" data-edit="createLink"/> <button class="btn" type="button">Add</button> </div><a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a> </div><div class="btn-group"> <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a> <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage"/> </div><div class="btn-group"> <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a> <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a> </div></div>';
+			var template = '';
+			template+='  <div id="panel-'+tempMark+'" class="panel">';
+			template+='    <a class="panel-heading" role="tab" id="heading'+tempMark+'" data-toggle="collapse" data-parent="#accordion" href="#collapse'+tempMark+'" aria-expanded="true" aria-controls="collapse'+tempMark+'">';
+			template+='      <h4 class="panel-title">[New Itinerary] #Undefined</h4>';
+			template+='    </a>';
+			template+='    <div id="collapse'+tempMark+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading'+tempMark+'">';
+			template+='      <div class="panel-body">';
+			template+='      		<div class="form-group">';
+			template+='      	 		<label class="control-label">Sequence <span class="required">*</span></label>';
+			template+='      	 		<div>';
+			template+='      	 			<input type="number" step="1" required="required" name="itineraries_sequence[]" class="form-control">';
+			template+='      	 		</div>';
+			template+='      	 	</div>';
+			template+='      	 	<div class="form-group">';
+			template+='      	 		<label class="control-label">Name <span class="required">*</span></label>';
+			template+='      	 		<div>';
+			template+='      	 			<input type="text" required="required" name="itineraries_name[]" class="form-control">';
+			template+='      	 		</div>';
+			template+='      	 	</div>';
+			template+='      	 	<div class="form-group">';
+			template+='      	 		<label class="control-label">Description Text <span class="required">*</span></label>';
+	        template+='              	<div>';
+			template+=templateToolbarEditor;
+	        template+='                  <div id="editor-'+tempMark+'" class="editor-itinerary editor-wrapper"></div>';
+	        template+='                  <input type="hidden" name="itineraries_description[]">';
+	        template+='      	 		</div>';
+	        template+='      	 	</div>';
+	        template+='				<div style="padding: 5px;text-align: center;"><button data-target="#panel-'+tempMark+'" type="button" class="btn-delete-panel btn btn-danger">Remove This</button></div>';
+	        template+='      </div>';
+	        template+='    </div>';
+	        template+='  </div>';
+	        $('#accordion').append(template);
+	        init_wysiwyg();
+    	});
+    </script>
+    <script>
+    	$(document).on('click', '.btn-delete-panel', function(){
+    		var dataTarget = $(this).attr('data-target');
+    		$(dataTarget).remove();
+    	});
     </script>
   </body>
 </html>

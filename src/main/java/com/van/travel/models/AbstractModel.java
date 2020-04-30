@@ -141,15 +141,19 @@ public abstract class AbstractModel {
 	 * @return
 	 */
 	protected ResultSet allRS(ArrayList<Object[]> whereConditions) {
+		ArrayList<Object[]> arr  = new ArrayList<Object[]>();
+		return this.allRS(whereConditions, arr);
+	}
+	protected ResultSet allRS(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys) {
 		try {
-			return this.queryWhereRS(" select * ", whereConditions).executeQuery();
+			return this.queryWhereRS(" select * ", whereConditions, orderBys).executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
 	}
-	protected PreparedStatement queryWhereRS(String preQuery, ArrayList<Object[]> whereConditions) {
+	protected PreparedStatement queryWhereRS(String preQuery, ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys) {
 		Connection conn = (new Database()).getConnection();
 		try {
 			String sql = preQuery + " from " + this.tableName + " ";
@@ -164,6 +168,18 @@ public abstract class AbstractModel {
 					sql += " and ";
 				}
 				sql += " " + col + " " + operator + " ? ";
+			}
+			int index2 = 0;
+			for(Object[] orderBy : orderBys) {
+				index2++;
+				String col = (String) orderBy[0];
+				String sort = (String) orderBy[1];
+				if(index2 == 1) {
+					sql += " order by ";
+				}else {
+					sql += " , ";
+				}
+				sql += " " + col + " " + sort + " ";
 			}
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			int cnt = 0;
@@ -193,8 +209,12 @@ public abstract class AbstractModel {
 		return this.allObject(arr);
 	}
 	protected ArrayList<Object> allObject(ArrayList<Object[]> whereConditions){
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.allObject(whereConditions, arr);
+	}
+	protected ArrayList<Object> allObject(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys){
 		ArrayList<Object> arr = new ArrayList<Object>();
-		ResultSet rs = this.allRS(whereConditions);
+		ResultSet rs = this.allRS(whereConditions, orderBys);
 		try {
 			while(rs.next()) {
 				arr.add(this.rowToObj(rs));

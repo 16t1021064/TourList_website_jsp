@@ -116,7 +116,11 @@ public class TourActivity extends AbstractModel {
 		return this.all(arr);
 	}
 	public ArrayList<TourActivity> all(ArrayList<Object[]> whereConditions){
-		ArrayList<TourActivity> arr = this.toSelfList(this.allObject(whereConditions));
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.all(whereConditions, arr);
+	}
+	public ArrayList<TourActivity> all(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys){
+		ArrayList<TourActivity> arr = this.toSelfList(this.allObject(whereConditions, orderBys));
 		return arr;
 	}
 	

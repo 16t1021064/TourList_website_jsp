@@ -12,7 +12,7 @@ import com.van.travel.common.Database;
 public class Itinerary extends AbstractModel {
 	protected String id;
 	private String tourId;
-	private int index;
+	private int sequence;
 	private String name;
 	private String descriptionText;
 	public String getId() {
@@ -33,11 +33,11 @@ public class Itinerary extends AbstractModel {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getIndex() {
-		return index;
+	public int getSequence() {
+		return sequence;
 	}
-	public void setIndex(int index) {
-		this.index = index;
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
 	}
 	public String getDescriptionText() {
 		return descriptionText;
@@ -55,7 +55,7 @@ public class Itinerary extends AbstractModel {
 		try {
 			tourItinerary.setId(rs.getString("id"));
 			tourItinerary.setTourId(rs.getString("tour_id"));
-			tourItinerary.setIndex(rs.getInt("index"));
+			tourItinerary.setSequence(rs.getInt("sequence"));
 			tourItinerary.setName(rs.getString("name"));
 			tourItinerary.setDescriptionText(rs.getString("description_text"));
 			return tourItinerary;
@@ -71,28 +71,28 @@ public class Itinerary extends AbstractModel {
 			String sql;
 			if(isNew) {
 				sql = " INSERT INTO "+this.tableName+" ";
-				sql += "			(id, tour_id, index, name, description_text) ";
+				sql += "			(id, tour_id, sequence, name, description_text) ";
 				sql += "    VALUES  (?, ?, ?, ?, ?) ";
 			}else {
 				sql = " UPDATE "+this.tableName+" ";
-				sql += " 	SET tour_id=?, index=?, name=?, description_text=? ";
+				sql += " 	SET tour_id=?, sequence=?, name=?, description_text=? ";
 				sql += "	WHERE id=? ";
 			}
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			if(isNew) {
 				stmt.setString(1, this.id);
 				stmt.setString(2, this.tourId);
-				stmt.setInt(3, this.index);
+				stmt.setInt(3, this.sequence);
 				stmt.setString(4, this.name);
 				stmt.setString(5, this.descriptionText);
 			}else {
 				stmt.setString(1, this.tourId);
-				stmt.setInt(2, this.index);
+				stmt.setInt(2, this.sequence);
 				stmt.setString(3, this.name);
 				stmt.setString(4, this.descriptionText);
 				stmt.setString(5, this.id);
 			}
-			
+			System.out.println(stmt.toString());
 			stmt.executeUpdate();
 			return this;
 		} catch (SQLException e) {
@@ -119,18 +119,18 @@ public class Itinerary extends AbstractModel {
 			return (Itinerary) o;
 		}
 	}
-	public Itinerary create(String tourId, int index, String name, String descriptionText) {
+	public Itinerary create(String tourId, int sequence, String name, String descriptionText) {
 		Itinerary tourItinerary = new Itinerary();
 		tourItinerary.setId(UUID.randomUUID().toString());
 		tourItinerary.setTourId(tourId);
-		tourItinerary.setIndex(index);
+		tourItinerary.setSequence(sequence);
 		tourItinerary.setName(name);
 		tourItinerary.setDescriptionText(descriptionText);
 		return (Itinerary) tourItinerary.save(true);
 	}
 	public Itinerary update(String tourId, int index, String name, String descriptionText) {
 		this.setTourId(tourId);
-		this.setIndex(index);
+		this.setSequence(sequence);
 		this.setName(name);
 		this.setDescriptionText(descriptionText);
 		return (Itinerary) this.save(false);
@@ -140,7 +140,11 @@ public class Itinerary extends AbstractModel {
 		return this.all(arr);
 	}
 	public ArrayList<Itinerary> all(ArrayList<Object[]> whereConditions){
-		ArrayList<Itinerary> arr = this.toSelfList(this.allObject(whereConditions));
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.all(whereConditions, arr);
+	}
+	public ArrayList<Itinerary> all(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys){
+		ArrayList<Itinerary> arr = this.toSelfList(this.allObject(whereConditions, orderBys));
 		return arr;
 	}
 }

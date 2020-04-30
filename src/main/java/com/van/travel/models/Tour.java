@@ -389,7 +389,11 @@ public class Tour extends AbstractModel {
 		return this.all(arr);
 	}
 	public ArrayList<Tour> all(ArrayList<Object[]> whereConditions){
-		ArrayList<Tour> arr = this.toSelfList(this.allObject(whereConditions));
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.all(whereConditions, arr);
+	}
+	public ArrayList<Tour> all(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys){
+		ArrayList<Tour> arr = this.toSelfList(this.allObject(whereConditions, orderBys));
 		return arr;
 	}
 	public ArrayList<TourActivity> getTourActivities(){
@@ -422,7 +426,9 @@ public class Tour extends AbstractModel {
 		}
 		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
 		whereConditions.add(new Object[] {"tour_id", "=", this.id, "STRING"});
-		ArrayList<Itinerary> itineraries = (new Itinerary()).all(whereConditions);
+		ArrayList<Object[]> orderBys = new ArrayList<Object[]>();
+		orderBys.add(new Object[] {"sequence", "asc"});
+		ArrayList<Itinerary> itineraries = (new Itinerary()).all(whereConditions, orderBys);
 		this.setHasManyRepos(key, itineraries);
 		return itineraries;
 	}
