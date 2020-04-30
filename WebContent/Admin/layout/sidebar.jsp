@@ -29,7 +29,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Tour <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">List</a></li>
+                      <li><a href="/travel/admin/tour">List</a></li>
                       <li><a href="/travel/admin/tour/create">Create</a></li>
                     </ul>
                   </li>

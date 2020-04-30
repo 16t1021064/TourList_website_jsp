@@ -19,5 +19,7 @@
     <script src="/travel/public/be/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
     <script src="/travel/public/be/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
     <script src="/travel/public/be/vendors/google-code-prettify/src/prettify.js"></script>
+    <!-- iCheck -->
+    <script src="/travel/public/be/vendors/iCheck/icheck.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="/travel/public/be/build/js/custom.js"></script>

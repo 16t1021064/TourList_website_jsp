@@ -14,6 +14,15 @@ import java.util.Date;
 public class DateConvertion {
 	
 	private String dateFormat = "HH:mm dd/MM/yyyy";
+	
+	public DateConvertion() {
+		super();
+	}
+	
+	public DateConvertion(String dateFormat) {
+		super();
+		this.dateFormat = dateFormat;
+	}
 
 	public String getDateFormat() {
 		return dateFormat;

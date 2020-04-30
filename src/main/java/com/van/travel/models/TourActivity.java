@@ -104,7 +104,6 @@ public class TourActivity extends AbstractModel {
 		tourActivity.setId(UUID.randomUUID().toString());
 		tourActivity.setTourId(tourId);
 		tourActivity.setActivityId(activityId);
-		tourActivity.save(true);
 		return (TourActivity) tourActivity.save(true);
 	}
 	public TourActivity update(String tourId, String activityId) {

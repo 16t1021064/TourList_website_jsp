@@ -29,7 +29,7 @@ public class Database {
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			conn=DriverManager.getConnection(
-					"jdbc:mysql://"+ databaseProperties.getProperty("ip") +":"+ databaseProperties.getProperty("port") +"/" + databaseProperties.getProperty("dbname"),
+					"jdbc:mysql://"+ databaseProperties.getProperty("ip") +":"+ databaseProperties.getProperty("port") +"/" + databaseProperties.getProperty("dbname")+"?useUnicode=yes&characterEncoding=UTF-8",
 					databaseProperties.getProperty("user"),
 					databaseProperties.getProperty("password"));			
 		}catch(Exception e) {

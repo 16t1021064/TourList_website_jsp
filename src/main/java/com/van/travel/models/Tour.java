@@ -1,8 +1,14 @@
 package com.van.travel.models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
+import com.van.travel.common.Database;
 import com.van.travel.common.DateConvertion;
 
 public class Tour extends AbstractModel {
@@ -224,7 +230,7 @@ public class Tour extends AbstractModel {
 			tour.setRegisteredPeople(rs.getInt("registered_people"));
 			tour.setDetailText(rs.getString("detail_text"));
 			tour.setDepartureLocation(rs.getString("departure_location"));
-			tour.setDepartureTime(dateConvertion.toUtilDate(rs.getString("departure_time")));
+			tour.setDepartureTime(dateConvertion.toUtilDate(rs.getTimestamp("departure_time")));
 			tour.setExpectText(rs.getString("expect_text"));
 			tour.setDestinationId(rs.getString("destination_id"));
 			return tour;
@@ -233,27 +239,191 @@ public class Tour extends AbstractModel {
 			return null;
 		}
 	}
-
+	
 	@Override
-	public Object find(String id) {
-		ResultSet rs = this.findRS(id);
-		if(rs == null) {
+	public Object save(boolean isNew) {
+		Connection conn = (new Database()).getConnection();
+		DateConvertion dateConvertion = new DateConvertion();
+		try {
+			String sql;
+			if(isNew) {
+				sql = " INSERT INTO "+this.tableName+" ";
+				sql += "			(id, name, thumbnail, state, nation, description, star, days, days_text, begin_time, end_time, o_price, p_price, min_age, max_people, registered_people, detail_text, departure_location, departure_time, expect_text, destination_id) ";
+				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			}else {
+				sql = " UPDATE "+this.tableName+" ";
+				sql += " SET	name=?, thumbnail=?, state=?, nation=?, description=?, star=?, days=?, days_text=?, begin_time=?, end_time=?, o_price=?, p_price=?, min_age=?, max_people=?, registered_people=?, detail_text=?, departure_location=?, departure_time=?, expect_text=?, destination_id=? ";
+				sql += "	WHERE id=? ";
+			}
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			if(isNew) {
+				stmt.setString(1, this.id);
+				stmt.setString(2, this.name);
+				stmt.setString(3, this.thumbnail);
+				stmt.setString(4, this.state);
+				stmt.setString(5, this.nation);
+				stmt.setString(6, this.description);
+				stmt.setInt(7, this.star);
+				stmt.setInt(8, this.days);
+				stmt.setString(9, this.daysText);
+				stmt.setTimestamp(10, dateConvertion.toTimestamp(this.beginTime));
+				stmt.setTimestamp(11, dateConvertion.toTimestamp(this.endTime));
+				stmt.setDouble(12, this.oPrice);
+				stmt.setDouble(13, this.pPrice);
+				stmt.setInt(14, this.minAge);
+				stmt.setInt(15, this.maxPeople);
+				stmt.setInt(16, this.registeredPeople);
+				stmt.setString(17, this.detailText);
+				stmt.setString(18, this.departureLocation);
+				stmt.setTimestamp(19, dateConvertion.toTimestamp(this.departureTime));
+				stmt.setString(20, this.expectText);
+				stmt.setString(21, this.destinationId);
+			}else {
+				stmt.setString(1, this.name);
+				stmt.setString(2, this.thumbnail);
+				stmt.setString(3, this.state);
+				stmt.setString(4, this.nation);
+				stmt.setString(5, this.description);
+				stmt.setInt(6, this.star);
+				stmt.setInt(7, this.days);
+				stmt.setString(8, this.daysText);
+				stmt.setTimestamp(9, dateConvertion.toTimestamp(this.beginTime));
+				stmt.setTimestamp(10, dateConvertion.toTimestamp(this.endTime));
+				stmt.setDouble(11, this.oPrice);
+				stmt.setDouble(12, this.pPrice);
+				stmt.setInt(13, this.minAge);
+				stmt.setInt(14, this.maxPeople);
+				stmt.setInt(15, this.registeredPeople);
+				stmt.setString(16, this.detailText);
+				stmt.setString(17, this.departureLocation);
+				stmt.setTimestamp(18, dateConvertion.toTimestamp(this.departureTime));
+				stmt.setString(19, this.expectText);
+				stmt.setString(20, this.destinationId);
+				stmt.setString(21, this.id);
+			}
+			System.out.println(stmt.toString());
+			
+			stmt.executeUpdate();
+			return this;
+		} catch (SQLException e) {
+			e.printStackTrace();
 			return null;
-		}else {
-			return this.rowToObj(rs);
 		}
 	}
 
 	@Override
-	public Object save(boolean isNew) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int delete() {
-		// TODO Auto-generated method stub
-		return 0;
+		for(TourActivity tourActivity : this.getTourActivities()) {
+			tourActivity.delete();
+		}
+		for(Itinerary itinerary : this.getItineraries()) {
+			itinerary.delete();
+		}
+		return this.delete(this.id);
 	}
-	
+	public ArrayList<Tour> toSelfList(ArrayList<Object> oArr){
+		ArrayList<Tour> arr = new ArrayList<Tour>();
+		for(Object o: oArr) {
+			arr.add((Tour) o);
+		}
+		return arr;
+	}
+	public Tour find(String id) {
+		Object o = this.findObject(id);
+		if(o == null) {
+			return null;
+		}else {
+			return (Tour) o;
+		}
+	}
+	public Tour create(String name, String thumbnail, String state, String nation, String description, int star, int days, String daysText, Date beginTime, Date endTime, double oPrice, double pPrice, int minAge, int maxPeople, int registeredPeople, String detailText, String departureLocation, Date departureTime, String expectText, String destinationId) {
+		Tour tour = new Tour();
+		tour.setId(UUID.randomUUID().toString());
+		tour.setName(name);
+		tour.setThumbnail(thumbnail);
+		tour.setState(state);
+		tour.setNation(nation);
+		tour.setDescription(description);
+		tour.setStar(star);
+		tour.setDays(days);
+		tour.setDaysText(daysText);
+		tour.setBeginTime(beginTime);
+		tour.setEndTime(endTime);
+		tour.setoPrice(oPrice);
+		tour.setpPrice(pPrice);
+		tour.setMinAge(minAge);
+		tour.setMaxPeople(maxPeople);
+		tour.setRegisteredPeople(registeredPeople);
+		tour.setDetailText(detailText);
+		tour.setDepartureLocation(departureLocation);
+		tour.setDepartureTime(departureTime);
+		tour.setExpectText(expectText);
+		tour.setDestinationId(destinationId);
+		return (Tour) tour.save(true);
+	}
+	public Tour update(String name, String thumbnail, String state, String nation, String description, int star, int days, String daysText, Date beginTime, Date endTime, double oPrice, double pPrice, int minAge, int maxPeople, int registeredPeople, String detailText, String departureLocation, Date departureTime, String expectText, String destinationId) {
+		this.setName(name);
+		this.setThumbnail(thumbnail);
+		this.setState(state);
+		this.setNation(nation);
+		this.setDescription(description);
+		this.setStar(star);
+		this.setDays(days);
+		this.setDaysText(daysText);
+		this.setBeginTime(beginTime);
+		this.setEndTime(endTime);
+		this.setoPrice(oPrice);
+		this.setpPrice(pPrice);
+		this.setMinAge(minAge);
+		this.setMaxPeople(maxPeople);
+		this.setRegisteredPeople(registeredPeople);
+		this.setDetailText(detailText);
+		this.setDepartureLocation(departureLocation);
+		this.setDepartureTime(departureTime);
+		this.setExpectText(expectText);
+		this.setDestinationId(destinationId);
+		return (Tour) this.save(false);
+	}
+	public ArrayList<Tour> all(){
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.all(arr);
+	}
+	public ArrayList<Tour> all(ArrayList<Object[]> whereConditions){
+		ArrayList<Tour> arr = this.toSelfList(this.allObject(whereConditions));
+		return arr;
+	}
+	public ArrayList<TourActivity> getTourActivities(){
+		return this.getTourActivities(true);
+	}
+	public ArrayList<TourActivity> getTourActivities(boolean saveResources){
+		String key = "tour_touractivity";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<TourActivity>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"tour_id", "=", this.id, "STRING"});
+		ArrayList<TourActivity> tourActivities = (new TourActivity()).all(whereConditions);
+		this.setHasManyRepos(key, tourActivities);
+		return tourActivities;
+	}
+	public ArrayList<Itinerary> getItineraries(){
+		return this.getItineraries(true);
+	}
+	public ArrayList<Itinerary> getItineraries(boolean saveResources){
+		String key = "tour_itinerary";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<Itinerary>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"tour_id", "=", this.id, "STRING"});
+		ArrayList<Itinerary> itineraries = (new Itinerary()).all(whereConditions);
+		this.setHasManyRepos(key, itineraries);
+		return itineraries;
+	}
 }

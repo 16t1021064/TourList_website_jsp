@@ -72,6 +72,9 @@ public class Activity extends AbstractModel {
 	}
 	@Override
 	public int delete() {
+		for(TourActivity tourActivity : this.getTourActivities()) {
+			tourActivity.delete();
+		}
 		return this.delete(this.id);
 	}
 	public ArrayList<Activity> toSelfList(ArrayList<Object> oArr){
@@ -107,20 +110,21 @@ public class Activity extends AbstractModel {
 		ArrayList<Activity> arr = this.toSelfList(this.allObject(whereConditions));
 		return arr;
 	}
+	public ArrayList<TourActivity> getTourActivities(){
+		return this.getTourActivities(true);
+	}
 	public ArrayList<TourActivity> getTourActivities(boolean saveResources){
-//		String key = "activity_touractivity";
-//		if(saveResources) {
-//			Object repos =  this.getHasManyRepos(key);
-//			if(repos != null) {
-//				return (ArrayList<TourActivity>) repos;
-//			}
-//		}
-//		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
-//		whereConditions.add(new Object[] {"activity_id", "=", this.id, "STRING"});
-//		TourActivity tourActivity = new TourActivity();
-//		
-//		ArrayList<TourActivity> tourActivities = new ArrayList<TourActivity>();
-		
-		return null;
+		String key = "activity_touractivity";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<TourActivity>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"activity_id", "=", this.id, "STRING"});
+		ArrayList<TourActivity> tourActivities = (new TourActivity()).all(whereConditions);
+		this.setHasManyRepos(key, tourActivities);
+		return tourActivities;
 	}
 }

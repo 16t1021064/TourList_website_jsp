@@ -1,8 +1,10 @@
+<%@page import="com.van.travel.models.Activity"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.van.travel.models.Destination"%>
 <%
 
 	ArrayList<Destination> listDestination = (ArrayList<Destination>) request.getAttribute("listDestination");
+	ArrayList<Activity> listActivity = (ArrayList<Activity>) request.getAttribute("listActivity");
 
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -115,7 +117,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="input-prepend input-group">
                             <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                            <input type="text" name="reservation" id="reservation" class="form-control">
+                            <input type="text" name="tour_time" id="reservation" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -227,6 +229,7 @@
 		                    </div>
 		                  </div>
                           <div id="editor-one" class="editor-wrapper"></div>
+                          <input type="hidden" name="detail_text">
                         </div>
                       </div>
                       <div class="form-group">
@@ -242,7 +245,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="form-group">
 		                        <div class="input-group date" id="myDatepicker">
-		                            <input type="text" class="form-control" />
+		                            <input type="text" class="form-control" name="departure_time" />
 		                            <span class="input-group-addon">
 		                               <span class="glyphicon glyphicon-calendar"></span>
 		                            </span>
@@ -323,6 +326,7 @@
 		                    </div>
 		                  </div>
                           <div id="editor-two" class="editor-wrapper"></div>
+                          <input type="hidden" name="expect_text">
                         </div>
                       </div>
                       <div class="form-group">
@@ -338,10 +342,21 @@
 		                    </div>
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Activities <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="checkbox">
+                          	<% for(Activity act : listActivity){ %>
+                          		<label style="margin-bottom: 5px;"><input type="checkbox" value="<%= act.getId() %>" name="activities[]" class="flat" > <%= act.getName() %></label>
+                          	<% } %>
+                          </div>
+                        </div>
+                      </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button">Cancel</button>
+                          <a class="btn btn-primary" href="/travel/admin/tour">Cancel</a>
 						  <button class="btn btn-primary" type="reset">Reset</button>
                           <button type="submit" class="btn btn-success">Submit</button>
                         </div>
@@ -368,20 +383,11 @@
 	<script>
 		$('#myDatepicker').datetimepicker({format: 'MM-DD-YYYY HH:mm:ss', defaultDate: new Date()});
 	</script>
-    <!-- <script>
-	    $('#formCreate .btn').on('click', function() {
-		  $('#formCreate').parsley().validate();
-		  validateFront();
+    <script>
+	    $('#formCreate [type="submit"]').on('click', function() {
+		  $('#formCreate input[name="detail_text"]').val($('#editor-one').html());
+		  $('#formCreate input[name="expect_text"]').val($('#editor-two').html());
 		});
-		var validateFront = function() {
-		  if (true === $('#formCreate').parsley().isValid()) {
-			$('.bs-callout-info').removeClass('hidden');
-			$('.bs-callout-warning').addClass('hidden');
-		  } else {
-			$('.bs-callout-info').addClass('hidden');
-			$('.bs-callout-warning').removeClass('hidden');
-		  }
-		};
-    </script> -->
+    </script>
   </body>
 </html>

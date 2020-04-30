@@ -29,6 +29,16 @@ public abstract class AbstractModel {
 		}
 		return null;
 	}
+	protected void setHasManyRepos(String key, Object data) {
+		for(Object[] hasMany : this.hasMany_repos) {
+			String keyRepos = (String) hasMany[0];
+			if(keyRepos.equals(key)) {
+				hasMany[1] = data;
+				return;
+			}
+		}
+		this.hasMany_repos.add(new Object[] {key, data});
+	}
 	
 	protected Object getBelongsToRepos(String key) {
 		for(Object[] belongsTo : this.belongsTo_repos) {
@@ -38,6 +48,16 @@ public abstract class AbstractModel {
 			}
 		}
 		return null;
+	}
+	protected void setBelongsToRepos(String key, Object data) {
+		for(Object[] belongsTo : this.belongsTo_repos) {
+			String keyRepos = (String) belongsTo[0];
+			if(keyRepos.equals(key)) {
+				belongsTo[1] = data;
+				return;
+			}
+		}
+		this.belongsTo_repos.add(new Object[] {key, data});
 	}
 	
 	/**
@@ -121,10 +141,18 @@ public abstract class AbstractModel {
 	 * @return
 	 */
 	protected ResultSet allRS(ArrayList<Object[]> whereConditions) {
-//		String[] defaultOperators = new String[] {"INT", "STRING"};
+		try {
+			return this.queryWhereRS(" select * ", whereConditions).executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	protected PreparedStatement queryWhereRS(String preQuery, ArrayList<Object[]> whereConditions) {
 		Connection conn = (new Database()).getConnection();
 		try {
-			String sql = "select * from " + this.tableName + " ";
+			String sql = preQuery + " from " + this.tableName + " ";
 			int index = 0;
 			for(Object[] conditions : whereConditions) {
 				index++;
@@ -154,8 +182,7 @@ public abstract class AbstractModel {
 				}
 			}
 			System.out.println(stmt.toString());
-			ResultSet rs = stmt.executeQuery();
-			return rs;
+			return stmt;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

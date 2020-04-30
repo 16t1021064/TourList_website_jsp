@@ -12,5 +12,7 @@
     <link href="/travel/public/be/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
     <link href="/travel/public/be/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="/travel/public/be/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="/travel/public/be/build/css/custom.min.css" rel="stylesheet">
