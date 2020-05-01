@@ -319,6 +319,12 @@ public class Tour extends AbstractModel {
 		for(Itinerary itinerary : this.getItineraries()) {
 			itinerary.delete();
 		}
+		for(Review review : this.getReviews()) {
+			review.delete();
+		}
+		for(Service service : this.getServices()) {
+			service.delete();
+		}
 		return this.delete(this.id);
 	}
 	public ArrayList<Tour> toSelfList(ArrayList<Object> oArr){
@@ -448,5 +454,24 @@ public class Tour extends AbstractModel {
 		ArrayList<Review> reviews = (new Review()).all(whereConditions);
 		this.setHasManyRepos(key, reviews);
 		return reviews;
+	}
+	public ArrayList<Service> getServices(){
+		return this.getServices(true);
+	}
+	public ArrayList<Service> getServices(boolean saveResources){
+		String key = "tour_service";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<Service>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"tour_id", "=", this.id, "STRING"});
+		ArrayList<Object[]> orderBys = new ArrayList<Object[]>();
+		orderBys.add(new Object[] {"status", "desc"});
+		ArrayList<Service> services = (new Service()).all(whereConditions, orderBys);
+		this.setHasManyRepos(key, services);
+		return services;
 	}
 }

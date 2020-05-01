@@ -21,5 +21,7 @@
     <script src="/travel/public/be/vendors/google-code-prettify/src/prettify.js"></script>
     <!-- iCheck -->
     <script src="/travel/public/be/vendors/iCheck/icheck.min.js"></script>
+    <!-- Switchery -->
+    <script src="/travel/public/be/vendors/switchery/dist/switchery.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="/travel/public/be/build/js/custom.js"></script>

@@ -14,6 +14,7 @@ import com.van.travel.common.DateConvertion;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Destination;
 import com.van.travel.models.Itinerary;
+import com.van.travel.models.Service;
 import com.van.travel.models.Tour;
 import com.van.travel.models.TourActivity;
 
@@ -90,7 +91,6 @@ public class EditTourAdmin extends HttpServlet {
 		Date departureTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(departureTime_text.trim());
 		String expectText = request.getParameter("expect_text");
 		String destinationId = request.getParameter("destination_id");
-		
 		Tour newTour = tour.update(name, thumbnail, state, nation, description, star, days, daysText, beginTime, endTime, oPrice, pPrice, minAge, maxPeople, registeredPeople, detailText, departureLocation, departureTime, expectText, destinationId);
 		for(TourActivity tourActivity : newTour.getTourActivities()) {
 			tourActivity.delete();
@@ -108,7 +108,20 @@ public class EditTourAdmin extends HttpServlet {
 			for(int i=0; i < itineraries_sequence.length; i=i+1) {
 				(new Itinerary()).create(newTour.getId(), Integer.parseInt(itineraries_sequence[i]), itineraries_name[i], itineraries_description[i]);
 			}
-			
+		}
+		String[] services_status = request.getParameterValues("services_status[]");
+		String[] services_name = request.getParameterValues("services_name[]");
+		if(services_status.length == services_name.length) {
+			for(Service service : newTour.getServices()) {
+				service.delete();
+			}
+			for(int i=0; i < services_status.length; i=i+1) {
+				boolean tempStatus = false;
+				if(services_status[i].equals("1")) {
+					tempStatus = true;
+				}
+				(new Service()).create(newTour.getId(), tempStatus, services_name[i]);
+			}
 		}
 		response.sendRedirect("/travel/admin/tour/edit?id="+newTour.getId());
 	}

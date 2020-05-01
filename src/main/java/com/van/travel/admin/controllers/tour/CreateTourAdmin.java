@@ -14,6 +14,7 @@ import com.van.travel.common.DateConvertion;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Destination;
 import com.van.travel.models.Itinerary;
+import com.van.travel.models.Service;
 import com.van.travel.models.Tour;
 import com.van.travel.models.TourActivity;
 
@@ -98,6 +99,17 @@ public class CreateTourAdmin extends HttpServlet {
 				(new Itinerary()).create(tour.getId(), Integer.parseInt(itineraries_sequence[i]), itineraries_name[i], itineraries_description[i]);
 			}
 			
+		}
+		String[] services_status = request.getParameterValues("services_status[]");
+		String[] services_name = request.getParameterValues("services_name[]");
+		if(services_status.length == services_name.length) {
+			for(int i=0; i < services_status.length; i=i+1) {
+				boolean tempStatus = false;
+				if(services_status[i].equals("1")) {
+					tempStatus = true;
+				}
+				(new Service()).create(tour.getId(), tempStatus, services_name[i]);
+			}
 		}
 		response.sendRedirect("/travel/admin/tour/edit?id="+tour.getId());
 //		doGet(request, response);
