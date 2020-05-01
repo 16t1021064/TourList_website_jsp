@@ -1,8 +1,14 @@
 package com.van.travel.models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
+import com.van.travel.common.Database;
 import com.van.travel.common.DateConvertion;
 
 public class Review extends AbstractModel {
@@ -78,13 +84,95 @@ public class Review extends AbstractModel {
 		}
 	}
 	@Override
-	public Object find(String id) {
-		ResultSet rs = this.findRS(id);
-		if(rs == null) {
+	public Object save(boolean isNew) {
+		Connection conn = (new Database()).getConnection();
+		DateConvertion dateConvertion = new DateConvertion();
+		try {
+			String sql;
+			if(isNew) {
+				sql = " INSERT INTO "+this.tableName+" ";
+				sql += "			(id, tour_id, name, email, phone, content, review_time) ";
+				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?) ";
+			}else {
+				sql = " UPDATE "+this.tableName+" ";
+				sql += " 	SET tour_id=?, name=?, email=?, phone=?, content=?, review_time=? ";
+				sql += "	WHERE id=? ";
+			}
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			if(isNew) {
+				stmt.setString(1, this.id);
+				stmt.setString(2, this.tourId);
+				stmt.setString(3, this.name);
+				stmt.setString(4, this.email);
+				stmt.setString(5, this.phone);
+				stmt.setString(6, this.content);
+				stmt.setTimestamp(7, dateConvertion.toTimestamp(this.reviewTime));
+			}else {
+				stmt.setString(1, this.tourId);
+				stmt.setString(2, this.name);
+				stmt.setString(3, this.email);
+				stmt.setString(4, this.phone);
+				stmt.setString(5, this.content);
+				stmt.setTimestamp(6, dateConvertion.toTimestamp(this.reviewTime));
+				stmt.setString(7, this.id);
+			}
+			
+			stmt.executeUpdate();
+			return this;
+		} catch (SQLException e) {
+			e.printStackTrace();
 			return null;
-		}else {
-			return this.rowToObj(rs);
 		}
 	}
-	
+	@Override
+	public int delete() {
+		return this.delete(this.id);
+	}
+	public ArrayList<Review> toSelfList(ArrayList<Object> oArr){
+		ArrayList<Review> arr = new ArrayList<Review>();
+		for(Object o: oArr) {
+			arr.add((Review) o);
+		}
+		return arr;
+	}
+	public Review find(String id) {
+		Object o = this.findObject(id);
+		if(o == null) {
+			return null;
+		}else {
+			return (Review) o;
+		}
+	}
+	public Review create(String tourId, String name, String email, String phone, String content, Date reviewTime) {
+		Review review = new Review();
+		review.setId(UUID.randomUUID().toString());
+		review.setTourId(tourId);
+		review.setName(name);
+		review.setEmail(email);
+		review.setPhone(phone);
+		review.setContent(content);
+		review.setReviewTime(reviewTime);
+		return (Review) review.save(true);
+	}
+	public Review update(String tourId, String name, String email, String phone, String content, Date reviewTime) {
+		this.setTourId(tourId);
+		this.setName(name);
+		this.setEmail(email);
+		this.setPhone(phone);
+		this.setContent(content);
+		this.setReviewTime(reviewTime);
+		return (Review) this.save(false);
+	}
+	public ArrayList<Review> all(){
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.all(arr);
+	}
+	public ArrayList<Review> all(ArrayList<Object[]> whereConditions){
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.all(whereConditions, arr);
+	}
+	public ArrayList<Review> all(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys){
+		ArrayList<Review> arr = this.toSelfList(this.allObject(whereConditions, orderBys));
+		return arr;
+	}
 }

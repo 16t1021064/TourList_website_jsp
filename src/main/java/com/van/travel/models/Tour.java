@@ -432,4 +432,21 @@ public class Tour extends AbstractModel {
 		this.setHasManyRepos(key, itineraries);
 		return itineraries;
 	}
+	public ArrayList<Review> getReviews(){
+		return this.getReviews(true);
+	}
+	public ArrayList<Review> getReviews(boolean saveResources){
+		String key = "tour_review";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<Review>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"tour_id", "=", this.id, "STRING"});
+		ArrayList<Review> reviews = (new Review()).all(whereConditions);
+		this.setHasManyRepos(key, reviews);
+		return reviews;
+	}
 }

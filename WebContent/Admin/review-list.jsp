@@ -1,11 +1,13 @@
-<%@page import="com.van.travel.common.DateConvertion"%>
 <%@page import="com.van.travel.models.Tour"%>
+<%@page import="com.van.travel.common.DateConvertion"%>
+<%@page import="com.van.travel.models.Review"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.van.travel.models.Destination"%>
 <%
 
-	ArrayList<Tour> list = (ArrayList<Tour>) request.getAttribute("list");
-	DateConvertion dateConvertion = new DateConvertion("MM/dd/yyyy");
+	Tour tour = (Tour) request.getAttribute("tour");
+	ArrayList<Review> list = (ArrayList<Review>) request.getAttribute("list");
+	DateConvertion dateConvertion = new DateConvertion("MM/dd/yyyy HH:mm");
 
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -17,7 +19,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>List Tour || Admin</title>
+    <title>List Review || Admin</title>
 	<%@include file="./layout/style.jsp" %>
   </head>
 
@@ -38,7 +40,7 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
+                          <li><a href="/travel/admin/review/create?tour_id=<%= tour.getId() %>">Create</a>
                           </li>
                           <li><a href="#">Settings 2</a>
                           </li>
@@ -57,33 +59,22 @@
                       <thead>
                         <tr>
                           <th>Name</th>
-                          <th>Days</th>
-                          <th>Begin time</th>
-                          <th>End time</th>
-                          <th>Origin price</th>
-                          <th>Promotion price</th>
-                          <th>Registered People</th>
-                          <th>Max People</th>
+                          <th>Email</th>
+                          <th>Phone</th>
+                          <th>Review Time</th>
                           <th>Action</th>
                         </tr>
                       </thead>
-
-
                       <tbody>
-                      	<% for(Tour tour : list){ %>
+                      	<% for(Review review : list){ %>
                         <tr>
-                          <td><%= tour.getName() %></td>
-                          <td><%= tour.getDays() %></td>
-                          <td><%= dateConvertion.toStringDate(tour.getBeginTime()) %></td>
-                          <td><%= dateConvertion.toStringDate(tour.getEndTime()) %></td>
-                          <td><%= tour.getoPrice() %></td>
-                          <td><%= tour.getpPrice() %></td>
-                          <td><%= tour.getRegisteredPeople() %></td>
-                          <td><%= tour.getMaxPeople() %></td>
+                          <td><%= review.getName() %></td>
+                          <td><%= review.getEmail() %></td>
+                          <td><%= review.getPhone() %></td>
+                          <td><%= dateConvertion.toStringDate(review.getReviewTime()) %></td>
                           <td>
-                          	<a href="/travel/admin/tour/edit?id=<%= tour.getId() %>" class="btn btn-primary btn-xs">Edit</a>
-                          	<a href="/travel/admin/review?tour_id=<%= tour.getId() %>" target="_blank" class="btn btn-info btn-xs">Reviews</a>
-                          	<a href="javascript:void(0)" data-id="<%= tour.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
+                          	<a href="/travel/admin/destination/edit?id=<%= review.getId() %>" class="btn btn-primary btn-xs">Edit</a>
+                          	<a href="javascript:void(0)" data-id="<%= review.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
                         <% } %>
@@ -95,7 +86,7 @@
 			</div>
 		</div>
 		
-		<form id="formDelete" method="post" action="/travel/admin/tour/delete" style="display: none;">
+		<form id="formDelete" method="post" action="/travel/admin/review/delete" style="display: none;">
 			<input type="hidden" name="id">
 		</form>
 		
