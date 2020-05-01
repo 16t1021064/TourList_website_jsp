@@ -136,6 +136,12 @@ public class Blog extends AbstractModel {
 	}
 	@Override
 	public int delete() {
+		for(BlogTag blogTag : this.getBlogTags()) {
+			blogTag.delete();
+		}
+		for(Comment comment : this.getComments()) {
+			comment.delete();
+		}
 		return this.delete(this.id);
 	}
 	public ArrayList<Blog> toSelfList(ArrayList<Object> oArr){
@@ -186,5 +192,39 @@ public class Blog extends AbstractModel {
 	public ArrayList<Blog> all(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys){
 		ArrayList<Blog> arr = this.toSelfList(this.allObject(whereConditions, orderBys));
 		return arr;
+	}
+	public ArrayList<BlogTag> getBlogTags(){
+		return this.getBlogTags(true);
+	}
+	public ArrayList<BlogTag> getBlogTags(boolean saveResources){
+		String key = "blog_blogtag";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<BlogTag>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"blog_id", "=", this.id, "STRING"});
+		ArrayList<BlogTag> blogTags = (new BlogTag()).all(whereConditions);
+		this.setHasManyRepos(key, blogTags);
+		return blogTags;
+	}
+	public ArrayList<Comment> getComments(){
+		return this.getComments(true);
+	}
+	public ArrayList<Comment> getComments(boolean saveResources){
+		String key = "blog_comment";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<Comment>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"blog_id", "=", this.id, "STRING"});
+		ArrayList<Comment> comments = (new Comment()).all(whereConditions);
+		this.setHasManyRepos(key, comments);
+		return comments;
 	}
 }

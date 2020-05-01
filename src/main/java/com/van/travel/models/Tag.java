@@ -82,6 +82,9 @@ public class Tag extends AbstractModel {
 	}
 	@Override
 	public int delete() {
+		for(BlogTag blogTag : this.getBlogTags()) {
+			blogTag.delete();
+		}
 		return this.delete(this.id);
 	}
 	public ArrayList<Tag> toSelfList(ArrayList<Object> oArr){
@@ -122,5 +125,22 @@ public class Tag extends AbstractModel {
 	public ArrayList<Tag> all(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys){
 		ArrayList<Tag> arr = this.toSelfList(this.allObject(whereConditions, orderBys));
 		return arr;
+	}
+	public ArrayList<BlogTag> getBlogTags(){
+		return this.getBlogTags(true);
+	}
+	public ArrayList<BlogTag> getBlogTags(boolean saveResources){
+		String key = "tag_blogtag";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<BlogTag>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"tag_id", "=", this.id, "STRING"});
+		ArrayList<BlogTag> blogTags = (new BlogTag()).all(whereConditions);
+		this.setHasManyRepos(key, blogTags);
+		return blogTags;
 	}
 }
