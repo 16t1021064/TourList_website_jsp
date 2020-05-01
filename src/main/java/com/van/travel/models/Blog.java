@@ -1,8 +1,14 @@
 package com.van.travel.models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
+import com.van.travel.common.Database;
 import com.van.travel.common.DateConvertion;
 
 public class Blog extends AbstractModel {
@@ -78,7 +84,7 @@ public class Blog extends AbstractModel {
 			blog.setSumary(rs.getString("sumary"));
 			blog.setContent(rs.getString("content"));
 			blog.setAuthor(rs.getString("author"));
-			blog.setCreatedTime(rs.getTimestamp("created_time"));
+			blog.setCreatedTime(dateConvertion.toUtilDate(rs.getTimestamp("created_time")));
 			return blog;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -86,13 +92,99 @@ public class Blog extends AbstractModel {
 		}
 	}
 	@Override
-	public Object find(String id) {
-		ResultSet rs = this.findRS(id);
-		if(rs == null) {
+	public Object save(boolean isNew) {
+		Connection conn = (new Database()).getConnection();
+		DateConvertion dateConvertion = new DateConvertion();
+		try {
+			String sql;
+			if(isNew) {
+				sql = " INSERT INTO "+this.tableName+" ";
+				sql += "			(id, title, thumbnail, slug, sumary, content, author, created_time) ";
+				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?) ";
+			}else {
+				sql = " UPDATE "+this.tableName+" ";
+				sql += " 	SET title=?, thumbnail=?, slug=?, sumary=? content=?, author=?, created_time=? ";
+				sql += "	WHERE id=? ";
+			}
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			if(isNew) {
+				stmt.setString(1, this.id);
+				stmt.setString(2, this.title);
+				stmt.setString(3, this.thumbnail);
+				stmt.setString(4, this.slug);
+				stmt.setString(5, this.sumary);
+				stmt.setString(6, this.content);
+				stmt.setString(7, this.author);
+				stmt.setTimestamp(8, dateConvertion.toTimestamp(this.createdTime));
+			}else {
+				stmt.setString(1, this.title);
+				stmt.setString(2, this.thumbnail);
+				stmt.setString(3, this.slug);
+				stmt.setString(4, this.sumary);
+				stmt.setString(5, this.content);
+				stmt.setString(6, this.author);
+				stmt.setTimestamp(7, dateConvertion.toTimestamp(this.createdTime));
+				stmt.setString(8, this.id);
+			}
+			
+			stmt.executeUpdate();
+			return this;
+		} catch (SQLException e) {
+			e.printStackTrace();
 			return null;
-		}else {
-			return this.rowToObj(rs);
 		}
 	}
-	
+	@Override
+	public int delete() {
+		return this.delete(this.id);
+	}
+	public ArrayList<Blog> toSelfList(ArrayList<Object> oArr){
+		ArrayList<Blog> arr = new ArrayList<Blog>();
+		for(Object o: oArr) {
+			arr.add((Blog) o);
+		}
+		return arr;
+	}
+	public Blog find(String id) {
+		Object o = this.findObject(id);
+		if(o == null) {
+			return null;
+		}else {
+			return (Blog) o;
+		}
+	}
+	public Blog create(String title, String thumbnail, String slug, String sumary, String content, String author, Date createdTime) {
+		Blog blog = new Blog();
+		blog.setId(UUID.randomUUID().toString());
+		blog.setTitle(title);
+		blog.setThumbnail(thumbnail);
+		blog.setSlug(slug);
+		blog.setSumary(sumary);
+		blog.setContent(content);
+		blog.setAuthor(author);
+		blog.setCreatedTime(createdTime);
+		return (Blog) blog.save(true);
+	}
+	public Blog update(String title, String thumbnail, String slug, String sumary, String content, String author, Date createdTime) {
+		this.setTitle(title);
+		this.setThumbnail(thumbnail);
+		this.setSlug(slug);
+		this.setSumary(sumary);
+		this.setContent(content);
+		this.setAuthor(author);
+		this.setCreatedTime(createdTime);
+		return (Blog) this.save(false);
+	}
+	public ArrayList<Blog> all(){
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.all(arr);
+	}
+	public ArrayList<Blog> all(ArrayList<Object[]> whereConditions){
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.all(whereConditions, arr);
+	}
+	public ArrayList<Blog> all(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys){
+		ArrayList<Blog> arr = this.toSelfList(this.allObject(whereConditions, orderBys));
+		return arr;
+	}
 }
