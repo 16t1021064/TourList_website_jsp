@@ -83,7 +83,7 @@ public class Comment extends AbstractModel {
 			String sql;
 			if(isNew) {
 				sql = " INSERT INTO "+this.tableName+" ";
-				sql += "			(id, blod_id,  name, email, content, created_time) ";
+				sql += "			(id, blog_id,  name, email, content, created_time) ";
 				sql += "    VALUES  (?, ?, ?, ?, ?, ?) ";
 			}else {
 				sql = " UPDATE "+this.tableName+" ";

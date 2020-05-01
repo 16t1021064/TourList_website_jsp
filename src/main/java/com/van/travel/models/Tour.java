@@ -474,4 +474,38 @@ public class Tour extends AbstractModel {
 		this.setHasManyRepos(key, services);
 		return services;
 	}
+	public ArrayList<Booking> getBookings(){
+		return this.getBookings(true);
+	}
+	public ArrayList<Booking> getBookings(boolean saveResources){
+		String key = "tour_booking";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<Booking>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"tour_id", "=", this.id, "STRING"});
+		ArrayList<Booking> bookings = (new Booking()).all(whereConditions);
+		this.setHasManyRepos(key, bookings);
+		return bookings;
+	}
+	public ArrayList<Enquiry> getEnquiries(){
+		return this.getEnquiries(true);
+	}
+	public ArrayList<Enquiry> getEnquiries(boolean saveResources){
+		String key = "tour_enquiry";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<Enquiry>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"tour_id", "=", this.id, "STRING"});
+		ArrayList<Enquiry> enquiries = (new Enquiry()).all(whereConditions);
+		this.setHasManyRepos(key, enquiries);
+		return enquiries;
+	}
 }
