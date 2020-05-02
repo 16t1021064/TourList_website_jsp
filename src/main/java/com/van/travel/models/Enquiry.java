@@ -117,7 +117,7 @@ public class Enquiry extends AbstractModel {
 			if(isNew) {
 				sql = " INSERT INTO "+this.tableName+" ";
 				sql += "			(id, tour_id,  status, name, phone, email, travel_time, count_people, note, submit_time) ";
-				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			}else {
 				sql = " UPDATE "+this.tableName+" ";
 				sql += " 	SET tour_id=?, status=?, name=?, phone=?, email=?, travel_time=?, count_people=?, note=?, submit_time=? ";
