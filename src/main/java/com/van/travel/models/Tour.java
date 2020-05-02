@@ -325,6 +325,12 @@ public class Tour extends AbstractModel {
 		for(Service service : this.getServices()) {
 			service.delete();
 		}
+		for(Booking booking : this.getBookings()) {
+			booking.delete();
+		}
+		for(Enquiry enquiry : this.getEnquiries()) {
+			enquiry.delete();
+		}
 		return this.delete(this.id);
 	}
 	public ArrayList<Tour> toSelfList(ArrayList<Object> oArr){

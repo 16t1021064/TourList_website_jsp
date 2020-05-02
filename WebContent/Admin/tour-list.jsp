@@ -83,6 +83,7 @@
                           <td>
                           	<a href="/travel/admin/tour/edit?id=<%= tour.getId() %>" class="btn btn-primary btn-xs">Edit</a>
                           	<a href="/travel/admin/review?tour_id=<%= tour.getId() %>" target="_blank" class="btn btn-info btn-xs">Reviews</a>
+                          	<a href="/travel/admin/booking?tour_id=<%= tour.getId() %>" target="_blank" class="btn btn-info btn-xs">Bookings</a>
                           	<a href="javascript:void(0)" data-id="<%= tour.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
