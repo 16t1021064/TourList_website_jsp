@@ -143,4 +143,20 @@ public class Tag extends AbstractModel {
 		this.setHasManyRepos(key, blogTags);
 		return blogTags;
 	}
+	public Tag findWithText(String text) {
+		Connection conn = (new Database()).getConnection();
+		try {
+			PreparedStatement stmt = conn.prepareStatement("select * from "+this.tableName+" where name=? limit 1");
+			stmt.setString(1, text);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				return (Tag) this.rowToObj(rs);
+			}else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

@@ -99,7 +99,7 @@ public abstract class AbstractModel {
 	public int delete(String id) {
 		Connection conn = (new Database()).getConnection();
 		try {
-			PreparedStatement stmt = conn.prepareStatement("delete from "+this.tableName+" where id=?");
+			PreparedStatement stmt = conn.prepareStatement("delete from "+this.tableName+" where id=? ");
 			stmt.setString(1, id);
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -116,7 +116,7 @@ public abstract class AbstractModel {
 	protected ResultSet findRS(String id) {
 		Connection conn = (new Database()).getConnection();
 		try {
-			PreparedStatement stmt = conn.prepareStatement("select * from "+this.tableName+" where id=?");
+			PreparedStatement stmt = conn.prepareStatement("select * from "+this.tableName+" where id=? limit 1");
 			stmt.setString(1, id);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {

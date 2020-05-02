@@ -16,7 +16,7 @@ public class Blog extends AbstractModel {
 	private String title;
 	private String thumbnail;
 	private String slug;
-	private String sumary;
+	private String summary;
 	private String content;
 	private String author;
 	private Date createdTime;
@@ -44,11 +44,11 @@ public class Blog extends AbstractModel {
 	public void setSlug(String slug) {
 		this.slug = slug;
 	}
-	public String getSumary() {
-		return sumary;
+	public String getSummary() {
+		return summary;
 	}
-	public void setSumary(String sumary) {
-		this.sumary = sumary;
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 	public String getContent() {
 		return content;
@@ -81,7 +81,7 @@ public class Blog extends AbstractModel {
 			blog.setTitle(rs.getString("title"));
 			blog.setThumbnail(rs.getString("thumbnail"));
 			blog.setSlug(rs.getString("slug"));
-			blog.setSumary(rs.getString("sumary"));
+			blog.setSummary(rs.getString("summary"));
 			blog.setContent(rs.getString("content"));
 			blog.setAuthor(rs.getString("author"));
 			blog.setCreatedTime(dateConvertion.toUtilDate(rs.getTimestamp("created_time")));
@@ -99,11 +99,11 @@ public class Blog extends AbstractModel {
 			String sql;
 			if(isNew) {
 				sql = " INSERT INTO "+this.tableName+" ";
-				sql += "			(id, title, thumbnail, slug, sumary, content, author, created_time) ";
+				sql += "			(id, title, thumbnail, slug, summary, content, author, created_time) ";
 				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?) ";
 			}else {
 				sql = " UPDATE "+this.tableName+" ";
-				sql += " 	SET title=?, thumbnail=?, slug=?, sumary=? content=?, author=?, created_time=? ";
+				sql += " 	SET title=?, thumbnail=?, slug=?, summary=?, content=?, author=?, created_time=? ";
 				sql += "	WHERE id=? ";
 			}
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -112,7 +112,7 @@ public class Blog extends AbstractModel {
 				stmt.setString(2, this.title);
 				stmt.setString(3, this.thumbnail);
 				stmt.setString(4, this.slug);
-				stmt.setString(5, this.sumary);
+				stmt.setString(5, this.summary);
 				stmt.setString(6, this.content);
 				stmt.setString(7, this.author);
 				stmt.setTimestamp(8, dateConvertion.toTimestamp(this.createdTime));
@@ -120,7 +120,7 @@ public class Blog extends AbstractModel {
 				stmt.setString(1, this.title);
 				stmt.setString(2, this.thumbnail);
 				stmt.setString(3, this.slug);
-				stmt.setString(4, this.sumary);
+				stmt.setString(4, this.summary);
 				stmt.setString(5, this.content);
 				stmt.setString(6, this.author);
 				stmt.setTimestamp(7, dateConvertion.toTimestamp(this.createdTime));
@@ -159,23 +159,23 @@ public class Blog extends AbstractModel {
 			return (Blog) o;
 		}
 	}
-	public Blog create(String title, String thumbnail, String slug, String sumary, String content, String author, Date createdTime) {
+	public Blog create(String title, String thumbnail, String slug, String summary, String content, String author, Date createdTime) {
 		Blog blog = new Blog();
 		blog.setId(UUID.randomUUID().toString());
 		blog.setTitle(title);
 		blog.setThumbnail(thumbnail);
 		blog.setSlug(slug);
-		blog.setSumary(sumary);
+		blog.setSummary(summary);
 		blog.setContent(content);
 		blog.setAuthor(author);
 		blog.setCreatedTime(createdTime);
 		return (Blog) blog.save(true);
 	}
-	public Blog update(String title, String thumbnail, String slug, String sumary, String content, String author, Date createdTime) {
+	public Blog update(String title, String thumbnail, String slug, String summary, String content, String author, Date createdTime) {
 		this.setTitle(title);
 		this.setThumbnail(thumbnail);
 		this.setSlug(slug);
-		this.setSumary(sumary);
+		this.setSummary(summary);
 		this.setContent(content);
 		this.setAuthor(author);
 		this.setCreatedTime(createdTime);
@@ -226,5 +226,29 @@ public class Blog extends AbstractModel {
 		ArrayList<Comment> comments = (new Comment()).all(whereConditions);
 		this.setHasManyRepos(key, comments);
 		return comments;
+	}
+	public void setTags(String tags) {
+		if(tags == null) {
+			return;
+		}
+		
+		for(BlogTag blogTag : this.getBlogTags()) {
+			blogTag.delete();
+		}
+		
+		tags = tags.trim();
+		String[] arrTags = tags.split("[,]");
+		for(String tagText : arrTags) {
+			tagText = tagText.trim();
+			if(tagText.equals("")) {
+				continue;
+			}
+			Tag tag;
+			tag = (new Tag()).findWithText(tagText);
+			if(tag == null) {
+				tag = (new Tag()).create(tagText, 0);
+			}
+			(new BlogTag()).create(this.id, tag.getId());
+		}
 	}
 }

@@ -41,8 +41,8 @@ public class BlogTag extends AbstractModel {
 		BlogTag blogTag = new BlogTag();
 		try {
 			blogTag.setId(rs.getString("id"));
-			blogTag.setBlogId(rs.getString("blogId"));
-			blogTag.setTagId(rs.getString("tagId"));
+			blogTag.setBlogId(rs.getString("blog_id"));
+			blogTag.setTagId(rs.getString("tag_id"));
 			return blogTag;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -123,5 +123,20 @@ public class BlogTag extends AbstractModel {
 	public ArrayList<BlogTag> all(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys){
 		ArrayList<BlogTag> arr = this.toSelfList(this.allObject(whereConditions, orderBys));
 		return arr;
+	}
+	public Tag getTag(){
+		return this.getTag(true);
+	}
+	public Tag getTag(boolean saveResources){
+		String key = "blogtag_tag";
+		if(saveResources) {
+			Object repos =  this.getBelongsToRepos(key);
+			if(repos != null) {
+				return (Tag) repos;
+			}
+		}
+		Tag tag = (new Tag()).find(this.tagId);
+		this.setBelongsToRepos(key, tag);
+		return tag;
 	}
 }
