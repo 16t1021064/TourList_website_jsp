@@ -1,10 +1,8 @@
-package com.van.travel.admin.controllers.review;
+package com.van.travel.admin.controllers.comment;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,21 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
-import com.van.travel.models.Destination;
+import com.van.travel.models.Blog;
+import com.van.travel.models.Comment;
 import com.van.travel.models.Review;
 import com.van.travel.models.Tour;
 
 /**
- * Servlet implementation class CreateReviewAdmin
+ * Servlet implementation class CreateCommentAdmin
  */
-@WebServlet("/admin/review/create")
-public class CreateReviewAdmin extends HttpServlet {
+@WebServlet("/admin/comment/create")
+public class CreateCommentAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateReviewAdmin() {
+    public CreateCommentAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,10 +36,10 @@ public class CreateReviewAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String tourId = request.getParameter("tour_id");
-		Tour tour = (new Tour()).find(tourId);
-		request.setAttribute("tour", tour);
-		request.getRequestDispatcher("/Admin/review-create.jsp").forward(request, response);
+		String blogId = request.getParameter("blog_id");
+		Blog blog = (new Blog()).find(blogId);
+		request.setAttribute("blog", blog);
+		request.getRequestDispatcher("/Admin/comment-create.jsp").forward(request, response);
 	}
 
 	/**
@@ -50,19 +49,18 @@ public class CreateReviewAdmin extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		String tourId = request.getParameter("tour_id");
-		Tour tour = (new Tour()).find(tourId);
+		String blogId = request.getParameter("blog_id");
+		Blog blog = (new Blog()).find(blogId);
 		
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
 		String content = request.getParameter("content");
-		String reviewTime_text = request.getParameter("review_time");
-		Date reviewTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(reviewTime_text.trim());
+		String createdTime_text = request.getParameter("created_time");
+		Date createdTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(createdTime_text.trim());
 		
-		Review review = (new Review()).create(tour.getId(), name, email, phone, content, reviewTime);
+		Comment comment = (new Comment()).create(blog.getId(), name, email, content, createdTime);
 		
-		response.sendRedirect("/travel/admin/review/edit?id="+review.getId());
+		response.sendRedirect("/travel/admin/comment/edit?id="+comment.getId());
 	}
 
 }

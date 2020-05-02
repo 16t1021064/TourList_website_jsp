@@ -1,3 +1,4 @@
+<%@page import="com.van.travel.models.Blog"%>
 <%@page import="com.van.travel.models.Tour"%>
 <%@page import="com.van.travel.common.DateConvertion"%>
 <%@page import="com.van.travel.models.Review"%>
@@ -5,8 +6,7 @@
 <%@page import="com.van.travel.models.Destination"%>
 <%
 
-	Review review = (Review) request.getAttribute("review");
-	DateConvertion dateConvertion = new DateConvertion("MM-dd-yyyy HH:mm:ss");
+	Blog blog = (Blog) request.getAttribute("blog");
 
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,7 +18,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit Review || Admin</title>
+    <title>Create Comment || Admin</title>
 	<%@include file="./layout/style.jsp" %>
   </head>
 
@@ -52,44 +52,36 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="formEdit" action="/travel/admin/review/edit" method="post" data-parsley-validate class="form-horizontal form-label-left">
-						<input type="hidden" name="tour_id" value="<%= review.getTourId() %>">
-						<input type="hidden" name="id" value="<%= review.getId() %>">
+                    <form id="formCreate" action="/travel/admin/comment/create" method="post" data-parsley-validate class="form-horizontal form-label-left">
+						<input type="hidden" name="blog_id" value="<%= blog.getId() %>">
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" required="required" name="name" value="<%= review.getName() %>" class="form-control">
+                          <input type="text" required="required" name="name" class="form-control">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" required="required" name="email" value="<%= review.getEmail() %>" class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Phone <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" required="required" name="phone" value="<%= review.getPhone() %>" class="form-control">
+                          <input type="text" required="required" name="email" class="form-control">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Content <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea required="required" class="form-control" name="content"><%= review.getContent() %></textarea>
+                          <textarea required="required" class="form-control" name="content"></textarea>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Review Time <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Created Time <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="form-group">
 		                        <div class="input-group date" id="myDatepicker">
-		                            <input type="text" class="form-control" value="<%= dateConvertion.toStringDate(review.getReviewTime()) %>" name="review_time" />
+		                            <input type="text" class="form-control" name="created_time" />
 		                            <span class="input-group-addon">
 		                               <span class="glyphicon glyphicon-calendar"></span>
 		                            </span>
@@ -100,7 +92,7 @@
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <a href="/travel/admin/review?tour_id=<%= review.getTourId() %>" class="btn btn-primary" type="button">Cancel</a>
+                          <a href="/travel/admin/review?blog_id=<%= blog.getId() %>" class="btn btn-primary" type="button">Cancel</a>
 						  <button class="btn btn-primary" type="reset">Reset</button>
                           <button type="submit" class="btn btn-success">Submit</button>
                         </div>

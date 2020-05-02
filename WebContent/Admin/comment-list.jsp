@@ -1,11 +1,14 @@
-<%@page import="com.van.travel.common.DateConvertion"%>
+<%@page import="com.van.travel.models.Comment"%>
 <%@page import="com.van.travel.models.Blog"%>
-<%@page import="com.van.travel.models.Tag"%>
+<%@page import="com.van.travel.models.Tour"%>
+<%@page import="com.van.travel.common.DateConvertion"%>
+<%@page import="com.van.travel.models.Review"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.van.travel.models.Destination"%>
 <%
 
-	ArrayList<Blog> list = (ArrayList<Blog>) request.getAttribute("list");
+	Blog blog = (Blog) request.getAttribute("blog");
+	ArrayList<Comment> list = (ArrayList<Comment>) request.getAttribute("list");
 	DateConvertion dateConvertion = new DateConvertion("MM/dd/yyyy HH:mm");
 
 %>
@@ -18,7 +21,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>List Blog || Admin</title>
+    <title>List Comment || Admin</title>
 	<%@include file="./layout/style.jsp" %>
   </head>
 
@@ -39,7 +42,7 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
+                          <li><a href="/travel/admin/comment/create?blog_id=<%= blog.getId() %>">Create</a>
                           </li>
                           <li><a href="#">Settings 2</a>
                           </li>
@@ -57,24 +60,21 @@
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Title</th>
-                          <th>Thumbnail</th>
-                          <th>Author</th>
+                          <th>Name</th>
+                          <th>Email</th>
                           <th>Created Time</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                      	<% for(Blog blog : list){ %>
+                      	<% for(Comment comment : list){ %>
                         <tr>
-                          <td><%= blog.getTitle() %></td>
-                          <td><a href="<%= blog.getThumbnail() %>" target="_blank"><%= blog.getThumbnail() %></a></td>
-                          <td><%= blog.getAuthor() %></td>
-                          <td><%= dateConvertion.toStringDate(blog.getCreatedTime()) %></td>
+                          <td><%= comment.getName() %></td>
+                          <td><%= comment.getEmail() %></td>
+                          <td><%= dateConvertion.toStringDate(comment.getCreatedTime()) %></td>
                           <td>
-                          	<a href="/travel/admin/blog/edit?id=<%= blog.getId() %>" class="btn btn-primary btn-xs">Edit</a>
-                          	<a href="/travel/admin/comment?blog_id=<%= blog.getId() %>" target="_blank" class="btn btn-info btn-xs">Reviews</a>
-                          	<a href="javascript:void(0)" data-id="<%= blog.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
+                          	<a href="/travel/admin/comment/edit?id=<%= comment.getId() %>" class="btn btn-primary btn-xs">Edit</a>
+                          	<a href="javascript:void(0)" data-id="<%= comment.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
                         <% } %>
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 		
-		<form id="formDelete" method="post" action="/travel/admin/blog/delete" style="display: none;">
+		<form id="formDelete" method="post" action="/travel/admin/comment/delete" style="display: none;">
 			<input type="hidden" name="id">
 		</form>
 		
