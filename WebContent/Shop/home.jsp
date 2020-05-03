@@ -1,3 +1,6 @@
+<%
+	
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,18 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="xmlrpc.php">
-    <title>Homepage 1 - Travel Tour</title>
+    <title>Travel Tour</title>
 
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7COpen+Sans%3A300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&amp;subset=latin%2Clatin-ext%2Cdevanagari%2Ccyrillic-ext%2Cvietnamese%2Ccyrillic%2Cgreek-ext%2Cgreek&amp;ver=4.9.8' type='text/css' media='all' />
-
-    <link rel='stylesheet' href='/travel/public/fe/plugins/revslider/public/assets/css/settings.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='/travel/public/fe/plugins/tourmaster/plugins/elegant-font/style.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='/travel/public/fe/plugins/tourmaster/tourmaster.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='/travel/public/fe/css/tourmaster-style-custom.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='/travel/public/fe/css/style-core.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='/travel/public/fe/css/traveltour-style-custom.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='/travel/public/fe/plugins/goodlayers-core/plugins/combine/style.css' type='text/css' media='all' />
-    <link rel='stylesheet' href='/travel/public/fe/plugins/goodlayers-core/include/css/page-builder.css' type='text/css' media='all' />
+	<%@include file="./layout/styles.jsp" %>
 
 </head>
 
@@ -808,106 +802,12 @@
                     </div>
                 </div>
             </div>
-            <footer>
-                <div class="traveltour-footer-wrapper  traveltour-with-column-divider">
-                    <div class="traveltour-footer-container traveltour-container clearfix">
-                        <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
-                            <div id="text-1" class="widget widget_text traveltour-widget">
-                                <div class="textwidget"><img src="/travel/public/fe/images/logo.png" alt="" /> <span class="gdlr-core-space-shortcode" id="span_29f0_13"></span> Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. <span class="gdlr-core-space-shortcode" id="span_29f0_14"></span> <img src="/travel/public/fe/upload/award-1.png" alt="" width="140" id="img_29f0_0" /> <img src="/travel/public/fe/upload/award-2.png" alt="" width="65" /></div>
-                            </div>
-                        </div>
-                        <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
-                            <div id="tourmaster-widget-tour-category-6" class="widget widget_tourmaster-widget-tour-category traveltour-widget">
-                                <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Top Destinations</span></h3><span class="clear"></span>
-                                <div class="tourmaster-widget-tour-category">
-                                    <div class="tourmaster-tour-category-widget-holder clearfix">
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-column-first tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_120562819-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Africa</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/Fotolia_16069076_Subscription_Monthly_XXL-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >America</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_147744218-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Asia</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-column-first tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/photodune-488847-venice-m-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Eastern Europe</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_255194035-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Europe</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_124333858-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >South America</a></h3></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
-                            <div id="text-2" class="widget widget_text traveltour-widget">
-                                <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Contact Info</span></h3><span class="clear"></span>
-                                <div class="textwidget">
-                                    <p>Address : 12 Main Street Pt. London
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_29f0_15"></span>
-                                        <br /> Phone : +44 3656 4567
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_29f0_16"></span>
-                                        <br /> contact@traveltourtheme.com</p>
-                                    <p><span class="gdlr-core-space-shortcode" id="span_29f0_17"></span>
-                                        <br /> <a href="#" target="_blank"><i class="fa fa-facebook" id="i_29f0_9"  ></i></a> <a href="#" target="_blank"><i class="fa fa-twitter" id="i_29f0_10"  ></i></a> <a href="#" target="_blank"><i class="fa fa-linkedin" id="i_29f0_11"  ></i></a> <a href="#" target="_blank"><i class="fa fa-pinterest-p" id="i_29f0_12"  ></i></a> <a href="#" target="_blank"><i class="fa fa-vimeo" id="i_29f0_13"  ></i></a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="traveltour-copyright-wrapper">
-                    <div class="traveltour-copyright-container traveltour-container">
-                        <div class="traveltour-copyright-text traveltour-item-pdlr">Copyright 2020 max-themes, All Right Reserved</div>
-                    </div>
-                </div>
-            </footer>
+			<%@include file="./layout/footer.jsp" %>
         </div>
     </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
 
-    <script type='text/javascript' src='/travel/public/fe/js/jquery/jquery.js'></script>
-    <script type='text/javascript' src='/travel/public/fe/js/jquery/jquery-migrate.min.js'></script>
-    <script type='text/javascript' src='/travel/public/fe/js/jquery/ui/core.min.js'></script>
-    <script type='text/javascript' src='/travel/public/fe/js/jquery/ui/datepicker.min.js'></script>
-    <script type='text/javascript' src='/travel/public/fe/js/jquery/ui/effect.min.js'></script>
-    <script type='text/javascript' src='/travel/public/fe/plugins/tourmaster/tourmaster.js'></script>
-    <script type='text/javascript' src='/travel/public/fe/js/plugins.js'></script>
-    <script type='text/javascript' src='/travel/public/fe/plugins/goodlayers-core/plugins/combine/script.js'></script>
 
-    <script type='text/javascript' src='/travel/public/fe/plugins/goodlayers-core/include/js/page-builder.js'></script>
+    <%@include file="./layout/scripts.jsp" %>
 
 
     <!-- Rev SLider Plugin -->
