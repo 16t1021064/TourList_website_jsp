@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 import com.van.travel.common.Database;
@@ -20,6 +24,10 @@ public class Blog extends AbstractModel {
 	private String content;
 	private String author;
 	private Date createdTime;
+	
+	private String createdTime_MonthFull;
+	private String createdTime_MonthShort;
+	
 	public String getId() {
 		return id;
 	}
@@ -67,6 +75,31 @@ public class Blog extends AbstractModel {
 	}
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
+		
+		Calendar calendar = Calendar.getInstance();
+	    calendar.setTime(createdTime);
+	    Month month = Month.of(calendar.get(Calendar.MONTH));
+	    Locale locale = new Locale("en", "US");
+	    
+	    this.setCreatedTime_MonthFull(month.getDisplayName(TextStyle.FULL, locale));
+	    this.setCreatedTime_MonthShort(month.getDisplayName(TextStyle.SHORT, locale));
+	    
+//	    System.out.println(month.getDisplayName(TextStyle.FULL, locale));
+//	    System.out.println(month.getDisplayName(TextStyle.NARROW, locale));
+//	    System.out.println(month.getDisplayName(TextStyle.SHORT, locale));
+	    
+	}
+	public String getCreatedTime_MonthFull() {
+		return createdTime_MonthFull;
+	}
+	public void setCreatedTime_MonthFull(String createdTime_MonthFull) {
+		this.createdTime_MonthFull = createdTime_MonthFull;
+	}
+	public String getCreatedTime_MonthShort() {
+		return createdTime_MonthShort;
+	}
+	public void setCreatedTime_MonthShort(String createdTime_MonthShort) {
+		this.createdTime_MonthShort = createdTime_MonthShort;
 	}
 	public Blog() {
 		super();
@@ -251,4 +284,5 @@ public class Blog extends AbstractModel {
 			(new BlogTag()).create(this.id, tag.getId());
 		}
 	}
+	
 }

@@ -12,6 +12,17 @@ import com.van.travel.common.Database;
 public class Activity extends AbstractModel {
 	protected String id;
 	private String name;
+	
+	private int tourCount;
+	
+	
+	
+	public int getTourCount() {
+		return tourCount;
+	}
+	public void setTourCount(int tourCount) {
+		this.tourCount = tourCount;
+	}
 	public String getId() {
 		return id;
 	}

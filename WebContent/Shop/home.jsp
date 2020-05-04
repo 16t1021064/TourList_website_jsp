@@ -1,5 +1,14 @@
+<%@page import="com.van.travel.common.DateConvertion"%>
+<%@page import="com.van.travel.models.Blog"%>
+<%@page import="com.van.travel.models.Activity"%>
+<%@page import="com.van.travel.models.Tour"%>
+<%@page import="java.util.ArrayList"%>
 <%
-	
+	ArrayList<Tour> listHotTours = (ArrayList<Tour>) request.getAttribute("listHotTours");
+	ArrayList<Destination> listHotDestinations = (ArrayList<Destination>) request.getAttribute("listHotDestinations");
+	ArrayList<Activity> listHotActivities = (ArrayList<Activity>) request.getAttribute("listHotActivities");
+	ArrayList<Blog> listHotBlogs = (ArrayList<Blog>) request.getAttribute("listHotBlogs");
+	DateConvertion dateConvertion = new DateConvertion("MM/dd/yyyy");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -231,137 +240,27 @@
                                     <div class="tourmaster-tour-item clearfix  tourmaster-tour-item-style-grid tourmaster-item-pdlr tourmaster-tour-item-column-3" id="div_29f0_18">
                                         <div class="gdlr-core-flexslider flexslider gdlr-core-js-2 tourmaster-nav-style-rect" data-type="carousel" data-column="3" data-nav="navigation" data-nav-parent="tourmaster-tour-item" data-vcenter-nav="1">
                                             <ul class="slides">
+                                            	<% for(Tour tour : listHotTours){ %>
                                                 <li class="gdlr-core-item-mglr">
                                                     <div class="tourmaster-tour-grid tourmaster-tour-frame tourmaster-price-right-title">
                                                         <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="#"><img src="/travel/public/fe/upload/shutterstock_120562819-700x450.jpg" alt="" width="700" height="450" /></a>
+                                                            <a href="#"><img src="<%= tour.getThumbnail() %>" alt="" width="700" height="450" /></a>
                                                         </div>
                                                         <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" >Africa &#8211; Amazing African Safari</a></h3>
-                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$100</span></span>
-                                                            </div>
+                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" ><%= tour.getDestinationName() %>&#8211; <%= tour.getName() %></a></h3>
+                                                            <% if(tour.getoPrice() == tour.getpPrice()){ %>
+                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$<%= tour.getpPrice() %></span></span></div>
+                                                            <% }else{ %>
+                                                            <div class="tourmaster-tour-price-wrap tourmaster-discount"><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$<%= tour.getoPrice() %></span></span><span class="tourmaster-tour-discount-price">$<%= tour.getpPrice() %></span></div>
+                                                            <% } %>
                                                             <div class="tourmaster-tour-info-wrap clearfix">
-                                                                <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i>5 Hours</div>
+                                                                <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i><%= tour.getDaysText() %></div>
                                                             </div>
-                                                            <div class="tourmaster-tour-rating tourmaster-tour-rating-empty">0</div>
+                                                            <div class="tourmaster-tour-rating"><% for(int i =0; i< tour.getStar(); i++){ %><i class="fa fa-star"></i><% } %><% for(int i =0; i< 5-tour.getStar(); i++){ %><i class="fa fa-star-o"></i><% } %><span class="tourmaster-tour-rating-text">(<%= tour.getReviews().size() %> Reviews)</span></div>
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li class="gdlr-core-item-mglr">
-                                                    <div class="tourmaster-tour-grid tourmaster-tour-frame tourmaster-price-right-title">
-                                                        <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="#"><img src="/travel/public/fe/upload/shutterstock_151616084-700x450.jpg" alt="" width="700" height="450" /></a>
-                                                        </div>
-                                                        <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" >Dubai &#8211; All Stunning Places</a></h3>
-                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$1,200</span></span>
-                                                            </div>
-                                                            <div class="tourmaster-tour-info-wrap clearfix">
-                                                                <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i>8 Hours</div>
-                                                            </div>
-                                                            <div class="tourmaster-tour-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><span class="tourmaster-tour-rating-text">(2 Reviews)</span></div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="gdlr-core-item-mglr">
-                                                    <div class="tourmaster-tour-grid tourmaster-tour-frame tourmaster-price-right-title">
-                                                        <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="#"><img src="/travel/public/fe/upload/shutterstock_178807262-700x450.jpg" alt="" width="700" height="450" /></a>
-                                                            <div class="tourmaster-thumbnail-ribbon gdlr-core-outer-frame-element" id="div_29f0_19">
-                                                                <div class="tourmaster-thumbnail-ribbon-cornor" id="div_29f0_20"></div>20% Off</div>
-                                                        </div>
-                                                        <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" >Switzerland &#8211; 7 Days in Zurich, Zermatt</a></h3>
-                                                            <div class="tourmaster-tour-price-wrap tourmaster-discount"><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$4,300</span></span><span class="tourmaster-tour-discount-price">$3,500</span></div>
-                                                            <div class="tourmaster-tour-info-wrap clearfix">
-                                                                <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i>7 Days</div>
-                                                            </div>
-                                                            <div class="tourmaster-tour-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><span class="tourmaster-tour-rating-text">(2 Reviews)</span></div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="gdlr-core-item-mglr">
-                                                    <div class="tourmaster-tour-grid tourmaster-tour-frame tourmaster-price-right-title">
-                                                        <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="#"><img src="/travel/public/fe/upload/shutterstock_245507692-700x450.jpg" alt="" width="700" height="450" /></a>
-                                                            <div class="tourmaster-thumbnail-ribbon gdlr-core-outer-frame-element" id="div_29f0_21">
-                                                                <div class="tourmaster-thumbnail-ribbon-cornor" id="div_29f0_22"></div>25% Off</div>
-                                                        </div>
-                                                        <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" >Enquiry Form Only &#8211; Italy &#8211; 6 Days</a></h3>
-                                                            <div class="tourmaster-tour-price-wrap tourmaster-discount"><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$3,700</span></span><span class="tourmaster-tour-discount-price">$2,000</span></div>
-                                                            <div class="tourmaster-tour-info-wrap clearfix">
-                                                                <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i>5 Days</div>
-                                                            </div>
-                                                            <div class="tourmaster-tour-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><span class="tourmaster-tour-rating-text">(1 Review)</span></div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="gdlr-core-item-mglr">
-                                                    <div class="tourmaster-tour-grid tourmaster-tour-frame tourmaster-price-right-title">
-                                                        <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="#"><img src="/travel/public/fe/upload/photo-1459255418679-d6424da9ee33-700x450.jpg" alt="" width="700" height="450" /></a>
-                                                        </div>
-                                                        <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" >America &#8211; 2 Days in Lake Tahoe</a></h3>
-                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$300</span></span>
-                                                            </div>
-                                                            <div class="tourmaster-tour-info-wrap clearfix">
-                                                                <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i>2 Days</div>
-                                                            </div>
-                                                            <div class="tourmaster-tour-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><span class="tourmaster-tour-rating-text">(1 Review)</span></div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="gdlr-core-item-mglr">
-                                                    <div class="tourmaster-tour-grid tourmaster-tour-frame tourmaster-price-right-title">
-                                                        <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="#"><img src="/travel/public/fe/upload/shutterstock_147744218-700x450.jpg" alt="" width="700" height="450" /></a>
-                                                        </div>
-                                                        <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" >Japan &#8211; 5 Days in Tokyo, Fujikawa</a></h3>
-                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$1,600</span></span>
-                                                            </div>
-                                                            <div class="tourmaster-tour-info-wrap clearfix">
-                                                                <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i>5 Days</div>
-                                                            </div>
-                                                            <div class="tourmaster-tour-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><span class="tourmaster-tour-rating-text">(3 Reviews)</span></div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="gdlr-core-item-mglr">
-                                                    <div class="tourmaster-tour-grid tourmaster-tour-frame tourmaster-price-right-title">
-                                                        <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="#"><img src="/travel/public/fe/upload/shutterstock_254090041-700x450.jpg" alt="" width="700" height="450" /></a>
-                                                            <div class="tourmaster-thumbnail-ribbon gdlr-core-outer-frame-element" id="div_29f0_23">
-                                                                <div class="tourmaster-thumbnail-ribbon-cornor" id="div_29f0_24"></div>10% Off</div>
-                                                        </div>
-                                                        <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" >Finland &#8211;  Helsinki, Santa Claus Town</a></h3>
-                                                            <div class="tourmaster-tour-price-wrap tourmaster-discount"><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$3,880</span></span><span class="tourmaster-tour-discount-price">$3,500</span></div>
-                                                            <div class="tourmaster-tour-info-wrap clearfix">
-                                                                <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i>8 Days 7 Nights</div>
-                                                            </div>
-                                                            <div class="tourmaster-tour-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><span class="tourmaster-tour-rating-text">(1 Review)</span></div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="gdlr-core-item-mglr">
-                                                    <div class="tourmaster-tour-grid tourmaster-tour-frame tourmaster-price-right-title">
-                                                        <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="#"><img src="/travel/public/fe/upload/shutterstock_136984760-700x450.jpg" alt="" width="700" height="450" /></a>
-                                                        </div>
-                                                        <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" >Pais &#8211; Eiffel Tower, Notre Dame Cath..</a></h3>
-                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$800</span></span>
-                                                            </div>
-                                                            <div class="tourmaster-tour-info-wrap clearfix">
-                                                                <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i>10 Hours</div>
-                                                            </div>
-                                                            <div class="tourmaster-tour-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><span class="tourmaster-tour-rating-text">(1 Review)</span></div>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                <% } %>
                                             </ul>
                                         </div>
                                     </div>
@@ -399,15 +298,16 @@
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full-no-space">
                                 <div class="gdlr-core-pbf-element">
                                     <div class="tourmaster-tour-category clearfix ">
-                                        <div class="tourmaster-tour-category-grid tourmaster-item-list  tourmaster-item-pdlr tourmaster-item-mgb tourmaster-column-12 tourmaster-column-first tourmaster-with-thumbnail">
+                                        <% for(Destination des : listHotDestinations){ %>
+                                        <div class="tourmaster-tour-category-grid tourmaster-item-list  tourmaster-item-pdlr tourmaster-item-mgb tourmaster-column-12  tourmaster-with-thumbnail">
                                             <div class="tourmaster-tour-category-item-wrap">
-                                                <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_124333858-800x960.jpg" alt="" width="800" height="960" /></div>
+                                                <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= des.getThumbnail() %>" alt="" width="800" height="960" /></div>
                                                 <div class="tourmaster-tour-category-overlay"></div>
                                                 <div class="tourmaster-tour-category-overlay-front"></div>
                                                 <div class="tourmaster-tour-category-head">
                                                     <div class="tourmaster-tour-category-head-display clearfix">
-                                                        <h3 class="tourmaster-tour-category-title"><i class="icon_pin_alt" ></i>South America</h3>
-                                                        <div class="tourmaster-tour-category-count">3 tours</div>
+                                                        <h3 class="tourmaster-tour-category-title"><i class="icon_pin_alt" ></i><%= des.getName() %></h3>
+                                                        <div class="tourmaster-tour-category-count"><%= des.getTourCount() %> tours</div>
                                                     </div>
                                                     <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="#">View all tours</a>
                                                         <div class="tourmaster-tour-category-head-divider"></div>
@@ -415,70 +315,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tourmaster-tour-category-grid tourmaster-item-list  tourmaster-item-pdlr tourmaster-item-mgb tourmaster-column-12 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-item-wrap">
-                                                <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_255194035-800x960.jpg" alt="" width="800" height="960" /></div>
-                                                <div class="tourmaster-tour-category-overlay"></div>
-                                                <div class="tourmaster-tour-category-overlay-front"></div>
-                                                <div class="tourmaster-tour-category-head">
-                                                    <div class="tourmaster-tour-category-head-display clearfix">
-                                                        <h3 class="tourmaster-tour-category-title"><i class="icon_pin_alt" ></i>Europe</h3>
-                                                        <div class="tourmaster-tour-category-count">7 tours</div>
-                                                    </div>
-                                                    <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="#">View all tours</a>
-                                                        <div class="tourmaster-tour-category-head-divider"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-grid tourmaster-item-list  tourmaster-item-pdlr tourmaster-item-mgb tourmaster-column-12 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-item-wrap">
-                                                <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_147744218-800x960.jpg" alt="" width="800" height="960" /></div>
-                                                <div class="tourmaster-tour-category-overlay"></div>
-                                                <div class="tourmaster-tour-category-overlay-front"></div>
-                                                <div class="tourmaster-tour-category-head">
-                                                    <div class="tourmaster-tour-category-head-display clearfix">
-                                                        <h3 class="tourmaster-tour-category-title"><i class="icon_pin_alt" ></i>Asia</h3>
-                                                        <div class="tourmaster-tour-category-count">5 tours</div>
-                                                    </div>
-                                                    <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="#">View all tours</a>
-                                                        <div class="tourmaster-tour-category-head-divider"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-grid tourmaster-item-list  tourmaster-item-pdlr tourmaster-item-mgb tourmaster-column-12 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-item-wrap">
-                                                <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/Fotolia_16069076_Subscription_Monthly_XXL-800x960.jpg" alt="" width="800" height="960" /></div>
-                                                <div class="tourmaster-tour-category-overlay"></div>
-                                                <div class="tourmaster-tour-category-overlay-front"></div>
-                                                <div class="tourmaster-tour-category-head">
-                                                    <div class="tourmaster-tour-category-head-display clearfix">
-                                                        <h3 class="tourmaster-tour-category-title"><i class="icon_pin_alt" ></i>America</h3>
-                                                        <div class="tourmaster-tour-category-count">4 tours</div>
-                                                    </div>
-                                                    <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="#">View all tours</a>
-                                                        <div class="tourmaster-tour-category-head-divider"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-grid tourmaster-item-list  tourmaster-item-pdlr tourmaster-item-mgb tourmaster-column-12 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-item-wrap">
-                                                <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_120562819-800x960.jpg" alt="" width="800" height="960" /></div>
-                                                <div class="tourmaster-tour-category-overlay"></div>
-                                                <div class="tourmaster-tour-category-overlay-front"></div>
-                                                <div class="tourmaster-tour-category-head">
-                                                    <div class="tourmaster-tour-category-head-display clearfix">
-                                                        <h3 class="tourmaster-tour-category-title"><i class="icon_pin_alt" ></i>Africa</h3>
-                                                        <div class="tourmaster-tour-category-count">3 tours</div>
-                                                    </div>
-                                                    <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="#">View all tours</a>
-                                                        <div class="tourmaster-tour-category-head-divider"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
@@ -517,51 +354,19 @@
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-icon-list-item gdlr-core-item-pdlr gdlr-core-item-pdb clearfix ">
                                                     <ul>
-                                                        <li class=" gdlr-core-skin-divider gdlr-core-column-30 gdlr-core-column-first" id="li_29f0_0">
+                                                    	<% int tempCountActivity = 0; %>
+                                                    	<% for(Activity act : listHotActivities){ %>
+                                                    	<% tempCountActivity += 1; %>
+                                                        <li class=" gdlr-core-skin-divider gdlr-core-column-30 <% if(tempCountActivity % 2 == 1){ %>gdlr-core-column-first<% } %>">
                                                             <a href="#">
-                                                                <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_3">Outdoor Activites</span>
+                                                                <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_3"><%= act.getName() %></span>
                                                             </div></a>
                                                         </li>
-                                                        <li class=" gdlr-core-skin-divider gdlr-core-column-30" id="li_29f0_1">
-                                                            <a href="#">
-                                                                <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_4">City Tours</span>
-                                                            </div>
-                                                            </a>
-                                                        </li>
-                                                        <li class=" gdlr-core-skin-divider gdlr-core-column-30 gdlr-core-column-first" id="li_29f0_2">
-                                                            <a href="#">
-                                                                <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_5">Cultural & Thematic Tours</span>
-                                                            </div></a>
-                                                        </li>
-                                                        <li class=" gdlr-core-skin-divider gdlr-core-column-30" id="li_29f0_3">
-                                                            <a href="#">
-                                                                <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_6">Indulgence & Luxury Tours</span>
-                                                            </div></a>
-                                                        </li>
-                                                        <li class=" gdlr-core-skin-divider gdlr-core-column-30 gdlr-core-column-first" id="li_29f0_4">
-                                                            <a href="#">
-                                                                <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_7">Family Friendly Tours</span>
-                                                            </div></a>
-                                                        </li>
-                                                        <li class=" gdlr-core-skin-divider gdlr-core-column-30" id="li_29f0_5">
-                                                            <a href="#">
-                                                                <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_8">Relaxation Tours</span>
-                                                            </div></a>
-                                                        </li>
-                                                        <li class=" gdlr-core-skin-divider gdlr-core-column-30 gdlr-core-column-first" id="li_29f0_6">
-                                                            <a href="#">
-                                                                <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_9">Holiday & Seasonal Tours</span>
-                                                            </div></a>
-                                                        </li>
-                                                        <li class=" gdlr-core-skin-divider gdlr-core-column-30" id="li_29f0_7">
-                                                            <a href="#">
-                                                                <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_10">Wild & Adventure Tours</span>
-                                                            </div></a>
-                                                        </li>
+                                                        <% } %>
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </div>
+                                         </div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-column gdlr-core-column-24" data-skin="Newsletter form">
@@ -670,54 +475,20 @@
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-blog-item gdlr-core-item-pdb clearfix  gdlr-core-style-blog-image" id="div_29f0_40">
                                         <div class="gdlr-core-blog-item-holder gdlr-core-js-2 clearfix" data-layout="fitrows">
-                                            <div class="gdlr-core-item-list  gdlr-core-item-pdlr gdlr-core-item-mgb gdlr-core-column-15 gdlr-core-column-first">
+                                            <% for(Blog blog: listHotBlogs ){ %>
+                                            <div class="gdlr-core-item-list  gdlr-core-item-pdlr gdlr-core-item-mgb gdlr-core-column-15">
                                                 <div class="gdlr-core-blog-modern  gdlr-core-with-image gdlr-core-hover-overlay-content gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
                                                     <div class="gdlr-core-blog-modern-inner">
-                                                        <div class="gdlr-core-blog-thumbnail gdlr-core-media-image"><img src="/travel/public/fe/upload/shutterstock_195507533-700x660.jpg" alt="" width="700" height="660" /></div>
+                                                        <div class="gdlr-core-blog-thumbnail gdlr-core-media-image"><img src="<%= blog.getThumbnail() %>" alt="" width="700" height="660" /></div>
                                                         <div class="gdlr-core-blog-modern-content  gdlr-core-center-align" id="div_29f0_41">
-                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title" id="h3_29f0_6"><a href="#" >How to travel with paper map</a></h3>
-                                                            <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="#">June 6, 2016</a></span>
+                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title"><a href="#" ><%= blog.getTitle() %></a></h3>
+                                                            <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="#"><%= dateConvertion.toStringDate(blog.getCreatedTime()) %></a></span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="gdlr-core-item-list  gdlr-core-item-pdlr gdlr-core-item-mgb gdlr-core-column-15">
-                                                <div class="gdlr-core-blog-modern  gdlr-core-with-image gdlr-core-hover-overlay-content gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
-                                                    <div class="gdlr-core-blog-modern-inner">
-                                                        <div class="gdlr-core-blog-thumbnail gdlr-core-media-image"><img src="/travel/public/fe/upload/photo-1459255418679-d6424da9ee33-700x660.jpg" alt="" width="700" height="660" /></div>
-                                                        <div class="gdlr-core-blog-modern-content  gdlr-core-center-align" id="div_29f0_42">
-                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title" id="h3_29f0_7"><a href="#" >Change your place and get the fresh air</a></h3>
-                                                            <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="#">June 6, 2016</a></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-item-list  gdlr-core-item-pdlr gdlr-core-item-mgb gdlr-core-column-15">
-                                                <div class="gdlr-core-blog-modern  gdlr-core-with-image gdlr-core-hover-overlay-content gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
-                                                    <div class="gdlr-core-blog-modern-inner">
-                                                        <div class="gdlr-core-blog-thumbnail gdlr-core-media-image"><img src="/travel/public/fe/upload/shutterstock_210601591-700x660.jpg" alt="" width="700" height="660" /></div>
-                                                        <div class="gdlr-core-blog-modern-content  gdlr-core-center-align" id="div_29f0_43">
-                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title" id="h3_29f0_8"><a href="#" >Even the all-powerful Pointing</a></h3>
-                                                            <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="#">June 6, 2016</a></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-item-list  gdlr-core-item-pdlr gdlr-core-item-mgb gdlr-core-column-15">
-                                                <div class="gdlr-core-blog-modern  gdlr-core-with-image gdlr-core-hover-overlay-content gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
-                                                    <div class="gdlr-core-blog-modern-inner">
-                                                        <div class="gdlr-core-blog-thumbnail gdlr-core-media-image"><img src="/travel/public/fe/upload/pexels-photo-67386-700x660.jpg" alt="" width="700" height="660" /></div>
-                                                        <div class="gdlr-core-blog-modern-content  gdlr-core-center-align" id="div_29f0_44">
-                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title" id="h3_29f0_9"><a href="#" >The Surfing Man Will Blow Your Mind</a></h3>
-                                                            <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="#">June 6, 2016</a></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <% } %>
                                         </div>
                                     </div>
                                 </div>

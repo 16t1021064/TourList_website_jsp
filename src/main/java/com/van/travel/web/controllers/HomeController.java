@@ -1,11 +1,22 @@
 package com.van.travel.web.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.van.travel.models.Activity;
+import com.van.travel.models.Blog;
+import com.van.travel.models.Destination;
+import com.van.travel.models.Tour;
+import com.van.travel.web.factories.ActivityFactory;
+import com.van.travel.web.factories.BlogFactory;
+import com.van.travel.web.factories.DestinationFactory;
+import com.van.travel.web.factories.TourFactory;
 
 /**
  * Servlet implementation class HomeController
@@ -25,7 +36,30 @@ public class HomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		
+		TourFactory tourFactory = new TourFactory();
+		DestinationFactory destinationFactory = new DestinationFactory();
+		ActivityFactory activityFactory = new ActivityFactory();
+		BlogFactory blogFactory = new BlogFactory();
+		
+		ArrayList<Tour> listHotTours = tourFactory.getHotTours();
+		request.setAttribute("listHotTours", listHotTours);
+		
+		ArrayList<Destination> listHotDestinations = destinationFactory.getHotDestinations();
+		request.setAttribute("listHotDestinations", listHotDestinations);
+		
+		ArrayList<Activity> listHotActivities = activityFactory.getHotActivities();
+		request.setAttribute("listHotActivities", listHotActivities);
+		
+		ArrayList<Blog> listHotBlogs = blogFactory.getHotBlogs();
+		request.setAttribute("listHotBlogs", listHotBlogs);
+		
 		request.getRequestDispatcher("Shop/home.jsp").forward(request, response);
+		
+		
+		
 	}
 
 	/**

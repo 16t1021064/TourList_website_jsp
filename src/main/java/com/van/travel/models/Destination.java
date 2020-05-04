@@ -13,6 +13,17 @@ public class Destination extends AbstractModel {
 	protected String id;
 	private String name;
 	private String thumbnail;
+	
+	private int tourCount;
+	
+	
+	
+	public int getTourCount() {
+		return tourCount;
+	}
+	public void setTourCount(int tourCount) {
+		this.tourCount = tourCount;
+	}
 	public String getId() {
 		return id;
 	}

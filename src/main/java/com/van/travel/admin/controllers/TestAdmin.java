@@ -1,8 +1,16 @@
 package com.van.travel.admin.controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -11,6 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.jdbc.TimeUtil;
+import com.van.travel.common.Database;
+import com.van.travel.common.DateConvertion;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Comment;
@@ -40,47 +51,81 @@ public class TestAdmin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String[] imgs = new String[] {
-//			"https://i.imgur.com/ZDwuggC.jpg",
-//			"https://i.imgur.com/XXLtxhz.jpg",
-//			"https://i.imgur.com/GCWCDDc.jpg",
-//			"https://i.imgur.com/7burT0V.jpg",
-//			"https://i.imgur.com/EGdPGBd.jpg",
-//			"https://i.imgur.com/LxUUqZa.jpg",
-//			"https://i.imgur.com/uaXQNdo.jpg",
-//			"https://i.imgur.com/v0ecNwo.jpg"
-//		};
-//		String[] states = new String[] {
-//			"Timoa Rymaar",
-//			"Marreha",
-//			"Ratnited Georne",
-//			"Jikyrgy",
-//			"Jocy",
-//			"Croalandbia Isles",
-//			"Lauandly",
-//			"Kolygium"
-//		};
-//		String[] nations = new String[] {
-//				"Macau",
-//				"The Gambia",
-//				"Tokelau",
-//				"Bonaire",
-//				"Anguilla",
-//				"Uruguay",
-//				"Aruba",
-//				"Turkey"
-//			};
-//		ArrayList<Activity> activities = (new Activity()).all();
-//		ArrayList<Blog> blogs = (new Blog()).all();
-//		ArrayList<Destination> destinations = (new Destination()).all();
-//		ArrayList<Tour> tours = (new Tour()).all();
 		
-//		this.createBlogs(request, response, imgs);
-//		this.createComments(request, response, blogs);
-//		this.createTours(request, response, imgs, activities, states, nations, destinations); Error destination only have 6, while loop 8
-//		this.createReviews(request, response, tours);
+		Connection conn = (new Database()).getConnection();
+		
+		try {
+			PreparedStatement stmt  = conn.prepareStatement("ha ha ?");
+			double x = 4.4;
+			stmt.setDouble(1, 4.4);
+			System.out.println(stmt);
+			System.out.println("a");
+			
+//			DateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+//			Timestamp x = (new DateConvertion()).toTimestamp(new Date());
+//			StringBuffer buf = new StringBuffer();
+//            buf.append(f.format(x));
+//
+//            if (true) {
+//                int nanos = x.getNanos();
+//
+//                if (nanos != 0) {
+//                    buf.append('.');
+//                    buf.append(TimeUtil.formatNanos(nanos, true, true));
+//                }
+//            }
+//
+//            buf.append('\'');
+//			System.out.println(buf.toString());
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		response.getWriter().append("Complete");
+	}
+	
+	private void seedData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String[] imgs = new String[] {
+//		"https://i.imgur.com/ZDwuggC.jpg",
+//		"https://i.imgur.com/XXLtxhz.jpg",
+//		"https://i.imgur.com/GCWCDDc.jpg",
+//		"https://i.imgur.com/7burT0V.jpg",
+//		"https://i.imgur.com/EGdPGBd.jpg",
+//		"https://i.imgur.com/LxUUqZa.jpg",
+//		"https://i.imgur.com/uaXQNdo.jpg",
+//		"https://i.imgur.com/v0ecNwo.jpg"
+//	};
+//	String[] states = new String[] {
+//		"Timoa Rymaar",
+//		"Marreha",
+//		"Ratnited Georne",
+//		"Jikyrgy",
+//		"Jocy",
+//		"Croalandbia Isles",
+//		"Lauandly",
+//		"Kolygium"
+//	};
+//	String[] nations = new String[] {
+//			"Macau",
+//			"The Gambia",
+//			"Tokelau",
+//			"Bonaire",
+//			"Anguilla",
+//			"Uruguay",
+//			"Aruba",
+//			"Turkey"
+//		};
+//	ArrayList<Activity> activities = (new Activity()).all();
+//	ArrayList<Blog> blogs = (new Blog()).all();
+//	ArrayList<Destination> destinations = (new Destination()).all();
+//	ArrayList<Tour> tours = (new Tour()).all();
+	
+//	this.createBlogs(request, response, imgs);
+//	this.createComments(request, response, blogs);
+//	this.createTours(request, response, imgs, activities, states, nations, destinations); Error destination only have 6, while loop 8
+//	this.createReviews(request, response, tours);
 	}
 	
 	private void createBlogs(HttpServletRequest request, HttpServletResponse response, String[] imgs) throws ServletException, IOException {

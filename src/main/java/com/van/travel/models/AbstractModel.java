@@ -10,6 +10,9 @@ import java.util.UUID;
 import com.van.travel.common.Database;
 
 public abstract class AbstractModel {
+	
+	protected int queryLimit = 100;
+	
 	public String tableName;
 	
 	protected ArrayList<Object[]> hasMany_repos = new ArrayList<Object[]>();
@@ -20,6 +23,13 @@ public abstract class AbstractModel {
 		super();
 	}
 	
+	public int getQueryLimit() {
+		return queryLimit;
+	}
+	public void setQueryLimit(int queryLimit) {
+		this.queryLimit = queryLimit;
+	}
+
 	protected Object getHasManyRepos(String key) {
 		for(Object[] hasMany : this.hasMany_repos) {
 			String keyRepos = (String) hasMany[0];
@@ -181,6 +191,7 @@ public abstract class AbstractModel {
 				}
 				sql += " " + col + " " + sort + " ";
 			}
+			sql += " limit " + this.queryLimit + " ";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			int cnt = 0;
 			for(Object[] conditions : whereConditions) {

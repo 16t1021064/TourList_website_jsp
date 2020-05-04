@@ -34,6 +34,26 @@ public class Tour extends AbstractModel {
 	private String expectText;
 	private String destinationId;
 	
+	private String destinationName;
+	private int bookingCount;
+	
+	
+	public int getBookingCount() {
+		return bookingCount;
+	}
+
+	public void setBookingCount(int bookingCount) {
+		this.bookingCount = bookingCount;
+	}
+
+	public String getDestinationName() {
+		return destinationName;
+	}
+
+	public void setDestinationName(String destinationName) {
+		this.destinationName = destinationName;
+	}
+
 	public String getId() {
 		return id;
 	}

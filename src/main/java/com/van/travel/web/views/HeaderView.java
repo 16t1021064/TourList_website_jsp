@@ -9,7 +9,8 @@ public class HeaderView {
 	public ArrayList<Destination> destinations;
 	
 	public HeaderView() {
-		this.destinations = (new Destination()).all();
+		Destination tempDestination = new Destination();
+		this.destinations = tempDestination.all();
 	}
 	
 }
