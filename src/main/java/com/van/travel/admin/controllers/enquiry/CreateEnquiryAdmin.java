@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
+import com.van.travel.common.controllers.AbstractController;
 import com.van.travel.models.Booking;
 import com.van.travel.models.Enquiry;
 import com.van.travel.models.Tour;
@@ -18,7 +19,7 @@ import com.van.travel.models.Tour;
  * Servlet implementation class CreateEnquiryAdmin
  */
 @WebServlet("/admin/enquiry/create")
-public class CreateEnquiryAdmin extends HttpServlet {
+public class CreateEnquiryAdmin extends AbstractController {
 	private static final long serialVersionUID = 1L;
        
     /**

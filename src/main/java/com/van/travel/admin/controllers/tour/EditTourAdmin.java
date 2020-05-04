@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
+import com.van.travel.common.controllers.AbstractController;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Destination;
 import com.van.travel.models.Itinerary;
@@ -22,7 +23,7 @@ import com.van.travel.models.TourActivity;
  * Servlet implementation class EditTourAdmin
  */
 @WebServlet("/admin/tour/edit")
-public class EditTourAdmin extends HttpServlet {
+public class EditTourAdmin extends AbstractController {
 	private static final long serialVersionUID = 1L;
        
     /**

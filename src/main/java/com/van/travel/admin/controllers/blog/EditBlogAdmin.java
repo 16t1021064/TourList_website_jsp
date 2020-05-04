@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
+import com.van.travel.common.controllers.AbstractController;
 import com.van.travel.models.Blog;
 
 /**
  * Servlet implementation class EditBlogAdmin
  */
 @WebServlet("/admin/blog/edit")
-public class EditBlogAdmin extends HttpServlet {
+public class EditBlogAdmin extends AbstractController {
 	private static final long serialVersionUID = 1L;
        
     /**

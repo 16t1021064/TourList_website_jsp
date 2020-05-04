@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
+import com.van.travel.common.controllers.AbstractController;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Comment;
 import com.van.travel.models.Review;
@@ -19,7 +20,7 @@ import com.van.travel.models.Tour;
  * Servlet implementation class CreateCommentAdmin
  */
 @WebServlet("/admin/comment/create")
-public class CreateCommentAdmin extends HttpServlet {
+public class CreateCommentAdmin extends AbstractController {
 	private static final long serialVersionUID = 1L;
        
     /**

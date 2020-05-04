@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.van.travel.common.controllers.AbstractController;
 import com.van.travel.models.Destination;
 import com.van.travel.models.Tag;
 
@@ -14,7 +15,7 @@ import com.van.travel.models.Tag;
  * Servlet implementation class DeleteTagAdmin
  */
 @WebServlet("/admin/tag/delete")
-public class DeleteTagAdmin extends HttpServlet {
+public class DeleteTagAdmin extends AbstractController {
 	private static final long serialVersionUID = 1L;
        
     /**

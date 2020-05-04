@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.van.travel.common.controllers.AbstractController;
 import com.van.travel.models.Destination;
 
 /**
  * Servlet implementation class ListDestinationAdmin
  */
 @WebServlet("/admin/destination")
-public class ListDestinationAdmin extends HttpServlet {
+public class ListDestinationAdmin extends AbstractController {
 	private static final long serialVersionUID = 1L;
        
     /**

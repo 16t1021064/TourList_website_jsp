@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.van.travel.common.controllers.AbstractController;
 import com.van.travel.models.Destination;
 import com.van.travel.models.Review;
 import com.van.travel.models.Tour;
@@ -17,7 +18,7 @@ import com.van.travel.models.Tour;
  * Servlet implementation class ListReviewAdmin
  */
 @WebServlet("/admin/review")
-public class ListReviewAdmin extends HttpServlet {
+public class ListReviewAdmin extends AbstractController {
 	private static final long serialVersionUID = 1L;
        
     /**
