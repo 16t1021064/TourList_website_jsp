@@ -79,6 +79,26 @@
                         </div>
                       </div>
                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Thumbnail 600x700 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="inputThumbnail600x700" value="<%= tour.getThumbnail600x700() %>" name="thumbnail600x700" required="required" class="form-control">
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <button data-input="#inputThumbnail600x700" type="button" class="btnUploadImage btn btn-primary" data-toggle="modal" data-target="#modalUploadImage">Upload Image</button>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Thumbnail 150x150 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="inputThumbnail150x150" value="<%= tour.getThumbnail150x150() %>" name="thumbnail150x150" required="required" class="form-control">
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <button data-input="#inputThumbnail150x150" type="button" class="btnUploadImage btn btn-primary" data-toggle="modal" data-target="#modalUploadImage">Upload Image</button>
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">State <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -96,7 +116,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea required="required" class="form-control" name="description"><%= tour.getDescription() %></textarea>
+                          <textarea required="required" class="form-control" name="description" data-parsley-maxlength="69"><%= tour.getDescription() %></textarea>
                         </div>
                       </div>
                       <div class="form-group">

@@ -34,7 +34,7 @@ public class TourFactory {
 		sql+=" GROUP BY travel_tour.id ";
 		sql+=" ORDER BY booking_count DESC ";
 		
-		 try {
+		try {
 			ArrayList<Tour> tours = new ArrayList<Tour>();
 			Tour tempTour  = new Tour();
 			ResultSet rs = (new Database()).getPreparedStatement(sql).executeQuery();

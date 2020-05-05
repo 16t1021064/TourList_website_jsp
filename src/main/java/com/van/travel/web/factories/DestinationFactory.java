@@ -10,12 +10,10 @@ import com.van.travel.models.Destination;
 import com.van.travel.models.Tour;
 
 public class DestinationFactory {
-	public ArrayList<Destination> getHotDestinations(){
-		return this.queryHotDestinations();
+	public ArrayList<Destination> getHotDestinations(int limit){
+		return this.queryHotDestinations(limit);
 	}
-	protected ArrayList<Destination> queryHotDestinations(){
-		
-		int limit = 5;
+	protected ArrayList<Destination> queryHotDestinations(int limit){
 		String sql = "";
 		sql+=" SELECT  ";
 		sql+="     travel_destination.*, ";

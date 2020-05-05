@@ -8,3 +8,4 @@
     <script type='text/javascript' src='/travel/public/fe/plugins/goodlayers-core/plugins/combine/script.js'></script>
 
     <script type='text/javascript' src='/travel/public/fe/plugins/goodlayers-core/include/js/page-builder.js'></script>
+    <script type='text/javascript' src='/travel/public/fe/js/custom.js'></script>

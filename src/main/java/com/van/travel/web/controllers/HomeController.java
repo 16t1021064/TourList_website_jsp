@@ -48,7 +48,7 @@ public class HomeController extends AbstractController {
 		ArrayList<Tour> listHotTours = tourFactory.getHotTours();
 		request.setAttribute("listHotTours", listHotTours);
 		
-		ArrayList<Destination> listHotDestinations = destinationFactory.getHotDestinations();
+		ArrayList<Destination> listHotDestinations = destinationFactory.getHotDestinations(5);
 		request.setAttribute("listHotDestinations", listHotDestinations);
 		
 		ArrayList<Activity> listHotActivities = activityFactory.getHotActivities();
