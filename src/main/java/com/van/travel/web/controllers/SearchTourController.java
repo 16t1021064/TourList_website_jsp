@@ -55,69 +55,95 @@ public class SearchTourController extends AbstractController {
 				page = 1;
 			}
 		}
-			
 		
-		String q = request.getParameter("q");
-		if(q == null) {
-			q = "";
+		String type = request.getParameter("type");
+		if(type == null) {
+			
 		}else {
-			q = q.trim();
-			if(q.equals("")) {
-				q = null;
+			type =type.trim();
+			if(type.equals("")) {
+				type = null;
 			}
 		}
 		
-		String act = request.getParameter("act");
-		if(act == null) {
-			
-		}else {
-			act = act.trim();
-			if(act.equals("")) {
-				act = null;
-			}
-		}
-		
-		String des = request.getParameter("des");
-		if(des == null) {
-			
-		}else {
-			des = des.trim();
-			if(des.equals("")) {
-				des = null;
-			}
-		}
-		
-		String dur = request.getParameter("dur");
-		if(dur == null) {
-			
-		}else {
-			dur = dur.trim();
-			try {
-				Integer.parseInt(dur);
-			}catch(Exception e) {
-				dur = null;
-			}
-		}
-		
-		String date_text = request.getParameter("date");
+		String q;
+		String act;
+		String des;
+		String dur;
+		String date_text;
 		Date date;
-		DateConvertion dateConvertion = new DateConvertion("yyyy-MM-dd");
-		if(date_text == null) {
-			date = null;
-		}else {
-			date_text = date_text.trim();
-			if(date_text.equals("")) {
-				date = null;
-				date_text = null;
-			}else{
-				date = dateConvertion.toUtilDate(date_text);
+		if(type == null) {
+			
+			q = request.getParameter("q");
+			if(q == null) {
+				q = "";
+			}else {
+				q = q.trim();
+				if(q.equals("")) {
+					q = null;
+				}
 			}
 			
+			act = request.getParameter("act");
+			if(act == null) {
+				
+			}else {
+				act = act.trim();
+				if(act.equals("")) {
+					act = null;
+				}
+			}
+			
+			des = request.getParameter("des");
+			if(des == null) {
+				
+			}else {
+				des = des.trim();
+				if(des.equals("")) {
+					des = null;
+				}
+			}
+			
+			dur = request.getParameter("dur");
+			if(dur == null) {
+				
+			}else {
+				dur = dur.trim();
+				try {
+					Integer.parseInt(dur);
+				}catch(Exception e) {
+					dur = null;
+				}
+			}
+			
+			date_text = request.getParameter("date");
+			DateConvertion dateConvertion = new DateConvertion("yyyy-MM-dd");
+			if(date_text == null) {
+				date = null;
+			}else {
+				date_text = date_text.trim();
+				if(date_text.equals("")) {
+					date = null;
+					date_text = null;
+				}else{
+					date = dateConvertion.toUtilDate(date_text);
+				}
+				
+			}
+			
+		}else {
+			q = null;
+			act = null;
+			des = null;
+			dur = null;
+			date_text = null;
+			date = null;
 		}
+		
 		
 		SearchTourFactory searchTourFactory = new SearchTourFactory();
 		
-		PaginationData dataTours = searchTourFactory.search(page, q, act, des, dur, date);
+		PaginationData dataTours = searchTourFactory.search(page, type, q, act, des, dur, date);
 		
 		request.setAttribute("dataTours", dataTours);
 		
@@ -133,7 +159,7 @@ public class SearchTourController extends AbstractController {
 		
 		request.setAttribute("hotActivities", hotActivities);
 		
-		request.setAttribute("filters", new Object[] {q, act, des, dur, date_text});
+		request.setAttribute("filters", new Object[] {type, q, act, des, dur, date_text});
 		
 		request.getRequestDispatcher("Shop/tours.jsp").forward(request, response);
 	}

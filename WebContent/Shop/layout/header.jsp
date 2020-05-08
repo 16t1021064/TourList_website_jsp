@@ -43,19 +43,19 @@
                     <div class="traveltour-navigation traveltour-item-pdlr clearfix ">
                         <div class="traveltour-main-menu" id="traveltour-main-menu">
                             <ul id="menu-main-navigation-1" class="sf-menu">
-							    <li class="menu-item traveltour-normal-menu current-menu-item menu-item-home"><a href="destinations.html">Home</a></li>
+							    <li class="menu-item traveltour-normal-menu current-menu-item menu-item-home"><a href="/travel/home">Home</a></li>
 							    <li class="menu-item menu-item-has-children traveltour-normal-menu"><a href="index.html" class="sf-with-ul-pre">Destinations</a>
 							        <ul class="sub-menu">
 							        	<% for(Destination des : header_headerView.destinations){ %>
-							            <li class="menu-item" data-size="60"><a href="index.html"><%= des.getName() %></a></li>
+							            <li class="menu-item" data-size="60"><a href="/travel/tours?des=<%= des.getId() %>"><%= des.getName() %></a></li>
 							            <% } %>
 							        </ul>
 							    </li>
-							    <li class="menu-item menu-item-has-children traveltour-normal-menu"><a href="index.html" class="sf-with-ul-pre">List Tour</a>
+							    <li class="menu-item menu-item-has-children traveltour-normal-menu"><a href="/travel/tours" class="sf-with-ul-pre">List Tour</a>
 							        <ul class="sub-menu">
-							            <li class="menu-item" data-size="60"><a href="index.html">Hot Tours</a></li>
-							            <li class="menu-item" data-size="60"><a href="homepage-2.html">Promotion Tours</a></li>
-							            <li class="menu-item" data-size="60"><a href="homepage-3.html">Upcoming Tours</a></li>
+							            <li class="menu-item" data-size="60"><a href="/travel/tours?type=hot">Hot Tours</a></li>
+							            <li class="menu-item" data-size="60"><a href="/travel/tours?type=promotion">Promotion Tours</a></li>
+							            <li class="menu-item" data-size="60"><a href="/travel/tours?type=upcoming">Upcoming Tours</a></li>
 							        </ul>
 							    </li>
 							    <li class="menu-item traveltour-normal-menu"><a href="destinations.html">Services</a></li>

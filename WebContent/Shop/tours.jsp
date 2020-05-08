@@ -121,7 +121,7 @@
                                                             
                                                             <% if(tour.getoPrice() != tour.getpPrice()){ %>
                                                             <div class="custom-label-sale tourmaster-thumbnail-ribbon gdlr-core-outer-frame-element">
-                                                                <div class="tourmaster-thumbnail-ribbon-cornor"></div>SALE OFF
+                                                                <div class="tourmaster-thumbnail-ribbon-cornor"></div>PROMOTION
                                                             </div>
                                                             <% } %>
                                                             
@@ -151,7 +151,7 @@
                                                 <% } %>
                                             </div>
                                             <div class="custom-pagination" data-total-page="<%= dataTours.totalPage %>" data-current-page="<%= dataTours.currentPage %>" 
-                                            		data-path-default="/travel/tours?q=<%= filters[0] %><% if(filters[1] != null){ %>&act=<%= filters[1] %><% } %><% if(filters[2] != null){ %>&des=<%= filters[2] %><% } %><% if(filters[3] != null){ %>&dur=<%= filters[3] %><% } %><% if(filters[4] != null){ %>&date=<%= filters[4] %><% } %>"></div>
+                                            		data-path-default="/travel/tours?q=<%= filters[1] == null ? "" : filters[1] %><% if(filters[0] != null){ %>&type=<%= filters[0] %><% } %><% if(filters[2] != null){ %>&act=<%= filters[2] %><% } %><% if(filters[3] != null){ %>&des=<%= filters[3] %><% } %><% if(filters[4] != null){ %>&dur=<%= filters[4] %><% } %><% if(filters[5] != null){ %>&date=<%= filters[5] %><% } %>"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -291,20 +291,20 @@
     <script>
     
     jQuery(function($){
-    	<% if(filters[0] != null){ %>
-			$('#filterQ').val('<%= filters[0] %>');
-		<% } %>
-		<% if(filters[1] != null){ %>
-			$('#filterAct option[value="<%= filters[1] %>"]').attr("selected", "selected");
+    	<% if(filters[1] != null){ %>
+			$('#filterQ').val('<%= filters[1] %>');
 		<% } %>
 		<% if(filters[2] != null){ %>
-			$('#filterDes option[value="<%= filters[2] %>"]').attr("selected", "selected");
+			$('#filterAct option[value="<%= filters[2] %>"]').attr("selected", "selected");
 		<% } %>
 		<% if(filters[3] != null){ %>
-			$('#filterDur option[value="<%= filters[3] %>"]').attr("selected", "selected");
+			$('#filterDes option[value="<%= filters[3] %>"]').attr("selected", "selected");
 		<% } %>
 		<% if(filters[4] != null){ %>
-			$('#filterDate').datepicker('setDate', new Date('<%= filters[4] %>'));
+			$('#filterDur option[value="<%= filters[4] %>"]').attr("selected", "selected");
+		<% } %>
+		<% if(filters[5] != null){ %>
+			$('#filterDate').datepicker('setDate', new Date('<%= filters[5] %>'));
 		<% } %>
 		$('#filterDate').datepicker('clearBtn', true);
     });

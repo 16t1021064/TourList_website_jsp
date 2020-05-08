@@ -21,10 +21,10 @@ import com.van.travel.models.Tour;
  *
  */
 public class SearchTourFactory {
-	public PaginationData search(int page, String q, String act, String des, String dur, Date date){
+	public PaginationData search(int page, String type, String q, String act, String des, String dur, Date date){
 		int limit = 2;
 		
-		long totalItem = this.querySearchCnt(page, limit, q, act, des, dur, date);
+		long totalItem = this.querySearchCnt(page, limit, type, q, act, des, dur, date);
 		long totalPage = totalItem / limit;
 		if(totalItem % limit != 0) {
 			totalPage += 1;
@@ -40,13 +40,13 @@ public class SearchTourFactory {
 		long firstIndex = 0;
 		long lastIndex = 0;
 		long perPage = limit;
-		ArrayList<Tour> data = this.querySearchArr(page, limit, q, act, des, dur, date);
+		ArrayList<Tour> data = this.querySearchArr(page, limit, type, q, act, des, dur, date);
 		PaginationData paginationData = new PaginationData(totalItem, totalPage, firstPage, lastPage, currentPage, firstIndex, lastIndex, perPage, data);
 		return paginationData;
 	}
 	
-	protected long querySearchCnt(int page, int limit, String q, String act, String des, String dur, Date date) {
-		String sql = this.getSql(page, limit, q, act, des, dur, date);
+	protected long querySearchCnt(int page, int limit, String type, String q, String act, String des, String dur, Date date) {
+		String sql = this.getSql(page, limit, type, q, act, des, dur, date);
 		String sql2 = "select count(*) from ( "+sql+" ) AS QueryTable";
 		
 		System.out.println(sql2);
@@ -66,9 +66,9 @@ public class SearchTourFactory {
 		return 0;
 	}
 	
-	protected ArrayList<Tour> querySearchArr(int page, int limit, String q, String act, String des, String dur, Date date) {
+	protected ArrayList<Tour> querySearchArr(int page, int limit, String type, String q, String act, String des, String dur, Date date) {
 		int offset = (page - 1) * limit;
-		String sql = this.getSql(page, limit, q, act, des, dur, date);
+		String sql = this.getSql(page, limit, type, q, act, des, dur, date);
 		sql+=" LIMIT "+limit+" OFFSET "+offset+" ";
 		
 		ArrayList<Tour> tours = new ArrayList<Tour>();
@@ -88,7 +88,7 @@ public class SearchTourFactory {
 		return tours;
 	}
 	
-	protected String getSql(int page, int limit, String q, String act, String des, String dur, Date date) {
+	protected String getSql(int page, int limit, String type, String q, String act, String des, String dur, Date date) {
 		if(q == null) {
 			q="";
 		}
@@ -107,6 +107,9 @@ public class SearchTourFactory {
 		sql+=" WHERE ";
 		sql+="     ((travel_tour.name LIKE '%"+q+"%') OR (travel_tour.state LIKE '%"+q+"%') ";
 		sql+="         OR (travel_tour.nation LIKE '%"+q+"%')) ";
+		if(type != null && type.equals("promotion")) {
+			sql+="         AND (travel_tour.o_price != travel_tour.p_price) ";
+		}
 		if(des != null) {
 			sql+="         AND (travel_tour.destination_id = '"+des+"') ";
 		}
@@ -120,7 +123,11 @@ public class SearchTourFactory {
 			sql+="         AND (travel_tour_activity.activity_id = '"+act+"') ";
 		}
 		sql+=" GROUP BY travel_tour.id ";
-		sql+=" ORDER BY travel_tour.departure_time ASC ";
+		if(type != null && type.equals("hot")) {
+			sql+=" ORDER BY travel_tour.star DESC, travel_tour.registered_people DESC, travel_tour.departure_time DESC ";
+		}else {
+			sql+=" ORDER BY travel_tour.departure_time DESC ";
+		}
 		return sql;
 	}
 }
