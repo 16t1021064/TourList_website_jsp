@@ -8,6 +8,8 @@
 	ArrayList<Destination> listHotDestinations = (ArrayList<Destination>) request.getAttribute("listHotDestinations");
 	ArrayList<Activity> listHotActivities = (ArrayList<Activity>) request.getAttribute("listHotActivities");
 	ArrayList<Blog> listHotBlogs = (ArrayList<Blog>) request.getAttribute("listHotBlogs");
+	ArrayList<Destination> filterHotDestinations = (ArrayList<Destination>) request.getAttribute("filterHotDestinations");
+	ArrayList<Activity> filterHotActivities = (ArrayList<Activity>) request.getAttribute("filterHotActivities");
 	DateConvertion dateConvertion = new DateConvertion("MM/dd/yyyy");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -160,47 +162,39 @@
                                 <div class="gdlr-core-pbf-element">
                                     <div class="tourmaster-tour-search-item clearfix tourmaster-style-column tourmaster-column-count-6 tourmaster-item-pdlr">
                                         <div class="tourmaster-tour-search-wrap ">
-                                            <form class="tourmaster-form-field tourmaster-with-border" action="#" method="GET">
+                                            <form class="tourmaster-form-field tourmaster-with-border" action="/travel/tours" method="GET">
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-keywords">
                                                     <label>Keywords</label>
                                                     <div class="tourmaster-tour-search-field-inner">
-                                                        <input name="tour-search" type="text" value="" />
+                                                        <input name="q" id="filterQ" type="text" value="" />
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-tax">
                                                     <label>Activity</label>
                                                     <div class="tourmaster-combobox-wrap">
-                                                        <select name="tour-activity">
+                                                        <select name="act" id="filterAct">
                                                             <option value="">Any</option>
-                                                            <option value="city-tours">City Tours</option>
-                                                            <option value="cultural-thematic-tours">Cultural &amp; Thematic Tours</option>
-                                                            <option value="family-friendly-tours">Family Friendly Tours</option>
-                                                            <option value="holiday-seasonal-tours">Holiday &amp; Seasonal Tours</option>
-                                                            <option value="indulgence-luxury-tours">Indulgence &amp; Luxury Tours</option>
-                                                            <option value="outdoor-activites">Outdoor Activites</option>
-                                                            <option value="relaxation-tours">Relaxation Tours</option>
-                                                            <option value="wild-adventure-tours">Wild &amp; Adventure Tours</option>
+                                                            <% for(Activity act : filterHotActivities) { %>
+                                                            <option value="<%= act.getId() %>"><%= act.getName() %></option>
+                                                            <% } %>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-tax">
                                                     <label>Destination</label>
                                                     <div class="tourmaster-combobox-wrap">
-                                                        <select name="tour-destination">
+                                                        <select name="des" id="filterDes">
                                                             <option value="">Any</option>
-                                                            <option value="africa">Africa</option>
-                                                            <option value="america">America</option>
-                                                            <option value="asia">Asia</option>
-                                                            <option value="eastern-europe">Eastern Europe</option>
-                                                            <option value="europe">Europe</option>
-                                                            <option value="south-america">South America</option>
+                                                            <% for(Destination des : filterHotDestinations) { %>
+                                                            <option value="<%= des.getId() %>"><%= des.getName() %></option>
+                                                            <% } %>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-duration">
                                                     <label>Duration</label>
                                                     <div class="tourmaster-combobox-wrap">
-                                                        <select name="duration">
+                                                        <select  name="dur" id="filterDur">
                                                             <option value="">Any</option>
                                                             <option value="1">1 Day Tour</option>
                                                             <option value="2">2-4 Days Tour</option>
@@ -212,7 +206,7 @@
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-date">
                                                     <label>Date</label>
                                                     <div class="tourmaster-datepicker-wrap">
-                                                        <input class="tourmaster-datepicker" type="text" value="" data-date-format="d M yy" />
+                                                        <input class="tourmaster-datepicker" type="text" id="filterDate" value="" data-date-format="d M yy" />
                                                         <input class="tourmaster-datepicker-alt" name="date" type="hidden" value="" />
                                                     </div>
                                                 </div>

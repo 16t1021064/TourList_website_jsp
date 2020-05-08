@@ -174,28 +174,28 @@ public class TestAdmin extends HttpServlet {
 			String tempName = "Demo Tour Name ";
 			String tempSlug = "demo-blog-slug-";
 			
-			Tour tour = (new Tour()).create(
-				tempName + cnt, 
-				img, 
-				states[cnt2], 
-				nations[cnt2], 
-				"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi", 
-				5, 
-				6, 
-				"7 Days 8 Nights", 
-				new Date(), 
-				new Date(), 
-				44.55, 
-				33.44, 
-				11, 
-				100, 
-				56, 
-				"<span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus. Donec id elit non mi porta gravida at eget metus.</span><div><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue. Vivamus sagittis lacus vel augue laoreet rutrum.</span><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\"><br></span></div>", 
-				"Da Nang", 
-				new Date(), 
-				"<span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec ullamcorper nulla non metus auctor fringilla.</span><div><ul><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Ipsum Amet Mattis Pellentesque<br></span></li><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Ultricies Vehicula Mollis Vestibulum Fringilla<br></span></li><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Condimentum Sollicitudin Fusce Vestibulum Ultricies<br></span></li><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Sollicitudin Consectetur Quam Ligula Vehicula<br></span></li><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Cursus Pharetra Purus Porta Parturient<br></span></li></ul></div>", 
-				destinations.get(cnt2).getId()
-			);
+//			Tour tour = (new Tour()).create(
+//				tempName + cnt, 
+//				img, 
+//				states[cnt2], 
+//				nations[cnt2], 
+//				"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi", 
+//				5, 
+//				6, 
+//				"7 Days 8 Nights", 
+//				new Date(), 
+//				new Date(), 
+//				44.55, 
+//				33.44, 
+//				11, 
+//				100, 
+//				56, 
+//				"<span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus. Donec id elit non mi porta gravida at eget metus.</span><div><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue. Vivamus sagittis lacus vel augue laoreet rutrum.</span><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\"><br></span></div>", 
+//				"Da Nang", 
+//				new Date(), 
+//				"<span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec ullamcorper nulla non metus auctor fringilla.</span><div><ul><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Ipsum Amet Mattis Pellentesque<br></span></li><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Ultricies Vehicula Mollis Vestibulum Fringilla<br></span></li><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Condimentum Sollicitudin Fusce Vestibulum Ultricies<br></span></li><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Sollicitudin Consectetur Quam Ligula Vehicula<br></span></li><li><span style=\"color: rgb(140, 140, 140); font-family: Poppins, sans-serif; font-size: 14px;\">Cursus Pharetra Purus Porta Parturient<br></span></li></ul></div>", 
+//				destinations.get(cnt2).getId()
+//			);
 			
 			int act1 = r.nextInt(max_activities);
 			int act2;

@@ -89,6 +89,9 @@ public class SearchTourFactory {
 	}
 	
 	protected String getSql(int page, int limit, String q, String act, String des, String dur, Date date) {
+		if(q == null) {
+			q="";
+		}
 		DateConvertion dateConvertion = new DateConvertion("yyyy-MM-dd");
 		String sql = "";
 		sql+=" SELECT  ";
@@ -107,13 +110,13 @@ public class SearchTourFactory {
 		if(des != null) {
 			sql+="         AND (travel_tour.destination_id = '"+des+"') ";
 		}
-		if(des != null) {
+		if(dur != null) {
 			sql+="         AND (travel_tour.days >= "+dur+") ";
 		}
 		if(date != null) {
 			sql+="         AND (travel_tour.departure_time >= '"+dateConvertion.toStringDate(date)+"') ";
 		}
-		if(des != null) {
+		if(act != null) {
 			sql+="         AND (travel_tour_activity.activity_id = '"+act+"') ";
 		}
 		sql+=" GROUP BY travel_tour.id ";

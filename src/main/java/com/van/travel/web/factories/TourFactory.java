@@ -14,10 +14,13 @@ import com.van.travel.models.Tour;
 public class TourFactory {
 	
 	public ArrayList<Tour> getHotTours(){
-		return this.queryHotTours();
-	}
-	protected ArrayList<Tour> queryHotTours() {
 		int limit = 8;
+		return this.queryHotTours(limit);
+	}
+	public ArrayList<Tour> getHotTours(int limit){
+		return this.queryHotTours(limit);
+	}
+	protected ArrayList<Tour> queryHotTours(int limit) {
 		
 		String sql = "";
 		

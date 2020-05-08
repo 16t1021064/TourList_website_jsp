@@ -11,10 +11,14 @@ import com.van.travel.models.Destination;
 
 public class ActivityFactory {
 	public ArrayList<Activity> getHotActivities(){
-		return this.queryHotActivities();
-	}
-	public ArrayList<Activity> queryHotActivities(){
 		int limit = 8;
+		return this.getHotActivities(limit);
+	}
+	public ArrayList<Activity> getHotActivities(int limit){
+		return this.queryHotActivities(limit);
+	}
+	public ArrayList<Activity> queryHotActivities(int limit){
+		
 		String sql = "";
 		sql+=" SELECT  ";
 		sql+="     travel_activity.*, ";

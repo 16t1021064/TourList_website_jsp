@@ -45,17 +45,23 @@ public class HomeController extends AbstractController {
 		ActivityFactory activityFactory = new ActivityFactory();
 		BlogFactory blogFactory = new BlogFactory();
 		
-		ArrayList<Tour> listHotTours = tourFactory.getHotTours();
+		ArrayList<Tour> listHotTours = tourFactory.getHotTours(8);
 		request.setAttribute("listHotTours", listHotTours);
 		
 		ArrayList<Destination> listHotDestinations = destinationFactory.getHotDestinations(5);
 		request.setAttribute("listHotDestinations", listHotDestinations);
 		
-		ArrayList<Activity> listHotActivities = activityFactory.getHotActivities();
+		ArrayList<Activity> listHotActivities = activityFactory.getHotActivities(8);
 		request.setAttribute("listHotActivities", listHotActivities);
 		
 		ArrayList<Blog> listHotBlogs = blogFactory.getHotBlogs();
 		request.setAttribute("listHotBlogs", listHotBlogs);
+		
+		ArrayList<Destination> filterHotDestinations = destinationFactory.getHotDestinations(15);
+		request.setAttribute("filterHotDestinations", filterHotDestinations);
+		
+		ArrayList<Activity> filterHotActivities = activityFactory.getHotActivities(15);
+		request.setAttribute("filterHotActivities", filterHotActivities);
 		
 		request.getRequestDispatcher("Shop/home.jsp").forward(request, response);
 		
