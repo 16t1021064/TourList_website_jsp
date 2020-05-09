@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
 import com.van.travel.common.PaginationData;
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Destination;
 import com.van.travel.web.factories.ActivityFactory;
@@ -25,7 +25,7 @@ import sun.management.HotspotClassLoadingMBean;
  * Servlet implementation class SearchTourController
  */
 @WebServlet("/tours")
-public class SearchTourController extends AbstractController {
+public class SearchTourController extends ShopController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -161,7 +161,7 @@ public class SearchTourController extends AbstractController {
 		
 		request.setAttribute("filters", new Object[] {type, q, act, des, dur, date_text});
 		
-		request.getRequestDispatcher("Shop/tours.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Shop/tours.jsp").forward(request, response);
 	}
 
 	/**

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Tag;
 
@@ -17,7 +17,7 @@ import com.van.travel.models.Tag;
  * Servlet implementation class ListBlogAdmin
  */
 @WebServlet("/admin/blog")
-public class ListBlogAdmin extends AbstractController {
+public class ListBlogAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -36,7 +36,7 @@ public class ListBlogAdmin extends AbstractController {
 		response.setCharacterEncoding("utf-8");
 		ArrayList<Blog> list = (new Blog()).all();
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/Admin/blog-list.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/blog-list.jsp").forward(request, response);
 	}
 
 	/**

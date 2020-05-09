@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Destination;
@@ -23,7 +23,7 @@ import com.van.travel.web.factories.TourFactory;
  * Servlet implementation class HomeController
  */
 @WebServlet("/home")
-public class HomeController extends AbstractController {
+public class HomeController extends ShopController {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -63,7 +63,7 @@ public class HomeController extends AbstractController {
 		ArrayList<Activity> filterHotActivities = activityFactory.getHotActivities(15);
 		request.setAttribute("filterHotActivities", filterHotActivities);
 		
-		request.getRequestDispatcher("Shop/home.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Shop/home.jsp").forward(request, response);
 		
 	}
 

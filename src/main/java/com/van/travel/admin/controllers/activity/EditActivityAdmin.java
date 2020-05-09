@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Destination;
 
@@ -15,7 +15,7 @@ import com.van.travel.models.Destination;
  * Servlet implementation class EditActivityAdmin
  */
 @WebServlet("/admin/activity/edit")
-public class EditActivityAdmin extends AbstractController {
+public class EditActivityAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -38,7 +38,7 @@ public class EditActivityAdmin extends AbstractController {
 		
 		request.setAttribute("activity", activity);
 		
-		request.getRequestDispatcher("/Admin/activity-edit.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/activity-edit.jsp").forward(request, response);
 	}
 
 	/**

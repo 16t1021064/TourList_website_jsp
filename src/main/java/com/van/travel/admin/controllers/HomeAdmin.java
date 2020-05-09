@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 
 /**
  * Servlet implementation class HomeAdmin
  */
 @WebServlet("/admin")
-public class HomeAdmin extends AbstractController {
+public class HomeAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -28,7 +28,7 @@ public class HomeAdmin extends AbstractController {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/Admin/home.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/home.jsp").forward(request, response);
 	}
 
 	/**

@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Destination;
 
 /**
  * Servlet implementation class ListDestinationAdmin
  */
 @WebServlet("/admin/destination")
-public class ListDestinationAdmin extends AbstractController {
+public class ListDestinationAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -35,7 +35,7 @@ public class ListDestinationAdmin extends AbstractController {
 		response.setCharacterEncoding("utf-8");
 		ArrayList<Destination> list = (new Destination()).all();
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/Admin/destination-list.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/destination-list.jsp").forward(request, response);
 	}
 
 	/**

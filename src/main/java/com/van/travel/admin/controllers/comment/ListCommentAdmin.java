@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Comment;
 import com.van.travel.models.Review;
@@ -19,7 +19,7 @@ import com.van.travel.models.Tour;
  * Servlet implementation class ListCommentAdmin
  */
 @WebServlet("/admin/comment")
-public class ListCommentAdmin extends AbstractController {
+public class ListCommentAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -41,7 +41,7 @@ public class ListCommentAdmin extends AbstractController {
 		request.setAttribute("blog", blog);
 		ArrayList<Comment> list = blog.getComments();
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/Admin/comment-list.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/comment-list.jsp").forward(request, response);
 	}
 
 	/**

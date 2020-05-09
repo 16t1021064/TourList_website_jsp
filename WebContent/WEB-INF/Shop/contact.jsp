@@ -1,0 +1,315 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact</title>
+
+    <%@include file="./layout/styles.jsp" %>
+
+</head>
+
+<body class="home page-template-default page page-id-2039 gdlr-core-body tourmaster-body woocommerce-no-js traveltour-body traveltour-body-front traveltour-full  traveltour-with-sticky-navigation gdlr-core-link-to-lightbox">
+ 	<%@include file="./layout/mobile-header.jsp" %>
+ 	<div class="traveltour-body-outer-wrapper ">
+        <div class="traveltour-body-wrapper clearfix  traveltour-with-transparent-header traveltour-with-frame">
+            <%@include file="./layout/header.jsp" %>
+            <div class="traveltour-page-wrapper" id="traveltour-page-wrapper">
+                <div class="gdlr-core-page-builder-body">
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 350px 0px 160px 0px;" data-skin="Dark">
+                        <div class="gdlr-core-pbf-background-wrap">
+                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(/travel/public/fe/upload/section-bg-4.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.3"></div>
+                        </div>
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr">
+                                        <div class="gdlr-core-title-item-title-wrap">
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 75px ;letter-spacing: 0px ;text-transform: none ;">Contact Us<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 25px ;margin-top: 25px ;">Get Intouch</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper ">
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                                <div class="gdlr-core-pbf-column gdlr-core-column-20 gdlr-core-column-first">
+                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " style="padding: 50px 20px 0px 20px;">
+                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-icon-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 55px ;"><i class=" gdlr-core-icon-item-icon fa fa-phone" style="color: #454545 ;font-size: 40px ;min-width: 40px ;min-height: 40px ;"></i></div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" style="padding-bottom: 25px ;">
+                                                    <div class="gdlr-core-title-item-title-wrap">
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 24px ;letter-spacing: 0px ;text-transform: none ;">Phone<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 0px ;">
+                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
+                                                        <p>A wonderful serenity has taken possession of my entire soul, like these.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
+                                                        <p><a href="#">+1-2345-2345</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gdlr-core-pbf-column gdlr-core-column-20">
+                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " style="padding: 50px 20px 0px 20px;">
+                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js " data-gdlr-animation="fadeInDown" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-icon-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 55px ;"><i class=" gdlr-core-icon-item-icon fa fa-envelope-o" style="color: #454545 ;font-size: 40px ;min-width: 40px ;min-height: 40px ;"></i></div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" style="padding-bottom: 25px ;">
+                                                    <div class="gdlr-core-title-item-title-wrap">
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 24px ;letter-spacing: 0px ;text-transform: none ;">Email<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 0px ;">
+                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
+                                                        <p>A wonderful serenity has taken possession of my entire soul, like these.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
+                                                        <p><a href="#">Contact@goodlayers.com</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gdlr-core-pbf-column gdlr-core-column-20">
+                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " style="padding: 50px 20px 0px 20px;">
+                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-icon-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 55px ;"><i class=" gdlr-core-icon-item-icon fa fa-location-arrow" style="color: #454545 ;font-size: 40px ;min-width: 40px ;min-height: 40px ;"></i></div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" style="padding-bottom: 25px ;">
+                                                    <div class="gdlr-core-title-item-title-wrap">
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 24px ;letter-spacing: 0px ;text-transform: none ;">Location<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 0px ;">
+                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
+                                                        <p>4 apt. Flawing Street. The Grand Avenue.
+                                                            <br />Liverpool, UK 33342</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
+                                                        <p><a href="#">View On Google Map</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 95px 0px 90px 0px;" data-skin="Grey">
+                        <div class="gdlr-core-pbf-background-wrap" style="background-color: #f3f3f3 ;"></div>
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                                <div class="gdlr-core-pbf-column gdlr-core-column-60 gdlr-core-column-first">
+                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js " style="max-width: 760px ;">
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr">
+                                                    <div class="gdlr-core-title-item-title-wrap">
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 32px ;letter-spacing: 0px ;text-transform: none ;">Leave us your info <span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 19px ;font-style: normal ;">and we will get back to you.</span></div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-divider-item gdlr-core-item-pdlr gdlr-core-item-mgb gdlr-core-divider-item-normal gdlr-core-center-align" style="margin-bottom: 50px ;">
+                                                    <div class="gdlr-core-divider-container" style="max-width: 40px ;">
+                                                        <div class="gdlr-core-divider-line gdlr-core-skin-divider" style="border-color: #2b2b2b ;border-bottom-width: 2px ;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-contact-form-7-item gdlr-core-item-pdlr gdlr-core-item-pdb ">
+                                                    <div role="form" class="wpcf7" id="wpcf7-f1319-p1964-o1" lang="en-US" dir="ltr">
+                                                        <div class="screen-reader-response"></div>
+                                                        <form class="quform" action="plugins/quform/process.php" method="post" enctype="multipart/form-data" onclick="">
+
+                                                            <div class="quform-elements">
+                                                                <div class="quform-element">
+                                                                    <p>
+                                                                        <br>
+                                                                        <span class="wpcf7-form-control-wrap your-name">
+                                                                            <input id="name" type="text" name="name" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Your Name (required)">
+                                                                        </span> 
+                                                                    </p>
+                                                                </div>
+                                                                <div class="quform-element">
+                                                                    <p>
+                                                                        <br>
+                                                                        <span class="wpcf7-form-control-wrap your-email">
+                                                                            <input id="email" type="text" name="email" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Your Email (required)">
+                                                                        </span> 
+                                                                    </p>
+                                                                </div>
+                                                                <div class="quform-element">
+                                                                    <p>
+                                                                        <br>
+                                                                        <span class="wpcf7-form-control-wrap your-message">
+                                                                            <textarea  id="message" name="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Your Message"></textarea>
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                                <p>
+                                                                    <!-- Begin Submit button -->
+                                                                    <div class="quform-submit">
+                                                                        <div class="quform-submit-inner">
+                                                                            <button type="submit" class="submit-button"><span>Submit Now</span></button>
+                                                                        </div>
+                                                                        <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
+                                                                    </div>
+                                                                </p>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 0px 0px 0px 0px;">
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full-no-space">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-wp-google-map-plugin-item gdlr-core-item-pdlr gdlr-core-item-pdb " style="padding-bottom: 0px ;">
+                                        <div class="wpgmp_map_container wpgmp-map-1" rel="map1">
+                                            <div class="wpgmp_map " style="width:100%; height:450px;" id="map1"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 80px 0px 50px 0px;">
+                        <div class="gdlr-core-pbf-background-wrap" style="background-color: #ffffff ;"></div>
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-center-align gdlr-core-item-pdlr"><a href="mailto:#" target="_blank" class="gdlr-core-social-network-icon" title="email" style="font-size: 20px ;color: #1e1e1e ;"><i class="fa fa-envelope" ></i></a><a href="#" target="_blank" class="gdlr-core-social-network-icon" title="facebook" style="font-size: 20px ;color: #1e1e1e ;margin-left: 40px ;"><i class="fa fa-facebook" ></i></a><a href="#" target="_blank" class="gdlr-core-social-network-icon" title="google-plus" style="font-size: 20px ;color: #1e1e1e ;margin-left: 40px ;"><i class="fa fa-google-plus" ></i></a><a href="#" target="_blank" class="gdlr-core-social-network-icon" title="skype" style="font-size: 20px ;color: #1e1e1e ;margin-left: 40px ;"><i class="fa fa-skype" ></i></a><a href="#" target="_blank" class="gdlr-core-social-network-icon" title="twitter" style="font-size: 20px ;color: #1e1e1e ;margin-left: 40px ;"><i class="fa fa-twitter" ></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 			<%@include file="./layout/footer.jsp" %>
+        </div>
+    </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
+ 	
+	<%@include file="./layout/scripts.jsp" %>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmGmeot5jcjdaJTvfCmQPfzeoG_pABeWo "></script>
+    <script type='text/javascript'>
+        var wpgmp_local = {
+            "all_location": "All",
+            "show_locations": "Show Locations",
+            "sort_by": "Sort by",
+            "wpgmp_not_working": "not working...",
+            "place_icon_url": "https:////demo.goodlayers.com//kleanity//wp-content//plugins//wp-google-map-plugin//assets//images//icons//"
+        };
+    </script>
+    <script type='text/javascript' src='/travel/public/fe/plugins/google-map-plugin/assets/js/maps.js?'></script>
+    <script type='text/javascript' src='/travel/public/fe/plugins/google-map-plugin/assets/js/frontend.js'></script>
+
+    <script>
+        jQuery(document).ready(function($) {
+            var map1 = $("#map1").maps({
+                "map_options": {
+                    "center_lat": "51.5073509",
+                    "center_lng": "-0.12775829999998223",
+                    "zoom": 16,
+                    "map_type_id": "ROADMAP",
+                    "draggable": true,
+                    "scroll_wheel": false,
+                    "display_45_imagery": "",
+                    "marker_default_icon": "/travel/public/fe/upload/default_marker.png",
+                    "infowindow_setting": "",
+                    "infowindow_bounce_animation": "",
+                    "infowindow_drop_animation": false,
+                    "close_infowindow_on_map_click": false,
+                    "default_infowindow_open": false,
+                    "infowindow_open_event": "click",
+                    "full_screen_control": false,
+                    "search_control": true,
+                    "zoom_control": true,
+                    "map_type_control": false,
+                    "street_view_control": false,
+                    "full_screen_control_position": "TOP_RIGHT",
+                    "search_control_position": null,
+                    "zoom_control_position": "TOP_LEFT",
+                    "map_type_control_position": "TOP_RIGHT",
+                    "map_type_control_style": "HORIZONTAL_BAR",
+                    "street_view_control_position": "TOP_LEFT",
+                    "map_control": true,
+                    "map_control_settings": null,
+                    "width": "",
+                    "height": "450"
+                },
+                "places": [{
+                    "id": "1",
+                    "title": "London",
+                    "address": "London, United Kingdom",
+                    "source": "manual",
+                    "content": "London",
+                    "location": {
+                        "icon": "/travel/public/fe/upload/default_marker.png",
+                        "lat": "51.5073509",
+                        "lng": "-0.12775829999998223",
+                        "city": "London",
+                        "state": "England",
+                        "country": "United Kingdom",
+                        "onclick_action": "marker",
+                        "redirect_custom_link": "",
+                        "marker_image": null,
+                        "open_new_tab": "yes",
+                        "postal_code": "",
+                        "draggable": false,
+                        "infowindow_default_open": false,
+                        "animation": "BOUNCE",
+                        "infowindow_disable": true,
+                        "zoom": 5,
+                        "extra_fields": null
+                    },
+                    "categories": [],
+                    "custom_filters": null
+                }],
+                "street_view": null,
+                "map_property": {
+                    "map_id": "1"
+                }
+            }).data("wpgmp_maps");
+        });
+    </script>
+    <script type="text/javascript" src="/travel/public/fe/plugins/quform/js/plugins.js"></script>
+    <script type="text/javascript" src="/travel/public/fe/plugins/quform/js/scripts.js"></script> 
+</body>
+</html>

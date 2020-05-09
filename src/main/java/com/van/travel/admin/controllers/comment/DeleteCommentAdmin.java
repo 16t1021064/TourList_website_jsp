@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Comment;
 import com.van.travel.models.Review;
 
@@ -15,7 +15,7 @@ import com.van.travel.models.Review;
  * Servlet implementation class DeleteCommentAdmin
  */
 @WebServlet("/admin/comment/delete")
-public class DeleteCommentAdmin extends AbstractController {
+public class DeleteCommentAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**

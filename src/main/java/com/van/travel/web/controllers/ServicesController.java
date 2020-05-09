@@ -1,4 +1,4 @@
-package com.van.travel.admin.controllers.tour;
+package com.van.travel.web.controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,21 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AdminController;
-import com.van.travel.models.Destination;
-import com.van.travel.models.Tour;
+import com.van.travel.common.controllers.ShopController;
 
 /**
- * Servlet implementation class DeleteTourAdmin
+ * Servlet implementation class ServicesController
  */
-@WebServlet("/admin/tour/delete")
-public class DeleteTourAdmin extends AdminController {
+@WebServlet("/services")
+public class ServicesController extends ShopController {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteTourAdmin() {
+    public ServicesController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,22 +28,18 @@ public class DeleteTourAdmin extends AdminController {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		
+		request.getRequestDispatcher("/WEB-INF/Shop/services.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		
-		String id =  request.getParameter("id");
-		Tour tour = (new Tour()).find(id);
-		tour.delete();
-		
-		response.sendRedirect("/travel/admin/tour");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

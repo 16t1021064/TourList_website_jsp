@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Comment;
 import com.van.travel.models.Review;
 
@@ -18,7 +18,7 @@ import com.van.travel.models.Review;
  * Servlet implementation class EditCommentAdmin
  */
 @WebServlet("/admin/comment/edit")
-public class EditCommentAdmin extends AbstractController {
+public class EditCommentAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -41,7 +41,7 @@ public class EditCommentAdmin extends AbstractController {
 		
 		request.setAttribute("comment", comment);
 		
-		request.getRequestDispatcher("/Admin/comment-edit.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/comment-edit.jsp").forward(request, response);
 	}
 
 	/**

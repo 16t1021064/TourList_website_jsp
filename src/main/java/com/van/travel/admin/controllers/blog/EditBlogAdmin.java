@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Blog;
 
 /**
  * Servlet implementation class EditBlogAdmin
  */
 @WebServlet("/admin/blog/edit")
-public class EditBlogAdmin extends AbstractController {
+public class EditBlogAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -37,7 +37,7 @@ public class EditBlogAdmin extends AbstractController {
 		String id = request.getParameter("id");
 		Blog blog = (new Blog()).find(id);
 		request.setAttribute("blog", blog);
-		request.getRequestDispatcher("/Admin/blog-edit.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/blog-edit.jsp").forward(request, response);
 	}
 
 	/**

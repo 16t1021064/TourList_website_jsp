@@ -14,13 +14,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js">
+<html lang="en-US">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="pingback" href="xmlrpc.php">
     <title>Tours</title>
 
     <%@include file="./layout/styles.jsp" %>
@@ -306,7 +304,6 @@
 		<% if(filters[5] != null){ %>
 			$('#filterDate').datepicker('setDate', new Date('<%= filters[5] %>'));
 		<% } %>
-		$('#filterDate').datepicker('clearBtn', true);
     });
 
 

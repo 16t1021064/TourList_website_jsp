@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Booking;
 import com.van.travel.models.Review;
 
@@ -18,7 +18,7 @@ import com.van.travel.models.Review;
  * Servlet implementation class EditBookingAdmin
  */
 @WebServlet("/admin/booking/edit")
-public class EditBookingAdmin extends AbstractController {
+public class EditBookingAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -41,7 +41,7 @@ public class EditBookingAdmin extends AbstractController {
 		
 		request.setAttribute("booking", booking);
 		
-		request.getRequestDispatcher("/Admin/booking-edit.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/booking-edit.jsp").forward(request, response);
 	}
 
 	/**

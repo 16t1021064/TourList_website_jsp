@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Destination;
 
@@ -15,7 +15,7 @@ import com.van.travel.models.Destination;
  * Servlet implementation class CreateActivityAdmin
  */
 @WebServlet("/admin/activity/create")
-public class CreateActivityAdmin extends AbstractController {
+public class CreateActivityAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -32,7 +32,7 @@ public class CreateActivityAdmin extends AbstractController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		request.getRequestDispatcher("/Admin/activity-create.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/activity-create.jsp").forward(request, response);
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

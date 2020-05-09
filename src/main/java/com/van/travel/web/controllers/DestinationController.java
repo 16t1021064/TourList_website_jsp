@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.Destination;
 import com.van.travel.web.factories.DestinationFactory;
 
@@ -17,7 +17,7 @@ import com.van.travel.web.factories.DestinationFactory;
  * Servlet implementation class DestinationController
  */
 @WebServlet("/destinations")
-public class DestinationController extends AbstractController {
+public class DestinationController extends ShopController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -40,7 +40,7 @@ public class DestinationController extends AbstractController {
 		ArrayList<Destination> listHotDestinations = destinationFactory.getHotDestinations(50);
 		request.setAttribute("listHotDestinations", listHotDestinations);
 		
-		request.getRequestDispatcher("Shop/destinations.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Shop/destinations.jsp").forward(request, response);
 	}
 
 	/**

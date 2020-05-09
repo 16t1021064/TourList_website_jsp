@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Destination;
 import com.van.travel.models.Itinerary;
@@ -23,7 +23,7 @@ import com.van.travel.models.TourActivity;
  * Servlet implementation class CreateTourAdmin
  */
 @WebServlet("/admin/tour/create")
-public class CreateTourAdmin extends AbstractController {
+public class CreateTourAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -44,7 +44,7 @@ public class CreateTourAdmin extends AbstractController {
 		ArrayList<Activity> listActivity = (new Activity()).all();
 		request.setAttribute("listDestination", listDestination);
 		request.setAttribute("listActivity", listActivity);
-		request.getRequestDispatcher("/Admin/tour-create.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/tour-create.jsp").forward(request, response);
 	}
 
 	/**

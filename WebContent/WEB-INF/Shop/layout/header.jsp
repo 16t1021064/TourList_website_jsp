@@ -44,7 +44,7 @@
                         <div class="traveltour-main-menu" id="traveltour-main-menu">
                             <ul id="menu-main-navigation-1" class="sf-menu">
 							    <li class="menu-item traveltour-normal-menu current-menu-item menu-item-home"><a href="/travel/home">Home</a></li>
-							    <li class="menu-item menu-item-has-children traveltour-normal-menu"><a href="index.html" class="sf-with-ul-pre">Destinations</a>
+							    <li class="menu-item menu-item-has-children traveltour-normal-menu"><a href="/travel/destinations" class="sf-with-ul-pre">Destinations</a>
 							        <ul class="sub-menu">
 							        	<% for(Destination des : header_headerView.destinations){ %>
 							            <li class="menu-item" data-size="60"><a href="/travel/tours?des=<%= des.getId() %>"><%= des.getName() %></a></li>
@@ -58,9 +58,9 @@
 							            <li class="menu-item" data-size="60"><a href="/travel/tours?type=upcoming">Upcoming Tours</a></li>
 							        </ul>
 							    </li>
-							    <li class="menu-item traveltour-normal-menu"><a href="destinations.html">Services</a></li>
-							    <li class="menu-item traveltour-normal-menu"><a href="destinations.html">About</a></li>
-							    <li class="menu-item traveltour-normal-menu"><a href="destinations.html">Contact</a></li>
+							    <li class="menu-item traveltour-normal-menu"><a href="/travel/services">Services</a></li>
+							    <li class="menu-item traveltour-normal-menu"><a href="/travel/about">About</a></li>
+							    <li class="menu-item traveltour-normal-menu"><a href="/travel/contact">Contact</a></li>
     						</ul>
                             <div class="traveltour-navigation-slide-bar" id="traveltour-navigation-slide-bar"></div>
                         </div>

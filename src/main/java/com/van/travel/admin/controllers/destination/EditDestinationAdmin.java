@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Destination;
 
 /**
  * Servlet implementation class EditDestinationAdmin
  */
 @WebServlet("/admin/destination/edit")
-public class EditDestinationAdmin extends AbstractController {
+public class EditDestinationAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -37,7 +37,7 @@ public class EditDestinationAdmin extends AbstractController {
 		
 		request.setAttribute("destination", destination);
 		
-		request.getRequestDispatcher("/Admin/destination-edit.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/destination-edit.jsp").forward(request, response);
 	}
 
 	/**

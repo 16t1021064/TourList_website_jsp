@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Destination;
 
 /**
  * Servlet implementation class CreateDestinationAdmin
  */
 @WebServlet("/admin/destination/create")
-public class CreateDestinationAdmin extends AbstractController {
+public class CreateDestinationAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -33,7 +33,7 @@ public class CreateDestinationAdmin extends AbstractController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		request.getRequestDispatcher("/Admin/destination-create.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/destination-create.jsp").forward(request, response);
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

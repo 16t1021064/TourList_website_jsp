@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Destination;
 
 /**
  * Servlet implementation class DeleteDestinationAdmin
  */
 @WebServlet("/admin/destination/delete")
-public class DeleteDestinationAdmin extends AbstractController {
+public class DeleteDestinationAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**

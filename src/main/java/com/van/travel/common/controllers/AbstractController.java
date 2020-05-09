@@ -18,6 +18,7 @@ public abstract class AbstractController extends HttpServlet {
 		this.beforeService(req, resp);
 		super.service(req, resp);
 		this.afterService(req, resp);
+		System.out.println(this.getServletContext().getInitParameter("project_path"));
 	}
 	
 	protected void beforeService(HttpServletRequest req, HttpServletResponse resp) {

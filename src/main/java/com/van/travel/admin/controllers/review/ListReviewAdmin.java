@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Destination;
 import com.van.travel.models.Review;
 import com.van.travel.models.Tour;
@@ -18,7 +18,7 @@ import com.van.travel.models.Tour;
  * Servlet implementation class ListReviewAdmin
  */
 @WebServlet("/admin/review")
-public class ListReviewAdmin extends AbstractController {
+public class ListReviewAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -40,7 +40,7 @@ public class ListReviewAdmin extends AbstractController {
 		request.setAttribute("tour", tour);
 		ArrayList<Review> list = tour.getReviews();
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/Admin/review-list.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/review-list.jsp").forward(request, response);
 	}
 
 	/**

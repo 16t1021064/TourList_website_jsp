@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Booking;
 import com.van.travel.models.Enquiry;
 import com.van.travel.models.Tour;
@@ -19,7 +19,7 @@ import com.van.travel.models.Tour;
  * Servlet implementation class CreateEnquiryAdmin
  */
 @WebServlet("/admin/enquiry/create")
-public class CreateEnquiryAdmin extends AbstractController {
+public class CreateEnquiryAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -39,7 +39,7 @@ public class CreateEnquiryAdmin extends AbstractController {
 		String tourId = request.getParameter("tour_id");
 		Tour tour = (new Tour()).find(tourId);
 		request.setAttribute("tour", tour);
-		request.getRequestDispatcher("/Admin/enquiry-create.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/enquiry-create.jsp").forward(request, response);
 	}
 
 	/**

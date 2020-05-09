@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.DateConvertion;
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Comment;
 import com.van.travel.models.Review;
@@ -20,7 +20,7 @@ import com.van.travel.models.Tour;
  * Servlet implementation class CreateCommentAdmin
  */
 @WebServlet("/admin/comment/create")
-public class CreateCommentAdmin extends AbstractController {
+public class CreateCommentAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -40,7 +40,7 @@ public class CreateCommentAdmin extends AbstractController {
 		String blogId = request.getParameter("blog_id");
 		Blog blog = (new Blog()).find(blogId);
 		request.setAttribute("blog", blog);
-		request.getRequestDispatcher("/Admin/comment-create.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/Admin/comment-create.jsp").forward(request, response);
 	}
 
 	/**

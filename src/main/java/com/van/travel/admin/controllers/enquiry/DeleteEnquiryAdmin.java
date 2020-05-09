@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Booking;
 import com.van.travel.models.Enquiry;
 
@@ -15,7 +15,7 @@ import com.van.travel.models.Enquiry;
  * Servlet implementation class DeleteEnquiryAdmin
  */
 @WebServlet("/admin/enquiry/delete")
-public class DeleteEnquiryAdmin extends AbstractController {
+public class DeleteEnquiryAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**

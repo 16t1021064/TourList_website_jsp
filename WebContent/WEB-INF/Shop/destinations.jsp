@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js">
+<html lang="en-US">
 
 <head>
     <meta charset="UTF-8">
@@ -51,7 +51,7 @@
                                                     <h3 class="tourmaster-tour-category-title"><i class="icon_pin_alt" ></i><%= des.getName() %></h3>
                                                     <div class="tourmaster-tour-category-count"><%= des.getTourCount() %> tours</div>
                                                 </div>
-                                                <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="../tour-destination/south-america/index.html">View all tours</a>
+                                                <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="/travel/tours?des=<%= des.getId() %>">View all tours</a>
                                                     <div class="tourmaster-tour-category-head-divider"></div>
                                                 </div>
                                             </div>
