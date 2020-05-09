@@ -74,7 +74,7 @@ public class EditEnquiryAdmin extends AdminController {
 		
 		Enquiry newEnquiry = enquiry.update(enquiry.getTourId(), status, name, phone, email, travelTime, countPeople, note, submitTime);
 		
-		response.sendRedirect("/travel/admin/enquiry/edit?id="+newEnquiry.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/enquiry/edit?id="+newEnquiry.getId());
 	}
 
 }

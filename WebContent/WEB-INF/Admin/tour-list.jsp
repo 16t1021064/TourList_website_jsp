@@ -81,10 +81,10 @@
                           <td><%= tour.getRegisteredPeople() %></td>
                           <td><%= tour.getMaxPeople() %></td>
                           <td>
-                          	<a href="/travel/admin/tour/edit?id=<%= tour.getId() %>" class="btn btn-primary btn-xs">Edit</a>
-                          	<a href="/travel/admin/review?tour_id=<%= tour.getId() %>" target="_blank" class="btn btn-info btn-xs">Reviews</a>
-                          	<a href="/travel/admin/booking?tour_id=<%= tour.getId() %>" target="_blank" class="btn btn-info btn-xs">Bookings</a>
-                          	<a href="/travel/admin/enquiry?tour_id=<%= tour.getId() %>" target="_blank" class="btn btn-info btn-xs">Enquiries</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/tour/edit?id=<%= tour.getId() %>" class="btn btn-primary btn-xs">Edit</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/review?tour_id=<%= tour.getId() %>" target="_blank" class="btn btn-info btn-xs">Reviews</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/booking?tour_id=<%= tour.getId() %>" target="_blank" class="btn btn-info btn-xs">Bookings</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/enquiry?tour_id=<%= tour.getId() %>" target="_blank" class="btn btn-info btn-xs">Enquiries</a>
                           	<a href="javascript:void(0)" data-id="<%= tour.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
@@ -97,7 +97,7 @@
 			</div>
 		</div>
 		
-		<form id="formDelete" method="post" action="/travel/admin/tour/delete" style="display: none;">
+		<form id="formDelete" method="post" action="<%= request.getAttribute("sitePath") %>/admin/tour/delete" style="display: none;">
 			<input type="hidden" name="id">
 		</form>
 		

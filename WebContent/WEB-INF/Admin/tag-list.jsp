@@ -67,7 +67,7 @@
                           <td><%= tag.getName() %></td>
                           <td><%= tag.getClicked() %></td>
                           <td>
-                          	<a href="/travel/admin/tag/edit?id=<%= tag.getId() %>" class="btn btn-primary btn-xs">Edit</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/tag/edit?id=<%= tag.getId() %>" class="btn btn-primary btn-xs">Edit</a>
                           	<a href="javascript:void(0)" data-id="<%= tag.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
@@ -80,7 +80,7 @@
 			</div>
 		</div>
 		
-		<form id="formDelete" method="post" action="/travel/admin/tag/delete" style="display: none;">
+		<form id="formDelete" method="post" action="<%= request.getAttribute("sitePath") %>/admin/tag/delete" style="display: none;">
 			<input type="hidden" name="id">
 		</form>
 		

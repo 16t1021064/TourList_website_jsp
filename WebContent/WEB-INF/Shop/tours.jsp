@@ -17,12 +17,11 @@
 <html lang="en-US">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <<%@include file="./layout/meta.jsp" %>
     <title>Tours</title>
 
     <%@include file="./layout/styles.jsp" %>
-
 </head>
 
 <body class="home page-template-default page page-id-2039 gdlr-core-body tourmaster-body woocommerce-no-js traveltour-body traveltour-body-front traveltour-full  traveltour-with-sticky-navigation gdlr-core-link-to-lightbox">
@@ -47,7 +46,7 @@
                                 <div class="gdlr-core-pbf-element">
                                     <div class="tourmaster-tour-search-item clearfix tourmaster-style-column tourmaster-column-count-6 tourmaster-item-pdlr">
                                         <div class="tourmaster-tour-search-wrap ">
-                                            <form class="tourmaster-form-field tourmaster-with-border" action="/travel/tours" method="GET">
+                                            <form class="tourmaster-form-field tourmaster-with-border" action="<%= request.getAttribute("sitePath") %>/tours" method="GET">
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-keywords">
                                                     <label>Keywords</label>
                                                     <div class="tourmaster-tour-search-field-inner">
@@ -149,7 +148,7 @@
                                                 <% } %>
                                             </div>
                                             <div class="custom-pagination" data-total-page="<%= dataTours.totalPage %>" data-current-page="<%= dataTours.currentPage %>" 
-                                            		data-path-default="/travel/tours?q=<%= filters[1] == null ? "" : filters[1] %><% if(filters[0] != null){ %>&type=<%= filters[0] %><% } %><% if(filters[2] != null){ %>&act=<%= filters[2] %><% } %><% if(filters[3] != null){ %>&des=<%= filters[3] %><% } %><% if(filters[4] != null){ %>&dur=<%= filters[4] %><% } %><% if(filters[5] != null){ %>&date=<%= filters[5] %><% } %>"></div>
+                                            		data-path-default="<%= request.getAttribute("sitePath") %>/tours?q=<%= filters[1] == null ? "" : filters[1] %><% if(filters[0] != null){ %>&type=<%= filters[0] %><% } %><% if(filters[2] != null){ %>&act=<%= filters[2] %><% } %><% if(filters[3] != null){ %>&des=<%= filters[3] %><% } %><% if(filters[4] != null){ %>&dur=<%= filters[4] %><% } %><% if(filters[5] != null){ %>&date=<%= filters[5] %><% } %>"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +162,7 @@
                                             <div class="tourmaster-item-list tourmaster-tour-widget tourmaster-item-pdlr">
                                                 <div class="tourmaster-tour-widget-inner clearfix">
                                                     <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                        <a href="../africa-amazing-african-safari/index.html"><img src="/travel/public/fe/upload/shutterstock_120562819-150x150.jpg" alt="" width="150" height="150" /></a>
+                                                        <a href="../africa-amazing-african-safari/index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_120562819-150x150.jpg" alt="" width="150" height="150" /></a>
                                                     </div>
                                                     <div class="tourmaster-tour-content-wrap">
                                                         <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="../africa-amazing-african-safari/index.html" >Africa &#8211; Amazing African Safari</a></h3>
@@ -177,7 +176,7 @@
                                             <div class="tourmaster-item-list tourmaster-tour-widget tourmaster-item-pdlr">
                                                 <div class="tourmaster-tour-widget-inner clearfix">
                                                     <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                        <a href="../dubai-all-stunning-places/index.html"><img src="/travel/public/fe/upload/shutterstock_151616084-150x150.jpg" alt="" width="150" height="150" /></a>
+                                                        <a href="../dubai-all-stunning-places/index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_151616084-150x150.jpg" alt="" width="150" height="150" /></a>
                                                     </div>
                                                     <div class="tourmaster-tour-content-wrap">
                                                         <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="../dubai-all-stunning-places/index.html" >Dubai &#8211; All Stunning Places</a></h3>
@@ -191,7 +190,7 @@
                                             <div class="tourmaster-item-list tourmaster-tour-widget tourmaster-item-pdlr">
                                                 <div class="tourmaster-tour-widget-inner clearfix">
                                                     <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                        <a href="../switzerland-7-days-in-zurich-zermatt/index.html"><img src="/travel/public/fe/upload/shutterstock_178807262-150x150.jpg" alt="" width="150" height="150" /></a>
+                                                        <a href="../switzerland-7-days-in-zurich-zermatt/index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_178807262-150x150.jpg" alt="" width="150" height="150" /></a>
                                                     </div>
                                                     <div class="tourmaster-tour-content-wrap">
                                                         <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="../switzerland-7-days-in-zurich-zermatt/index.html" >Switzerland &#8211; 7 Days in Zurich, Zermatt</a></h3>
@@ -206,7 +205,7 @@
                                             <div class="tourmaster-item-list tourmaster-tour-widget tourmaster-item-pdlr">
                                                 <div class="tourmaster-tour-widget-inner clearfix">
                                                     <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                        <a href="../italy-6-days-in-rome-venice-milan/index.html"><img src="/travel/public/fe/upload/shutterstock_245507692-150x150.jpg" alt="" width="150" height="150" /></a>
+                                                        <a href="../italy-6-days-in-rome-venice-milan/index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_245507692-150x150.jpg" alt="" width="150" height="150" /></a>
                                                     </div>
                                                     <div class="tourmaster-tour-content-wrap">
                                                         <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="../italy-6-days-in-rome-venice-milan/index.html" >Enquiry Form Only &#8211; Italy &#8211; 6 Days</a></h3>
@@ -249,7 +248,7 @@
                                         <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Recent Articles</span></h3><span class="clear"></span>
                                         <div class="gdlr-core-recent-post-widget-wrap gdlr-core-style-1">
                                             <div class="gdlr-core-recent-post-widget clearfix">
-                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="/travel/public/fe/upload/shutterstock_195507533-150x150.jpg" alt="" width="150" height="150" /></div>
+                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_195507533-150x150.jpg" alt="" width="150" height="150" /></div>
                                                 <div class="gdlr-core-recent-post-widget-content">
                                                     <div class="gdlr-core-recent-post-widget-title"><a href="../how-to-travel-with-paper-map/index.html">How to travel with paper map</a></div>
                                                     <div class="gdlr-core-recent-post-widget-info"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="../2016/06/06/index.html">June 6, 2016</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head" ><i class="icon_documents_alt" ></i></span><a href="../author/superuser/index.html" title="Posts by John Smith" rel="author">John Smith</a></span>
@@ -257,7 +256,7 @@
                                                 </div>
                                             </div>
                                             <div class="gdlr-core-recent-post-widget clearfix">
-                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="/travel/public/fe/upload/photo-1459255418679-d6424da9ee33-150x150.jpg" alt="" width="150" height="150" /></div>
+                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/photo-1459255418679-d6424da9ee33-150x150.jpg" alt="" width="150" height="150" /></div>
                                                 <div class="gdlr-core-recent-post-widget-content">
                                                     <div class="gdlr-core-recent-post-widget-title"><a href="../change-your-place-and-get-the-fresh-air/index.html">Change your place and get the fresh air</a></div>
                                                     <div class="gdlr-core-recent-post-widget-info"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="../2016/06/06/index.html">June 6, 2016</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head" ><i class="icon_documents_alt" ></i></span><a href="../author/superuser/index.html" title="Posts by John Smith" rel="author">John Smith</a></span>
@@ -265,7 +264,7 @@
                                                 </div>
                                             </div>
                                             <div class="gdlr-core-recent-post-widget clearfix">
-                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="/travel/public/fe/upload/shutterstock_210601591-150x150.jpg" alt="" width="150" height="150" /></div>
+                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_210601591-150x150.jpg" alt="" width="150" height="150" /></div>
                                                 <div class="gdlr-core-recent-post-widget-content">
                                                     <div class="gdlr-core-recent-post-widget-title"><a href="../even-the-all-powerful-pointing/index.html">Even the all-powerful Pointing</a></div>
                                                     <div class="gdlr-core-recent-post-widget-info"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="../2016/06/06/index.html">June 6, 2016</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head" ><i class="icon_documents_alt" ></i></span><a href="../author/superuser/index.html" title="Posts by John Smith" rel="author">John Smith</a></span>

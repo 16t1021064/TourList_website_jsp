@@ -55,7 +55,7 @@ public class EditDestinationAdmin extends AdminController {
 		
 		destination = destination.update(name, thumbnail);
 		
-		response.sendRedirect("/travel/admin/destination/edit?id="+destination.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/destination/edit?id="+destination.getId());
 	}
 
 }

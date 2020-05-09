@@ -45,7 +45,7 @@ public class DeleteTagAdmin extends AdminController {
 		Tag tag = (new Tag()).find(id);
 		tag.delete();
 		
-		response.sendRedirect("/travel/admin/tag");
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/tag");
 	}
 
 }

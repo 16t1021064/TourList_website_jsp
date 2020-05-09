@@ -46,7 +46,7 @@ public class DeleteEnquiryAdmin extends AdminController {
 		String enquiryId = enquiry.getTourId();
 		enquiry.delete();
 		
-		response.sendRedirect("/travel/admin/enquiry?tour_id="+enquiryId);
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/enquiry?tour_id="+enquiryId);
 	}
 
 }

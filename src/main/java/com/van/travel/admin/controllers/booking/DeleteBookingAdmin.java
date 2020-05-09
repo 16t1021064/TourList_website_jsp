@@ -46,6 +46,6 @@ public class DeleteBookingAdmin extends AdminController {
 		String bookingId = booking.getTourId();
 		booking.delete();
 		
-		response.sendRedirect("/travel/admin/booking?tour_id="+bookingId);
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/booking?tour_id="+bookingId);
 	}
 }

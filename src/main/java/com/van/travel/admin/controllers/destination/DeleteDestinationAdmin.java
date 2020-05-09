@@ -44,7 +44,7 @@ public class DeleteDestinationAdmin extends AdminController {
 		Destination destination = (new Destination()).find(id);
 		destination.delete();
 		
-		response.sendRedirect("/travel/admin/destination");
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/destination");
 	}
 
 }

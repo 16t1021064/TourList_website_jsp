@@ -45,7 +45,7 @@ public class DeleteActivityAdmin extends AdminController {
 		Activity activity = (new Activity()).find(id);
 		activity.delete();
 		
-		response.sendRedirect("/travel/admin/activity");
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/activity");
 	}
 
 }

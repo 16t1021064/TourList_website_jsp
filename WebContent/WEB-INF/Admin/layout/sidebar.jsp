@@ -11,7 +11,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="/travel/public/be/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="<%= request.getAttribute("sitePath") %>/public/be/images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -29,32 +29,32 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Tour <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/travel/admin/tour">List</a></li>
-                      <li><a href="/travel/admin/tour/create">Create</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/tour">List</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/tour/create">Create</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-home"></i> Destination <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/travel/admin/destination">List</a></li>
-                      <li><a href="/travel/admin/destination/create">Create</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/destination">List</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/destination/create">Create</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-home"></i> Activity <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/travel/admin/activity">List</a></li>
-                      <li><a href="/travel/admin/activity/create">Create</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/activity">List</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/activity/create">Create</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-home"></i> Tag <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/travel/admin/tag">List</a></li>
-                      <li><a href="/travel/admin/tag/create">Create</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/tag">List</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/tag/create">Create</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-home"></i> Blog <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/travel/admin/blog">List</a></li>
-                      <li><a href="/travel/admin/blog/create">Create</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/blog">List</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/blog/create">Create</a></li>
                     </ul>
                   </li>
                 </ul>

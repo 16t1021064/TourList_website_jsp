@@ -45,7 +45,7 @@ public class DeleteTourAdmin extends AdminController {
 		Tour tour = (new Tour()).find(id);
 		tour.delete();
 		
-		response.sendRedirect("/travel/admin/tour");
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/tour");
 	}
 
 }

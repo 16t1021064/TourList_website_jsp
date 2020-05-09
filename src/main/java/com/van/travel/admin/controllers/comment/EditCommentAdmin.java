@@ -62,7 +62,7 @@ public class EditCommentAdmin extends AdminController {
 		
 		Comment newComment = comment.update(comment.getBlogId(), name, email, content, createdTime);
 		
-		response.sendRedirect("/travel/admin/comment/edit?id="+newComment.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/comment/edit?id="+newComment.getId());
 	}
 
 }

@@ -64,7 +64,7 @@
                         <tr>
                           <td><%= act.getName() %></td>
                           <td>
-                          	<a href="/travel/admin/activity/edit?id=<%= act.getId() %>" class="btn btn-primary btn-xs">Edit</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/activity/edit?id=<%= act.getId() %>" class="btn btn-primary btn-xs">Edit</a>
                           	<a href="javascript:void(0)" data-id="<%= act.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
@@ -77,7 +77,7 @@
 			</div>
 		</div>
 		
-		<form id="formDelete" method="post" action="/travel/admin/activity/delete" style="display: none;">
+		<form id="formDelete" method="post" action="<%= request.getAttribute("sitePath") %>/admin/activity/delete" style="display: none;">
 			<input type="hidden" name="id">
 		</form>
 		

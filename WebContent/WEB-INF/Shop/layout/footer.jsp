@@ -3,7 +3,7 @@
                     <div class="traveltour-footer-container traveltour-container clearfix">
                         <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
                             <div id="text-1" class="widget widget_text traveltour-widget">
-                                <div class="textwidget"><img src="/travel/public/fe/images/logo.png" alt="" /> <span class="gdlr-core-space-shortcode" id="span_29f0_13"></span> Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. <span class="gdlr-core-space-shortcode" id="span_29f0_14"></span> <img src="/travel/public/fe/upload/award-1.png" alt="" width="140" id="img_29f0_0" /> <img src="/travel/public/fe/upload/award-2.png" alt="" width="65" /></div>
+                                <div class="textwidget"><img src="<%= request.getAttribute("sitePath") %>/public/fe/images/logo.png" alt="" /> <span class="gdlr-core-space-shortcode" id="span_29f0_13"></span> Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. <span class="gdlr-core-space-shortcode" id="span_29f0_14"></span> <img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/award-1.png" alt="" width="140" id="img_29f0_0" /> <img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/award-2.png" alt="" width="65" /></div>
                             </div>
                         </div>
                         <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
@@ -12,7 +12,7 @@
                                 <div class="tourmaster-widget-tour-category">
                                     <div class="tourmaster-tour-category-widget-holder clearfix">
                                         <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-column-first tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_120562819-600x600.jpg" alt="" width="600" height="600" /></div>
+                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_120562819-600x600.jpg" alt="" width="600" height="600" /></div>
                                             <div class="tourmaster-tour-category-overlay"></div>
                                             <div class="tourmaster-tour-category-head">
                                                 <div class="tourmaster-tour-category-head-table">
@@ -20,7 +20,7 @@
                                             </div>
                                         </div>
                                         <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/Fotolia_16069076_Subscription_Monthly_XXL-600x600.jpg" alt="" width="600" height="600" /></div>
+                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/Fotolia_16069076_Subscription_Monthly_XXL-600x600.jpg" alt="" width="600" height="600" /></div>
                                             <div class="tourmaster-tour-category-overlay"></div>
                                             <div class="tourmaster-tour-category-head">
                                                 <div class="tourmaster-tour-category-head-table">
@@ -28,7 +28,7 @@
                                             </div>
                                         </div>
                                         <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_147744218-600x600.jpg" alt="" width="600" height="600" /></div>
+                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_147744218-600x600.jpg" alt="" width="600" height="600" /></div>
                                             <div class="tourmaster-tour-category-overlay"></div>
                                             <div class="tourmaster-tour-category-head">
                                                 <div class="tourmaster-tour-category-head-table">
@@ -36,7 +36,7 @@
                                             </div>
                                         </div>
                                         <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-column-first tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/photodune-488847-venice-m-600x600.jpg" alt="" width="600" height="600" /></div>
+                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/photodune-488847-venice-m-600x600.jpg" alt="" width="600" height="600" /></div>
                                             <div class="tourmaster-tour-category-overlay"></div>
                                             <div class="tourmaster-tour-category-head">
                                                 <div class="tourmaster-tour-category-head-table">
@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                         <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_255194035-600x600.jpg" alt="" width="600" height="600" /></div>
+                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_255194035-600x600.jpg" alt="" width="600" height="600" /></div>
                                             <div class="tourmaster-tour-category-overlay"></div>
                                             <div class="tourmaster-tour-category-head">
                                                 <div class="tourmaster-tour-category-head-table">
@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                         <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="/travel/public/fe/upload/shutterstock_124333858-600x600.jpg" alt="" width="600" height="600" /></div>
+                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_124333858-600x600.jpg" alt="" width="600" height="600" /></div>
                                             <div class="tourmaster-tour-category-overlay"></div>
                                             <div class="tourmaster-tour-category-head">
                                                 <div class="tourmaster-tour-category-head-table">

@@ -46,7 +46,7 @@ public class DeleteCommentAdmin extends AdminController {
 		String blogId = comment.getBlogId();
 		comment.delete();
 		
-		response.sendRedirect("/travel/admin/comment?blog_id="+blogId);
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/comment?blog_id="+blogId);
 	}
 
 }

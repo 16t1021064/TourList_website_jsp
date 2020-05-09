@@ -66,7 +66,7 @@
                           <td><%= des.getName() %></td>
                           <td><a href="<%= des.getThumbnail() %>" target="_blank"><%= des.getThumbnail() %></a></td>
                           <td>
-                          	<a href="/travel/admin/destination/edit?id=<%= des.getId() %>" class="btn btn-primary btn-xs">Edit</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/destination/edit?id=<%= des.getId() %>" class="btn btn-primary btn-xs">Edit</a>
                           	<a href="javascript:void(0)" data-id="<%= des.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
@@ -79,7 +79,7 @@
 			</div>
 		</div>
 		
-		<form id="formDelete" method="post" action="/travel/admin/destination/delete" style="display: none;">
+		<form id="formDelete" method="post" action="<%= request.getAttribute("sitePath") %>/admin/destination/delete" style="display: none;">
 			<input type="hidden" name="id">
 		</form>
 		

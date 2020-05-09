@@ -72,7 +72,7 @@ public class CreateEnquiryAdmin extends AdminController {
 		
 		Enquiry enquiry = (new Enquiry()).create(tourId, status, name, phone, email, travelTime, countPeople, note, submitTime);
 		
-		response.sendRedirect("/travel/admin/enquiry/edit?id="+enquiry.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/enquiry/edit?id="+enquiry.getId());
 	}
 
 }

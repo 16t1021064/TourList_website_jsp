@@ -126,7 +126,7 @@ public class EditTourAdmin extends AdminController {
 				(new Service()).create(newTour.getId(), tempStatus, services_name[i]);
 			}
 		}
-		response.sendRedirect("/travel/admin/tour/edit?id="+newTour.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/tour/edit?id="+newTour.getId());
 	}
 
 }

@@ -9,10 +9,7 @@
 <html lang="en-US">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="pingback" href="xmlrpc.php">
+    <%@include file="./layout/meta.jsp" %>
     <title>Destinations</title>
 
     <%@include file="./layout/styles.jsp" %>
@@ -51,7 +48,7 @@
                                                     <h3 class="tourmaster-tour-category-title"><i class="icon_pin_alt" ></i><%= des.getName() %></h3>
                                                     <div class="tourmaster-tour-category-count"><%= des.getTourCount() %> tours</div>
                                                 </div>
-                                                <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="/travel/tours?des=<%= des.getId() %>">View all tours</a>
+                                                <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="<%= request.getAttribute("sitePath") %>/tours?des=<%= des.getId() %>">View all tours</a>
                                                     <div class="tourmaster-tour-category-head-divider"></div>
                                                 </div>
                                             </div>

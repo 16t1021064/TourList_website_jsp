@@ -63,7 +63,7 @@ public class CreateReviewAdmin extends AdminController {
 		
 		Review review = (new Review()).create(tour.getId(), name, email, phone, content, reviewTime);
 		
-		response.sendRedirect("/travel/admin/review/edit?id="+review.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/review/edit?id="+review.getId());
 	}
 
 }

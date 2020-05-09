@@ -55,7 +55,7 @@ public class EditActivityAdmin extends AdminController {
 		
 		activity = activity.update(name);
 		
-		response.sendRedirect("/travel/admin/activity/edit?id="+activity.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/activity/edit?id="+activity.getId());
 	}
 
 }

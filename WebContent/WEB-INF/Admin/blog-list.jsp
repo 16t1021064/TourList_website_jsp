@@ -72,8 +72,8 @@
                           <td><%= blog.getAuthor() %></td>
                           <td><%= dateConvertion.toStringDate(blog.getCreatedTime()) %></td>
                           <td>
-                          	<a href="/travel/admin/blog/edit?id=<%= blog.getId() %>" class="btn btn-primary btn-xs">Edit</a>
-                          	<a href="/travel/admin/comment?blog_id=<%= blog.getId() %>" target="_blank" class="btn btn-info btn-xs">Comments</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/blog/edit?id=<%= blog.getId() %>" class="btn btn-primary btn-xs">Edit</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/comment?blog_id=<%= blog.getId() %>" target="_blank" class="btn btn-info btn-xs">Comments</a>
                           	<a href="javascript:void(0)" data-id="<%= blog.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 		
-		<form id="formDelete" method="post" action="/travel/admin/blog/delete" style="display: none;">
+		<form id="formDelete" method="post" action="<%= request.getAttribute("sitePath") %>/admin/blog/delete" style="display: none;">
 			<input type="hidden" name="id">
 		</form>
 		

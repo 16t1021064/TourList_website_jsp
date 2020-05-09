@@ -70,7 +70,7 @@ public class CreateBookingAdmin extends AdminController {
 		
 		Booking booking = (new Booking()).create(tourId, status, name, phone, email, countPeople, note, submitTime);
 		
-		response.sendRedirect("/travel/admin/booking/edit?id="+booking.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/booking/edit?id="+booking.getId());
 	}
 
 }

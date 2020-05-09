@@ -59,7 +59,7 @@ public class EditBlogAdmin extends AdminController {
 		Blog newBlog = blog.update(title, thumbnail, slug, summary, content, author, createdTime);
 		String tags = request.getParameter("tags");
 		newBlog.setTags(tags);
-		response.sendRedirect("/travel/admin/blog/edit?id="+newBlog.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/blog/edit?id="+newBlog.getId());
 	}
 
 }

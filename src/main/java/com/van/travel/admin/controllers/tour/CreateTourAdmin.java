@@ -114,7 +114,7 @@ public class CreateTourAdmin extends AdminController {
 				(new Service()).create(tour.getId(), tempStatus, services_name[i]);
 			}
 		}
-		response.sendRedirect("/travel/admin/tour/edit?id="+tour.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/tour/edit?id="+tour.getId());
 //		doGet(request, response);
 	}
 

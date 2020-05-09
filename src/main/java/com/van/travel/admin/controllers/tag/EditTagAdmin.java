@@ -51,7 +51,7 @@ public class EditTagAdmin extends AdminController {
 		
 		tag = tag.update(name, clicked);
 		
-		response.sendRedirect("/travel/admin/tag/edit?id="+tag.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/tag/edit?id="+tag.getId());
 	}
 
 }

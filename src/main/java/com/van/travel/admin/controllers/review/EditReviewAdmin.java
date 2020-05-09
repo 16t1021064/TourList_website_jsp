@@ -64,7 +64,7 @@ public class EditReviewAdmin extends AdminController {
 		
 		Review newReview = review.update(review.getTourId(), name, email, phone, content, reviewTime);
 		
-		response.sendRedirect("/travel/admin/review/edit?id="+newReview.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/review/edit?id="+newReview.getId());
 	}
 
 }

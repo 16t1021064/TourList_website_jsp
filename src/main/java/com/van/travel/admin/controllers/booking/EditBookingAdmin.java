@@ -72,7 +72,7 @@ public class EditBookingAdmin extends AdminController {
 		
 		Booking newBooking = booking.update(booking.getTourId(), status, name, phone, email, countPeople, note, submitTime);
 		
-		response.sendRedirect("/travel/admin/booking/edit?id="+newBooking.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/booking/edit?id="+newBooking.getId());
 	}
 
 }

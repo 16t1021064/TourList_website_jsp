@@ -42,7 +42,7 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="/travel/admin/enquiry/create?tour_id=<%= tour.getId() %>">Create</a>
+                          <li><a href="<%= request.getAttribute("sitePath") %>/admin/enquiry/create?tour_id=<%= tour.getId() %>">Create</a>
                           </li>
                           <li><a href="#">Settings 2</a>
                           </li>
@@ -81,7 +81,7 @@
                           <td><%= enquiry.getCountPeople() %></td>
                           <td><%= dateConvertion.toStringDate(enquiry.getSubmitTime()) %></td>
                           <td>
-                          	<a href="/travel/admin/enquiry/edit?id=<%= enquiry.getId() %>" class="btn btn-primary btn-xs">Edit</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/enquiry/edit?id=<%= enquiry.getId() %>" class="btn btn-primary btn-xs">Edit</a>
                           	<a href="javascript:void(0)" data-id="<%= enquiry.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
@@ -94,7 +94,7 @@
 			</div>
 		</div>
 		
-		<form id="formDelete" method="post" action="/travel/admin/enquiry/delete" style="display: none;">
+		<form id="formDelete" method="post" action="<%= request.getAttribute("sitePath") %>/admin/enquiry/delete" style="display: none;">
 			<input type="hidden" name="id">
 		</form>
 		

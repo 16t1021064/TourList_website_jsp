@@ -54,7 +54,7 @@ public class CreateBlogAdmin extends AdminController {
 		Blog blog = (new Blog()).create(title, thumbnail, slug, summary, content, author, createdTime);
 		String tags = request.getParameter("tags");
 		blog.setTags(tags);
-		response.sendRedirect("/travel/admin/blog/edit?id="+blog.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/blog/edit?id="+blog.getId());
 	}
 
 }

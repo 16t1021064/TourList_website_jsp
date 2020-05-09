@@ -3,8 +3,7 @@
 <html lang="en-US">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%@include file="./layout/meta.jsp" %>
     <title>Contact</title>
 
     <%@include file="./layout/styles.jsp" %>
@@ -20,7 +19,7 @@
                 <div class="gdlr-core-page-builder-body">
                     <div class="gdlr-core-pbf-wrapper " style="padding: 350px 0px 160px 0px;" data-skin="Dark">
                         <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(/travel/public/fe/upload/section-bg-4.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.3"></div>
+                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(<%= request.getAttribute("sitePath") %>/public/fe/upload/section-bg-4.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.3"></div>
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
@@ -237,8 +236,8 @@
             "place_icon_url": "https:////demo.goodlayers.com//kleanity//wp-content//plugins//wp-google-map-plugin//assets//images//icons//"
         };
     </script>
-    <script type='text/javascript' src='/travel/public/fe/plugins/google-map-plugin/assets/js/maps.js?'></script>
-    <script type='text/javascript' src='/travel/public/fe/plugins/google-map-plugin/assets/js/frontend.js'></script>
+    <script type='text/javascript' src='<%= request.getAttribute("sitePath") %>/public/fe/plugins/google-map-plugin/assets/js/maps.js?'></script>
+    <script type='text/javascript' src='<%= request.getAttribute("sitePath") %>/public/fe/plugins/google-map-plugin/assets/js/frontend.js'></script>
 
     <script>
         jQuery(document).ready(function($) {
@@ -251,7 +250,7 @@
                     "draggable": true,
                     "scroll_wheel": false,
                     "display_45_imagery": "",
-                    "marker_default_icon": "/travel/public/fe/upload/default_marker.png",
+                    "marker_default_icon": "<%= request.getAttribute("sitePath") %>/public/fe/upload/default_marker.png",
                     "infowindow_setting": "",
                     "infowindow_bounce_animation": "",
                     "infowindow_drop_animation": false,
@@ -281,7 +280,7 @@
                     "source": "manual",
                     "content": "London",
                     "location": {
-                        "icon": "/travel/public/fe/upload/default_marker.png",
+                        "icon": "<%= request.getAttribute("sitePath") %>/public/fe/upload/default_marker.png",
                         "lat": "51.5073509",
                         "lng": "-0.12775829999998223",
                         "city": "London",
@@ -309,7 +308,7 @@
             }).data("wpgmp_maps");
         });
     </script>
-    <script type="text/javascript" src="/travel/public/fe/plugins/quform/js/plugins.js"></script>
-    <script type="text/javascript" src="/travel/public/fe/plugins/quform/js/scripts.js"></script> 
+    <script type="text/javascript" src="<%= request.getAttribute("sitePath") %>/public/fe/plugins/quform/js/plugins.js"></script>
+    <script type="text/javascript" src="<%= request.getAttribute("sitePath") %>/public/fe/plugins/quform/js/scripts.js"></script> 
 </body>
 </html>

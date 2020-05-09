@@ -46,7 +46,7 @@ public class DeleteReviewAdmin extends AdminController {
 		String tourId = review.getTourId();
 		review.delete();
 		
-		response.sendRedirect("/travel/admin/review?tour_id="+tourId);
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/review?tour_id="+tourId);
 	}
 
 }

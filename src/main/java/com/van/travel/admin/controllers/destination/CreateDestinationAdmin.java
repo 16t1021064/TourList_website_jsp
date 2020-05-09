@@ -49,7 +49,7 @@ public class CreateDestinationAdmin extends AdminController {
 		
 		Destination destination = (new Destination()).create(name, thumbnail);
 		
-		response.sendRedirect("/travel/admin/destination/edit?id="+destination.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/destination/edit?id="+destination.getId());
 	}
 
 }

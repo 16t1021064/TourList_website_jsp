@@ -22,7 +22,7 @@ import com.van.travel.web.factories.TourFactory;
 /**
  * Servlet implementation class HomeController
  */
-@WebServlet("/home")
+@WebServlet("")
 public class HomeController extends ShopController {
 	private static final long serialVersionUID = 1L;
 

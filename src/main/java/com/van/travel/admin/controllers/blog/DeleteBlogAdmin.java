@@ -45,7 +45,7 @@ public class DeleteBlogAdmin extends AdminController {
 		Blog blog = (new Blog()).find(id);
 		blog.delete();
 		
-		response.sendRedirect("/travel/admin/blog");
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/blog");
 	}
 
 }

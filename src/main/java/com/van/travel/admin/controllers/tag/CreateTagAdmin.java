@@ -47,7 +47,7 @@ public class CreateTagAdmin extends AdminController {
 		
 		Tag tag = (new Tag()).create(name, clicked);
 		
-		response.sendRedirect("/travel/admin/tag/edit?id="+tag.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/tag/edit?id="+tag.getId());
 	}
 
 }

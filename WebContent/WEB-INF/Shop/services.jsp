@@ -3,8 +3,7 @@
 <html lang="en-US">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%@include file="./layout/meta.jsp" %>
     <title>Services</title>
 
     <%@include file="./layout/styles.jsp" %>
@@ -20,7 +19,7 @@
                 <div class="gdlr-core-page-builder-body">
                     <div class="gdlr-core-pbf-wrapper " style="margin: 0px 0px 0px 0px;padding: 325px 0px 205px 0px;" data-skin="Dark">
                         <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(/travel/public/fe/upload/section-bg-4.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.2"></div>
+                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(<%= request.getAttribute("sitePath") %>/public/fe/upload/section-bg-4.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.2"></div>
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
@@ -39,7 +38,7 @@
                                 <div class="gdlr-core-pbf-column gdlr-core-column-30 gdlr-core-column-first gdlr-core-hide-in-mobile">
                                     <div class="gdlr-core-pbf-column-content-margin gdlr-core-js  gdlr-core-column-extend-left" data-sync-height="height-1" data-sync-height-center>
                                         <div class="gdlr-core-pbf-background-wrap">
-                                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(/travel/public/fe/upload/shutterstock_210601591.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.2"></div>
+                                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_210601591.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.2"></div>
                                         </div>
                                         <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content"></div>
                                     </div>
@@ -91,7 +90,7 @@
                                 <div class="gdlr-core-pbf-column gdlr-core-column-30 gdlr-core-hide-in-mobile">
                                     <div class="gdlr-core-pbf-column-content-margin gdlr-core-js  gdlr-core-column-extend-right" data-sync-height="height-1" data-sync-height-center>
                                         <div class="gdlr-core-pbf-background-wrap">
-                                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(/travel/public/fe/upload/shutterstock_220323652.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.2"></div>
+                                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_220323652.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.2"></div>
                                         </div>
                                         <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content"></div>
                                     </div>
@@ -106,7 +105,7 @@
                                 <div class="gdlr-core-pbf-column gdlr-core-column-30 gdlr-core-column-first gdlr-core-hide-in-mobile">
                                     <div class="gdlr-core-pbf-column-content-margin gdlr-core-js  gdlr-core-column-extend-left" data-sync-height="height-1" data-sync-height-center>
                                         <div class="gdlr-core-pbf-background-wrap">
-                                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(/travel/public/fe/upload/shutterstock_147744218.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.2"></div>
+                                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_147744218.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.2"></div>
                                         </div>
                                         <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content"></div>
                                     </div>
@@ -135,7 +134,7 @@
                     </div>
                     <div class="gdlr-core-pbf-wrapper " style="padding: 130px 0px 55px 0px;" data-skin="Dark">
                         <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background" style="background-image: url(/travel/public/fe/upload/section-bg-3.jpg) ;background-size: cover ;background-position: center ;background-attachment: fixed ;"></div>
+                            <div class="gdlr-core-pbf-background" style="background-image: url(<%= request.getAttribute("sitePath") %>/public/fe/upload/section-bg-3.jpg) ;background-size: cover ;background-position: center ;background-attachment: fixed ;"></div>
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">

@@ -46,7 +46,7 @@ public class CreateActivityAdmin extends AdminController {
 		String name = request.getParameter("name");
 		Activity activity = (new Activity()).create(name);
 		
-		response.sendRedirect("/travel/admin/activity/edit?id="+activity.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/activity/edit?id="+activity.getId());
 		
 	}
 

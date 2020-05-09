@@ -30,7 +30,7 @@
             <div class="traveltour-mobile-header-container traveltour-container">
                 <div class="traveltour-logo  traveltour-item-pdlr">
                     <div class="traveltour-logo-inner">
-                        <a href="index.html"><img src="/travel/public/fe/images/logo.png" alt="" /></a>
+                        <a href="index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/images/logo.png" alt="" /></a>
                     </div>
                 </div>
                 <div class="traveltour-mobile-menu-right">

@@ -52,7 +52,7 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="formEdit" action="/travel/admin/review/edit" method="post" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="formEdit" action="<%= request.getAttribute("sitePath") %>/admin/review/edit" method="post" data-parsley-validate class="form-horizontal form-label-left">
 						<input type="hidden" name="tour_id" value="<%= review.getTourId() %>">
 						<input type="hidden" name="id" value="<%= review.getId() %>">
                       <div class="form-group">
@@ -100,7 +100,7 @@
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <a href="/travel/admin/review?tour_id=<%= review.getTourId() %>" class="btn btn-primary" type="button">Cancel</a>
+                          <a href="<%= request.getAttribute("sitePath") %>/admin/review?tour_id=<%= review.getTourId() %>" class="btn btn-primary" type="button">Cancel</a>
 						  <button class="btn btn-primary" type="reset">Reset</button>
                           <button type="submit" class="btn btn-success">Submit</button>
                         </div>
@@ -122,7 +122,7 @@
     
     
     <!-- Parsley -->
-    <script src="/travel/public/be/vendors/parsleyjs/dist/parsley.min.js"></script>
+    <script src="<%= request.getAttribute("sitePath") %>/public/be/vendors/parsleyjs/dist/parsley.min.js"></script>
     
     <script>
 		$('#myDatepicker').datetimepicker({format: 'MM-DD-YYYY HH:mm:ss', defaultDate: new Date()});

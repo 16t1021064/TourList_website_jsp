@@ -40,7 +40,7 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="/travel/admin/review/create?tour_id=<%= tour.getId() %>">Create</a>
+                          <li><a href="<%= request.getAttribute("sitePath") %>/admin/review/create?tour_id=<%= tour.getId() %>">Create</a>
                           </li>
                           <li><a href="#">Settings 2</a>
                           </li>
@@ -73,7 +73,7 @@
                           <td><%= review.getPhone() %></td>
                           <td><%= dateConvertion.toStringDate(review.getReviewTime()) %></td>
                           <td>
-                          	<a href="/travel/admin/review/edit?id=<%= review.getId() %>" class="btn btn-primary btn-xs">Edit</a>
+                          	<a href="<%= request.getAttribute("sitePath") %>/admin/review/edit?id=<%= review.getId() %>" class="btn btn-primary btn-xs">Edit</a>
                           	<a href="javascript:void(0)" data-id="<%= review.getId() %>" class="btn btn-danger btn-xs btn-delete">Delete</a>
                           </td>
                         </tr>
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 		
-		<form id="formDelete" method="post" action="/travel/admin/review/delete" style="display: none;">
+		<form id="formDelete" method="post" action="<%= request.getAttribute("sitePath") %>/admin/review/delete" style="display: none;">
 			<input type="hidden" name="id">
 		</form>
 		

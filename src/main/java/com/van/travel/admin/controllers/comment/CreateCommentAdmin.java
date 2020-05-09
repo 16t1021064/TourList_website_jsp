@@ -61,7 +61,7 @@ public class CreateCommentAdmin extends AdminController {
 		
 		Comment comment = (new Comment()).create(blog.getId(), name, email, content, createdTime);
 		
-		response.sendRedirect("/travel/admin/comment/edit?id="+comment.getId());
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/comment/edit?id="+comment.getId());
 	}
 
 }
