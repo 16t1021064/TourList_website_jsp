@@ -349,7 +349,7 @@
                                                     	<% for(Activity act : listHotActivities){ %>
                                                     	<% tempCountActivity += 1; %>
                                                         <li class=" gdlr-core-skin-divider gdlr-core-column-30 <% if(tempCountActivity % 2 == 1){ %>gdlr-core-column-first<% } %>">
-                                                            <a href="#">
+                                                            <a href="<%= request.getAttribute("sitePath") %>/tours?act=<%= act.getId() %>">
                                                                 <div class="gdlr-core-icon-list-content-wrap"><span class="gdlr-core-icon-list-content" id="span_29f0_3"><%= act.getName() %></span>
                                                             </div></a>
                                                         </li>

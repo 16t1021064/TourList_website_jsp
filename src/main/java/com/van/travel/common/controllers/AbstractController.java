@@ -26,6 +26,7 @@ public abstract class AbstractController extends HttpServlet {
 		System.out.println(req.getRequestURL() + "?" + req.getQueryString());
 		
 		req.setAttribute("sitePath", this.getServletContext().getInitParameter("sitePath"));
+		
 	}
 	
 	protected void afterService(HttpServletRequest req, HttpServletResponse resp) {

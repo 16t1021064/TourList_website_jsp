@@ -99,6 +99,66 @@
                         </div>
                       </div>
                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gallery <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12" id="galleryContainer">
+                        	<% int i=0; %>
+                        	<% for(String image : tour.getGallery()){ %>
+                        	<% i=i+1; %>
+				    		<div class="row" id="GalleryImageInputWrap<%= tour.getId() + i %>" style="margin-bottom: 10px;">
+				    			<div class="col-md-8 col-sm-8 col-xs-12">
+				    				<input id="GalleryImageInput<%= tour.getId() + i %>" type="text" value="<%= image %>" name="gallery[]" required="required" class="form-control">
+				    		    </div>
+				    		    <div class="col-md-4 col-sm-4 col-xs-12">
+				    		      <button type="button" class="btnUploadImage btn btn-success" data-input="#GalleryImageInput<%= tour.getId() + i %>" data-toggle="modal" data-target="#modalUploadImage">Upload image</button>
+				    		      <button type="button" class="btnRemoveInputGallery btn btn-danger" data-target="#GalleryImageInputWrap<%= tour.getId() + i %>">Remove</button>
+				    		    </div>
+				    		</div>
+				    		<% } %>
+                        	<div class="row">
+                        		<div class="col-md-8 col-sm-8 col-xs-12">
+                          			
+		                        </div>
+		                        <div class="col-md-4 col-sm-4 col-xs-12">
+		                          <button type="button" class="btn btn-success btnAddInputGallery">+</button>
+		                        </div>
+                        	</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Videos <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12" id="videosContainer">
+                        	<% int ii=0; %>
+                        	<% for(String image : tour.getVideos()){ %>
+                        	<% ii=ii+1; %>
+				    		<div class="row" id="VideosImageInputWrap<%= tour.getId() + ii %>" style="margin-bottom: 10px;">
+				    			<div class="col-md-8 col-sm-8 col-xs-12">
+				    				<input id="VideosImageInput<%= tour.getId() + ii %>" type="text" value="<%= image %>" name="videos[]" required="required" class="form-control">
+				    		    </div>
+				    		    <div class="col-md-4 col-sm-4 col-xs-12">
+				    		      <button type="button" class="btnRemoveInputVideos btn btn-danger" data-target="#VideosImageInputWrap<%= tour.getId() + ii %>">Remove</button>
+				    		    </div>
+				    		</div>
+				    		<% } %>
+                        	<div class="row">
+                        		<div class="col-md-8 col-sm-8 col-xs-12">
+                          			
+		                        </div>
+		                        <div class="col-md-4 col-sm-4 col-xs-12">
+		                          <button type="button" class="btn btn-success btnAddInputVideos">+</button>
+		                        </div>
+                        	</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Map 
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <textarea class="form-control" name="map"><%= tour.getMap() %></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">State <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -655,6 +715,51 @@
     </script>
     <script>
     	$(document).on('click', '.btn-delete-panel', function(){
+    		var dataTarget = $(this).attr('data-target');
+    		$(dataTarget).remove();
+    	});
+    </script>
+    <script>
+    	var dumpCountGalleryImageInput = 0;
+    	$('.btnAddInputGallery').click(function(){
+    		dumpCountGalleryImageInput += 1;
+    		var tempIdInput = "GalleryImageInput"+dumpCountGalleryImageInput;
+    		var tempIdInputWrap = "GalleryImageInputWrap"+dumpCountGalleryImageInput;
+    		var template = "";
+    		template+='<div class="row" id="'+tempIdInputWrap+'" style="margin-bottom: 10px;">';
+    		template+='	<div class="col-md-8 col-sm-8 col-xs-12">';
+    		template+='		<input id="'+tempIdInput+'" type="text" name="gallery[]" required="required" class="form-control">';
+    		template+='    </div>';
+    		template+='    <div class="col-md-4 col-sm-4 col-xs-12">';
+    		template+='      <button type="button" class="btnUploadImage btn btn-success" data-input="#'+tempIdInput+'" data-toggle="modal" data-target="#modalUploadImage">Upload image</button>';
+    		template+='      <button type="button" class="btnRemoveInputGallery btn btn-danger" data-target="#'+tempIdInputWrap+'">Remove</button>';
+    		template+='    </div>';
+    		template+='</div>';
+    		$('#galleryContainer').prepend(template);
+    	});
+    	$(document).on('click', '.btnRemoveInputGallery', function(){
+    		var dataTarget = $(this).attr('data-target');
+    		$(dataTarget).remove();
+    	});
+    </script>
+    <script>
+    	var dumpCountVideosImageInput = 0;
+    	$('.btnAddInputVideos').click(function(){
+    		dumpCountVideosImageInput += 1;
+    		var tempIdInput = "VideosImageInput"+dumpCountVideosImageInput;
+    		var tempIdInputWrap = "VideosImageInputWrap"+dumpCountVideosImageInput;
+    		var template = "";
+    		template+='<div class="row" id="'+tempIdInputWrap+'" style="margin-bottom: 10px;">';
+    		template+='	<div class="col-md-8 col-sm-8 col-xs-12">';
+    		template+='		<input id="'+tempIdInput+'" type="text" name="videos[]" required="required" class="form-control">';
+    		template+='    </div>';
+    		template+='    <div class="col-md-4 col-sm-4 col-xs-12">';
+    		template+='      <button type="button" class="btnRemoveInputVideos btn btn-danger" data-target="#'+tempIdInputWrap+'">Remove</button>';
+    		template+='    </div>';
+    		template+='</div>';
+    		$('#videosContainer').prepend(template);
+    	});
+    	$(document).on('click', '.btnRemoveInputVideos', function(){
     		var dataTarget = $(this).attr('data-target');
     		$(dataTarget).remove();
     	});

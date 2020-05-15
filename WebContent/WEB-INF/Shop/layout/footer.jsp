@@ -1,3 +1,8 @@
+<%@page import="com.van.travel.models.Destination"%>
+<%@page import="com.van.travel.web.views.FooterView"%>
+<%
+	FooterView footer_footerView = new FooterView();
+%>
             <footer>
                 <div class="traveltour-footer-wrapper  traveltour-with-column-divider">
                     <div class="traveltour-footer-container traveltour-container clearfix">
@@ -11,55 +16,17 @@
                                 <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Top Destinations</span></h3><span class="clear"></span>
                                 <div class="tourmaster-widget-tour-category">
                                     <div class="tourmaster-tour-category-widget-holder clearfix">
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-column-first tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_120562819-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Africa</a></h3></div>
-                                            </div>
-                                        </div>
+                                    	<% for(Destination des : footer_footerView.hotDestinations){ %>
                                         <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/Fotolia_16069076_Subscription_Monthly_XXL-600x600.jpg" alt="" width="600" height="600" /></div>
+                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= des.getThumbnail600x600() %>" alt="" width="600" height="600" /></div>
                                             <div class="tourmaster-tour-category-overlay"></div>
                                             <div class="tourmaster-tour-category-head">
                                                 <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >America</a></h3></div>
+                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="<%= request.getAttribute("sitePath") %>/tours?des=<%= des.getId() %>" ><%= des.getName() %></a></h3></div>
                                             </div>
                                         </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_147744218-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Asia</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-column-first tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/photodune-488847-venice-m-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Eastern Europe</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_255194035-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >Europe</a></h3></div>
-                                            </div>
-                                        </div>
-                                        <div class="tourmaster-tour-category-widget tourmaster-item-list  tourmaster-column-20 tourmaster-with-thumbnail">
-                                            <div class="tourmaster-tour-category-thumbnail tourmaster-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_124333858-600x600.jpg" alt="" width="600" height="600" /></div>
-                                            <div class="tourmaster-tour-category-overlay"></div>
-                                            <div class="tourmaster-tour-category-head">
-                                                <div class="tourmaster-tour-category-head-table">
-                                                    <h3 class="tourmaster-tour-category-title"><a class="tourmaster-tour-category-head-link" href="#" >South America</a></h3></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <% } %>
+                                    </div>	
                                 </div>
                             </div>
                         </div>
@@ -67,11 +34,11 @@
                             <div id="text-2" class="widget widget_text traveltour-widget">
                                 <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Contact Info</span></h3><span class="clear"></span>
                                 <div class="textwidget">
-                                    <p>Address : 12 Main Street Pt. London
+                                    <p>Address : 123 Main Street Hue
                                         <br /> <span class="gdlr-core-space-shortcode" id="span_29f0_15"></span>
-                                        <br /> Phone : +44 3656 4567
+                                        <br /> Phone : +0123456789
                                         <br /> <span class="gdlr-core-space-shortcode" id="span_29f0_16"></span>
-                                        <br /> contact@traveltourtheme.com</p>
+                                        <br /> contact@traveltour.com</p>
                                     <p><span class="gdlr-core-space-shortcode" id="span_29f0_17"></span>
                                         <br /> <a href="#" target="_blank"><i class="fa fa-facebook" id="i_29f0_9"  ></i></a> <a href="#" target="_blank"><i class="fa fa-twitter" id="i_29f0_10"  ></i></a> <a href="#" target="_blank"><i class="fa fa-linkedin" id="i_29f0_11"  ></i></a> <a href="#" target="_blank"><i class="fa fa-pinterest-p" id="i_29f0_12"  ></i></a> <a href="#" target="_blank"><i class="fa fa-vimeo" id="i_29f0_13"  ></i></a></p>
                                 </div>
@@ -81,7 +48,7 @@
                 </div>
                 <div class="traveltour-copyright-wrapper">
                     <div class="traveltour-copyright-container traveltour-container">
-                        <div class="traveltour-copyright-text traveltour-item-pdlr">Copyright 2020 max-themes, All Right Reserved</div>
+                        <div class="traveltour-copyright-text traveltour-item-pdlr">Copyright 2020 travel tour, All Right Reserved</div>
                     </div>
                 </div>
             </footer>

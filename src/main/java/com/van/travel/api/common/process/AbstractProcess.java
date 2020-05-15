@@ -30,7 +30,8 @@ public abstract class AbstractProcess {
 	 */
 	public Response execute(AbstractRequestData abstractRequestData) {
 		
-		boolean isCommonProcess = this.isCommonProcess();
+//		boolean isCommonProcess = this.isCommonProcess();
+		boolean isCommonProcess = true;
 		
 		if(!isCommonProcess) {
 		

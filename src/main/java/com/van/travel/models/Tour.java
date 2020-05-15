@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.van.travel.common.Database;
 import com.van.travel.common.DateConvertion;
@@ -17,6 +20,9 @@ public class Tour extends AbstractModel {
 	private String thumbnail;
 	private String thumbnail600x700;
 	private String thumbnail150x150;
+	private String gallery;
+	private String videos;
+	private String map;
 	private String state;
 	private String nation;
 	private String description;
@@ -39,75 +45,117 @@ public class Tour extends AbstractModel {
 	private String destinationName;
 	private int bookingCount;
 	
-	
+	public ArrayList<String> getGallery() {
+		String[] ss = this.gallery.split("[|]");
+		ArrayList<String> arr = new ArrayList<String>();
+		for(String s : ss) {
+			if(!StringUtils.isEmpty(s)) {
+				arr.add(s);
+			}
+		}
+		return arr;
+	}
+	public void setGallery(String gallery) {
+		this.gallery = gallery;
+	}
+	public void setGallery(ArrayList<String> gallery) {
+		String temp = "";
+		for(String s : gallery) {
+			s = s.trim();
+			if(!StringUtils.isEmpty(s)) {
+				temp += s + "|";
+			}
+		}
+		temp = StringUtils.strip(temp, "|");
+		this.gallery = temp;
+	}
+	public ArrayList<String> getVideos() {
+		String[] ss = this.videos.split("[|]");
+		ArrayList<String> arr = new ArrayList<String>();
+		for(String s : ss) {
+			if(!StringUtils.isEmpty(s)) {
+				arr.add(s);
+			}
+		}
+		return arr;
+	}
+	public void setVideos(String videos) {
+		this.videos = videos;
+	}
+	public void setVideos(ArrayList<String> videos) {
+		String temp = "";
+		for(String s : videos) {
+			s = s.trim();
+			if(!StringUtils.isEmpty(s)) {
+				temp += s + "|";
+			}
+		}
+		temp = StringUtils.strip(temp, "|");
+		this.videos = temp;
+	}
+	public String getMap() {
+		if(map == null) {
+			map = "";
+		}
+		return map;
+	}
+	public void setMap(String map) {
+		if(map == null) {
+			map = "";
+		}
+		this.map = map;
+	}
 	public String getThumbnail600x700() {
 		return thumbnail600x700;
 	}
-
 	public void setThumbnail600x700(String thumbnail600x700) {
 		this.thumbnail600x700 = thumbnail600x700;
 	}
-
 	public String getThumbnail150x150() {
 		return thumbnail150x150;
 	}
-
 	public void setThumbnail150x150(String thumbnail150x150) {
 		this.thumbnail150x150 = thumbnail150x150;
 	}
-
 	public int getBookingCount() {
 		return bookingCount;
 	}
-
 	public void setBookingCount(int bookingCount) {
 		this.bookingCount = bookingCount;
 	}
-
 	public String getDestinationName() {
 		return destinationName;
 	}
-
 	public void setDestinationName(String destinationName) {
 		this.destinationName = destinationName;
 	}
-
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getThumbnail() {
 		return thumbnail;
 	}
-
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
 	}
-
 	public String getState() {
 		return state;
 	}
-
 	public void setState(String state) {
 		this.state = state;
 	}
-
 	public String getNation() {
 		return nation;
 	}
-
 	public void setNation(String nation) {
 		this.nation = nation;
 	}
@@ -255,6 +303,9 @@ public class Tour extends AbstractModel {
 			tour.setThumbnail(rs.getString("thumbnail"));
 			tour.setThumbnail600x700(rs.getString("thumbnail600x700"));
 			tour.setThumbnail150x150(rs.getString("thumbnail150x150"));
+			tour.setGallery(rs.getString("gallery"));
+			tour.setVideos(rs.getString("videos"));
+			tour.setMap(rs.getString("map"));
 			tour.setState(rs.getString("state"));
 			tour.setNation(rs.getString("nation"));
 			tour.setDescription(rs.getString("description"));
@@ -288,62 +339,70 @@ public class Tour extends AbstractModel {
 			String sql;
 			if(isNew) {
 				sql = " INSERT INTO "+this.tableName+" ";
-				sql += "			(id, name, thumbnail, thumbnail600x700, thumbnail150x150, state, nation, description, star, days, days_text, begin_time, end_time, o_price, p_price, min_age, max_people, registered_people, detail_text, departure_location, departure_time, expect_text, destination_id) ";
-				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+				sql += "			(id, name, thumbnail, thumbnail600x700, thumbnail150x150, gallery, videos, map, state, nation, description, star, days, days_text, begin_time, end_time, o_price, p_price, min_age, max_people, registered_people, detail_text, departure_location, departure_time, expect_text, destination_id) ";
+				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			}else {
 				sql = " UPDATE "+this.tableName+" ";
-				sql += " SET	name=?, thumbnail=?, thumbnail600x700=?, thumbnail150x150=?, state=?, nation=?, description=?, star=?, days=?, days_text=?, begin_time=?, end_time=?, o_price=?, p_price=?, min_age=?, max_people=?, registered_people=?, detail_text=?, departure_location=?, departure_time=?, expect_text=?, destination_id=? ";
+				sql += " SET	name=?, thumbnail=?, thumbnail600x700=?, thumbnail150x150=?, gallery=?, videos=?, map=?, state=?, nation=?, description=?, star=?, days=?, days_text=?, begin_time=?, end_time=?, o_price=?, p_price=?, min_age=?, max_people=?, registered_people=?, detail_text=?, departure_location=?, departure_time=?, expect_text=?, destination_id=? ";
 				sql += "	WHERE id=? ";
 			}
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			if(isNew) {
-				stmt.setString(1, this.id);
-				stmt.setString(2, this.name);
-				stmt.setString(3, this.thumbnail);
-				stmt.setString(4, this.thumbnail600x700);
-				stmt.setString(5, this.thumbnail150x150);
-				stmt.setString(6, this.state);
-				stmt.setString(7, this.nation);
-				stmt.setString(8, this.description);
-				stmt.setInt(9, this.star);
-				stmt.setInt(10, this.days);
-				stmt.setString(11, this.daysText);
-				stmt.setTimestamp(12, dateConvertion.toTimestamp(this.beginTime));
-				stmt.setTimestamp(13, dateConvertion.toTimestamp(this.endTime));
-				stmt.setDouble(14, this.oPrice);
-				stmt.setDouble(15, this.pPrice);
-				stmt.setInt(16, this.minAge);
-				stmt.setInt(17, this.maxPeople);
-				stmt.setInt(18, this.registeredPeople);
-				stmt.setString(19, this.detailText);
-				stmt.setString(20, this.departureLocation);
-				stmt.setTimestamp(21, dateConvertion.toTimestamp(this.departureTime));
-				stmt.setString(22, this.expectText);
-				stmt.setString(23, this.destinationId);
+				int i=0;
+				stmt.setString(++i, this.id);
+				stmt.setString(++i, this.name);
+				stmt.setString(++i, this.thumbnail);
+				stmt.setString(++i, this.thumbnail600x700);
+				stmt.setString(++i, this.thumbnail150x150);
+				stmt.setString(++i, this.gallery);
+				stmt.setString(++i, this.videos);
+				stmt.setString(++i, this.map);
+				stmt.setString(++i, this.state);
+				stmt.setString(++i, this.nation);
+				stmt.setString(++i, this.description);
+				stmt.setInt(++i, this.star);
+				stmt.setInt(++i, this.days);
+				stmt.setString(++i, this.daysText);
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.beginTime));
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.endTime));
+				stmt.setDouble(++i, this.oPrice);
+				stmt.setDouble(++i, this.pPrice);
+				stmt.setInt(++i, this.minAge);
+				stmt.setInt(++i, this.maxPeople);
+				stmt.setInt(++i, this.registeredPeople);
+				stmt.setString(++i, this.detailText);
+				stmt.setString(++i, this.departureLocation);
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.departureTime));
+				stmt.setString(++i, this.expectText);
+				stmt.setString(++i, this.destinationId);
 			}else {
-				stmt.setString(1, this.name);
-				stmt.setString(2, this.thumbnail);
-				stmt.setString(3, this.thumbnail600x700);
-				stmt.setString(4, this.thumbnail150x150);
-				stmt.setString(5, this.state);
-				stmt.setString(6, this.nation);
-				stmt.setString(7, this.description);
-				stmt.setInt(8, this.star);
-				stmt.setInt(9, this.days);
-				stmt.setString(10, this.daysText);
-				stmt.setTimestamp(11, dateConvertion.toTimestamp(this.beginTime));
-				stmt.setTimestamp(12, dateConvertion.toTimestamp(this.endTime));
-				stmt.setDouble(13, this.oPrice);
-				stmt.setDouble(14, this.pPrice);
-				stmt.setInt(15, this.minAge);
-				stmt.setInt(16, this.maxPeople);
-				stmt.setInt(17, this.registeredPeople);
-				stmt.setString(18, this.detailText);
-				stmt.setString(19, this.departureLocation);
-				stmt.setTimestamp(20, dateConvertion.toTimestamp(this.departureTime));
-				stmt.setString(21, this.expectText);
-				stmt.setString(22, this.destinationId);
-				stmt.setString(23, this.id);
+				int i=0;
+				stmt.setString(++i, this.name);
+				stmt.setString(++i, this.thumbnail);
+				stmt.setString(++i, this.thumbnail600x700);
+				stmt.setString(++i, this.thumbnail150x150);
+				stmt.setString(++i, this.gallery);
+				stmt.setString(++i, this.videos);
+				stmt.setString(++i, this.map);
+				stmt.setString(++i, this.state);
+				stmt.setString(++i, this.nation);
+				stmt.setString(++i, this.description);
+				stmt.setInt(++i, this.star);
+				stmt.setInt(++i, this.days);
+				stmt.setString(++i, this.daysText);
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.beginTime));
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.endTime));
+				stmt.setDouble(++i, this.oPrice);
+				stmt.setDouble(++i, this.pPrice);
+				stmt.setInt(++i, this.minAge);
+				stmt.setInt(++i, this.maxPeople);
+				stmt.setInt(++i, this.registeredPeople);
+				stmt.setString(++i, this.detailText);
+				stmt.setString(++i, this.departureLocation);
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.departureTime));
+				stmt.setString(++i, this.expectText);
+				stmt.setString(++i, this.destinationId);
+				stmt.setString(++i, this.id);
 			}
 			System.out.println(stmt.toString());
 			
@@ -392,13 +451,42 @@ public class Tour extends AbstractModel {
 			return (Tour) o;
 		}
 	}
-	public Tour create(String name, String thumbnail, String thumbnail600x700, String thumbnail150x150, String state, String nation, String description, int star, int days, String daysText, Date beginTime, Date endTime, double oPrice, double pPrice, int minAge, int maxPeople, int registeredPeople, String detailText, String departureLocation, Date departureTime, String expectText, String destinationId) {
+	public Tour create(
+			String name, 
+			String thumbnail, 
+			String thumbnail600x700, 
+			String thumbnail150x150, 
+			ArrayList<String> gallery, 
+			ArrayList<String> videos, 
+			String map, 
+			String state, 
+			String nation, 
+			String description, 
+			int star, 
+			int days, 
+			String daysText, 
+			Date beginTime, 
+			Date endTime, 
+			double oPrice, 
+			double pPrice, 
+			int minAge, 
+			int maxPeople, 
+			int registeredPeople, 
+			String detailText, 
+			String departureLocation, 
+			Date departureTime, 
+			String expectText, 
+			String destinationId
+		) {
 		Tour tour = new Tour();
 		tour.setId(UUID.randomUUID().toString());
 		tour.setName(name);
 		tour.setThumbnail(thumbnail);
 		tour.setThumbnail600x700(thumbnail600x700);
 		tour.setThumbnail150x150(thumbnail150x150);
+		tour.setGallery(gallery);
+		tour.setVideos(videos);
+		tour.setMap(map);
 		tour.setState(state);
 		tour.setNation(nation);
 		tour.setDescription(description);
@@ -419,11 +507,40 @@ public class Tour extends AbstractModel {
 		tour.setDestinationId(destinationId);
 		return (Tour) tour.save(true);
 	}
-	public Tour update(String name, String thumbnail, String thumbnail600x700, String thumbnail150x150, String state, String nation, String description, int star, int days, String daysText, Date beginTime, Date endTime, double oPrice, double pPrice, int minAge, int maxPeople, int registeredPeople, String detailText, String departureLocation, Date departureTime, String expectText, String destinationId) {
+	public Tour update(
+			String name, 
+			String thumbnail, 
+			String thumbnail600x700, 
+			String thumbnail150x150, 
+			ArrayList<String> gallery, 
+			ArrayList<String> videos, 
+			String map, 
+			String state, 
+			String nation, 
+			String description, 
+			int star, 
+			int days, 
+			String daysText, 
+			Date beginTime, 
+			Date endTime, 
+			double oPrice, 
+			double pPrice, 
+			int minAge, 
+			int maxPeople, 
+			int registeredPeople, 
+			String detailText, 
+			String departureLocation, 
+			Date departureTime, 
+			String expectText, 
+			String destinationId
+		) {
 		this.setName(name);
 		this.setThumbnail(thumbnail);
 		this.setThumbnail600x700(thumbnail600x700);
 		this.setThumbnail150x150(thumbnail150x150);
+		this.setGallery(gallery);
+		this.setVideos(videos);
+		this.setMap(map);
 		this.setState(state);
 		this.setNation(nation);
 		this.setDescription(description);
@@ -527,6 +644,16 @@ public class Tour extends AbstractModel {
 		ArrayList<Service> services = (new Service()).all(whereConditions, orderBys);
 		this.setHasManyRepos(key, services);
 		return services;
+	}
+	public ArrayList<Service> getServicesWithStatus(boolean status){
+		ArrayList<Service> arr1 = this.getServices();
+		ArrayList<Service> arr2 = new ArrayList<Service>();
+		for(Service serv : arr1) {
+			if(serv.isStatus() == status) {
+				arr2.add(serv);
+			}
+		}
+		return arr2;
 	}
 	public ArrayList<Booking> getBookings(){
 		return this.getBookings(true);

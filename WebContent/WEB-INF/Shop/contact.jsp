@@ -243,8 +243,8 @@
         jQuery(document).ready(function($) {
             var map1 = $("#map1").maps({
                 "map_options": {
-                    "center_lat": "51.5073509",
-                    "center_lng": "-0.12775829999998223",
+                    "center_lat": "16.459412",
+                    "center_lng": "107.599328",
                     "zoom": 16,
                     "map_type_id": "ROADMAP",
                     "draggable": true,
@@ -275,14 +275,14 @@
                 },
                 "places": [{
                     "id": "1",
-                    "title": "London",
-                    "address": "London, United Kingdom",
+                    "title": "Hue",
+                    "address": "Hue, Viet NAm",
                     "source": "manual",
-                    "content": "London",
+                    "content": "Hue",
                     "location": {
                         "icon": "<%= request.getAttribute("sitePath") %>/public/fe/upload/default_marker.png",
-                        "lat": "51.5073509",
-                        "lng": "-0.12775829999998223",
+                        "lat": "16.459412",
+                        "lng": "107.599328",
                         "city": "London",
                         "state": "England",
                         "country": "United Kingdom",

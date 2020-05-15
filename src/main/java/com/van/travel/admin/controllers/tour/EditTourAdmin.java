@@ -2,6 +2,7 @@ package com.van.travel.admin.controllers.tour;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -66,6 +67,17 @@ public class EditTourAdmin extends AdminController {
 		String thumbnail = request.getParameter("thumbnail");
 		String thumbnail600x700 = request.getParameter("thumbnail600x700");
 		String thumbnail150x150 = request.getParameter("thumbnail150x150");
+		String[] gallery_arr = request.getParameterValues("gallery[]");
+		if(gallery_arr == null) {
+			gallery_arr = new String[0];
+		}
+		ArrayList<String> gallery = new ArrayList<>(Arrays.asList(gallery_arr));
+		String[] videos_arr = request.getParameterValues("videos[]");
+		if(videos_arr == null) {
+			videos_arr = new String[0];
+		}
+		ArrayList<String> videos = new ArrayList<>(Arrays.asList(videos_arr));
+		String map = request.getParameter("map");
 		String description = request.getParameter("description");
 		String state = request.getParameter("state");
 		String nation = request.getParameter("nation");
@@ -94,7 +106,7 @@ public class EditTourAdmin extends AdminController {
 		Date departureTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(departureTime_text.trim());
 		String expectText = request.getParameter("expect_text");
 		String destinationId = request.getParameter("destination_id");
-		Tour newTour = tour.update(name, thumbnail, thumbnail600x700, thumbnail150x150, state, nation, description, star, days, daysText, beginTime, endTime, oPrice, pPrice, minAge, maxPeople, registeredPeople, detailText, departureLocation, departureTime, expectText, destinationId);
+		Tour newTour = tour.update(name, thumbnail, thumbnail600x700, thumbnail150x150, gallery, videos, map, state, nation, description, star, days, daysText, beginTime, endTime, oPrice, pPrice, minAge, maxPeople, registeredPeople, detailText, departureLocation, departureTime, expectText, destinationId);
 		for(TourActivity tourActivity : newTour.getTourActivities()) {
 			tourActivity.delete();
 		}

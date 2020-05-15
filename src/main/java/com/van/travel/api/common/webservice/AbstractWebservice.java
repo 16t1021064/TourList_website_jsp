@@ -1,5 +1,6 @@
 package com.van.travel.api.common.webservice;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import com.van.travel.api.common.dto.AbstractRequestData;
@@ -9,7 +10,7 @@ import com.van.travel.api.common.process.AbstractProcess;
 public abstract class AbstractWebservice {
 	
 	
-	public Response executeProcess(AbstractRequestData abstractRequestData) {
+	public Response executeProcess(AbstractRequestData abstractRequestData, HttpServletRequest req) {
 		
 		AbstractProcess process = this.getProcess();
 		

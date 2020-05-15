@@ -56,4 +56,36 @@ public class TourFactory {
 		return null;
 		
 	}
+	
+	public ArrayList<Tour> getRelativeTours(String postId, int limit){
+		return this.queryRelativeTours(postId, limit);
+	}
+	
+	protected ArrayList<Tour> queryRelativeTours(String postId, int limit){
+		String sql = "";
+		sql+=" SELECT  ";
+		sql+="     travel_tour.* ";
+		sql+=" FROM ";
+		sql+="     travel_tour ";
+		sql+=" WHERE ";
+		sql+="     travel_tour.id != '"+postId+"' ";
+		sql+=" ORDER BY RAND() ";
+		sql+=" LIMIT "+limit+" ";
+		
+		try {
+			ArrayList<Tour> tours = new ArrayList<Tour>();
+			Tour tempTour  = new Tour();
+			ResultSet rs = (new Database()).getPreparedStatement(sql).executeQuery();
+			while(rs.next()) {
+				Tour tour = (Tour) tempTour.rowToObj(rs);
+				tours.add(tour);
+			}
+			return tours;
+		} catch (ClassNotFoundException | SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }

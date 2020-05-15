@@ -13,11 +13,18 @@ public class Destination extends AbstractModel {
 	protected String id;
 	private String name;
 	private String thumbnail;
+	private String thumbnail600x600;
 	
 	private int tourCount;
 	
 	
 	
+	public String getThumbnail600x600() {
+		return thumbnail600x600;
+	}
+	public void setThumbnail600x600(String thumbnail600x600) {
+		this.thumbnail600x600 = thumbnail600x600;
+	}
 	public int getTourCount() {
 		return tourCount;
 	}
@@ -53,6 +60,7 @@ public class Destination extends AbstractModel {
 			destination.setId(rs.getString("id"));
 			destination.setName(rs.getString("name"));
 			destination.setThumbnail(rs.getString("thumbnail"));
+			destination.setThumbnail600x600(rs.getString("thumbnail600x600"));
 			return destination;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -66,11 +74,11 @@ public class Destination extends AbstractModel {
 			String sql;
 			if(isNew) {
 				sql = " INSERT INTO "+this.tableName+" ";
-				sql += "			(id, name, thumbnail) ";
-				sql += "    VALUES  (?, ?, ?) ";
+				sql += "			(id, name, thumbnail, thumbnail600x600) ";
+				sql += "    VALUES  (?, ?, ?, ?) ";
 			}else {
 				sql = " UPDATE "+this.tableName+" ";
-				sql += " 	SET name=?, thumbnail=? ";
+				sql += " 	SET name=?, thumbnail=?, thumbnail600x600=? ";
 				sql += "	WHERE id=? ";
 			}
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -78,10 +86,12 @@ public class Destination extends AbstractModel {
 				stmt.setString(1, this.id);
 				stmt.setString(2, this.name);
 				stmt.setString(3, this.thumbnail);
+				stmt.setString(4, this.thumbnail600x600);
 			}else {
 				stmt.setString(1, this.name);
 				stmt.setString(2, this.thumbnail);
-				stmt.setString(3, this.id);
+				stmt.setString(3, this.thumbnail600x600);
+				stmt.setString(4, this.id);
 			}
 			
 			stmt.executeUpdate();
@@ -110,16 +120,18 @@ public class Destination extends AbstractModel {
 			return (Destination) o;
 		}
 	}
-	public Destination create(String name, String thumbnail) {
+	public Destination create(String name, String thumbnail, String thumbnail600x600) {
 		Destination destination = new Destination();
 		destination.setId(UUID.randomUUID().toString());
 		destination.setName(name);
 		destination.setThumbnail(thumbnail);
+		destination.setThumbnail600x600(thumbnail600x600);
 		return (Destination) destination.save(true);
 	}
-	public Destination update(String name, String thumbnail) {
+	public Destination update(String name, String thumbnail, String thumbnail600x600) {
 		this.setName(name);
 		this.setThumbnail(thumbnail);
+		this.setThumbnail600x600(thumbnail600x600);
 		return (Destination) this.save(false);
 	}
 	public ArrayList<Destination> all(){

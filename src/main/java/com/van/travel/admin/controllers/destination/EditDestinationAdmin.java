@@ -52,8 +52,9 @@ public class EditDestinationAdmin extends AdminController {
 		
 		String name = request.getParameter("name");
 		String thumbnail = request.getParameter("thumbnail");
+		String thumbnail600x600 = request.getParameter("thumbnail600x600");
 		
-		destination = destination.update(name, thumbnail);
+		destination = destination.update(name, thumbnail, thumbnail600x600);
 		
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/destination/edit?id="+destination.getId());
 	}

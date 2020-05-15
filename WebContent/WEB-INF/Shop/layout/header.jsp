@@ -9,8 +9,8 @@
          <div class="traveltour-top-bar-container clearfix traveltour-container ">
              
          <div class="traveltour-top-bar-left traveltour-item-pdlr">
-             <i class="fa fa-phone" id="i_b45c_2"></i> 1.820.3345.33 
-             <i class="fa fa-envelope-o" id="i_b45c_3"></i> Contact@TravelTourWP.com
+             <i class="fa fa-phone" id="i_b45c_2"></i> 0123456789 
+             <i class="fa fa-envelope-o" id="i_b45c_3"></i> Contact@TravelTour.com
          </div>
          <div class="traveltour-top-bar-right traveltour-item-pdlr">
              <div class="traveltour-top-bar-right-social">
@@ -43,7 +43,7 @@
                     <div class="traveltour-navigation traveltour-item-pdlr clearfix ">
                         <div class="traveltour-main-menu" id="traveltour-main-menu">
                             <ul id="menu-main-navigation-1" class="sf-menu">
-							    <li class="menu-item traveltour-normal-menu current-menu-item menu-item-home"><a href="<%= request.getAttribute("sitePath") %>/home">Home</a></li>
+							    <li class="menu-item traveltour-normal-menu current-menu-item menu-item-home"><a href="<%= request.getAttribute("sitePath") %>/">Home</a></li>
 							    <li class="menu-item menu-item-has-children traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/destinations" class="sf-with-ul-pre">Destinations</a>
 							        <ul class="sub-menu">
 							        	<% for(Destination des : header_headerView.destinations){ %>

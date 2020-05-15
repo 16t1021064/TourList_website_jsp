@@ -1981,7 +1981,7 @@
 			$('#tourmaster-tour-booking-bar-wrap').tourmaster_tour_booking_sticky();
 
 			// submit booking form
-			$('#tourmaster-enquiry-form').find('input[type="submit"]').click(function(){
+			$('.tourmaster-enquiry-form2').find('input[type="submit"]').click(function(){
 				if( $(this).hasClass('tourmaster-now-loading') ){ return false; }
 
 				var form = $(this).closest('form');
