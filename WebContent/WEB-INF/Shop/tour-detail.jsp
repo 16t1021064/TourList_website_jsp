@@ -136,7 +136,7 @@
                                             </div>
                                             <div class="tourmaster-booking-tab-content tourmaster-active" data-tourmaster-tab="booking">
                                                 <div class="tourmaster-tour-booking-enquiry-wrap">
-                                                    <form id="formBooking"  class="tourmaster-enquiry-form tourmaster-form-field tourmaster-with-border clearfix " data-validate-error="Please fill all required fields.">
+                                                    <form id="formBooking" action="javascript:void(0);" class="tourmaster-enquiry-form tourmaster-form-field tourmaster-with-border clearfix " data-validate-error="Please fill all required fields.">
                                                         <div class="tourmaster-enquiry-field tourmaster-enquiry-field-full-name tourmaster-type-text clearfix">
                                                             <div class="tourmaster-head">Full Name<span class="tourmaster-req">*</span></div>
                                                             <div class="tourmaster-tail clearfix">
@@ -677,32 +677,78 @@
 	<script>
 		jQuery('#mapRegion iframe').css("width", "100%");
 		jQuery('#formBooking').submit(function(){
-			jQuery.ajax({
-			  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/tour/booking",
-			  method: "post",
-				contentType: "application/json",
-				dataType: "json",
-			  data: JSON.stringify({
-				  tour_id: jQuery('#formBooking [name="tour_id"]').val(),
-				  name: jQuery('#formBooking [name="name"]').val(),
-				  email: jQuery('#formBooking [name="email"]').val(),
-				  phone: jQuery('#formBooking [name="phone"]').val(),
-				  note: jQuery('#formBooking [name="note"]').val(),
-				  count_people: jQuery('#formBooking [name="count_people"]').val(),
-			  }),
-			}).success(function(data){
-				swal("Booking successful !", "Your booking has been sent. We're contact to you as soon as possible, so please keep your phone and your email in contact !", "success");
-				jQuery('#formBooking [name="tour_id"]').val("");
-			  	jQuery('#formBooking [name="name"]').val("");
-			  	jQuery('#formBooking [name="email"]').val("");
-			  	jQuery('#formBooking [name="phone"]').val("");
-			  	jQuery('#formBooking [name="note"]').val("");
-			  	jQuery('#formBooking [name="count_people"]').val("");
-			}).error(function(){
-				console.error("error");
-			}).done(function() {
-			  console.log()
-			});
+				var validator = jQuery('#formBooking').validate({
+			        rules: {
+			        	tour_id: {
+			                required: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            name: {
+			                required: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            email: {
+			                required: true,
+			                email: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            phone: {
+			                required: true,
+			                numbersonly: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            note: {
+			                required: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            count_people: {
+			                required: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			        }
+			    });
+				if(validator.form()){
+					jQuery.ajax({
+					  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/tour/booking",
+					  method: "post",
+						contentType: "application/json",
+						dataType: "json",
+					  data: JSON.stringify({
+						  tour_id: jQuery('#formBooking [name="tour_id"]').val(),
+						  name: jQuery('#formBooking [name="name"]').val(),
+						  email: jQuery('#formBooking [name="email"]').val(),
+						  phone: jQuery('#formBooking [name="phone"]').val(),
+						  note: jQuery('#formBooking [name="note"]').val(),
+						  count_people: jQuery('#formBooking [name="count_people"]').val(),
+					  }),
+					}).success(function(data){
+						swal("Booking successful !", "Your booking has been sent. We're contact to you as soon as possible, so please keep your phone and your email in contact !", "success");
+						jQuery('#formBooking [name="tour_id"]').val("");
+					  	jQuery('#formBooking [name="name"]').val("");
+					  	jQuery('#formBooking [name="email"]').val("");
+					  	jQuery('#formBooking [name="phone"]').val("");
+					  	jQuery('#formBooking [name="note"]').val("");
+					  	jQuery('#formBooking [name="count_people"]').val("");
+					}).error(function(){
+						console.error("error");
+					}).done(function() {
+					  console.log()
+					});
+				}else{
+					swal("Error validation !", "Please all fields in booking form !", "error");
+				}
 			return false;
 		});
 	</script>
