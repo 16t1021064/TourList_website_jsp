@@ -84,7 +84,7 @@
                                             </div>
                                             <div class="tourmaster-booking-tab-content" data-tourmaster-tab="enquiry">
                                                 <div class="tourmaster-tour-booking-enquiry-wrap">
-                                                    <form class="tourmaster-enquiry-form tourmaster-form-field tourmaster-with-border clearfix tourmaster-enquiry-form2" data-validate-error="Please fill all required fields.">
+                                                    <form id="formEnquiry" action="javascript:void(0);" class="tourmaster-enquiry-form tourmaster-form-field tourmaster-with-border clearfix " >
                                                         <div class="tourmaster-enquiry-field tourmaster-enquiry-field-full-name tourmaster-type-text clearfix">
                                                             <div class="tourmaster-head">Name<span class="tourmaster-req">*</span></div>
                                                             <div class="tourmaster-tail clearfix">
@@ -113,7 +113,6 @@
                                                             <div class="tourmaster-tail clearfix">
                                                                 <div class="tourmaster-combobox-wrap">
                                                                     <select name="count_people" data-required>
-                                                                        <option value="Person">Person</option>
                                                                         <option value="1-4">1-4</option>
                                                                         <option value="5-9">5-9</option>
                                                                         <option value="10+">10+</option>
@@ -140,27 +139,27 @@
                                                         <div class="tourmaster-enquiry-field tourmaster-enquiry-field-full-name tourmaster-type-text clearfix">
                                                             <div class="tourmaster-head">Full Name<span class="tourmaster-req">*</span></div>
                                                             <div class="tourmaster-tail clearfix">
-                                                                <input type="text" name="name" value="" data-required />
+                                                                <input type="text" name="name" value="" />
                                                             </div>
                                                         </div>
                                                         <div class="tourmaster-enquiry-field tourmaster-enquiry-field-email-address tourmaster-type-email clearfix">
                                                             <div class="tourmaster-head">Email<span class="tourmaster-req">*</span></div>
                                                             <div class="tourmaster-tail clearfix">
-                                                                <input type="email" name="email" value="" data-required />
+                                                                <input type="email" name="email" value="" />
                                                             </div>
                                                         </div>
                                                         <div class="tourmaster-enquiry-field tourmaster-enquiry-field-email-address tourmaster-type-email clearfix">
                                                             <div class="tourmaster-head">Phone<span class="tourmaster-req">*</span></div>
                                                             <div class="tourmaster-tail clearfix">
-                                                                <input type="text" name="phone" value="" data-required />
+                                                                <input type="text" name="phone" value="" />
                                                             </div>
                                                         </div>
                                                         <div class="tourmaster-enquiry-field tourmaster-enquiry-field-person tourmaster-type-combobox clearfix">
                                                             <div class="tourmaster-head">Person<span class="tourmaster-req">*</span></div>
                                                             <div class="tourmaster-tail clearfix">
                                                                 <div class="tourmaster-combobox-wrap">
-                                                                    <select name="count_people" data-required>
-                                                                        <option value="1-4">1-4</option>
+                                                                    <select name="count_people" >
+                                                                    	<option value="1-4">1-4</option>
                                                                         <option value="5-9">5-9</option>
                                                                         <option value="10+">10+</option>
                                                                     </select>
@@ -734,8 +733,7 @@
 						  count_people: jQuery('#formBooking [name="count_people"]').val(),
 					  }),
 					}).success(function(data){
-						swal("Booking successful !", "Your booking has been sent. We're contact to you as soon as possible, so please keep your phone and your email in contact !", "success");
-						jQuery('#formBooking [name="tour_id"]').val("");
+						swal("Booking successful !", "Your booking has been sent. We'll contact to you as soon as possible, so please keep your phone and your email in contact !", "success");
 					  	jQuery('#formBooking [name="name"]').val("");
 					  	jQuery('#formBooking [name="email"]').val("");
 					  	jQuery('#formBooking [name="phone"]').val("");
@@ -744,10 +742,92 @@
 					}).error(function(){
 						console.error("error");
 					}).done(function() {
-					  console.log()
+					  
 					});
 				}else{
 					swal("Error validation !", "Please all fields in booking form !", "error");
+				}
+			return false;
+		});
+		jQuery('#formEnquiry').submit(function(){
+				var validator = jQuery('#formEnquiry').validate({
+			        rules: {
+			        	tour_id: {
+			                required: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            name: {
+			                required: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            email: {
+			                required: true,
+			                email: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            phone: {
+			                required: true,
+			                numbersonly: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            travel_time: {
+			                required: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            note: {
+			                required: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			            count_people: {
+			                required: true,
+			                normalizer: function(value) {
+								return jQuery.trim(value);
+							},
+			            },
+			        }
+			    });
+				if(validator.form()){
+					jQuery.ajax({
+					  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/tour/enquiry",
+					  method: "post",
+						contentType: "application/json",
+						dataType: "json",
+					  data: JSON.stringify({
+						  tour_id: jQuery('#formEnquiry [name="tour_id"]').val(),
+						  name: jQuery('#formEnquiry [name="name"]').val(),
+						  email: jQuery('#formEnquiry [name="email"]').val(),
+						  phone: jQuery('#formEnquiry [name="phone"]').val(),
+						  travel_time: jQuery('#formEnquiry [name="travel_time"]').val(),
+						  note: jQuery('#formEnquiry [name="note"]').val(),
+						  count_people: jQuery('#formEnquiry [name="count_people"]').val(),
+					  }),
+					}).success(function(data){
+						swal("Submit successful !", "Your enquiry has been sent. We'll contact to you as soon as possible, so please keep your phone and your email in contact !", "success");
+					  	jQuery('#formEnquiry [name="name"]').val("");
+					  	jQuery('#formEnquiry [name="email"]').val("");
+					  	jQuery('#formEnquiry [name="phone"]').val("");
+					  	jQuery('#formEnquiry [name="note"]').val("");
+					  	jQuery('#formEnquiry [name="travel_time"]').val("");
+					  	jQuery('#formEnquiry [name="count_people"]').val("");
+					}).error(function(){
+						console.error("error");
+					}).done(function() {
+					  
+					});
+				}else{
+					swal("Error validation !", "Please all fields in enquiry form !", "error");
 				}
 			return false;
 		});
