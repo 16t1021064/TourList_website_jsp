@@ -240,7 +240,19 @@
                                             <div class="tourmaster-content-navigation-item-wrap clearfix" style="padding-bottom: 0px;">
                                                 <div class="tourmaster-content-navigation-item-outer" id="tourmaster-content-navigation-item-outer">
                                                     <div class="tourmaster-content-navigation-item-container tourmaster-container">
-                                                        <div class="tourmaster-content-navigation-item tourmaster-item-pdlr"><a class="tourmaster-content-navigation-tab tourmaster-active" href="#detail">Detail</a><a class="tourmaster-content-navigation-tab " href="#itinerary">Itinerary</a><a class="tourmaster-content-navigation-tab " href="#map">Map</a><a class="tourmaster-content-navigation-tab " href="#photos">Photos</a><a class="tourmaster-content-navigation-tab " href="#tourmaster-single-review">Reviews</a>
+                                                        <div class="tourmaster-content-navigation-item tourmaster-item-pdlr">
+                                                        	<a class="tourmaster-content-navigation-tab tourmaster-active" href="#detail">Detail</a>
+                                                        	<a class="tourmaster-content-navigation-tab " href="#itinerary">Itinerary</a>
+                                                        	<% if(!tour.getMap().equals("")){ %>
+                                                        	<a class="tourmaster-content-navigation-tab " href="#map">Map</a>
+                                                        	<% } %>
+                                                        	<% if(tour.getGallery().size() > 0){ %>
+                                                        	<a class="tourmaster-content-navigation-tab " href="#photos" >Photos</a>
+                                                        	<% } %>
+                                                        	<% if(tour.getVideos().size() > 0){ %>
+                                                        	<a class="tourmaster-content-navigation-tab " href="#videos" >Videos</a>
+                                                        	<% } %>
+                                                        	<a class="tourmaster-content-navigation-tab " href="#tourmaster-single-review">Reviews</a>
                                                             <div class="tourmaster-content-navigation-slider"></div>
                                                         </div>
                                                     </div>
@@ -559,7 +571,7 @@
                             </div>
                             <% } %>
                             <% if(tour.getVideos().size() > 0){ %>
-                            <div class="gdlr-core-pbf-wrapper "  data-skin="Blue Icon" id="photos">
+                            <div class="gdlr-core-pbf-wrapper "  data-skin="Blue Icon" id="videos">
                                 <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                                     <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
                                         <div class="gdlr-core-pbf-element">
@@ -830,6 +842,11 @@
 					swal("Error validation !", "Please all fields in enquiry form !", "error");
 				}
 			return false;
+		});
+	</script>
+	<script>
+		jQuery('a.tourmaster-content-navigation-tab').each(function(position){
+			jQuery(this).attr('href', window.location.href + jQuery(this).attr('href'));
 		});
 	</script>
 </body>
