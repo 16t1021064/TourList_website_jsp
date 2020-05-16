@@ -15,6 +15,7 @@ import com.van.travel.common.PaginationData;
 import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.Activity;
 import com.van.travel.models.Destination;
+import com.van.travel.models.Tour;
 import com.van.travel.web.factories.ActivityFactory;
 import com.van.travel.web.factories.DestinationFactory;
 import com.van.travel.web.factories.SearchTourFactory;
@@ -140,12 +141,16 @@ public class SearchTourController extends ShopController {
 			date = null;
 		}
 		
-		
+		ActivityFactory activityFactory = new ActivityFactory();
 		SearchTourFactory searchTourFactory = new SearchTourFactory();
 		
 		PaginationData dataTours = searchTourFactory.search(page, type, q, act, des, dur, date);
 		
 		request.setAttribute("dataTours", dataTours);
+		
+		ArrayList<Tour> upcomingTours = searchTourFactory.upcomingTours(4);
+		
+		request.setAttribute("upcomingTours", upcomingTours);
 		
 		DestinationFactory destinationFactory = new DestinationFactory();
 			
@@ -153,9 +158,10 @@ public class SearchTourController extends ShopController {
 		
 		request.setAttribute("hotDestinations", hotDestinations);
 		
-		ActivityFactory activityFactory = new ActivityFactory();
-		
 		ArrayList<Activity> hotActivities = activityFactory.getHotActivities(15);
+		
+		ArrayList<Activity> listHotActivities = activityFactory.getHotActivities(6);
+		request.setAttribute("listHotActivities", listHotActivities);
 		
 		request.setAttribute("hotActivities", hotActivities);
 		

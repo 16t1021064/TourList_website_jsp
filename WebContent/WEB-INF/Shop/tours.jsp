@@ -8,6 +8,8 @@
 	ArrayList<Tour> listTours = (ArrayList<Tour>) dataTours.data;
 	ArrayList<Destination> hotDestinations = (ArrayList<Destination>) request.getAttribute("hotDestinations");
 	ArrayList<Activity> hotActivities = (ArrayList<Activity>) request.getAttribute("hotActivities");
+	ArrayList<Activity> listHotActivities = (ArrayList<Activity>) request.getAttribute("listHotActivities");
+	ArrayList<Tour> upcomingTours = (ArrayList<Tour>) request.getAttribute("upcomingTours");
 	DateConvertion dateConvertion = new DateConvertion("dd/MM");
 	Object[] filters = (Object[]) request.getAttribute("filters");
 %>
@@ -18,7 +20,7 @@
 
 <head>
 
-    <<%@include file="./layout/meta.jsp" %>
+    <%@include file="./layout/meta.jsp" %>
     <title>Tours</title>
 
     <%@include file="./layout/styles.jsp" %>
@@ -114,7 +116,7 @@
                                                 <div class="tourmaster-item-list tourmaster-tour-medium tourmaster-item-mglr clearfix tourmaster-tour-frame gdlr-core-skin-e-background">
                                                     <div class="tourmaster-tour-medium-inner">
                                                         <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="../africa-amazing-african-safari/index.html"><img src="<%= tour.getThumbnail600x700() %>" alt="" width="600" height="700" /></a>
+                                                            <a href="<%= request.getAttribute("sitePath") %>/tour?id=<%= tour.getId() %>"><img src="<%= tour.getThumbnail600x700() %>" alt="" width="600" height="700" /></a>
                                                             
                                                             <% if(tour.getoPrice() != tour.getpPrice()){ %>
                                                             <div class="custom-label-sale tourmaster-thumbnail-ribbon gdlr-core-outer-frame-element">
@@ -125,7 +127,7 @@
                                                         </div>
                                                         <div class="tourmaster-tour-content-wrap clearfix">
                                                             <div class="tourmaster-content-left">
-                                                                <h3 class="tourmaster-tour-title gdlr-core-skin-title" ><a href="../africa-amazing-african-safari/index.html" ><%= tour.getDestinationName() %> &#8211; <%= tour.getName() %></a></h3>
+                                                                <h3 class="tourmaster-tour-title gdlr-core-skin-title" ><a href="<%= request.getAttribute("sitePath") %>/tour?id=<%= tour.getId() %>" ><%= tour.getDestinationName() %> &#8211; <%= tour.getName() %></a></h3>
                                                                 <div class="tourmaster-tour-info-wrap clearfix">
                                                                     <div class="tourmaster-tour-info tourmaster-tour-info-duration-text "><i class="icon_clock_alt"></i><%= tour.getDaysText() %></div>
                                                                     <div class="tourmaster-tour-info tourmaster-tour-info-availability "><i class="fa fa-calendar"></i>Availability : <%= dateConvertion.toStringDate(tour.getBeginTime()) %> - <%= dateConvertion.toStringDate(tour.getEndTime()) %></div>
@@ -159,64 +161,29 @@
                                     <div id="tourmaster-tour-widget-5" class="widget widget_tourmaster-tour-widget traveltour-widget">
                                         <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Latest Tours</span></h3><span class="clear"></span>
                                         <div class="tourmaster-recent-tour-widget tourmaster-tour-item">
+                                            <% for(Tour upcomingTour : upcomingTours){ %>
                                             <div class="tourmaster-item-list tourmaster-tour-widget tourmaster-item-pdlr">
                                                 <div class="tourmaster-tour-widget-inner clearfix">
                                                     <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                        <a href="../africa-amazing-african-safari/index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_120562819-150x150.jpg" alt="" width="150" height="150" /></a>
+                                                        <a href="<%= request.getAttribute("sitePath") %>/tour?id=<%= upcomingTour.getId() %>"><img src="<%= upcomingTour.getThumbnail150x150() %>" alt="" width="150" height="150" /></a>
                                                     </div>
                                                     <div class="tourmaster-tour-content-wrap">
-                                                        <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="../africa-amazing-african-safari/index.html" >Africa &#8211; Amazing African Safari</a></h3>
-                                                        <div class="tourmaster-tour-content-info clearfix ">
-                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$100</span></span>
+                                                        <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="<%= request.getAttribute("sitePath") %>/tour?id=<%= upcomingTour.getId() %>" ><%= upcomingTour.getDestinationName() %> &#8211; <%= upcomingTour.getName() %></a></h3>
+                                                        <div class="tourmaster-tour-content-info clearfix <% if(upcomingTour.getoPrice() != upcomingTour.getpPrice()){ %>tourmaster-with-ribbon<% } %>">
+                                                        	<% if(upcomingTour.getoPrice() == upcomingTour.getpPrice()){ %>
+                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$<%= upcomingTour.getpPrice() %></span></span>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tourmaster-item-list tourmaster-tour-widget tourmaster-item-pdlr">
-                                                <div class="tourmaster-tour-widget-inner clearfix">
-                                                    <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                        <a href="../dubai-all-stunning-places/index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_151616084-150x150.jpg" alt="" width="150" height="150" /></a>
-                                                    </div>
-                                                    <div class="tourmaster-tour-content-wrap">
-                                                        <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="../dubai-all-stunning-places/index.html" >Dubai &#8211; All Stunning Places</a></h3>
-                                                        <div class="tourmaster-tour-content-info clearfix ">
-                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$1,200</span></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tourmaster-item-list tourmaster-tour-widget tourmaster-item-pdlr">
-                                                <div class="tourmaster-tour-widget-inner clearfix">
-                                                    <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                        <a href="../switzerland-7-days-in-zurich-zermatt/index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_178807262-150x150.jpg" alt="" width="150" height="150" /></a>
-                                                    </div>
-                                                    <div class="tourmaster-tour-content-wrap">
-                                                        <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="../switzerland-7-days-in-zurich-zermatt/index.html" >Switzerland &#8211; 7 Days in Zurich, Zermatt</a></h3>
-                                                        <div class="tourmaster-tour-content-info clearfix tourmaster-with-ribbon">
+                                                            <% }else{ %>
                                                             <div class="tourmaster-thumbnail-ribbon gdlr-core-outer-frame-element" id="div_aeb3_10">
-                                                                <div class="tourmaster-thumbnail-ribbon-cornor" id="div_aeb3_11"></div>20% Off</div>
-                                                            <div class="tourmaster-tour-price-wrap tourmaster-discount"><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$4,300</span></span><span class="tourmaster-tour-discount-price">$3,500</span></div>
+                                                                <div class="tourmaster-thumbnail-ribbon-cornor" id="div_aeb3_11"></div>SALE OFF</div>
+                                                            <div class="tourmaster-tour-price-wrap tourmaster-discount"><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$<%= upcomingTour.getoPrice() %></span></span><span class="tourmaster-tour-discount-price">$<%= upcomingTour.getpPrice() %></span></div>
+                                                            <% } %>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tourmaster-item-list tourmaster-tour-widget tourmaster-item-pdlr">
-                                                <div class="tourmaster-tour-widget-inner clearfix">
-                                                    <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                        <a href="../italy-6-days-in-rome-venice-milan/index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_245507692-150x150.jpg" alt="" width="150" height="150" /></a>
-                                                    </div>
-                                                    <div class="tourmaster-tour-content-wrap">
-                                                        <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="../italy-6-days-in-rome-venice-milan/index.html" >Enquiry Form Only &#8211; Italy &#8211; 6 Days</a></h3>
-                                                        <div class="tourmaster-tour-content-info clearfix tourmaster-with-ribbon">
-                                                            <div class="tourmaster-thumbnail-ribbon gdlr-core-outer-frame-element" id="div_aeb3_12">
-                                                                <div class="tourmaster-thumbnail-ribbon-cornor" id="div_aeb3_13"></div>25% Off</div>
-                                                            <div class="tourmaster-tour-price-wrap tourmaster-discount"><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$3,700</span></span><span class="tourmaster-tour-discount-price">$2,000</span></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <% } %>
+                                            
                                         </div>
                                     </div>
                                     <div id="text-10" class="widget widget_text traveltour-widget">
@@ -235,12 +202,9 @@
                                         <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Tour Category</span></h3><span class="clear"></span>
                                         <div class="menu-tour-category-container">
                                             <ul id="menu-tour-category" class="menu">
-                                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4913"><a href="../tour-tag/outdoor-activites/index.html">Outdoor Activites</a></li>
-                                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4914"><a href="../tour-tag/city-tours/index.html">City Tours</a></li>
-                                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4915"><a href="../tour-tag/cultural-thematic-tours/index.html">Cultural &#038; Thematic Tours</a></li>
-                                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4916"><a href="../tour-tag/indulgence-luxury-tours/index.html">Indulgence &#038; Luxury Tours</a></li>
-                                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4917"><a href="../tour-tag/family-friendly-tours/index.html">Family Friendly Tours</a></li>
-                                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4919"><a href="../tour-tag/holiday-seasonal-tours/index.html">Holiday &#038; Seasonal Tours</a></li>
+                                            	<% for(Activity act : listHotActivities){ %>
+                                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4913"><a href="<%= request.getAttribute("sitePath") %>/tours?act=<%= act.getId() %>"><%= act.getName() %></a></li>
+                                            	<% } %>
                                             </ul>
                                         </div>
                                     </div>

@@ -285,4 +285,16 @@ public class Blog extends AbstractModel {
 		}
 	}
 	
+	public Blog findWithSlug(String slug) {
+		this.setQueryLimit(1);
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"slug", "=", slug, "STRING"});
+		ArrayList<Blog> arr = this.all(whereConditions);
+		if(arr.size() == 0) {
+			return null;
+		}else {
+			return arr.get(0);
+		}
+	}
+	
 }

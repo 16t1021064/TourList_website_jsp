@@ -1,4 +1,4 @@
-package com.van.travel.api.tour.enquiry.webservice;
+package com.van.travel.api.shop.tour.enquiry.webservice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -11,8 +11,8 @@ import javax.ws.rs.core.Response;
 
 import com.van.travel.api.common.process.AbstractProcess;
 import com.van.travel.api.common.webservice.AbstractWebservice;
-import com.van.travel.api.tour.enquiry.dto.TourEnquiryRequest;
-import com.van.travel.api.tour.enquiry.process.TourEnquiryProcess;
+import com.van.travel.api.shop.tour.enquiry.dto.TourEnquiryRequest;
+import com.van.travel.api.shop.tour.enquiry.process.TourEnquiryProcess;
 
 @Path("/shop")
 public class TourEnquiryWebService extends AbstractWebservice {

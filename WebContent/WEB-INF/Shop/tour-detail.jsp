@@ -616,7 +616,7 @@
                                                 <% } %>
                                             </div>
                                             <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="../switzerland-7-days-in-zurich-zermatt/index.html" ><%= relTour.getNation() %> &#8211; <%= relTour.getName() %>, <%= relTour.getState() %></a></h3>
+                                                <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="<%= request.getAttribute("sitePath") %>/tour?id=<%= relTour.getId() %>" ><%= relTour.getNation() %> &#8211; <%= relTour.getName() %>, <%= relTour.getState() %></a></h3>
                                                 <div class="tourmaster-tour-price-wrap tourmaster-discount">
                                                 	<span class="tourmaster-tour-price">
                                                 		<span class="tourmaster-head">From</span>

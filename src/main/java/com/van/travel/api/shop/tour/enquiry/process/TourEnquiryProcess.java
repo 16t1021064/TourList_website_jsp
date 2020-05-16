@@ -1,14 +1,14 @@
-package com.van.travel.api.tour.enquiry.process;
+package com.van.travel.api.shop.tour.enquiry.process;
 
 import java.util.Date;
 
 import com.van.travel.api.common.dto.AbstractRequestData;
 import com.van.travel.api.common.dto.CommonResponse;
 import com.van.travel.api.common.process.AbstractProcess;
-import com.van.travel.api.tour.booking.dto.TourBookingRequest;
-import com.van.travel.api.tour.booking.dto.TourBookingResponse;
-import com.van.travel.api.tour.enquiry.dto.TourEnquiryRequest;
-import com.van.travel.api.tour.enquiry.dto.TourEnquiryResponse;
+import com.van.travel.api.shop.tour.booking.dto.TourBookingRequest;
+import com.van.travel.api.shop.tour.booking.dto.TourBookingResponse;
+import com.van.travel.api.shop.tour.enquiry.dto.TourEnquiryRequest;
+import com.van.travel.api.shop.tour.enquiry.dto.TourEnquiryResponse;
 import com.van.travel.common.DateConvertion;
 import com.van.travel.models.Booking;
 import com.van.travel.models.Enquiry;

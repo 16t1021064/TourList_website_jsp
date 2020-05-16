@@ -235,10 +235,10 @@
                                                 <li class="gdlr-core-item-mglr">
                                                     <div class="tourmaster-tour-grid tourmaster-tour-frame tourmaster-price-right-title">
                                                         <div class="tourmaster-tour-thumbnail tourmaster-media-image">
-                                                            <a href="#"><img src="<%= tour.getThumbnail() %>" alt="" width="700" height="450" /></a>
+                                                            <a href="<%= request.getAttribute("sitePath") %>/tour?id=<%= tour.getId() %>"><img src="<%= tour.getThumbnail() %>" alt="" width="700" height="450" /></a>
                                                         </div>
                                                         <div class="tourmaster-tour-content-wrap gdlr-core-skin-e-background">
-                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="#" ><%= tour.getDestinationName() %>&#8211; <%= tour.getName() %></a></h3>
+                                                            <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="<%= request.getAttribute("sitePath") %>/tour?id=<%= tour.getId() %>" ><%= tour.getDestinationName() %>&#8211; <%= tour.getName() %></a></h3>
                                                             <% if(tour.getoPrice() == tour.getpPrice()){ %>
                                                             <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$<%= tour.getpPrice() %></span></span></div>
                                                             <% }else{ %>

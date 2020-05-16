@@ -21,6 +21,15 @@ import com.van.travel.models.Tour;
  *
  */
 public class SearchTourFactory {
+	
+	public ArrayList<Tour> upcomingTours(int limit){
+		return this.querySearchArr(1, limit, "upcoming", null, null, null, null, null);
+	}
+	
+	public ArrayList<Tour> promotionTours(int limit){
+		return this.querySearchArr(1, limit, "promotion", null, null, null, null, null);
+	}
+	
 	public PaginationData search(int page, String type, String q, String act, String des, String dur, Date date){
 		int limit = 2;
 		
@@ -49,11 +58,8 @@ public class SearchTourFactory {
 		String sql = this.getSql(page, limit, type, q, act, des, dur, date);
 		String sql2 = "select count(*) from ( "+sql+" ) AS QueryTable";
 		
-		System.out.println(sql2);
 		
-		ArrayList<Tour> tours = new ArrayList<Tour>();
 		try {
-			Tour tempTour  = new Tour();
 			ResultSet rs = (new Database()).getPreparedStatement(sql2).executeQuery();
 			if(rs.next()) {
 				return rs.getLong(1);
@@ -125,7 +131,9 @@ public class SearchTourFactory {
 		sql+=" GROUP BY travel_tour.id ";
 		if(type != null && type.equals("hot")) {
 			sql+=" ORDER BY travel_tour.star DESC, travel_tour.registered_people DESC, travel_tour.departure_time DESC ";
-		}else {
+		}else if(type != null && type.equals("upcoming")) {
+			sql+=" ORDER BY travel_tour.departure_time DESC ";
+		} else {
 			sql+=" ORDER BY travel_tour.departure_time DESC ";
 		}
 		return sql;
