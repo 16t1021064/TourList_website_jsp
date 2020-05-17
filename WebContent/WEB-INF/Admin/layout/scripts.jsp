@@ -25,5 +25,9 @@
     <script src="<%= request.getAttribute("sitePath") %>/public/be/vendors/switchery/dist/switchery.min.js"></script>
     <!-- jQuery Tags Input -->
     <script src="<%= request.getAttribute("sitePath") %>/public/be/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    
+    <!-- Jquery Notify -->
+    <script src="<%= request.getAttribute("sitePath") %>/public/be/js/notify.min.js"></script>
+    
     <!-- Custom Theme Scripts -->
     <script src="<%= request.getAttribute("sitePath") %>/public/be/build/js/custom.js"></script>

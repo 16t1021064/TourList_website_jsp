@@ -56,10 +56,19 @@ public class EditBlogAdmin extends AdminController {
 		String author = request.getParameter("author");
 		String createdTime_text = request.getParameter("created_time");
 		Date createdTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(createdTime_text.trim());
-		Blog newBlog = blog.update(title, thumbnail, slug, summary, content, author, createdTime);
-		String tags = request.getParameter("tags");
-		newBlog.setTags(tags);
-		response.sendRedirect(request.getAttribute("sitePath")+"/admin/blog/edit?id="+newBlog.getId());
+		
+		Blog blog2;
+		
+		if((new Blog()).findWithSlug(slug) != null) {
+			// existed slug
+			blog2 = blog;
+		}else {
+			blog2 = blog.update(title, thumbnail, slug, summary, content, author, createdTime);
+			String tags = request.getParameter("tags");
+			blog2.setTags(tags);
+		}
+		
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/blog/edit?id="+blog2.getId());
 	}
 
 }

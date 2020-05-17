@@ -45,7 +45,7 @@ public class CreateBlogAdmin extends AdminController {
 		response.setCharacterEncoding("utf-8");
 		String title = request.getParameter("title");
 		String thumbnail = request.getParameter("thumbnail");
-		String slug = request.getParameter("slug");
+		String slug = request.getParameter("slug") + "-" + System.currentTimeMillis();
 		String summary = request.getParameter("summary");
 		String content = request.getParameter("content");
 		String author = request.getParameter("author");
