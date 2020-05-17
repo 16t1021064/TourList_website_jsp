@@ -56,6 +56,8 @@ public class EditBlogAdmin extends AdminController {
 		String author = request.getParameter("author");
 		String createdTime_text = request.getParameter("created_time");
 		Date createdTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(createdTime_text.trim());
+		String viewCount_text = request.getParameter("view_count");
+		long viewCount = Long.parseLong(viewCount_text);
 		
 		Blog blog2;
 		
@@ -63,7 +65,7 @@ public class EditBlogAdmin extends AdminController {
 			// existed slug
 			blog2 = blog;
 		}else {
-			blog2 = blog.update(title, thumbnail, slug, summary, content, author, createdTime);
+			blog2 = blog.update(title, thumbnail, slug, summary, content, author, createdTime, viewCount);
 			String tags = request.getParameter("tags");
 			blog2.setTags(tags);
 		}

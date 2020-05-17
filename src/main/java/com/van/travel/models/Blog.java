@@ -24,6 +24,7 @@ public class Blog extends AbstractModel {
 	private String content;
 	private String author;
 	private Date createdTime;
+	private long viewCount;
 	
 	private String createdTime_MonthFull;
 	private String createdTime_MonthShort;
@@ -33,6 +34,12 @@ public class Blog extends AbstractModel {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public long getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(long viewCount) {
+		this.viewCount = viewCount;
 	}
 	public String getTitle() {
 		return title;
@@ -118,6 +125,7 @@ public class Blog extends AbstractModel {
 			blog.setContent(rs.getString("content"));
 			blog.setAuthor(rs.getString("author"));
 			blog.setCreatedTime(dateConvertion.toUtilDate(rs.getTimestamp("created_time")));
+			blog.setViewCount(rs.getLong("view_count"));
 			return blog;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -132,32 +140,36 @@ public class Blog extends AbstractModel {
 			String sql;
 			if(isNew) {
 				sql = " INSERT INTO "+this.tableName+" ";
-				sql += "			(id, title, thumbnail, slug, summary, content, author, created_time) ";
-				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?) ";
+				sql += "			(id, title, thumbnail, slug, summary, content, author, created_time, view_count) ";
+				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			}else {
 				sql = " UPDATE "+this.tableName+" ";
-				sql += " 	SET title=?, thumbnail=?, slug=?, summary=?, content=?, author=?, created_time=? ";
+				sql += " 	SET title=?, thumbnail=?, slug=?, summary=?, content=?, author=?, created_time=?, view_count=? ";
 				sql += "	WHERE id=? ";
 			}
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			if(isNew) {
-				stmt.setString(1, this.id);
-				stmt.setString(2, this.title);
-				stmt.setString(3, this.thumbnail);
-				stmt.setString(4, this.slug);
-				stmt.setString(5, this.summary);
-				stmt.setString(6, this.content);
-				stmt.setString(7, this.author);
-				stmt.setTimestamp(8, dateConvertion.toTimestamp(this.createdTime));
+				int i=0;
+				stmt.setString(++i, this.id);
+				stmt.setString(++i, this.title);
+				stmt.setString(++i, this.thumbnail);
+				stmt.setString(++i, this.slug);
+				stmt.setString(++i, this.summary);
+				stmt.setString(++i, this.content);
+				stmt.setString(++i, this.author);
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.createdTime));
+				stmt.setLong(++i, this.viewCount);
 			}else {
-				stmt.setString(1, this.title);
-				stmt.setString(2, this.thumbnail);
-				stmt.setString(3, this.slug);
-				stmt.setString(4, this.summary);
-				stmt.setString(5, this.content);
-				stmt.setString(6, this.author);
-				stmt.setTimestamp(7, dateConvertion.toTimestamp(this.createdTime));
-				stmt.setString(8, this.id);
+				int i=0;
+				stmt.setString(++i, this.title);
+				stmt.setString(++i, this.thumbnail);
+				stmt.setString(++i, this.slug);
+				stmt.setString(++i, this.summary);
+				stmt.setString(++i, this.content);
+				stmt.setString(++i, this.author);
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.createdTime));
+				stmt.setLong(++i, this.viewCount);
+				stmt.setString(++i, this.id);
 			}
 			
 			stmt.executeUpdate();
@@ -192,7 +204,7 @@ public class Blog extends AbstractModel {
 			return (Blog) o;
 		}
 	}
-	public Blog create(String title, String thumbnail, String slug, String summary, String content, String author, Date createdTime) {
+	public Blog create(String title, String thumbnail, String slug, String summary, String content, String author, Date createdTime, long viewCount) {
 		Blog blog = new Blog();
 		blog.setId(UUID.randomUUID().toString());
 		blog.setTitle(title);
@@ -202,9 +214,10 @@ public class Blog extends AbstractModel {
 		blog.setContent(content);
 		blog.setAuthor(author);
 		blog.setCreatedTime(createdTime);
+		blog.setViewCount(viewCount);
 		return (Blog) blog.save(true);
 	}
-	public Blog update(String title, String thumbnail, String slug, String summary, String content, String author, Date createdTime) {
+	public Blog update(String title, String thumbnail, String slug, String summary, String content, String author, Date createdTime, long viewCount) {
 		this.setTitle(title);
 		this.setThumbnail(thumbnail);
 		this.setSlug(slug);
@@ -212,6 +225,7 @@ public class Blog extends AbstractModel {
 		this.setContent(content);
 		this.setAuthor(author);
 		this.setCreatedTime(createdTime);
+		this.setViewCount(viewCount);
 		return (Blog) this.save(false);
 	}
 	public ArrayList<Blog> all(){
