@@ -33,9 +33,21 @@
 			CKEDITOR.instances['ckeditorPanel'].setData($($(this).data("input")).val());
 			$('#modalCKEditor').data("input", $(this).data("input"));
 		});
+		$('body').on('click', '.pageCkeditorInputPanel', function(){
+			CKEDITOR.instances['ckeditorPanel'].setData($($(this).data("input")).val());
+			$('#modalCKEditor').data("input", $(this).data("input"));
+			$('#modalCKEditor').modal("toggle");
+		});
 		
 		$('#modalCKEditor').on('hidden.bs.modal', function (e) {
 			$($(this).data("input")).val(CKEDITOR.instances['ckeditorPanel'].getData());
 		});
+		
+		
 	});
 </script>
+<style>
+	.pageCkeditorInputPanel{
+		cursor: pointer;
+	}
+</style>
