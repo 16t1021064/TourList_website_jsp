@@ -29,5 +29,11 @@
     <!-- Jquery Notify -->
     <script src="<%= request.getAttribute("sitePath") %>/public/be/js/notify.min.js"></script>
     
+    <!-- ckeditor -->
+    <script src="<%= request.getAttribute("sitePath") %>/public/be/js/ckeditor/ckeditor.js"></script>
+    
+    <!-- Parsley -->
+    <script src="<%= request.getAttribute("sitePath") %>/public/be/vendors/parsleyjs/dist/parsley.min.js"></script>
+    
     <!-- Custom Theme Scripts -->
     <script src="<%= request.getAttribute("sitePath") %>/public/be/build/js/custom.js"></script>

@@ -59,7 +59,7 @@ public class EditBlogAdmin extends AdminController {
 		
 		Blog blog2;
 		
-		if((new Blog()).findWithSlug(slug) != null) {
+		if((new Blog()).findWithSlug(slug, new String[] {blog.getSlug()}) != null) {
 			// existed slug
 			blog2 = blog;
 		}else {
