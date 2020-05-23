@@ -8,27 +8,26 @@ import java.util.ArrayList;
  *
  */
 public class PaginationData {
-	public int totalItem; // total items
-	public int totalPage; // total page
-	public int firstPage; // index of first page
-	public int lastPage; // index of last page
-	public int currentPage; // index of current page
-	public int firstIndex; // index of first item in data
-	public int lastIndex; // index of last item in data
-	public int perPage; // number of items per page
-	public ArrayList<Object> data;
-	public PaginationData(int totalItem, int totalPage, int firstPage, int lastPage, int currentPage, int firstIndex,
-			int lastIndex, int perPage, ArrayList<Object> data) {
-		super();
-		this.totalItem = totalItem;
-		this.totalPage = totalPage;
-		this.firstPage = firstPage;
-		this.lastPage = lastPage;
-		this.currentPage = currentPage;
-		this.firstIndex = firstIndex;
-		this.lastIndex = lastIndex;
-		this.perPage = perPage;
-		this.data = data;
-	}
+	public long totalItem = 1; // total items
+	public long totalPage = 1; // total page
+	public long firstPage = 1; // index of first page
+	public long lastPage = 1; // index of last page
+	public long currentPage = 1; // index of current page
+	public long firstIndex = 1; // index of first item in data
+	public long lastIndex = 1; // index of last item in data
+	public long perPage = 1; // number of items per page
+//	public PaginationData(long totalItem, long totalPage, long firstPage, long lastPage, long currentPage, long firstIndex,
+//			long lastIndex, long perPage, String data) {
+//		super();
+//		this.totalItem = totalItem;
+//		this.totalPage = totalPage;
+//		this.firstPage = firstPage;
+//		this.lastPage = lastPage;
+//		this.currentPage = currentPage;
+//		this.firstIndex = firstIndex;
+//		this.lastIndex = lastIndex;
+//		this.perPage = perPage;
+//		this.data = data;
+//	}
 	
 }

@@ -15,7 +15,11 @@
     <title>Blog: <%= blog.getTitle() %></title>
 
     <%@include file="./layout/styles.jsp" %>
-
+	<style>
+		.comment-nav{
+			display: none;
+		}
+	</style>
 </head>
 
 <body class="tour-template-default single single-tour postid-4643 gdlr-core-body tourmaster-body woocommerce-no-js traveltour-body traveltour-body-front traveltour-full  traveltour-with-sticky-navigation gdlr-core-link-to-lightbox">
@@ -67,85 +71,29 @@
                                     <div class="gdlr-core-page-builder-body"></div>
                                 </div>
                                 
-                                    <div class="traveltour-single-social-share traveltour-item-rvpdlr">
-                                        <div class="gdlr-core-social-share-item gdlr-core-item-pdb  gdlr-core-center-align gdlr-core-social-share-left-text gdlr-core-item-pdlr gdlr-core-style-plain" style="padding-bottom: 0px ;">
-                                            <span class="gdlr-core-social-share-count gdlr-core-skin-title">
-                                                <span class="gdlr-core-count" >0</span>
-                                                <span class="gdlr-core-suffix">Shares</span>
-                                                <span class="gdlr-core-divider gdlr-core-skin-divider"></span>
-                                            </span>
-                                            <span class="gdlr-core-social-share-wrap">
-                                                <a class="gdlr-core-social-share-facebook" href="#" target="_blank"  >
-                                                    <i class="fa fa-facebook" ></i>
-                                                </a>
-                                                <a class="gdlr-core-social-share-google-plus" href="#" target="_blank" >
-                                                    <i class="fa fa-google-plus" ></i>
-                                                </a>
-                                                <a class="gdlr-core-social-share-pinterest" href="#" target="_blank"  >
-                                                    <i class="fa fa-pinterest-p" ></i>
-                                                </a>
-                                                <a class="gdlr-core-social-share-twitter" href="#" target="_blank"  >
-                                                    <i class="fa fa-twitter" ></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
+
                                 <div class="clear"></div>
                                 <div class="traveltour-single-author">
                                     <div class="traveltour-single-author-wrap">
                                         <div class="traveltour-single-author-avartar traveltour-media-image"><img alt='' src='https://secure.gravatar.com/avatar/c4ffc7a48d6a02dac31975c893fa7ddb?s=90&amp;d=mm&amp;r=g'  height='90' width='90' /></div>
                                         <div class="traveltour-single-author-content-wrap">
-                                            <div class="traveltour-single-author-caption traveltour-info-font">About the author</div>
-                                            <h4 class="traveltour-single-author-title"><a href="../author/superuser/index.html" title="Posts by John Smith" rel="author">John Smith</a></h4>
-                                            <div class="traveltour-single-author-description">Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</div>
+                                            <div class="traveltour-single-author-caption traveltour-info-font">The author</div>
+                                            <h4 class="traveltour-single-author-title"><a href="javascript:void(0)" title="Posts by John Smith" rel="author"><%= blog.getAuthor() %></a></h4>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="traveltour-single-nav-area clearfix"><span class="traveltour-single-nav traveltour-single-nav-left"><a href="../image-post-format/index.html" rel="prev"><i class="arrow_left" ></i><span class="traveltour-text" >Prev</span></a>
-                                    </span><span class="traveltour-single-nav traveltour-single-nav-right"><a href="../pack-wisely-before-traveling/index.html" rel="next"><span class="traveltour-text" >Next</span><i class="arrow_right"></i></a>
+                                <div class="traveltour-single-nav-area clearfix">
+                                	<span class="traveltour-single-nav traveltour-single-nav-left">
+                                		<a href="javascript:void(0);" class="comment-nav" data-page="" rel="prev"><i class="arrow_left" ></i><span class="traveltour-text" >Prev</span></a>
+                                    </span>
+                                    <span class="traveltour-single-nav traveltour-single-nav-right">
+                                    	<a href="javascript:void(0);" class="comment-nav" data-page="" rel="next"><span class="traveltour-text" >Next</span><i class="arrow_right"></i></a>
                                     </span>
                                 </div>
                                 <div id="comments" class="traveltour-comments-area">
-                                    <div class="traveltour-comments-title">2 Responses</div>
-                                    <ol class="comment-list">
-                                        <li class="comment byuser comment-author-superuser bypostauthor even thread-even depth-1" id="li-comment-5">
-                                            <article id="comment-5" class="comment-article">
-                                                <div class="comment-avatar"><img alt='' src='<%= request.getAttribute("sitePath") %>/public/fe/upload/c4ffc7a48d6a02dac31975c893fa7ddb.jpeg' class='avatar avatar-90 photo' height='90' width='90' /></div>
-                                                <div class="comment-body">
-                                                    <header class="comment-meta">
-                                                        <div class="comment-author traveltour-title-font">John Smith</div>
-                                                        <div class="comment-time traveltour-info-font">
-                                                            <a href="index.html#comment-5">
-                                                                <time datetime="2016-11-26T15:04:44+00:00"> November 26, 2016 at 3:04 pm </time>
-                                                            </a>
-                                                        </div>
-                                                        <div class="comment-reply"> <a rel='nofollow' class='comment-reply-link' href='#comment-5' onclick='return addComment.moveForm( "comment-5", "5", "respond", "1268" )' aria-label='Reply to John Smith'>Reply</a></div>
-                                                    </header>
-                                                    <section class="comment-content">
-                                                        <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                                                    </section>
-                                                </div>
-                                            </article>
-                                        </li>
-                                        <li class="comment byuser comment-author-superuser bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-6">
-                                            <article id="comment-6" class="comment-article">
-                                                <div class="comment-avatar"><img alt='' src='<%= request.getAttribute("sitePath") %>/public/fe/upload/c4ffc7a48d6a02dac31975c893fa7ddb.jpeg'  height='90' width='90' /></div>
-                                                <div class="comment-body">
-                                                    <header class="comment-meta">
-                                                        <div class="comment-author traveltour-title-font">John Smith</div>
-                                                        <div class="comment-time traveltour-info-font">
-                                                            <a href="index.html#comment-6">
-                                                                <time datetime="2016-11-26T15:05:18+00:00"> November 26, 2016 at 3:05 pm </time>
-                                                            </a>
-                                                        </div>
-                                                        <div class="comment-reply"> <a rel='nofollow' class='comment-reply-link' href='#comment-6' onclick='return addComment.moveForm( "comment-6", "6", "respond", "1268" )' aria-label='Reply to John Smith'>Reply</a></div>
-                                                    </header>
-                                                    <section class="comment-content">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                    </section>
-                                                </div>
-                                            </article>
-                                        </li>
+                                    <div class="traveltour-comments-title"><%= blog.getComments().size() %> Comments</div>
+                                    <ol class="comment-list" id="commentList">
+                                        
                                     </ol>
                                     <div id="respond" class="comment-respond">
                                         <h4 id="reply-title" class="comment-reply-title traveltour-content-font">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Cancel Reply</a></small></h4>
@@ -216,7 +164,80 @@
     </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
 
     <%@include file="./layout/scripts.jsp" %>
-
+    <script>
+    
+    	
+    
+    	function getBlogs(page){
+    		jQuery.ajax({
+   			  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/blog/getcomment",
+   			  method: "post",
+   				contentType: "application/json",
+   				dataType: "json",
+   			  data: JSON.stringify({
+   				  blog_slug: "<%= blog.getSlug() %>",
+   				  page: page,
+   			  }),
+   			}).success(function(data){
+   				
+   				if(data.pagination.firstPage < data.pagination.currentPage){
+   					jQuery('.comment-nav[rel="prev"]').css("display", "inline-block");
+   					jQuery('.comment-nav[rel="prev"]').attr("data-page", data.pagination.currentPage - 1);
+   				}else{
+   					jQuery('.comment-nav[rel="prev"]').css("display", "none");
+   					jQuery('.comment-nav[rel="prev"]').attr("data-page", "");
+   				}
+   				
+   				if(data.pagination.lastPage > data.pagination.currentPage){
+   					jQuery('.comment-nav[rel="next"]').css("display", "inline-block");
+   					jQuery('.comment-nav[rel="next"]').attr("data-page", data.pagination.currentPage + 1);
+   				}else{
+   					jQuery('.comment-nav[rel="next"]').css("display", "none");
+   					jQuery('.comment-nav[rel="next"]').attr("data-page", "");
+   				}
+   				
+   				var template = '';
+   				data.pagination.data.forEach((element, position, array) => {
+   					
+   					template+='<li class="comment byuser comment-author-superuser bypostauthor even thread-even depth-1">';
+   					template+='    <article id="comment-5" class="comment-article">';
+   					template+='        <div class="comment-avatar"><img alt="" src="<%= request.getAttribute("sitePath") %>/public/fe/upload/c4ffc7a48d6a02dac31975c893fa7ddb.jpeg" class="avatar avatar-90 photo" height="90" width="90" /></div>';
+   					template+='        <div class="comment-body">';
+   					template+='            <header class="comment-meta">';
+   					template+='                <div class="comment-author traveltour-title-font">'+element.name+'</div>';
+   					template+='                <div class="comment-time traveltour-info-font">';
+   					template+='                    <a href="index.html#comment-5">';
+   					template+='                        <time datetime="'+element.created_time+'"> '+element.created_time+' </time>';
+   					template+='                    </a>';
+   					template+='                </div>';
+   					template+='            </header>';
+   					template+='            <section class="comment-content">';
+   					template+='                <p>'+element.content+'</p>';
+   					template+='            </section>';
+   					template+='        </div>';
+   					template+='    </article>';
+   					template+='</li>';
+   					
+   					
+   				});
+   				
+   				jQuery('#commentList').html(template);
+   				
+   			}).error(function(){
+   				console.error("error");
+   			}).done(function() {
+   			  
+   			});
+    	}
+    	
+    	jQuery('.comment-nav').click(function(){
+    		var dataPage = jQuery(this).attr("data-page");
+    		getBlogs(parseInt(dataPage));
+    	});
+    	
+    	getBlogs(1);
+    	
+    </script>
 
 </body>
 </html>
