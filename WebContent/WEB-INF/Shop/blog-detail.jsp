@@ -96,32 +96,21 @@
                                         
                                     </ol>
                                     <div id="respond" class="comment-respond">
-                                        <h4 id="reply-title" class="comment-reply-title traveltour-content-font">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Cancel Reply</a></small></h4>
-                                        <form action="#" method="post" id="commentform" class="comment-form" novalidate>
+                                        <h4 id="reply-title" class="comment-reply-title traveltour-content-font">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Cancel Reply</a></small></h4>
+                                        <form action="javascript:void(0);" method="post" id="commentform" class="comment-form" novalidate>
                                             <div class="comment-form-comment">
-                                                <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment*"></textarea>
+                                                <textarea id="comment" name="content" cols="45" rows="8" aria-required="true" placeholder="Comment*"></textarea>
                                             </div>
                                             <div class="comment-form-head">
                                                 <div class="traveltour-comment-form-author">
-                                                    <input id="author" name="author" type="text" value="" placeholder="Name*" size="30" aria-required='true' />
+                                                    <input id="author" name="name" type="text" value="" placeholder="Name*" size="30" aria-required='true' />
                                                 </div>
                                                 <div class="traveltour-comment-form-email">
                                                     <input id="email" name="email" type="text" value="" placeholder="Email*" size="30" aria-required='true' />
                                                 </div>
-                                                <input id="url" name="url" type="text" value="" placeholder="Website" size="30" />
-                                                <div class="clear"></div>
                                             </div>
-                                            <p class="comment-form-cookies-consent">
-                                                <input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" />
-                                                <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>
-                                            </p>
                                             <p class="form-submit">
                                                 <input name="submit" type="submit" id="submit" class="submit" value="Post Comment" />
-                                            </p>
-                                            <p class="antispam-group antispam-group-q" style="clear: both;">
-                                                <label>Current ye@r <span class="required">*</span></label>
-                                                <input type="hidden" name="antspm-a" class="antispam-control antispam-control-a" value="2018" />
-                                                <input type="text" name="antspm-q" class="antispam-control antispam-control-q" value="5.2" autocomplete="off" />
                                             </p>
                                             <p class="antispam-group antispam-group-e" style="display: none;">
                                                 <label>Leave this field empty</label>
@@ -237,6 +226,61 @@
     	
     	getBlogs(1);
     	
+    </script>
+    
+    <script>
+	    jQuery('#commentform').submit(function(){
+			var validator = jQuery('#commentform').validate({
+		        rules: {
+		        	name: {
+		                required: true,
+		                normalizer: function(value) {
+							return jQuery.trim(value);
+						},
+		            },
+		            email: {
+		                required: true,
+		                email: true,
+		                normalizer: function(value) {
+							return jQuery.trim(value);
+						},
+		            },
+		            content: {
+		                required: true,
+		                normalizer: function(value) {
+							return jQuery.trim(value);
+						},
+		            },
+		        }
+		    });
+			if(validator.form()){
+				jQuery.ajax({
+				  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/blog/comment",
+				  method: "post",
+					contentType: "application/json",
+					dataType: "json",
+				  data: JSON.stringify({
+					  blog_id: "<%= blog.getId() %>",
+					  name: jQuery('#commentform [name="name"]').val(),
+					  email: jQuery('#commentform [name="email"]').val(),
+					  content: jQuery('#commentform [name="content"]').val(),
+				  }),
+				}).success(function(data){
+					swal("Submit successful !", "Your comment has been commited.", "success");
+				  	jQuery('#commentform [name="name"]').val("");
+				  	jQuery('#commentform [name="email"]').val("");
+				  	jQuery('#commentform [name="content"]').val("");
+				}).error(function(){
+					console.error("error");
+				}).done(function() {
+				  
+				});
+			}else{
+				swal("Error validation !", "Please all fields in comment form !", "error");
+			}
+			return false;
+		});
+    
     </script>
 
 </body>
