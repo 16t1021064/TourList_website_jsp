@@ -42,6 +42,11 @@ public class CommentFactory {
 		
 	}
 	
+	public ArrayList<Comment> gets(String id, int limit){
+		ArrayList<Comment> arrComments = this.querySearchArr(id, 1, limit, null);
+		return arrComments;
+	}
+	
 	protected long querySearchCnt(String blogId, String type) {
 		String sql = this.getSql(blogId, type);
 		String sql2 = "select count(*) from ( "+sql+" ) AS QueryTable";
@@ -87,8 +92,10 @@ public class CommentFactory {
 		query+="     travel_comment.* ";
 		query+=" FROM ";
 		query+="     travel_comment ";
+		if(blogId != null) {
 		query+=" WHERE ";
 		query+="     travel_comment.blog_id = '"+blogId+"' ";
+		}
 		query+=" ORDER BY travel_comment.created_time DESC ";
 		return query;
 	}
