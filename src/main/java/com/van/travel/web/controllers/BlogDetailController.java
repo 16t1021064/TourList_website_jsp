@@ -15,6 +15,7 @@ import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Comment;
 import com.van.travel.models.Tag;
+import com.van.travel.web.factories.BlogTagFactory;
 import com.van.travel.web.factories.CommentFactory;
 import com.van.travel.web.factories.TagFactory;
 
@@ -50,6 +51,8 @@ public class BlogDetailController extends ShopController {
 		} else {
 			blog = (new Blog()).findWithSlug(slug);
 		}
+		
+		(new BlogTagFactory()).countWithBlog(blog.getId());
 		
 		
 		request.setAttribute("blog", blog);

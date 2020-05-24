@@ -13,6 +13,7 @@ import com.van.travel.common.DateConvertion;
 import com.van.travel.common.PaginationData;
 import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.Tag;
+import com.van.travel.web.factories.BlogTagFactory;
 import com.van.travel.web.factories.SearchBlogFactory;
 
 /**
@@ -91,6 +92,7 @@ public class SearchBlogController  extends ShopController {
 					Tag tagObj  = (new Tag()).findWithText(tag);
 					if(tagObj != null) {
 						tag = tagObj.getName();
+						(new BlogTagFactory()).countWithTag(tagObj.getId());
 					}else {
 						tag = null;
 					}
