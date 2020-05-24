@@ -58,6 +58,7 @@
 							            <li class="menu-item" data-size="60"><a href="<%= request.getAttribute("sitePath") %>/tours?type=upcoming">Upcoming Tours</a></li>
 							        </ul>
 							    </li>
+							    <li class="menu-item traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/blogs">Blogs</a></li>
 							    <li class="menu-item traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/services">Services</a></li>
 							    <li class="menu-item traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/about">About</a></li>
 							    <li class="menu-item traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/contact">Contact</a></li>
