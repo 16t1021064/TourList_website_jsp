@@ -19,12 +19,14 @@ public class Blog extends AbstractModel {
 	protected String id;
 	private String title;
 	private String thumbnail;
+	private String thumbnail150x150;
 	private String slug;
 	private String summary;
 	private String content;
 	private String author;
 	private Date createdTime;
 	private long viewCount;
+	private Date recentViewTime;
 	
 	private String createdTime_MonthFull;
 	private String createdTime_MonthShort;
@@ -34,6 +36,18 @@ public class Blog extends AbstractModel {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getThumbnail150x150() {
+		return thumbnail150x150;
+	}
+	public void setThumbnail150x150(String thumbnail150x150) {
+		this.thumbnail150x150 = thumbnail150x150;
+	}
+	public Date getRecentViewTime() {
+		return recentViewTime;
+	}
+	public void setRecentViewTime(Date recentViewTime) {
+		this.recentViewTime = recentViewTime;
 	}
 	public long getViewCount() {
 		return viewCount;
@@ -120,12 +134,14 @@ public class Blog extends AbstractModel {
 			blog.setId(rs.getString("id"));
 			blog.setTitle(rs.getString("title"));
 			blog.setThumbnail(rs.getString("thumbnail"));
+			blog.setThumbnail150x150(rs.getString("thumbnail150x150"));
 			blog.setSlug(rs.getString("slug"));
 			blog.setSummary(rs.getString("summary"));
 			blog.setContent(rs.getString("content"));
 			blog.setAuthor(rs.getString("author"));
 			blog.setCreatedTime(dateConvertion.toUtilDate(rs.getTimestamp("created_time")));
 			blog.setViewCount(rs.getLong("view_count"));
+			blog.setRecentViewTime(dateConvertion.toUtilDate(rs.getTimestamp("recent_view_time")));
 			return blog;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -140,11 +156,11 @@ public class Blog extends AbstractModel {
 			String sql;
 			if(isNew) {
 				sql = " INSERT INTO "+this.tableName+" ";
-				sql += "			(id, title, thumbnail, slug, summary, content, author, created_time, view_count) ";
-				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+				sql += "			(id, title, thumbnail, thumbnail150x150, slug, summary, content, author, created_time, view_count) ";
+				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			}else {
 				sql = " UPDATE "+this.tableName+" ";
-				sql += " 	SET title=?, thumbnail=?, slug=?, summary=?, content=?, author=?, created_time=?, view_count=? ";
+				sql += " 	SET title=?, thumbnail=?, thumbnail150x150=?, slug=?, summary=?, content=?, author=?, created_time=?, view_count=? ";
 				sql += "	WHERE id=? ";
 			}
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -153,6 +169,7 @@ public class Blog extends AbstractModel {
 				stmt.setString(++i, this.id);
 				stmt.setString(++i, this.title);
 				stmt.setString(++i, this.thumbnail);
+				stmt.setString(++i, this.thumbnail150x150);
 				stmt.setString(++i, this.slug);
 				stmt.setString(++i, this.summary);
 				stmt.setString(++i, this.content);
@@ -163,6 +180,7 @@ public class Blog extends AbstractModel {
 				int i=0;
 				stmt.setString(++i, this.title);
 				stmt.setString(++i, this.thumbnail);
+				stmt.setString(++i, this.thumbnail150x150);
 				stmt.setString(++i, this.slug);
 				stmt.setString(++i, this.summary);
 				stmt.setString(++i, this.content);
@@ -204,11 +222,12 @@ public class Blog extends AbstractModel {
 			return (Blog) o;
 		}
 	}
-	public Blog create(String title, String thumbnail, String slug, String summary, String content, String author, Date createdTime, long viewCount) {
+	public Blog create(String title, String thumbnail, String thumbnail150x150, String slug, String summary, String content, String author, Date createdTime, long viewCount) {
 		Blog blog = new Blog();
 		blog.setId(UUID.randomUUID().toString());
 		blog.setTitle(title);
 		blog.setThumbnail(thumbnail);
+		blog.setThumbnail150x150(thumbnail150x150);
 		blog.setSlug(slug);
 		blog.setSummary(summary);
 		blog.setContent(content);
@@ -217,9 +236,10 @@ public class Blog extends AbstractModel {
 		blog.setViewCount(viewCount);
 		return (Blog) blog.save(true);
 	}
-	public Blog update(String title, String thumbnail, String slug, String summary, String content, String author, Date createdTime, long viewCount) {
+	public Blog update(String title, String thumbnail, String thumbnail150x150, String slug, String summary, String content, String author, Date createdTime, long viewCount) {
 		this.setTitle(title);
 		this.setThumbnail(thumbnail);
+		this.setThumbnail150x150(thumbnail150x150);
 		this.setSlug(slug);
 		this.setSummary(summary);
 		this.setContent(content);

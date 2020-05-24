@@ -1,6 +1,7 @@
 package com.van.travel.web.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -12,9 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.van.travel.common.DateConvertion;
 import com.van.travel.common.PaginationData;
 import com.van.travel.common.controllers.ShopController;
+import com.van.travel.models.Blog;
+import com.van.travel.models.Comment;
 import com.van.travel.models.Tag;
+import com.van.travel.web.factories.BlogFactory;
 import com.van.travel.web.factories.BlogTagFactory;
+import com.van.travel.web.factories.CommentFactory;
 import com.van.travel.web.factories.SearchBlogFactory;
+import com.van.travel.web.factories.TagFactory;
 
 /**
  * Servlet implementation class SearchBlogController
@@ -110,6 +116,15 @@ public class SearchBlogController  extends ShopController {
 		request.setAttribute("dataBlogs", dataBlogs);
 		
 		request.setAttribute("filters", new Object[] {type, q, tag});
+		
+		ArrayList<Comment> newestComments = (new CommentFactory()).gets(null, 5);
+		request.setAttribute("newestComments", newestComments);
+		
+		ArrayList<Tag> hotTags = (new TagFactory()).getHotTags(10);
+		request.setAttribute("hotTags", hotTags);
+		
+		ArrayList<Blog> recentViewBlogs = (new BlogFactory()).getRecentViewBlogs(9);
+		request.setAttribute("recentViewBlogs", recentViewBlogs);
 		
 		request.getRequestDispatcher("/WEB-INF/Shop/blogs.jsp").forward(request, response);
 				

@@ -50,6 +50,7 @@ public class EditBlogAdmin extends AdminController {
 		Blog blog = (new Blog()).find(id);
 		String title = request.getParameter("title");
 		String thumbnail = request.getParameter("thumbnail");
+		String thumbnail150x150 = request.getParameter("thumbnail150x150");
 		String slug = request.getParameter("slug");
 		String summary = request.getParameter("summary");
 		String content = request.getParameter("content");
@@ -65,7 +66,7 @@ public class EditBlogAdmin extends AdminController {
 			// existed slug
 			blog2 = blog;
 		}else {
-			blog2 = blog.update(title, thumbnail, slug, summary, content, author, createdTime, viewCount);
+			blog2 = blog.update(title, thumbnail, thumbnail150x150, slug, summary, content, author, createdTime, viewCount);
 			String tags = request.getParameter("tags");
 			blog2.setTags(tags);
 		}

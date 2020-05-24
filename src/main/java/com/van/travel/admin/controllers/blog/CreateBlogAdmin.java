@@ -45,6 +45,7 @@ public class CreateBlogAdmin extends AdminController {
 		response.setCharacterEncoding("utf-8");
 		String title = request.getParameter("title");
 		String thumbnail = request.getParameter("thumbnail");
+		String thumbnail150x150 = request.getParameter("thumbnail150x150");
 		String slug = request.getParameter("slug") + "-" + System.currentTimeMillis();
 		String summary = request.getParameter("summary");
 		String content = request.getParameter("content");
@@ -53,7 +54,7 @@ public class CreateBlogAdmin extends AdminController {
 		Date createdTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(createdTime_text.trim());
 		String viewCount_text = request.getParameter("view_count");
 		long viewCount = Long.parseLong(viewCount_text);
-		Blog blog = (new Blog()).create(title, thumbnail, slug, summary, content, author, createdTime, viewCount);
+		Blog blog = (new Blog()).create(title, thumbnail, thumbnail150x150, slug, summary, content, author, createdTime, viewCount);
 		String tags = request.getParameter("tags");
 		blog.setTags(tags);
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/blog/edit?id="+blog.getId());
