@@ -49,7 +49,7 @@
                                         <div class="traveltour-blog-info traveltour-blog-info-font traveltour-blog-info-category">
                                         	<span class="traveltour-head"><i class="icon_folder-alt" ></i></span>
                                         	<% for(BlogTag blogTag : blog.getBlogTags()){ %>
-                                        	<a href="javascript:void(0)" rel="tag"><%= blogTag.getTag().getName() %></a><span class="gdlr-core-sep">,</span> 
+                                        	<a href="<%= request.getAttribute("sitePath") %>/blogs?tag=<%= blogTag.getTag().getName() %>" rel="tag"><%= blogTag.getTag().getName() %></a><span class="gdlr-core-sep">,</span> 
                                         	<% } %>
                                         </div>
                                         <div class="traveltour-blog-info traveltour-blog-info-font traveltour-blog-info-comment-number"><span class="traveltour-head"><i class="icon_comment_alt" ></i></span><%= blog.getComments().size() %></div>
@@ -144,7 +144,7 @@
                                     <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Tag Cloud</span></h3><span class="clear"></span>
                                     <div class="tagcloud">
                                     	<% for(Tag tag : hotTags){ %>
-                                    	<a href="<%= request.getAttribute("sitePath") %>/blogs?tag=<%= tag.getId() %>" class="tag-cloud-link tag-link-5 tag-link-position-1" style="font-size: 8pt;" aria-label=""><%= tag.getName() %></a> 
+                                    	<a href="<%= request.getAttribute("sitePath") %>/blogs?tag=<%= tag.getName() %>" class="tag-cloud-link tag-link-5 tag-link-position-1" style="font-size: 8pt;" aria-label=""><%= tag.getName() %></a> 
                                     	<% } %>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
    				contentType: "application/json",
    				dataType: "json",
    			  data: JSON.stringify({
-   				  blog_slug: "<%= blog.getSlug() %>",
+   				  blog_slug: "<%= blog.getSlug() %>",R
    				  page: page,
    			  }),
    			}).success(function(data){

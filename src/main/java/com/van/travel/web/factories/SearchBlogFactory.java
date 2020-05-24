@@ -10,10 +10,10 @@ import com.van.travel.common.PaginationData;
 import com.van.travel.models.Blog;
 
 public class SearchBlogFactory {
-	public PaginationData search(int page, String type, String q) {
+	public PaginationData search(int page, String type, String q, String tag) {
 		int limit = 2;
 		
-		long totalItem = this.querySearchCnt(page, limit, type, q);
+		long totalItem = this.querySearchCnt(page, limit, type, q, tag);
 		
 		long totalPage = totalItem / limit;
 		
@@ -31,13 +31,13 @@ public class SearchBlogFactory {
 		long firstIndex = 0;
 		long lastIndex = 0;
 		long perPage = limit;
-		ArrayList<Blog> arrBlogs = this.querySearchArr(page, limit, type, q);
+		ArrayList<Blog> arrBlogs = this.querySearchArr(page, limit, type, q, tag);
 		PaginationData paginationData = new PaginationData(totalItem, totalPage, firstPage, lastPage, currentPage, firstIndex, lastIndex, perPage, arrBlogs);
 		return paginationData;
 	}
 	
-	protected long querySearchCnt(int page, int limit, String type, String q) {
-		String sql = this.getSql(page, limit, type, q);
+	protected long querySearchCnt(int page, int limit, String type, String q, String tag) {
+		String sql = this.getSql(page, limit, type, q, tag);
 		String sql2 = "select count(*) from ( "+sql+" ) AS QueryTable";
 		
 		
@@ -54,9 +54,9 @@ public class SearchBlogFactory {
 		return 0;
 	}
 	
-	protected ArrayList<Blog> querySearchArr(int page, int limit, String type, String q) {
+	protected ArrayList<Blog> querySearchArr(int page, int limit, String type, String q, String tag) {
 		int offset = (page - 1) * limit;
-		String sql = this.getSql(page, limit, type, q);
+		String sql = this.getSql(page, limit, type, q, tag);
 		sql+=" LIMIT "+limit+" OFFSET "+offset+" ";
 		
 		ArrayList<Blog> blogs = new ArrayList<Blog>();
@@ -75,18 +75,31 @@ public class SearchBlogFactory {
 		return blogs;
 	}
 	
-	protected String getSql(int page, int limit, String type, String q) {
+	protected String getSql(int page, int limit, String type, String q, String tag) {
 		if(q == null) {
 			q="";
 		}
 		String sql = "";
+		
 		sql+=" SELECT  ";
 		sql+="     travel_blog.* ";
 		sql+=" FROM ";
 		sql+="     travel_blog ";
-		sql+=" WHERE ";
+		sql+="         JOIN ";
+		sql+="     travel_blog_tag ON travel_blog_tag.blog_id = travel_blog.id ";
+		sql+="         JOIN ";
+		sql+="     travel_tag ON travel_blog_tag.tag_id = travel_tag.id ";
+		sql+=" WHERE ( ";
 		sql+="     (travel_blog.title LIKE '%"+q+"%') ";
+		if(tag != null) {
+			sql+="         AND (travel_tag.name = '"+tag+"') ";
+		}
+		sql+="       ) ";
+		sql+=" GROUP BY travel_blog.id ";
 		sql+=" ORDER BY travel_blog.created_time DESC ";
+		
+		
 		return sql;
 	}
+	
 }

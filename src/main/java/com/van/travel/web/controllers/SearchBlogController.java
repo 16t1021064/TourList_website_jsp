@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.van.travel.common.DateConvertion;
 import com.van.travel.common.PaginationData;
 import com.van.travel.common.controllers.ShopController;
+import com.van.travel.models.Tag;
 import com.van.travel.web.factories.SearchBlogFactory;
 
 /**
@@ -72,19 +73,41 @@ public class SearchBlogController  extends ShopController {
 				}
 			}
 			
-			
-			
 		}else {
 			q = null;
 		}
 		
+		String tag;
+		if(type == null) {
+			
+			tag = request.getParameter("tag");
+			if(tag == null) {
+				
+			}else {
+				tag = tag.trim();
+				if(tag.equals("")) {
+					tag = null;
+				}else {
+					Tag tagObj  = (new Tag()).findWithText(tag);
+					if(tagObj != null) {
+						tag = tagObj.getName();
+					}else {
+						tag = null;
+					}
+				}
+			}
+			
+		}else {
+			tag = null;
+		}
+		
 		SearchBlogFactory searchBlogFactory = new SearchBlogFactory();
 		
-		PaginationData dataBlogs = searchBlogFactory.search(page, type, q);
+		PaginationData dataBlogs = searchBlogFactory.search(page, type, q, tag);
 		
 		request.setAttribute("dataBlogs", dataBlogs);
 		
-		request.setAttribute("filters", new Object[] {type, q});
+		request.setAttribute("filters", new Object[] {type, q, tag});
 		
 		request.getRequestDispatcher("/WEB-INF/Shop/blogs.jsp").forward(request, response);
 				

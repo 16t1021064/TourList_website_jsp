@@ -86,7 +86,7 @@
                                                     <% } %>
                                                 </div>
                                                 <div class="custom-pagination" data-total-page="<%= dataBlogs.totalPage %>" data-current-page="<%= dataBlogs.currentPage %>" 
-                                            		data-path-default="<%= request.getAttribute("sitePath") %>/blogs?q=<%= filters[1] == null ? "" : filters[1] %><% if(filters[0] != null){ %>&type=<%= filters[0] %><% } %>"></div>
+                                            		data-path-default="<%= request.getAttribute("sitePath") %>/blogs?q=<%= filters[1] == null ? "" : filters[1] %><% if(filters[0] != null){ %>&type=<%= filters[0] %><% } %><% if(filters[2] != null){ %>&tag=<%= filters[2] %><% } %>"></div>
                                             </div>
                                         </div>
                                     </div>
