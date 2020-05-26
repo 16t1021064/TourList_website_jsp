@@ -5,3 +5,15 @@
 .custom-label-sale .tourmaster-thumbnail-ribbon-cornor{
 	border-right-color: rgba(232, 94, 52, 0.5);
 }
+
+.custom-icon{
+	font-size: 20px;
+}
+
+.custom-award{
+	height: 60px;
+	width: auto;
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}

@@ -17,6 +17,7 @@ import com.van.travel.models.Tour;
 import com.van.travel.web.factories.ActivityFactory;
 import com.van.travel.web.factories.BlogFactory;
 import com.van.travel.web.factories.DestinationFactory;
+import com.van.travel.web.factories.SearchBlogFactory;
 import com.van.travel.web.factories.TourFactory;
 
 /**
@@ -43,7 +44,8 @@ public class HomeController extends ShopController {
 		TourFactory tourFactory = new TourFactory();
 		DestinationFactory destinationFactory = new DestinationFactory();
 		ActivityFactory activityFactory = new ActivityFactory();
-		BlogFactory blogFactory = new BlogFactory();
+//		BlogFactory blogFactory = new BlogFactory();
+		SearchBlogFactory searchBlogFactory = new SearchBlogFactory();
 		
 		ArrayList<Tour> listHotTours = tourFactory.getHotTours(8);
 		request.setAttribute("listHotTours", listHotTours);
@@ -54,7 +56,7 @@ public class HomeController extends ShopController {
 		ArrayList<Activity> listHotActivities = activityFactory.getHotActivities(8);
 		request.setAttribute("listHotActivities", listHotActivities);
 		
-		ArrayList<Blog> listHotBlogs = blogFactory.getHotBlogs();
+		ArrayList<Blog> listHotBlogs = searchBlogFactory.searchArr(1, 4, null, null, null);
 		request.setAttribute("listHotBlogs", listHotBlogs);
 		
 		ArrayList<Destination> filterHotDestinations = destinationFactory.getHotDestinations(15);

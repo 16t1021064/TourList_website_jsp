@@ -460,7 +460,7 @@
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_29f0_39">
                                         <div class="gdlr-core-title-item-title-wrap">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_5"><span class="gdlr-core-title-item-left-icon" id="span_29f0_12"  ><i class="icon_lightbulb_alt" id="i_29f0_8"  ></i></span>Travel Articles<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3><a href="#" target="_self" class="gdlr-core-title-item-link"><span class="gdlr-core-separator" >/</span>Read All Articles</a></div>
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_5"><span class="gdlr-core-title-item-left-icon" id="span_29f0_12"  ><i class="icon_lightbulb_alt" id="i_29f0_8"  ></i></span>Travel Articles<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3><a href="<%= request.getAttribute("sitePath") %>/blogs" target="_self" class="gdlr-core-title-item-link"><span class="gdlr-core-separator" >/</span>Read All Articles</a></div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
@@ -472,8 +472,8 @@
                                                     <div class="gdlr-core-blog-modern-inner">
                                                         <div class="gdlr-core-blog-thumbnail gdlr-core-media-image"><img src="<%= blog.getThumbnail() %>" alt="" width="700" height="660" /></div>
                                                         <div class="gdlr-core-blog-modern-content  gdlr-core-center-align" id="div_29f0_41">
-                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title"><a href="#" ><%= blog.getTitle() %></a></h3>
-                                                            <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="#"><%= dateConvertion.toStringDate(blog.getCreatedTime()) %></a></span>
+                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title"><a href="<%= request.getAttribute("sitePath") %>/blog?slug=<%= blog.getSlug() %>" ><%= blog.getTitle() %></a></h3>
+                                                            <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="<%= request.getAttribute("sitePath") %>/blog?slug=<%= blog.getSlug() %>"><%= dateConvertion.toStringDate(blog.getCreatedTime()) %></a></span>
                                                             </div>
                                                         </div>
                                                     </div>

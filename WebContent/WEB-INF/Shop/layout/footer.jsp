@@ -1,14 +1,26 @@
+
+<%@page import="java.util.Date"%>
+<%@page import="com.van.travel.common.DateConvertion"%>
+<%@page import="com.van.travel.models.setting.InfosSetting"%>
 <%@page import="com.van.travel.models.Destination"%>
 <%@page import="com.van.travel.web.views.FooterView"%>
 <%
 	FooterView footer_footerView = new FooterView();
+	InfosSetting shopCtrl_InfosSetting_footer = (InfosSetting) request.getAttribute("shopCtrl_InfosSetting");
+	DateConvertion dateConvertion_footer = new DateConvertion("yyyy");
 %>
             <footer>
                 <div class="traveltour-footer-wrapper  traveltour-with-column-divider">
                     <div class="traveltour-footer-container traveltour-container clearfix">
                         <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
                             <div id="text-1" class="widget widget_text traveltour-widget">
-                                <div class="textwidget"><img src="<%= request.getAttribute("sitePath") %>/public/fe/images/logo.png" alt="" /> <span class="gdlr-core-space-shortcode" id="span_29f0_13"></span> Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. <span class="gdlr-core-space-shortcode" id="span_29f0_14"></span> <img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/award-1.png" alt="" width="140" id="img_29f0_0" /> <img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/award-2.png" alt="" width="65" /></div>
+                                <div class="textwidget">
+                                	<img src="<%= shopCtrl_InfosSetting_footer.data.get("shop_logo") %>" alt="" /> 
+                                	<span class="gdlr-core-space-shortcode" id="span_29f0_13"></span> 
+                                	<%= footer_footerView.footerSetting.data.get("description") %> 
+                                	<span class="gdlr-core-space-shortcode" id="span_29f0_14"></span> 
+                                	<% for(Object award : footer_footerView.footerSetting.getAwards()){ %><img src="<%= award %>" alt="" class="custom-award" /> <% } %>
+                                </div>
                             </div>
                         </div>
                         <div class="traveltour-footer-column traveltour-item-pdlr traveltour-column-20">
@@ -34,13 +46,34 @@
                             <div id="text-2" class="widget widget_text traveltour-widget">
                                 <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Contact Info</span></h3><span class="clear"></span>
                                 <div class="textwidget">
-                                    <p>Address : 123 Main Street Hue
+                                    <p>Address : <%= shopCtrl_InfosSetting_footer.data.get("shop_address") %>
                                         <br /> <span class="gdlr-core-space-shortcode" id="span_29f0_15"></span>
-                                        <br /> Phone : +0123456789
+                                        <br /> Phone : <%= shopCtrl_InfosSetting_footer.data.get("shop_phone") %>
                                         <br /> <span class="gdlr-core-space-shortcode" id="span_29f0_16"></span>
-                                        <br /> contact@traveltour.com</p>
+                                        <br /> Email : <%= shopCtrl_InfosSetting_footer.data.get("shop_email") %></p>
                                     <p><span class="gdlr-core-space-shortcode" id="span_29f0_17"></span>
-                                        <br /> <a href="#" target="_blank"><i class="fa fa-facebook" id="i_29f0_9"  ></i></a> <a href="#" target="_blank"><i class="fa fa-twitter" id="i_29f0_10"  ></i></a> <a href="#" target="_blank"><i class="fa fa-linkedin" id="i_29f0_11"  ></i></a> <a href="#" target="_blank"><i class="fa fa-pinterest-p" id="i_29f0_12"  ></i></a> <a href="#" target="_blank"><i class="fa fa-vimeo" id="i_29f0_13"  ></i></a></p>
+                                        <br /> 
+                                         <% if(!shopCtrl_InfosSetting_footer.data.get("shop_media_fb").equals("")){ %>
+						                 <a href="<%= shopCtrl_InfosSetting_footer.data.get("shop_media_fb") %>" class="custom-icon" target="_blank" title="facebook">
+						                     <i class="fa fa-facebook" ></i>
+						                 </a> &nbsp;&nbsp;
+						                 <% } %>
+						                 <% if(!shopCtrl_InfosSetting_footer.data.get("shop_media_yt").equals("")){ %>
+						                 <a href="<%= shopCtrl_InfosSetting_footer.data.get("shop_media_yt") %>" class="custom-icon" target="_blank" title="youtube">
+						                     <i class="fa fa-youtube" ></i>
+						                 </a> &nbsp;&nbsp;
+						                 <% } %>
+						                 <% if(!shopCtrl_InfosSetting_footer.data.get("shop_media_ig").equals("")){ %>
+						                 <a href="<%= shopCtrl_InfosSetting_footer.data.get("shop_media_ig") %>" class="custom-icon" target="_blank" title="instagram">
+						                     <i class="fa fa-instagram" ></i>
+						                 </a> &nbsp;&nbsp;
+						                 <% } %>
+						                 <% if(!shopCtrl_InfosSetting_footer.data.get("shop_media_tw").equals("")){ %>
+						                 <a href="<%= shopCtrl_InfosSetting_footer.data.get("shop_media_tw") %>" class="custom-icon" target="_blank" title="twitter">
+						                     <i class="fa fa-twitter" ></i>
+						                 </a> &nbsp;&nbsp;
+						                 <% } %>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +81,7 @@
                 </div>
                 <div class="traveltour-copyright-wrapper">
                     <div class="traveltour-copyright-container traveltour-container">
-                        <div class="traveltour-copyright-text traveltour-item-pdlr">Copyright 2020 travel tour, All Right Reserved</div>
+                        <div class="traveltour-copyright-text traveltour-item-pdlr">Copyright <%= dateConvertion_footer.toStringDate(new Date()) %> <%= shopCtrl_InfosSetting_footer.data.get("shop_name") %>, All Right Reserved</div>
                     </div>
                 </div>
             </footer>

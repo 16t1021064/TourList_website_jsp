@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.controllers.AdminController;
 import com.van.travel.models.Tag;
+import com.van.travel.models.setting.FooterSetting;
 import com.van.travel.models.setting.InfosSetting;
 
 /**
@@ -37,6 +38,8 @@ public class GeneralSettingAdmin extends AdminController {
 		
 		InfosSetting infosSetting = new InfosSetting();
 		request.setAttribute("infosSetting", infosSetting);
+		FooterSetting footerSetting = new FooterSetting();
+		request.setAttribute("footerSetting", footerSetting);
 		
 		request.getRequestDispatcher("/WEB-INF/Admin/setting-general.jsp").forward(request, response);
 	}
@@ -69,23 +72,41 @@ public class GeneralSettingAdmin extends AdminController {
 			if(!shop_phone.isEmpty()) {
 				infosSetting.data.put("shop_phone", shop_phone);
 			}
+			String shop_address = request.getParameter("shop_address");
+			if(!shop_phone.isEmpty()) {
+				infosSetting.data.put("shop_address", shop_address);
+			}
 			String shop_media_fb = request.getParameter("shop_media_fb");
-			if(!shop_media_fb.isEmpty()) {
+//			if(!shop_media_fb.isEmpty()) {
 				infosSetting.data.put("shop_media_fb", shop_media_fb);
-			}
+//			}
 			String shop_media_yt = request.getParameter("shop_media_yt");
-			if(!shop_media_yt.isEmpty()) {
+//			if(!shop_media_yt.isEmpty()) {
 				infosSetting.data.put("shop_media_yt", shop_media_yt);
-			}
+//			}
 			String shop_media_ig = request.getParameter("shop_media_ig");
-			if(!shop_media_ig.isEmpty()) {
+//			if(!shop_media_ig.isEmpty()) {
 				infosSetting.data.put("shop_media_ig", shop_media_ig);
-			}
+//			}
 			String shop_media_tw = request.getParameter("shop_media_tw");
-			if(!shop_media_tw.isEmpty()) {
+//			if(!shop_media_tw.isEmpty()) {
 				infosSetting.data.put("shop_media_tw", shop_media_tw);
-			}
+//			}
 			infosSetting.wrireData();
+			break;
+			
+		case "fe_footer":
+			FooterSetting footerSetting = new FooterSetting();
+			String description = request.getParameter("description");
+			if(!description.isEmpty()) {
+				footerSetting.data.put("description", description);
+			}
+			String[] awards = request.getParameterValues("awards[]");
+			if(awards == null) {
+				awards = new String[] {};
+			}
+			footerSetting.setAwards(awards);
+			footerSetting.wrireData();
 			break;
 
 		default:

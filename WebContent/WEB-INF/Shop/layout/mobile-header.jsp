@@ -1,7 +1,9 @@
+<%@page import="com.van.travel.models.setting.InfosSetting"%>
 <%@page import="com.van.travel.models.Destination"%>
 <%@page import="com.van.travel.web.views.HeaderView"%>
 <%
-	HeaderView header_headerView2 = new HeaderView();
+	HeaderView header_headerMobileView = new HeaderView();
+	InfosSetting shopCtrl_InfosSetting_mobileHeader = (InfosSetting) request.getAttribute("shopCtrl_InfosSetting");
 %>
 <div class="traveltour-mobile-header-wrap">
         <div class="traveltour-top-bar">
@@ -9,23 +11,31 @@
             
             <div class="traveltour-top-bar-container clearfix traveltour-container ">
                 <div class="traveltour-top-bar-left traveltour-item-pdlr travel-tour-hide-on-mobile">
-                    <i class="fa fa-phone" id="i_b45c_0"></i> 1.820.3345.33 
-                    <i class="fa fa-envelope-o" id="i_b45c_1"></i> Contact@TravelTourWP.com
+                    <i class="fa fa-phone" id="i_b45c_0"></i> <%= shopCtrl_InfosSetting_mobileHeader.data.get("shop_phone") %>  
+                    <i class="fa fa-envelope-o" id="i_b45c_1"></i> <%= shopCtrl_InfosSetting_mobileHeader.data.get("shop_email") %>
                 </div>
                 <div class="traveltour-top-bar-right traveltour-item-pdlr">
                     <div class="traveltour-top-bar-right-social">
-                        <a href="#" target="_blank" class="traveltour-top-bar-social-icon" title="facebook">
-                            <i class="fa fa-facebook" ></i>
-                        </a>
-                        <a href="#" target="_blank" class="traveltour-top-bar-social-icon" title="flickr">
-                            <i class="fa fa-flickr" ></i>
-                        </a>
-                        <a href="#" target="_blank" class="traveltour-top-bar-social-icon" title="google-plus">
-                            <i class="fa fa-google-plus" ></i>
-                        </a>
-                        <a href="#" target="_blank" class="traveltour-top-bar-social-icon" title="twitter">
-                            <i class="fa fa-twitter" ></i>
-                        </a>
+                         <% if(!shopCtrl_InfosSetting_mobileHeader.data.get("shop_media_fb").equals("")){ %>
+		                 <a href="<%= shopCtrl_InfosSetting_mobileHeader.data.get("shop_media_fb") %>" target="_blank" class="traveltour-top-bar-social-icon" title="facebook">
+		                     <i class="fa fa-facebook" ></i>
+		                 </a>
+		                 <% } %>
+		                 <% if(!shopCtrl_InfosSetting_mobileHeader.data.get("shop_media_yt").equals("")){ %>
+		                 <a href="<%= shopCtrl_InfosSetting_mobileHeader.data.get("shop_media_yt") %>" target="_blank" class="traveltour-top-bar-social-icon" title="youtube">
+		                     <i class="fa fa-youtube" ></i>
+		                 </a>
+		                 <% } %>
+		                 <% if(!shopCtrl_InfosSetting_mobileHeader.data.get("shop_media_ig").equals("")){ %>
+		                 <a href="<%= shopCtrl_InfosSetting_mobileHeader.data.get("shop_media_ig") %>" target="_blank" class="traveltour-top-bar-social-icon" title="instagram">
+		                     <i class="fa fa-instagram" ></i>
+		                 </a>
+		                 <% } %>
+		                 <% if(!shopCtrl_InfosSetting_mobileHeader.data.get("shop_media_tw").equals("")){ %>
+		                 <a href="<%= shopCtrl_InfosSetting_mobileHeader.data.get("shop_media_tw") %>" target="_blank" class="traveltour-top-bar-social-icon" title="twitter">
+		                     <i class="fa fa-twitter" ></i>
+		                 </a>
+		                 <% } %>
                     </div>
                 </div>
             </div>
@@ -35,7 +45,7 @@
             <div class="traveltour-mobile-header-container traveltour-container">
                 <div class="traveltour-logo  traveltour-item-pdlr">
                     <div class="traveltour-logo-inner">
-                        <a href="index.html"><img src="<%= request.getAttribute("sitePath") %>/public/fe/images/logo.png" alt="" /></a>
+                        <a href="<%= request.getAttribute("sitePath") %>"><img src="<%= shopCtrl_InfosSetting_mobileHeader.data.get("shop_logo") %>" alt="" /></a>
                     </div>
                 </div>
                 <div class="traveltour-mobile-menu-right">
@@ -60,7 +70,7 @@
                                 <li class="menu-item menu-item-has-children">
                                 	<a href="<%= request.getAttribute("sitePath") %>/destinations">Destinations</a>
                                     <ul class="sub-menu">
-                                    	<% for(Destination des : header_headerView2.destinations){ %>
+                                    	<% for(Destination des : header_headerMobileView.destinations){ %>
                                     	<li class="menu-item"><a href="<%= request.getAttribute("sitePath") %>/tours?des=<%= des.getId() %>"><%= des.getName() %></a></li>
 							            <% } %>
                                     </ul>

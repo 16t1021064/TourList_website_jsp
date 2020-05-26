@@ -171,7 +171,7 @@
    				contentType: "application/json",
    				dataType: "json",
    			  data: JSON.stringify({
-   				  blog_slug: "<%= blog.getSlug() %>",R
+   				  blog_slug: "<%= blog.getSlug() %>",
    				  page: page,
    			  }),
    			}).success(function(data){

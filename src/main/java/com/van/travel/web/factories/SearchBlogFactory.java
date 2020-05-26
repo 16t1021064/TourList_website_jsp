@@ -31,7 +31,7 @@ public class SearchBlogFactory {
 		long firstIndex = 0;
 		long lastIndex = 0;
 		long perPage = limit;
-		ArrayList<Blog> arrBlogs = this.querySearchArr(page, limit, type, q, tag);
+		ArrayList<Blog> arrBlogs = this.searchArr(page, limit, type, q, tag);
 		PaginationData paginationData = new PaginationData(totalItem, totalPage, firstPage, lastPage, currentPage, firstIndex, lastIndex, perPage, arrBlogs);
 		return paginationData;
 	}
@@ -54,7 +54,7 @@ public class SearchBlogFactory {
 		return 0;
 	}
 	
-	protected ArrayList<Blog> querySearchArr(int page, int limit, String type, String q, String tag) {
+	public ArrayList<Blog> searchArr(int page, int limit, String type, String q, String tag) {
 		int offset = (page - 1) * limit;
 		String sql = this.getSql(page, limit, type, q, tag);
 		sql+=" LIMIT "+limit+" OFFSET "+offset+" ";
