@@ -1,13 +1,3 @@
-<%@page import="com.van.travel.models.Tour"%>
-<%@page import="com.van.travel.common.DateConvertion"%>
-<%@page import="com.van.travel.models.Review"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.van.travel.models.Destination"%>
-<%
-
-	Tour tour = (Tour) request.getAttribute("tour");
-
-%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create Enquiry || Admin</title>
+    <title>Create Banner || Admin</title>
 	<%@include file="./layout/style.jsp" %>
   </head>
 
@@ -51,86 +41,86 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="formCreate" action="<%= request.getAttribute("sitePath") %>/admin/enquiry/create" method="post" data-parsley-validate class="form-horizontal form-label-left">
-						<input type="hidden" name="tour_id" value="<%= tour.getId() %>">
-					  <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span>
+                    <form id="formCreate" action="<%= request.getAttribute("sitePath") %>/admin/banner/create" method="post" data-parsley-validate class="form-horizontal form-label-left">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Type <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        	<select name="type" class="form-control" required>
+	                            <option value="TypeA">Type A</option>
+	                            <option value="TypeB">Type B</option>
+	                            <option value="TypeC">Type C</option>
+	                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Text h1 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" required="required" name="text_h1" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Text h2 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" required="required" name="text_h2" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Text h3 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" required="required" name="text_h3" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Image <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="inputImage" name="image" required="required" class="form-control">
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <button data-input="#inputImage" type="button" class="btnUploadImage btn btn-primary" data-toggle="modal" data-target="#modalUploadImage">Upload Image</button>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Link <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" required="required" name="link" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Link label <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" required="required" name="link_label" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Active <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="">
                             <div class="checkbox">
-                            	<label><input type="checkbox" id="inputStatus" class="js-switch" /><input type="hidden" name="status"/></label>
+                            	<label><input type="checkbox" id="inputActive" class="js-switch" /><input type="hidden" name="active"/></label>
 	                        </div>
 	                      </div>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Priority <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" required="required" name="name" class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" required="required" name="email" class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Phone <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" required="required" name="phone" class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Travel Time <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div class="form-group">
-		                        <div class="input-group date" id="myDatepicker2">
-		                            <input type="text" class="form-control" name="travel_time" />
-		                            <span class="input-group-addon">
-		                               <span class="glyphicon glyphicon-calendar"></span>
-		                            </span>
-		                        </div>
-		                    </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Count People <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" step="1" required="required" name="count_people" value="0" class="form-control">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Note <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea required="required" class="form-control" name="note"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Submit Time <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div class="form-group">
-		                        <div class="input-group date" id="myDatepicker">
-		                            <input type="text" class="form-control" name="submit_time" />
-		                            <span class="input-group-addon">
-		                               <span class="glyphicon glyphicon-calendar"></span>
-		                            </span>
-		                        </div>
-		                    </div>
+                          <input type="number" step="1" required="required" name="priority" value="0" class="form-control">
                         </div>
                       </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <a href="<%= request.getAttribute("sitePath") %>/admin/enquiry?tour_id=<%= tour.getId() %>" class="btn btn-primary" type="button">Cancel</a>
+                          <a href="<%= request.getAttribute("sitePath") %>/admin/banner" class="btn btn-primary" type="button">Cancel</a>
 						  <button class="btn btn-primary" type="reset">Reset</button>
                           <button type="submit" class="btn btn-success">Submit</button>
                         </div>
@@ -142,24 +132,16 @@
               </div>
             </div>
 		</div>
-		
-		
-		
 		<%@include file="./layout/footer.jsp" %>
       </div>
     </div>
     <%@include file="./layout/scripts.jsp" %>
     
-    
-    
+    <%@include file="./layout/upload.jsp" %>
     <script>
-		$('#myDatepicker').datetimepicker({format: 'MM-DD-YYYY HH:mm:ss', defaultDate: new Date()});
-		$('#myDatepicker2').datetimepicker({format: 'MM-DD-YYYY HH:mm:ss', defaultDate: new Date()});
-	</script>
-	<script>
 		 $('#formCreate').on('submit', function() {
-			 var temp = $('#inputStatus').is(":checked") ? 1 : 0;
-			 $('#inputStatus').siblings('input[name="status"]').val(temp);
+			 var temp = $('#inputActive').is(":checked") ? 1 : 0;
+			 $('#inputActive').siblings('input[name="active"]').val(temp);
 		 });
 	</script>
   </body>
