@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.ServiceItem;
 import com.van.travel.models.ServicePanel;
+import com.van.travel.models.setting.ShopPageServiceSetting;
 import com.van.travel.web.factories.ServiceItemFactory;
 import com.van.travel.web.factories.ServicePanelFactory;
 
@@ -37,13 +38,17 @@ public class ServicesController extends ShopController {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
+		ShopPageServiceSetting shopPageServiceSetting = new ShopPageServiceSetting();
+		request.setAttribute("shopPageServiceSetting", shopPageServiceSetting);
+		
 		ServicePanelFactory servicePanelFactory = new ServicePanelFactory();
-		ArrayList<ServicePanel> listServicePanel = servicePanelFactory.getServicePanels(4);
+		ArrayList<ServicePanel> listServicePanel = servicePanelFactory.getServicePanels(shopPageServiceSetting.data.getInt("service_panel_count"));
 		request.setAttribute("listServicePanel", listServicePanel);
 		
 		ServiceItemFactory serviceItemFactory = new ServiceItemFactory();
-		ArrayList<ServiceItem> listServiceItem = serviceItemFactory.getServiceItems(6);
+		ArrayList<ServiceItem> listServiceItem = serviceItemFactory.getServiceItems(shopPageServiceSetting.data.getInt("service_item_count"));
 		request.setAttribute("listServiceItem", listServiceItem);
+		
 		
 		request.getRequestDispatcher("/WEB-INF/Shop/services.jsp").forward(request, response);
 	}

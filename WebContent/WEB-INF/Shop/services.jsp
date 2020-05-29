@@ -1,9 +1,11 @@
+<%@page import="com.van.travel.models.setting.ShopPageServiceSetting"%>
 <%@page import="com.van.travel.models.ServiceItem"%>
 <%@page import="com.van.travel.models.ServicePanel"%>
 <%@page import="java.util.ArrayList"%>
 <%
 	ArrayList<ServicePanel> listServicePanel = (ArrayList<ServicePanel>) request.getAttribute("listServicePanel");
 	ArrayList<ServiceItem> listServiceItem = (ArrayList<ServiceItem>) request.getAttribute("listServiceItem");
+	ShopPageServiceSetting shopPageServiceSetting = (ShopPageServiceSetting) request.getAttribute("shopPageServiceSetting");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -33,7 +35,7 @@
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr">
                                         <div class="gdlr-core-title-item-title-wrap">
-                                            <h1 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 79px ;letter-spacing: 0px ;text-transform: none ;">Services We Provide<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h1></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 21px ;color: #999999 ;">A small river named Duden flows by their place.</span></div>
+                                            <h1 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 79px ;letter-spacing: 0px ;text-transform: none ;"><%= shopPageServiceSetting.forItem.get("head_h1") %><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h1></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 21px ;color: #999999 ;"><%= shopPageServiceSetting.forItem.get("head_h2") %></span></div>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +118,7 @@
                     
                     <div class="gdlr-core-pbf-wrapper " style="padding: 130px 0px 55px 0px;" data-skin="Dark">
                         <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background" style="background-image: url(<%= request.getAttribute("sitePath") %>/public/fe/upload/section-bg-3.jpg) ;background-size: cover ;background-position: center ;background-attachment: fixed ;"></div>
+                            <div class="gdlr-core-pbf-background" style="background-image: url(<%= shopPageServiceSetting.data.get("panel_item_image_bg") %>) ;background-size: cover ;background-position: center ;background-attachment: fixed ;"></div>
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
@@ -164,10 +166,10 @@
                                     <div class="gdlr-core-call-to-action-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-style-left-align-right-button">
                                         <div class="gdlr-core-call-to-action-item-inner">
                                             <div class="gdlr-core-call-to-action-item-content-wrap">
-                                                <h3 class="gdlr-core-call-to-action-item-title" style="font-size: 30px ;letter-spacing: 0px ;">Interested in our services now?</h3>
-                                                <div class="gdlr-core-call-to-action-item-caption gdlr-core-title-font gdlr-core-skin-caption">Far far away, behind the word mountains, far from the countries Vokalia.</div>
+                                                <h3 class="gdlr-core-call-to-action-item-title" style="font-size: 30px ;letter-spacing: 0px ;"><%= shopPageServiceSetting.forItem.get("stretch_h1") %></h3>
+                                                <div class="gdlr-core-call-to-action-item-caption gdlr-core-title-font gdlr-core-skin-caption"><%= shopPageServiceSetting.forItem.get("stretch_h2") %></div>
                                             </div>
-                                            <div class="gdlr-core-call-to-action-item-button"><a class="gdlr-core-button  gdlr-core-button-transparent gdlr-core-button-with-border" href="http://goodlayers.com/" target="_blank"><span class="gdlr-core-content" >Contact Us</span></a></div>
+                                            <div class="gdlr-core-call-to-action-item-button"><a class="gdlr-core-button  gdlr-core-button-transparent gdlr-core-button-with-border" href="http://goodlayers.com/" target="_blank"><span class="gdlr-core-content" ><%= shopPageServiceSetting.forItem.get("stretch_button") %></span></a></div>
                                         </div>
                                     </div>
                                 </div>
