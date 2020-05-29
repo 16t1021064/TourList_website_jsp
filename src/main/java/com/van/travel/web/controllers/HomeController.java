@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.Activity;
+import com.van.travel.models.Banner;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Destination;
 import com.van.travel.models.Tour;
 import com.van.travel.web.factories.ActivityFactory;
+import com.van.travel.web.factories.BannerFactory;
 import com.van.travel.web.factories.BlogFactory;
 import com.van.travel.web.factories.DestinationFactory;
 import com.van.travel.web.factories.SearchBlogFactory;
@@ -46,6 +48,7 @@ public class HomeController extends ShopController {
 		ActivityFactory activityFactory = new ActivityFactory();
 //		BlogFactory blogFactory = new BlogFactory();
 		SearchBlogFactory searchBlogFactory = new SearchBlogFactory();
+		BannerFactory bannerFactory = new BannerFactory();
 		
 		ArrayList<Tour> listHotTours = tourFactory.getHotTours(8);
 		request.setAttribute("listHotTours", listHotTours);
@@ -64,6 +67,9 @@ public class HomeController extends ShopController {
 		
 		ArrayList<Activity> filterHotActivities = activityFactory.getHotActivities(15);
 		request.setAttribute("filterHotActivities", filterHotActivities);
+		
+		ArrayList<Banner> banners = bannerFactory.getBanners(3);
+		request.setAttribute("banners", banners);
 		
 		request.getRequestDispatcher("/WEB-INF/Shop/home.jsp").forward(request, response);
 		

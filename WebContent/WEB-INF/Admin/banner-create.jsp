@@ -53,26 +53,29 @@
 	                            <option value="TypeC">Type C</option>
 	                          </select>
                         </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Text h1 <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" required="required" name="text_h1" class="form-control">
+                        <div class="col-md-3 col-sm-4 col-xs-12">
+                        	<a href="javascript:void(0)" class="btn btn-success btnPreview">Example</a>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Text h2 <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Text h1
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" required="required" name="text_h2" class="form-control">
+                          <input type="text" name="text_h1" class="form-control">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Text h3 <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Text h2
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" required="required" name="text_h3" class="form-control">
+                          <input type="text" name="text_h2" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Text h3
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" name="text_h3" class="form-control">
                         </div>
                       </div>
                       <div class="form-group">
@@ -80,6 +83,7 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="inputImage" name="image" required="required" class="form-control">
+                          <small>prefer to 1800x844</small>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                           <button data-input="#inputImage" type="button" class="btnUploadImage btn btn-primary" data-toggle="modal" data-target="#modalUploadImage">Upload Image</button>
@@ -142,6 +146,10 @@
 		 $('#formCreate').on('submit', function() {
 			 var temp = $('#inputActive').is(":checked") ? 1 : 0;
 			 $('#inputActive').siblings('input[name="active"]').val(temp);
+		 });
+		 $('.btnPreview').click(function(){
+			 var type = $('[name="type"]').val();
+			 window.open('<%= request.getAttribute("sitePath") %>/admin/preview/banner?type_banner='+type, '_blank');
 		 });
 	</script>
   </body>
