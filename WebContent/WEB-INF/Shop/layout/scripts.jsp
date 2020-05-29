@@ -6,6 +6,7 @@
     <script type='text/javascript' src='<%= request.getAttribute("sitePath") %>/public/fe/plugins/tourmaster/tourmaster.js'></script>
     <script type='text/javascript' src='<%= request.getAttribute("sitePath") %>/public/fe/js/plugins.js'></script>
     <script type='text/javascript' src='<%= request.getAttribute("sitePath") %>/public/fe/plugins/goodlayers-core/plugins/combine/script.js'></script>
+    <script type='text/javascript' src='<%= request.getAttribute("sitePath") %>/public/fe/js/jquery-notify.js'></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
     
