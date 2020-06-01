@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.controllers.ShopController;
+import com.van.travel.models.setting.ShopPageAboutSetting;
 
 /**
  * Servlet implementation class AboutController
@@ -30,6 +31,9 @@ public class AboutController extends ShopController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		
+		ShopPageAboutSetting shopPageAboutSetting = new ShopPageAboutSetting();
+		request.setAttribute("shopPageAboutSetting", shopPageAboutSetting);
 		
 		request.getRequestDispatcher("/WEB-INF/Shop/about.jsp").forward(request, response);
 	}
