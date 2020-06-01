@@ -49,7 +49,7 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="formInfosSetting" action="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-service" method="post" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="formShopPageServiceSetting" action="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-service" method="post" data-parsley-validate class="form-horizontal form-label-left">
 						
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nums of service panel <span class="required">*</span>
@@ -66,7 +66,17 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Part panel item image <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Head background <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="input_head_bg" name="head_bg" value="<%= shopPageServiceSetting.data.get("head_bg") %>" required="required" class="form-control">
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <button data-input="#input_head_bg" type="button" class="btnUploadImage btn btn-primary" data-toggle="modal" data-target="#modalUploadImage"><i class="fa fa-upload"></i></button>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Part panel item background <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="input_panel_item_image_bg" name="panel_item_image_bg" value="<%= shopPageServiceSetting.data.get("panel_item_image_bg") %>" required="required" class="form-control">

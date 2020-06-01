@@ -13,9 +13,9 @@ public class ShopPageServiceSetting extends AbstractSetting {
 	
 	
 	@Override
-	public void wrireData() {
+	public void writeData() {
 		this.data.put("foritem", this.forItem);
-		super.wrireData();
+		super.writeData();
 	}
 
 }

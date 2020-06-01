@@ -30,6 +30,7 @@
                     <div class="gdlr-core-pbf-wrapper " id="div_b01f_0">
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                            
                                 <div class="gdlr-core-pbf-column gdlr-core-column-15 gdlr-core-column-first">
                                     <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_b01f_1" data-sync-height="height-1" data-sync-height-center>
                                         <div class="gdlr-core-pbf-background-wrap" id="div_b01f_2"></div>
@@ -110,6 +111,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -196,7 +198,7 @@
                                         <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-counter-item gdlr-core-item-pdlr gdlr-core-item-pdb " id="div_b01f_35">
-                                                    <div class="gdlr-core-counter-item-number gdlr-core-skin-title gdlr-core-title-font" id="div_b01f_36"><span class="gdlr-core-counter-item-count gdlr-core-js" data-duration="4000" data-counter-start="0" data-counter-end="20000">0</span><span class="gdlr-core-counter-item-suffix">+</span></div>
+                                                    <div class="gdlr-core-counter-item-number gdlr-core-skin-title gdlr-core-title-font" id="div_b01f_36"><span class="gdlr-core-counter-item-prefix">+</span><span class="gdlr-core-counter-item-count gdlr-core-js" data-duration="4000" data-counter-start="0" data-counter-end="20000">0</span><span class="gdlr-core-counter-item-suffix">+</span></div>
                                                     <div class="gdlr-core-counter-item-bottom-text gdlr-core-skin-content" id="div_b01f_37">Customers</div>
                                                 </div>
                                             </div>

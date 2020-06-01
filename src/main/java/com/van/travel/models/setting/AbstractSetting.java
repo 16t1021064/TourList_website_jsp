@@ -42,7 +42,7 @@ public class AbstractSetting {
 		}
 	}
 	
-	public void wrireData() {
+	public void writeData() {
 		String sql = "UPDATE travel_setting set travel_setting.value=? where (travel_setting.key='"+this.key+"')";
 		try {
 			PreparedStatement stmt = (new Database()).getPreparedStatement(sql);

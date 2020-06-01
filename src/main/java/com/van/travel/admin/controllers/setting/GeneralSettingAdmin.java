@@ -92,7 +92,7 @@ public class GeneralSettingAdmin extends AdminController {
 //			if(!shop_media_tw.isEmpty()) {
 				infosSetting.data.put("shop_media_tw", shop_media_tw);
 //			}
-			infosSetting.wrireData();
+			infosSetting.writeData();
 			break;
 			
 		case "fe_footer":
@@ -106,14 +106,14 @@ public class GeneralSettingAdmin extends AdminController {
 				awards = new String[] {};
 			}
 			footerSetting.setAwards(awards);
-			footerSetting.wrireData();
+			footerSetting.writeData();
 			break;
 
 		default:
 			break;
 		}
 		
-		doGet(request, response);
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/setting");
 	}
 
 }
