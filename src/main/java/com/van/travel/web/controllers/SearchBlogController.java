@@ -16,6 +16,7 @@ import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Comment;
 import com.van.travel.models.Tag;
+import com.van.travel.models.setting.ShopBlogSidebarSetting;
 import com.van.travel.web.factories.BlogFactory;
 import com.van.travel.web.factories.BlogTagFactory;
 import com.van.travel.web.factories.CommentFactory;
@@ -125,6 +126,9 @@ public class SearchBlogController  extends ShopController {
 		
 		ArrayList<Blog> recentViewBlogs = (new BlogFactory()).getRecentViewBlogs(9);
 		request.setAttribute("recentViewBlogs", recentViewBlogs);
+		
+		ShopBlogSidebarSetting shopBlogSidebarSetting = new ShopBlogSidebarSetting();
+		request.setAttribute("shopBlogSidebarSetting", shopBlogSidebarSetting);
 		
 		request.getRequestDispatcher("/WEB-INF/Shop/blogs.jsp").forward(request, response);
 				

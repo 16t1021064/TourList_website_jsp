@@ -1,3 +1,4 @@
+<%@page import="com.van.travel.models.setting.ShopBlogSidebarSetting"%>
 <%@page import="com.van.travel.models.Tag"%>
 <%@page import="com.van.travel.models.Comment"%>
 <%@page import="com.van.travel.models.BlogTag"%>
@@ -13,6 +14,7 @@
 	ArrayList<Blog> recentViewBlogs = (ArrayList<Blog>) request.getAttribute("recentViewBlogs");
 	Object[] filters = (Object[]) request.getAttribute("filters");
 	DateConvertion dateConvertion = new DateConvertion("dd.MM.yyyy");
+	ShopBlogSidebarSetting shopBlogSidebarSetting =  (ShopBlogSidebarSetting) request.getAttribute("shopBlogSidebarSetting");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -101,11 +103,19 @@
                         <div class=" traveltour-sidebar-right traveltour-column-20 traveltour-line-height traveltour-line-height">
                             <div class="traveltour-sidebar-area traveltour-item-pdlr">
                                 <div id="text-7" class="widget widget_text traveltour-widget">
-                                    <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Text Widget</span></h3><span class="clear"></span>
-                                    <div class="textwidget">Nulla vitae elit libero, a pharetra augue. Nulla vitae elit libero, a pharetra augue. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui. Etiam porta sem malesuada.</div>
+                                    <h3 class="traveltour-widget-title">
+                                    	<span class="traveltour-widget-head-text"><%= shopBlogSidebarSetting.forItem.get("intro_h1") %></span>
+                                    </h3>
+                                    <span class="clear"></span>
+                                    <div class="textwidget">
+                                    	<%= shopBlogSidebarSetting.forItem.get("intro_description") %>
+                                    </div>
                                 </div>
                                 <div id="gdlr-core-recent-portfolio-widget-3" class="widget widget_gdlr-core-recent-portfolio-widget traveltour-widget">
-                                    <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Recent Works</span></h3><span class="clear"></span>
+                                    <h3 class="traveltour-widget-title">
+                                    	<span class="traveltour-widget-head-text"><%= shopBlogSidebarSetting.forItem.get("blog_h1") %></span>
+                                    </h3>
+                                    <span class="clear"></span>
                                     <div class="gdlr-core-recent-portfolio-widget-wrap clearfix">
                                         <% for(Blog blog : recentViewBlogs){ %>
                                         <div class="gdlr-core-recent-portfolio-widget gdlr-core-media-image">
@@ -115,15 +125,18 @@
                                     </div>
                                 </div>
                                 <div id="recent-comments-5" class="widget widget_recent_comments traveltour-widget">
-                                    <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Recent Comments</span></h3><span class="clear"></span>
+                                    <h3 class="traveltour-widget-title">
+                                    	<span class="traveltour-widget-head-text"><%= shopBlogSidebarSetting.forItem.get("comment_h1") %></span>
+                                    </h3>
+                                    <span class="clear"></span>
                                     <ul id="recentcomments">
                                      	<% for(Comment cmt : newestComments){ %>
-                                        <li class="recentcomments"><span class="comment-author-link"><%= cmt.getName() %></span> on <a href="<%= request.getAttribute("sitePath") %>/blog?id=<%= cmt.getBlogId() %>"><%= cmt.getContent() %></a></li>
+                                        <li class="recentcomments"><span class="comment-author-link"><%= cmt.getName() %></span> <%= shopBlogSidebarSetting.forItem.get("comment_concat") %> <a href="<%= request.getAttribute("sitePath") %>/blog?id=<%= cmt.getBlogId() %>"><%= cmt.getContent() %></a></li>
                                     	<% } %>   
                                     </ul>
                                 </div>
                                 <div id="tag_cloud-3" class="widget widget_tag_cloud traveltour-widget">
-                                    <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Tag Cloud</span></h3><span class="clear"></span>
+                                    <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text"><%= shopBlogSidebarSetting.forItem.get("tag_h1") %></span></h3><span class="clear"></span>
 									<div class="tagcloud">
                                     	<% for(Tag tag : hotTags){ %>
                                     	<a href="<%= request.getAttribute("sitePath") %>/blogs?tag=<%= tag.getName() %>" class="tag-cloud-link tag-link-5 tag-link-position-1" style="font-size: 8pt;" aria-label=""><%= tag.getName() %></a> 
