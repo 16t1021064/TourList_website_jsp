@@ -37,3 +37,10 @@
     
     <!-- Custom Theme Scripts -->
     <script src="<%= request.getAttribute("sitePath") %>/public/be/build/js/custom.js"></script>
+    
+    <script>
+    	$('.btnLogout').click(function(){
+    		$('#formLogout').submit();
+    	});
+    	
+    </script>

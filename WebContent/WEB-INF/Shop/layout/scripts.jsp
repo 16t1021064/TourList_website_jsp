@@ -10,6 +10,19 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
     
+    <script>
+		jQuery(function(){
+			var url = window.location.href;
+			var element =  jQuery('#traveltour-footer-back-to-top-button');
+			var href = element.attr("href");
+			if(!url.includes(href)){
+				var url = url + href;
+				element.attr("href", url);
+			}
+			
+		});
+	</script>
+    
 
     <script type='text/javascript' src='<%= request.getAttribute("sitePath") %>/public/fe/plugins/goodlayers-core/include/js/page-builder.js'></script>
     

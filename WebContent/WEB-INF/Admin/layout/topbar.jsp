@@ -1,3 +1,4 @@
+<%@page import="com.van.travel.models.Admin"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <!-- top navigation -->
@@ -7,23 +8,17 @@
               <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
+              
+              <form style="display: none;" action="<%= request.getAttribute("sitePath") %>/admin/logout" method="post" id="formLogout"></form>
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<%= request.getAttribute("sitePath") %>/public/be/images/img.jpg" alt="">John Doe
+                    <img src="<%= request.getAttribute("sitePath") %>/public/be/images/img.jpg" alt=""><%= ((Admin) session.getAttribute("admin")).getName() %>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="javascript:void(0);" class="btnLogout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 

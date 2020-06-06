@@ -1,3 +1,4 @@
+<%@page import="com.van.travel.models.Admin"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <div class="col-md-3 left_col">
@@ -15,7 +16,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2><%= ((Admin) session.getAttribute("admin")).getName() %></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -27,52 +28,65 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Tour <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-wrench"></i> Tour <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/tour">List</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/tour/create">Create</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Destination <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-wrench"></i> Destination <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/destination">List</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/destination/create">Create</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Activity <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-wrench"></i> Activity <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/activity">List</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/activity/create">Create</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Tag <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-wrench"></i> Tag <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/tag">List</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/tag/create">Create</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Blog <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-wrench"></i> Blog <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/blog">List</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/blog/create">Create</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Banner <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-wrench"></i> Banner <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/banner">List</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/banner/create">Create</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Service Panel <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-wrench"></i> Service Panel <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/service-panel">List</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/service-panel/create">Create</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Service Panel <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-wrench"></i> Service Panel <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/service-item">List</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/service-item/create">Create</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-wrench"></i> Page Setting <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting">General</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-service">Services</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-about">About</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-contact">Contact</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-wrench"></i> Preview <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/preview/icon" target="_blank">Icon library</a></li>
                     </ul>
                   </li>
                 </ul>

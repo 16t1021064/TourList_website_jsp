@@ -1,27 +1,32 @@
-package com.van.travel.web.controllers;
+package com.van.travel.admin.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.ShopController;
-import com.van.travel.models.setting.InfosSetting;
-import com.van.travel.models.setting.ShopPageContactSetting;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import com.van.travel.common.controllers.AbstractController;
+import com.van.travel.common.controllers.AdminController;
+import com.van.travel.models.Admin;
 
 /**
- * Servlet implementation class ContactController
+ * Servlet implementation class HomeAdmin
  */
-@WebServlet("/contact")
-public class ContactController extends ShopController {
+@WebServlet("/admin/logout")
+public class LogoutAdmin extends AbstractController {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ContactController() {
+    public LogoutAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +35,16 @@ public class ContactController extends ShopController {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/login");
 		
-		ShopPageContactSetting shopPageContactSetting = new ShopPageContactSetting();
-		request.setAttribute("shopPageContactSetting", shopPageContactSetting);
-		
-		InfosSetting infosSetting = new InfosSetting();
-		request.setAttribute("infosSetting", infosSetting);
-		
-		request.getRequestDispatcher("/WEB-INF/Shop/contact.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.getSession().setAttribute("admin", null);
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/login");
 	}
 
 }

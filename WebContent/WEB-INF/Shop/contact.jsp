@@ -1,3 +1,9 @@
+<%@page import="org.json.JSONObject"%>
+<%@page import="com.van.travel.models.setting.ShopPageContactSetting"%>
+<%
+	ShopPageContactSetting shopPageContactSetting = (ShopPageContactSetting) request.getAttribute("shopPageContactSetting");
+	InfosSetting infosSetting = (InfosSetting) request.getAttribute("infosSetting");
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html lang="en-US">
@@ -19,14 +25,14 @@
                 <div class="gdlr-core-page-builder-body">
                     <div class="gdlr-core-pbf-wrapper " style="padding: 350px 0px 160px 0px;" data-skin="Dark">
                         <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(<%= request.getAttribute("sitePath") %>/public/fe/upload/section-bg-4.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.3"></div>
+                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(<%= shopPageContactSetting.data.get("head_bg") %>) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.3"></div>
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr">
                                         <div class="gdlr-core-title-item-title-wrap">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 75px ;letter-spacing: 0px ;text-transform: none ;">Contact Us<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 25px ;margin-top: 25px ;">Get Intouch</span></div>
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 75px ;letter-spacing: 0px ;text-transform: none ;"><%= shopPageContactSetting.forItem.get("head_h1") %><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 25px ;margin-top: 25px ;"><%= shopPageContactSetting.forItem.get("head_h2") %></span></div>
                                 </div>
                             </div>
                         </div>
@@ -34,94 +40,40 @@
                     <div class="gdlr-core-pbf-wrapper ">
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20 gdlr-core-column-first">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " style="padding: 50px 20px 0px 20px;">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-icon-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 55px ;"><i class=" gdlr-core-icon-item-icon fa fa-phone" style="color: #454545 ;font-size: 40px ;min-width: 40px ;min-height: 40px ;"></i></div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" style="padding-bottom: 25px ;">
-                                                    <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 24px ;letter-spacing: 0px ;text-transform: none ;">Phone<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 0px ;">
-                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
-                                                        <p>A wonderful serenity has taken possession of my entire soul, like these.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
-                                                        <p><a href="#">+1-2345-2345</a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " style="padding: 50px 20px 0px 20px;">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js " data-gdlr-animation="fadeInDown" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-icon-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 55px ;"><i class=" gdlr-core-icon-item-icon fa fa-envelope-o" style="color: #454545 ;font-size: 40px ;min-width: 40px ;min-height: 40px ;"></i></div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" style="padding-bottom: 25px ;">
-                                                    <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 24px ;letter-spacing: 0px ;text-transform: none ;">Email<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 0px ;">
-                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
-                                                        <p>A wonderful serenity has taken possession of my entire soul, like these.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
-                                                        <p><a href="#">Contact@goodlayers.com</a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <% for(int i=0;i<shopPageContactSetting.sectionA.length(); i=i+1){ %>
+                                <%
+                                	JSONObject item = shopPageContactSetting.sectionA.getJSONObject(i);
+                                %>
                                 <div class="gdlr-core-pbf-column gdlr-core-column-20">
                                     <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " style="padding: 50px 20px 0px 20px;">
                                         <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
                                             <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-icon-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 55px ;"><i class=" gdlr-core-icon-item-icon fa fa-location-arrow" style="color: #454545 ;font-size: 40px ;min-width: 40px ;min-height: 40px ;"></i></div>
+                                                <div class="gdlr-core-icon-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 55px ;"><i class=" gdlr-core-icon-item-icon <%= item.get("icon") %>" style="color: #454545 ;font-size: 40px ;min-width: 40px ;min-height: 40px ;"></i></div>
                                             </div>
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" style="padding-bottom: 25px ;">
                                                     <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 24px ;letter-spacing: 0px ;text-transform: none ;">Location<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 24px ;letter-spacing: 0px ;text-transform: none ;"><%= item.get("name") %><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
                                                 </div>
                                             </div>
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 0px ;">
                                                     <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
-                                                        <p>4 apt. Flawing Street. The Grand Avenue.
-                                                            <br />Liverpool, UK 33342</p>
+                                                        <p><%= item.get("description") %></p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
                                                     <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
-                                                        <p><a href="#">View On Google Map</a></p>
+                                                        <p><a href="<%= item.get("link") %>"><%= item.get("link_label") %></a></p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -135,7 +87,7 @@
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr">
                                                     <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 32px ;letter-spacing: 0px ;text-transform: none ;">Leave us your info <span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 19px ;font-style: normal ;">and we will get back to you.</span></div>
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" style="font-size: 32px ;letter-spacing: 0px ;text-transform: none ;"><%= shopPageContactSetting.forItem.get("form_title_h1") %> <span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 19px ;font-style: normal ;"><%= shopPageContactSetting.forItem.get("form_title_h2") %></span></div>
                                             </div>
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-divider-item gdlr-core-item-pdlr gdlr-core-item-mgb gdlr-core-divider-item-normal gdlr-core-center-align" style="margin-bottom: 50px ;">
@@ -155,7 +107,7 @@
                                                                     <p>
                                                                         <br>
                                                                         <span class="wpcf7-form-control-wrap your-name">
-                                                                            <input id="name" type="text" name="name" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Your Name (required)">
+                                                                            <input id="name" type="text" name="name" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="<%= shopPageContactSetting.forItem.get("form_holder_name") %>">
                                                                         </span> 
                                                                     </p>
                                                                 </div>
@@ -163,7 +115,7 @@
                                                                     <p>
                                                                         <br>
                                                                         <span class="wpcf7-form-control-wrap your-email">
-                                                                            <input id="email" type="text" name="email" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Your Email (required)">
+                                                                            <input id="email" type="text" name="email" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="<%= shopPageContactSetting.forItem.get("form_holder_email") %>">
                                                                         </span> 
                                                                     </p>
                                                                 </div>
@@ -171,7 +123,7 @@
                                                                     <p>
                                                                         <br>
                                                                         <span class="wpcf7-form-control-wrap your-message">
-                                                                            <textarea  id="message" name="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Your Message"></textarea>
+                                                                            <textarea  id="message" name="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="<%= shopPageContactSetting.forItem.get("form_holder_message") %>"></textarea>
                                                                         </span>
                                                                     </p>
                                                                 </div>
@@ -179,7 +131,7 @@
                                                                     <!-- Begin Submit button -->
                                                                     <div class="quform-submit">
                                                                         <div class="quform-submit-inner">
-                                                                            <button type="submit" class="submit-button"><span>Submit Now</span></button>
+                                                                            <button type="submit" class="submit-button"><span><%= shopPageContactSetting.forItem.get("form_button_submit") %></span></button>
                                                                         </div>
                                                                         <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
                                                                     </div>
@@ -214,7 +166,29 @@
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
                                 <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-center-align gdlr-core-item-pdlr"><a href="mailto:#" target="_blank" class="gdlr-core-social-network-icon" title="email" style="font-size: 20px ;color: #1e1e1e ;"><i class="fa fa-envelope" ></i></a><a href="#" target="_blank" class="gdlr-core-social-network-icon" title="facebook" style="font-size: 20px ;color: #1e1e1e ;margin-left: 40px ;"><i class="fa fa-facebook" ></i></a><a href="#" target="_blank" class="gdlr-core-social-network-icon" title="google-plus" style="font-size: 20px ;color: #1e1e1e ;margin-left: 40px ;"><i class="fa fa-google-plus" ></i></a><a href="#" target="_blank" class="gdlr-core-social-network-icon" title="skype" style="font-size: 20px ;color: #1e1e1e ;margin-left: 40px ;"><i class="fa fa-skype" ></i></a><a href="#" target="_blank" class="gdlr-core-social-network-icon" title="twitter" style="font-size: 20px ;color: #1e1e1e ;margin-left: 40px ;"><i class="fa fa-twitter" ></i></a></div>
+                                    <div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-center-align gdlr-core-item-pdlr">
+                                    	<% if(!infosSetting.data.get("shop_media_fb").equals("")){ %>
+						                 <a href="<%= infosSetting.data.get("shop_media_fb") %>" target="_blank" class="gdlr-core-social-network-icon" style="font-size: 20px ;color: #1e1e1e ;" title="facebook">
+						                     <i class="fa fa-facebook" ></i>
+						                 </a>
+						                 <% } %>
+						                 <% if(!infosSetting.data.get("shop_media_yt").equals("")){ %>
+						                 <a href="<%= infosSetting.data.get("shop_media_yt") %>" target="_blank" class="gdlr-core-social-network-icon" style="font-size: 20px ;color: #1e1e1e ;" title="youtube">
+						                     <i class="fa fa-youtube" ></i>
+						                 </a>
+						                 <% } %>
+						                 <% if(!infosSetting.data.get("shop_media_ig").equals("")){ %>
+						                 <a href="<%= infosSetting.data.get("shop_media_ig") %>" target="_blank" class="gdlr-core-social-network-icon" style="font-size: 20px ;color: #1e1e1e ;" title="instagram">
+						                     <i class="fa fa-instagram" ></i>
+						                 </a>
+						                 <% } %>
+						                 <% if(!infosSetting.data.get("shop_media_tw").equals("")){ %>
+						                 <a href="<%= infosSetting.data.get("shop_media_tw") %>" target="_blank" class="gdlr-core-social-network-icon" style="font-size: 20px ;color: #1e1e1e ;" title="twitter">
+						                     <i class="fa fa-twitter" ></i>
+						                 </a>
+						                 <% } %>
+									
+									</div>
                                 </div>
                             </div>
                         </div>
@@ -243,8 +217,8 @@
         jQuery(document).ready(function($) {
             var map1 = $("#map1").maps({
                 "map_options": {
-                    "center_lat": "16.459412",
-                    "center_lng": "107.599328",
+                    "center_lat": "<%= shopPageContactSetting.map.get("center_lat") %>",
+                    "center_lng": "<%= shopPageContactSetting.map.get("center_lng") %>",
                     "zoom": 16,
                     "map_type_id": "ROADMAP",
                     "draggable": true,
@@ -275,16 +249,14 @@
                 },
                 "places": [{
                     "id": "1",
-                    "title": "Hue",
+                    "title": "<%= shopPageContactSetting.map.get("marker_name") %>",
                     "address": "Hue, Viet NAm",
                     "source": "manual",
                     "content": "Hue",
                     "location": {
                         "icon": "<%= request.getAttribute("sitePath") %>/public/fe/upload/default_marker.png",
-                        "lat": "16.459412",
-                        "lng": "107.599328",
-                        "city": "London",
-                        "state": "England",
+                        "lat": "<%= shopPageContactSetting.map.get("marker_lat") %>",
+                        "lng": "<%= shopPageContactSetting.map.get("marker_lng") %>",
                         "country": "United Kingdom",
                         "onclick_action": "marker",
                         "redirect_custom_link": "",
