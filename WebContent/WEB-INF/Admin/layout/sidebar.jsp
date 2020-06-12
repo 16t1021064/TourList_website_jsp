@@ -82,7 +82,10 @@
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-service">Services</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-about">About</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-contact">Contact</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-blogs">Blogs</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-blog-sidebar">Blog sidebar</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-tours">Tours</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-panels">Panels</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-wrench"></i> Preview <span class="fa fa-chevron-down"></span></a>

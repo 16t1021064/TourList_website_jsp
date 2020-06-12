@@ -1,3 +1,4 @@
+<%@page import="com.van.travel.models.setting.ShopPageBlogsSetting"%>
 <%@page import="com.van.travel.models.setting.ShopBlogSidebarSetting"%>
 <%@page import="com.van.travel.models.Tag"%>
 <%@page import="com.van.travel.models.Comment"%>
@@ -15,6 +16,7 @@
 	Object[] filters = (Object[]) request.getAttribute("filters");
 	DateConvertion dateConvertion = new DateConvertion("dd.MM.yyyy");
 	ShopBlogSidebarSetting shopBlogSidebarSetting =  (ShopBlogSidebarSetting) request.getAttribute("shopBlogSidebarSetting");
+	ShopPageBlogsSetting shopPageBlogsSetting =  (ShopPageBlogsSetting) request.getAttribute("shopPageBlogsSetting");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -35,13 +37,13 @@
         <div class="traveltour-body-wrapper clearfix  traveltour-with-transparent-header traveltour-with-frame">
             <%@include file="./layout/header.jsp" %>
 
-            <div class="traveltour-page-title-wrap  traveltour-style-custom traveltour-left-align">
+            <div class="traveltour-page-title-wrap  traveltour-style-custom traveltour-left-align" style="background-image: url(<%= shopPageBlogsSetting.data.get("head_bg") %>)">
                 <div class="traveltour-header-transparent-substitute"></div>
                 <div class="traveltour-page-title-overlay"></div>
                 <div class="traveltour-page-title-container traveltour-container">
                     <div class="traveltour-page-title-content traveltour-item-pdlr">
-                        <h1 class="traveltour-page-title">Blog Full Right Sidebar</h1>
-                        <div class="traveltour-page-caption">Caption Aligned Here</div>
+                        <h1 class="traveltour-page-title"><%= shopPageBlogsSetting.forItem.get("head_h1") %></h1>
+                        <div class="traveltour-page-caption"><%= shopPageBlogsSetting.forItem.get("head_h2") %></div>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,6 @@
+<%@page import="com.van.travel.models.setting.ShopPanelsSetting"%>
+<%@page import="com.van.travel.models.Blog"%>
+<%@page import="com.van.travel.models.setting.ShopPageToursSetting"%>
 <%@page import="com.van.travel.models.Activity"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.van.travel.models.Tour"%>
@@ -11,7 +14,11 @@
 	ArrayList<Activity> listHotActivities = (ArrayList<Activity>) request.getAttribute("listHotActivities");
 	ArrayList<Tour> upcomingTours = (ArrayList<Tour>) request.getAttribute("upcomingTours");
 	DateConvertion dateConvertion = new DateConvertion("dd/MM");
+	DateConvertion dateConvertion2 = new DateConvertion("dd.MM.yyyy");
 	Object[] filters = (Object[]) request.getAttribute("filters");
+	ShopPageToursSetting shopPageToursSetting = (ShopPageToursSetting) request.getAttribute("shopPageToursSetting");
+	ArrayList<Blog> recentArticles = (ArrayList<Blog>) request.getAttribute("recentArticles");
+	ShopPanelsSetting shopPanelsSetting = (ShopPanelsSetting) request.getAttribute("shopPanelsSetting");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -35,14 +42,21 @@
                 <div class="gdlr-core-page-builder-body">
                     <div class="gdlr-core-pbf-wrapper  gdlr-core-hide-in-mobile" id="div_aeb3_0" data-skin="Dark Search HP4">
                         <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_aeb3_1" data-parallax-speed="0.2"></div>
+                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_aeb3_1" data-parallax-speed="0.2" style="background-image: url(<%= shopPageToursSetting.data.get("head_bg") %>)"></div>
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_aeb3_2">
                                         <div class="gdlr-core-title-item-title-wrap">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_aeb3_0"><span class="gdlr-core-title-item-left-icon" id="span_aeb3_0"  ><i class="icon_search"  ></i></span>Search Tours<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_aeb3_0">
+                                            	<span class="gdlr-core-title-item-left-icon" id="span_aeb3_0"  >
+                                            		<i class="icon_search"  ></i>
+                                            	</span>
+                                            	<%= shopPanelsSetting.searchTour.get("title_h1") %>
+                                            	<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span>
+                                            </h3>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
@@ -50,16 +64,16 @@
                                         <div class="tourmaster-tour-search-wrap ">
                                             <form class="tourmaster-form-field tourmaster-with-border" action="<%= request.getAttribute("sitePath") %>/tours" method="GET">
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-keywords">
-                                                    <label>Keywords</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_key") %></label>
                                                     <div class="tourmaster-tour-search-field-inner">
                                                         <input name="q" id="filterQ" type="text" value="" />
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-tax">
-                                                    <label>Activity</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_act") %></label>
                                                     <div class="tourmaster-combobox-wrap">
                                                         <select name="act" id="filterAct">
-                                                            <option value="">Any</option>
+                                                            <option value=""><%= shopPanelsSetting.searchTour.get("select_any") %></option>
                                                             <% for(Activity act : hotActivities) { %>
                                                             <option value="<%= act.getId() %>"><%= act.getName() %></option>
                                                             <% } %>
@@ -67,10 +81,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-tax">
-                                                    <label>Destination</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_des") %></label>
                                                     <div class="tourmaster-combobox-wrap">
                                                         <select name="des" id="filterDes">
-                                                            <option value="">Any</option>
+                                                            <option value=""><%= shopPanelsSetting.searchTour.get("select_any") %></option>
                                                             <% for(Destination des : hotDestinations) { %>
                                                             <option value="<%= des.getId() %>"><%= des.getName() %></option>
                                                             <% } %>
@@ -78,10 +92,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-duration">
-                                                    <label>Duration</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_dur") %></label>
                                                     <div class="tourmaster-combobox-wrap">
                                                         <select name="dur" id="filterDur">
-                                                            <option value="">Any</option>
+                                                            <option value=""><%= shopPanelsSetting.searchTour.get("select_any") %></option>
                                                             <option value="1">1 Day Tour</option>
                                                             <option value="2">2-4 Days Tour</option>
                                                             <option value="5">5-7 Days Tour</option>
@@ -90,13 +104,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-date">
-                                                    <label>Date</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_dat") %></label>
                                                     <div class="tourmaster-datepicker-wrap">
                                                         <input class="tourmaster-datepicker" type="text" value="" id="filterDate" data-date-format="d M yy" />
                                                         <input class="tourmaster-datepicker-alt" name="date" type="hidden" value="" />
                                                     </div>
                                                 </div>
-                                                <input class="tourmaster-tour-search-submit" type="submit" value="Search" />
+                                                <input class="tourmaster-tour-search-submit" type="submit" value="<%= shopPanelsSetting.searchTour.get("label_submit") %>" />
                                             </form>
                                         </div>
                                     </div>
@@ -159,7 +173,7 @@
                                 <div class="gdlr-core-pbf-background-wrap" id="div_aeb3_9"></div>
                                 <div class="gdlr-core-sidebar-item gdlr-core-item-pdlr">
                                     <div id="tourmaster-tour-widget-5" class="widget widget_tourmaster-tour-widget traveltour-widget">
-                                        <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Latest Tours</span></h3><span class="clear"></span>
+                                        <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text"><%= shopPageToursSetting.forItem.get("sidebar_tour_h1") %></span></h3><span class="clear"></span>
                                         <div class="tourmaster-recent-tour-widget tourmaster-tour-item">
                                             <% for(Tour upcomingTour : upcomingTours){ %>
                                             <div class="tourmaster-item-list tourmaster-tour-widget tourmaster-item-pdlr">
@@ -171,12 +185,12 @@
                                                         <h3 class="tourmaster-tour-title gdlr-core-skin-title"><a href="<%= request.getAttribute("sitePath") %>/tour?id=<%= upcomingTour.getId() %>" ><%= upcomingTour.getDestinationName() %> &#8211; <%= upcomingTour.getName() %></a></h3>
                                                         <div class="tourmaster-tour-content-info clearfix <% if(upcomingTour.getoPrice() != upcomingTour.getpPrice()){ %>tourmaster-with-ribbon<% } %>">
                                                         	<% if(upcomingTour.getoPrice() == upcomingTour.getpPrice()){ %>
-                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$<%= upcomingTour.getpPrice() %></span></span>
+                                                            <div class="tourmaster-tour-price-wrap "><span class="tourmaster-tour-price"><span class="tourmaster-head"><%= shopPageToursSetting.forItem.get("sidebar_prefix_price") %></span><span class="tourmaster-tail">$<%= upcomingTour.getpPrice() %></span></span>
                                                             </div>
                                                             <% }else{ %>
                                                             <div class="tourmaster-thumbnail-ribbon gdlr-core-outer-frame-element" id="div_aeb3_10">
                                                                 <div class="tourmaster-thumbnail-ribbon-cornor" id="div_aeb3_11"></div>SALE OFF</div>
-                                                            <div class="tourmaster-tour-price-wrap tourmaster-discount"><span class="tourmaster-tour-price"><span class="tourmaster-head">From</span><span class="tourmaster-tail">$<%= upcomingTour.getoPrice() %></span></span><span class="tourmaster-tour-discount-price">$<%= upcomingTour.getpPrice() %></span></div>
+                                                            <div class="tourmaster-tour-price-wrap tourmaster-discount"><span class="tourmaster-tour-price"><span class="tourmaster-head"><%= shopPageToursSetting.forItem.get("sidebar_prefix_price") %></span><span class="tourmaster-tail">$<%= upcomingTour.getoPrice() %></span></span><span class="tourmaster-tour-discount-price">$<%= upcomingTour.getpPrice() %></span></div>
                                                             <% } %>
                                                         </div>
                                                     </div>
@@ -199,7 +213,7 @@
                                         </div>
                                     </div>
                                     <div id="nav_menu-3" class="widget widget_nav_menu traveltour-widget">
-                                        <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Tour Category</span></h3><span class="clear"></span>
+                                        <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text"><%= shopPageToursSetting.forItem.get("sidebar_activity_h1") %></span></h3><span class="clear"></span>
                                         <div class="menu-tour-category-container">
                                             <ul id="menu-tour-category" class="menu">
                                             	<% for(Activity act : listHotActivities){ %>
@@ -209,32 +223,26 @@
                                         </div>
                                     </div>
                                     <div id="gdlr-core-recent-post-widget-4" class="widget widget_gdlr-core-recent-post-widget traveltour-widget">
-                                        <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text">Recent Articles</span></h3><span class="clear"></span>
+                                        <h3 class="traveltour-widget-title"><span class="traveltour-widget-head-text"><%= shopPageToursSetting.forItem.get("sidebar_article_h1") %></span></h3><span class="clear"></span>
                                         <div class="gdlr-core-recent-post-widget-wrap gdlr-core-style-1">
+                                            <% for(Blog blog : recentArticles){ %>
                                             <div class="gdlr-core-recent-post-widget clearfix">
-                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_195507533-150x150.jpg" alt="" width="150" height="150" /></div>
+                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="<%= blog.getThumbnail150x150() %>" alt="" width="150" height="150" /></div>
                                                 <div class="gdlr-core-recent-post-widget-content">
-                                                    <div class="gdlr-core-recent-post-widget-title"><a href="../how-to-travel-with-paper-map/index.html">How to travel with paper map</a></div>
-                                                    <div class="gdlr-core-recent-post-widget-info"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="../2016/06/06/index.html">June 6, 2016</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head" ><i class="icon_documents_alt" ></i></span><a href="../author/superuser/index.html" title="Posts by John Smith" rel="author">John Smith</a></span>
+                                                    <div class="gdlr-core-recent-post-widget-title">
+                                                    	<a href="<%= request.getAttribute("sitePath") %>/blog?slug=<%= blog.getSlug() %>"><%= blog.getTitle() %></a>
+                                                    </div>
+                                                    <div class="gdlr-core-recent-post-widget-info">
+                                                    	<span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date">
+                                                    		<span class="gdlr-core-head" >
+                                                    			<i class="icon_clock_alt" ></i>
+                                                    		</span>
+                                                    		<a href="javascript:void(0)"><%= dateConvertion2.toStringDate(blog.getCreatedTime()) %></a>
+                                                    	</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="gdlr-core-recent-post-widget clearfix">
-                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/photo-1459255418679-d6424da9ee33-150x150.jpg" alt="" width="150" height="150" /></div>
-                                                <div class="gdlr-core-recent-post-widget-content">
-                                                    <div class="gdlr-core-recent-post-widget-title"><a href="../change-your-place-and-get-the-fresh-air/index.html">Change your place and get the fresh air</a></div>
-                                                    <div class="gdlr-core-recent-post-widget-info"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="../2016/06/06/index.html">June 6, 2016</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head" ><i class="icon_documents_alt" ></i></span><a href="../author/superuser/index.html" title="Posts by John Smith" rel="author">John Smith</a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-recent-post-widget clearfix">
-                                                <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/shutterstock_210601591-150x150.jpg" alt="" width="150" height="150" /></div>
-                                                <div class="gdlr-core-recent-post-widget-content">
-                                                    <div class="gdlr-core-recent-post-widget-title"><a href="../even-the-all-powerful-pointing/index.html">Even the all-powerful Pointing</a></div>
-                                                    <div class="gdlr-core-recent-post-widget-info"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head" ><i class="icon_clock_alt" ></i></span><a href="../2016/06/06/index.html">June 6, 2016</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head" ><i class="icon_documents_alt" ></i></span><a href="../author/superuser/index.html" title="Posts by John Smith" rel="author">John Smith</a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <% } %>
                                         </div>
                                     </div>
                                 </div>

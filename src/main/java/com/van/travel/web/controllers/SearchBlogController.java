@@ -17,6 +17,7 @@ import com.van.travel.models.Blog;
 import com.van.travel.models.Comment;
 import com.van.travel.models.Tag;
 import com.van.travel.models.setting.ShopBlogSidebarSetting;
+import com.van.travel.models.setting.ShopPageBlogsSetting;
 import com.van.travel.web.factories.BlogFactory;
 import com.van.travel.web.factories.BlogTagFactory;
 import com.van.travel.web.factories.CommentFactory;
@@ -129,6 +130,9 @@ public class SearchBlogController  extends ShopController {
 		
 		ShopBlogSidebarSetting shopBlogSidebarSetting = new ShopBlogSidebarSetting();
 		request.setAttribute("shopBlogSidebarSetting", shopBlogSidebarSetting);
+		
+		ShopPageBlogsSetting shopPageBlogsSetting = new ShopPageBlogsSetting();
+		request.setAttribute("shopPageBlogsSetting", shopPageBlogsSetting);
 		
 		request.getRequestDispatcher("/WEB-INF/Shop/blogs.jsp").forward(request, response);
 				

@@ -1,16 +1,15 @@
 package bin;
 
+import org.json.JSONML;
 import org.json.JSONObject;
+import org.json.JSONWriter;
 
 public class Main {
 
 	public static void main(String[] args) {
-		JSONObject json = new JSONObject("{\"a\":\"1\",\"b\":{\"c\": 2}}");
-		JSONObject json2 = new JSONObject();
-		json2.put("a", "5");
-		json2.put("b", "6");
-		((JSONObject)json.get("b")).put("d", json2);
-		System.out.println(json.get("a"));
+		String s1 = "{\"akey\":\"avalue\",\"ckey\":\"cvalue\"}";
+		String s2 = "{\"akey\":\"avalue\",\"ckey\":\"cvalue\"}";
+		
 	}
 
 }
