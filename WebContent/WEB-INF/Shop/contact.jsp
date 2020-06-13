@@ -13,7 +13,12 @@
     <title>Contact</title>
 
     <%@include file="./layout/styles.jsp" %>
-
+	<style>
+		.custom .error{
+		    margin-top: 25px;
+    		display: block;
+    	}
+	</style>
 </head>
 
 <body class="home page-template-default page page-id-2039 gdlr-core-body tourmaster-body woocommerce-no-js traveltour-body traveltour-body-front traveltour-full  traveltour-with-sticky-navigation gdlr-core-link-to-lightbox">
@@ -100,13 +105,13 @@
                                                 <div class="gdlr-core-contact-form-7-item gdlr-core-item-pdlr gdlr-core-item-pdb ">
                                                     <div role="form" class="wpcf7" id="wpcf7-f1319-p1964-o1" lang="en-US" dir="ltr">
                                                         <div class="screen-reader-response"></div>
-                                                        <form class="quform" action="plugins/quform/process.php" method="post" enctype="multipart/form-data" onclick="">
+                                                        <form class="quform" id="formContact" action="javascript:void(0);" method="post" enctype="multipart/form-data" onclick="">
 
                                                             <div class="quform-elements">
                                                                 <div class="quform-element">
                                                                     <p>
                                                                         <br>
-                                                                        <span class="wpcf7-form-control-wrap your-name">
+                                                                        <span class="wpcf7-form-control-wrap custom your-name">
                                                                             <input id="name" type="text" name="name" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="<%= shopPageContactSetting.forItem.get("form_holder_name") %>">
                                                                         </span> 
                                                                     </p>
@@ -114,7 +119,7 @@
                                                                 <div class="quform-element">
                                                                     <p>
                                                                         <br>
-                                                                        <span class="wpcf7-form-control-wrap your-email">
+                                                                        <span class="wpcf7-form-control-wrap custom your-email">
                                                                             <input id="email" type="text" name="email" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="<%= shopPageContactSetting.forItem.get("form_holder_email") %>">
                                                                         </span> 
                                                                     </p>
@@ -212,7 +217,6 @@
     </script>
     <script type='text/javascript' src='<%= request.getAttribute("sitePath") %>/public/fe/plugins/google-map-plugin/assets/js/maps.js?'></script>
     <script type='text/javascript' src='<%= request.getAttribute("sitePath") %>/public/fe/plugins/google-map-plugin/assets/js/frontend.js'></script>
-
     <script>
         jQuery(document).ready(function($) {
             var map1 = $("#map1").maps({
@@ -282,5 +286,60 @@
     </script>
     <script type="text/javascript" src="<%= request.getAttribute("sitePath") %>/public/fe/plugins/quform/js/plugins.js"></script>
     <script type="text/javascript" src="<%= request.getAttribute("sitePath") %>/public/fe/plugins/quform/js/scripts.js"></script> 
+    <script>
+	    jQuery('#formContact').submit(function(){
+			var validator = jQuery('#formContact').validate({
+		        rules: {
+		            name: {
+		                required: true,
+		                normalizer: function(value) {
+							return jQuery.trim(value);
+						},
+		            },
+		            email: {
+		                required: true,
+		                email: true,
+		                normalizer: function(value) {
+							return jQuery.trim(value);
+						},
+		            },
+		            message: {
+		                required: true,
+		                normalizer: function(value) {
+							return jQuery.trim(value);
+						},
+		            },
+		        },
+		        errorPlacement: function(error, element) {
+		            return false;
+		        },
+		    });
+			if(validator.form()){
+				jQuery.ajax({
+				  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/contact/message",
+				  method: "post",
+					contentType: "application/json",
+					dataType: "json",
+				  data: JSON.stringify({
+					  name: jQuery('#formContact [name="name"]').val(),
+					  email: jQuery('#formContact [name="email"]').val(),
+					  note: jQuery('#formContact [name="message"]').val(),
+				  }),
+				}).success(function(data){
+					swal("Message sent !", "Your message has been sent. Thank you for your message.", "success");
+				  	jQuery('#formContact [name="name"]').val("");
+				  	jQuery('#formContact [name="email"]').val("");
+				  	jQuery('#formContact [name="message"]').val("");
+				}).error(function(){
+					console.error("error");
+				}).done(function() {
+				  
+				});
+			}else{
+				swal("Error validation !", "Please all fields in contact form !", "error");
+			}
+		return false;
+	});
+    </script>
 </body>
 </html>
