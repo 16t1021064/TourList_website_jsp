@@ -20,8 +20,8 @@ public class ContactMessageWebService extends AbstractWebservice {
 	
 	@POST
 	@Path("/contact/message")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON+ ";charset=utf-8")
+	@Consumes(MediaType.APPLICATION_JSON+ ";charset=utf-8")
 	public Response search(@Context HttpServletRequest req, ContactMessageRequest request ) {
 		return this.executeProcess(request, req);
 	}

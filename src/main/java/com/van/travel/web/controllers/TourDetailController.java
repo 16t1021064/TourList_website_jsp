@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.van.travel.common.controllers.ShopController;
 import com.van.travel.models.Tour;
+import com.van.travel.models.setting.ShopPanelsSetting;
 import com.van.travel.web.factories.TourFactory;
 
 /**
@@ -46,6 +47,9 @@ public class TourDetailController extends ShopController {
 		
 		ArrayList<Tour> relativeTours = tourFactory.getRelativeTours(tour.getId(), 2);
 		request.setAttribute("relativeTours", relativeTours);
+		
+		ShopPanelsSetting shopPanelsSetting = new ShopPanelsSetting();
+		request.setAttribute("shopPanelsSetting", shopPanelsSetting);
 		
 		request.getRequestDispatcher("/WEB-INF/Shop/tour-detail.jsp").forward(request, response);
 	}

@@ -58,6 +58,11 @@
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/blog/create">Create</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-wrench"></i> Contact message <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/contactmessage">List</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-wrench"></i> Banner <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/banner">List</a></li>
@@ -79,10 +84,12 @@
                   <li><a><i class="fa fa-wrench"></i> Page Setting <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting">General</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-home">Home</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-service">Services</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-about">About</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-contact">Contact</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-blogs">Blogs</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-destinations">Destinations</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-blog-sidebar">Blog sidebar</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-page-tours">Tours</a></li>
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/setting/shop-panels">Panels</a></li>

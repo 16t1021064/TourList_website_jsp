@@ -1,7 +1,9 @@
+<%@page import="com.van.travel.models.setting.ShopPageDestinationsSetting"%>
 <%@page import="com.van.travel.models.Destination"%>
 <%@page import="java.util.ArrayList"%>
 <%
 	ArrayList<Destination> listHotDestinations = (ArrayList<Destination>) request.getAttribute("listHotDestinations");
+	ShopPageDestinationsSetting shopPageDestinationsSetting =  (ShopPageDestinationsSetting) request.getAttribute("shopPageDestinationsSetting");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,13 +23,13 @@
     <div class="traveltour-body-outer-wrapper ">
         <div class="traveltour-body-wrapper clearfix  traveltour-with-transparent-header traveltour-with-frame">
             <%@include file="./layout/header.jsp" %>
-            <div class="traveltour-page-title-wrap  traveltour-style-large traveltour-center-align">
+            <div class="traveltour-page-title-wrap  traveltour-style-large traveltour-center-align" style="background-image: url(<%= shopPageDestinationsSetting.data.get("head_bg") %>)">
                 <div class="traveltour-header-transparent-substitute"></div>
                 <div class="traveltour-page-title-overlay"></div>
                 <div class="traveltour-page-title-container traveltour-container">
                     <div class="traveltour-page-title-content traveltour-item-pdlr">
-                        <h1 class="traveltour-page-title">Destinations</h1>
-                        <div class="traveltour-page-caption">Explore Tours By Destinations</div>
+                        <h1 class="traveltour-page-title"><%= shopPageDestinationsSetting.forItem.get("head_h1") %></h1>
+                        <div class="traveltour-page-caption"><%= shopPageDestinationsSetting.forItem.get("head_h2") %></div>
                     </div>
                 </div>
             </div>
@@ -63,10 +65,12 @@
             </div>
             <%@include file="./layout/footer.jsp" %>
         </div>
-    </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
+    </div>
 
     <%@include file="./layout/scripts.jsp" %>
-
+	<script>
+		jQuery('#menu-main-navigation-1 li.menu-item[data-name="destinations"]').addClass("current-menu-item");
+	</script>
 
 </body>
 </html>

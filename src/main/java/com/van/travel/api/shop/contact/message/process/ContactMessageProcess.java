@@ -21,6 +21,7 @@ public class ContactMessageProcess extends AbstractProcess {
 		String name = req.name;
 		String email = req.email;
 		String message = req.message;
+		System.out.println(message);
 		Date submitTime = new Date();
 		ContactMessage contactMessage = (new ContactMessage()).create(active, name, email, message, submitTime);
 		

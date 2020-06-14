@@ -1,3 +1,6 @@
+<%@page import="com.van.travel.models.setting.ShopPanelsSetting"%>
+<%@page import="org.json.JSONObject"%>
+<%@page import="com.van.travel.models.setting.ShopPageHomeSetting"%>
 <%@page import="com.van.travel.models.Banner"%>
 <%@page import="com.van.travel.common.DateConvertion"%>
 <%@page import="com.van.travel.models.Blog"%>
@@ -12,6 +15,9 @@
 	ArrayList<Destination> filterHotDestinations = (ArrayList<Destination>) request.getAttribute("filterHotDestinations");
 	ArrayList<Activity> filterHotActivities = (ArrayList<Activity>) request.getAttribute("filterHotActivities");
 	ArrayList<Banner> banners = (ArrayList<Banner>) request.getAttribute("banners");
+	ShopPageHomeSetting shopPageHomeSetting = (ShopPageHomeSetting) request.getAttribute("shopPageHomeSetting");
+	ShopPanelsSetting shopPanelsSetting = (ShopPanelsSetting) request.getAttribute("shopPanelsSetting");
+	InfosSetting infosSetting = (InfosSetting) request.getAttribute("infosSetting");
 	DateConvertion dateConvertion = new DateConvertion("MM/dd/yyyy");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -109,17 +115,47 @@
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15 gdlr-core-column-first">
+                                
+                                <% 
+                                	int servicesSectionCnt = shopPageHomeSetting.services.length();
+                                	int servicesValue = 0;
+                                	switch(servicesSectionCnt){
+                                		case 0:
+                                			break;
+                                		case 1:
+                                			servicesValue = 60;
+                                			break;
+                                		case 2:
+                                			servicesValue = 30;
+                                			break;
+                                		case 3:
+                                			servicesValue = 20;
+                                			break;
+                                		case 4:
+                                			servicesValue = 15;
+                                			break;
+                                		default:
+                                			servicesSectionCnt = 4;
+                                			servicesValue = 15;
+                                			break;
+                                	}
+                                %>
+                                <% if(servicesSectionCnt > 0){ %>
+                                <% for(int i=0; i<servicesSectionCnt; i=i+1){ %>
+                                <%
+                                	JSONObject item = shopPageHomeSetting.services.getJSONObject(i);
+                                %>
+                                <div class="gdlr-core-pbf-column gdlr-core-column-<%= servicesValue %>">
                                     <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
                                         <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_29f0_2">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/icon-1.png" alt="" width="49" height="49" /></div>
+                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<%= item.get("thumb") %>" alt="" width="49" height="49" /></div>
                                                     <div class="gdlr-core-column-service-content-wrapper">
                                                         <div class="gdlr-core-column-service-title-wrap" id="div_29f0_3">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">500+ Destinations</h3></div>
+                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title"><%= item.get("title") %></h3></div>
                                                         <div class="gdlr-core-column-service-content" id="div_29f0_4">
-                                                            <p>Morbi leo risus, porta ac</p>
+                                                            <p><%= item.get("sub_title") %></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -127,60 +163,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_29f0_5">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/icon-2.png" alt="" width="41" height="49" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_29f0_6">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">Best Price Guarantee</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_29f0_7">
-                                                            <p>Morbi leo risus, porta ac</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_29f0_8">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/icon-3.png" alt="" width="30" height="39" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_29f0_9">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">Great Customer</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_29f0_10">
-                                                            <p>Morbi leo risus, porta ac</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_29f0_11">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/icon-4.png" alt="" width="35" height="38" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_29f0_12">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">Super Fast Booking</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_29f0_13">
-                                                            <p>Morbi leo risus, porta ac</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <% } %>
+								<% } %>
+                                
                             </div>
                         </div>
                     </div>
@@ -195,16 +180,16 @@
                                         <div class="tourmaster-tour-search-wrap ">
                                             <form class="tourmaster-form-field tourmaster-with-border" action="<%= request.getAttribute("sitePath") %>/tours" method="GET">
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-keywords">
-                                                    <label>Keywords</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_key") %></label>
                                                     <div class="tourmaster-tour-search-field-inner">
                                                         <input name="q" id="filterQ" type="text" value="" />
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-tax">
-                                                    <label>Activity</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_act") %></label>
                                                     <div class="tourmaster-combobox-wrap">
                                                         <select name="act" id="filterAct">
-                                                            <option value="">Any</option>
+                                                            <option value=""><%= shopPanelsSetting.searchTour.get("select_any") %></option>
                                                             <% for(Activity act : filterHotActivities) { %>
                                                             <option value="<%= act.getId() %>"><%= act.getName() %></option>
                                                             <% } %>
@@ -212,10 +197,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-tax">
-                                                    <label>Destination</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_des") %></label>
                                                     <div class="tourmaster-combobox-wrap">
                                                         <select name="des" id="filterDes">
-                                                            <option value="">Any</option>
+                                                            <option value=""><%= shopPanelsSetting.searchTour.get("select_any") %></option>
                                                             <% for(Destination des : filterHotDestinations) { %>
                                                             <option value="<%= des.getId() %>"><%= des.getName() %></option>
                                                             <% } %>
@@ -223,10 +208,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-duration">
-                                                    <label>Duration</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_dur") %></label>
                                                     <div class="tourmaster-combobox-wrap">
                                                         <select  name="dur" id="filterDur">
-                                                            <option value="">Any</option>
+                                                            <option value=""><%= shopPanelsSetting.searchTour.get("select_any") %></option>
                                                             <option value="1">1 Day Tour</option>
                                                             <option value="2">2-4 Days Tour</option>
                                                             <option value="5">5-7 Days Tour</option>
@@ -235,13 +220,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="tourmaster-tour-search-field tourmaster-tour-search-field-date">
-                                                    <label>Date</label>
+                                                    <label><%= shopPanelsSetting.searchTour.get("label_dat") %></label>
                                                     <div class="tourmaster-datepicker-wrap">
                                                         <input class="tourmaster-datepicker" type="text" id="filterDate" value="" data-date-format="d M yy" />
                                                         <input class="tourmaster-datepicker-alt" name="date" type="hidden" value="" />
                                                     </div>
                                                 </div>
-                                                <input class="tourmaster-tour-search-submit" type="submit" value="Search" />
+                                                <input class="tourmaster-tour-search-submit" type="submit" value="<%= shopPanelsSetting.searchTour.get("label_submit") %>" />
                                             </form>
                                         </div>
                                     </div>
@@ -251,14 +236,14 @@
                     </div>
                     <div class="gdlr-core-pbf-wrapper " id="div_29f0_16" data-skin="Homepage Search">
                         <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_29f0_17" data-parallax-speed="0"></div>
+                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_29f0_17" data-parallax-speed="0" style="background-image: url(<%= shopPageHomeSetting.tour.get("bg") %>);"></div>
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr"  id="gdlr-core-title-item-id-88464">
                                         <div class="gdlr-core-title-item-title-wrap">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_0">Popular Tour Packages<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3><a href="#" target="_self" class="gdlr-core-title-item-link"><span class="gdlr-core-separator" >/</span>View All Tours</a></div>
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_0"><%= shopPageHomeSetting.tour.get("title") %><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3><a href="#" target="_self" class="gdlr-core-title-item-link"><span class="gdlr-core-separator" >/</span><%= shopPageHomeSetting.tour.get("link_label") %></a></div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
@@ -299,7 +284,7 @@
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_29f0_26">
                                         <div class="gdlr-core-title-item-title-wrap">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_1"><span class="gdlr-core-title-item-left-icon" id="span_29f0_0"  ><i class="icon_pin_alt" id="i_29f0_0"  ></i></span>Popular Destinations<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3><a href="#" target="_self" class="gdlr-core-title-item-link"><span class="gdlr-core-separator" >/</span>View All Destinations</a></div>
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_1"><span class="gdlr-core-title-item-left-icon" id="span_29f0_0"  ><i class="icon_pin_alt" id="i_29f0_0"  ></i></span><%= shopPageHomeSetting.destination.get("title") %><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3><a href="#" target="_self" class="gdlr-core-title-item-link"><span class="gdlr-core-separator" >/</span><%= shopPageHomeSetting.destination.get("link_label") %></a></div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-column gdlr-core-column-45 gdlr-core-column-first">
@@ -308,7 +293,7 @@
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
                                                     <div class="gdlr-core-text-box-item-content">
-                                                        <p>Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                                        <p><%= shopPageHomeSetting.destination.get("description") %></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -334,7 +319,7 @@
                                                         <h3 class="tourmaster-tour-category-title"><i class="icon_pin_alt" ></i><%= des.getName() %></h3>
                                                         <div class="tourmaster-tour-category-count"><%= des.getTourCount() %> tours</div>
                                                     </div>
-                                                    <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="#">View all tours</a>
+                                                    <div class="tourmaster-tour-category-head-animate"><a class="tourmaster-tour-category-head-link" href="#"><%= shopPageHomeSetting.destination.get("link_tour_label") %></a>
                                                         <div class="tourmaster-tour-category-head-divider"></div>
                                                     </div>
                                                 </div>
@@ -355,7 +340,7 @@
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_29f0_29">
                                                     <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_2"><span class="gdlr-core-title-item-left-icon" id="span_29f0_1"  ><i class="fa fa-sliders" id="i_29f0_1"  ></i></span>Browse Tours By Activity<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_2"><span class="gdlr-core-title-item-left-icon" id="span_29f0_1"  ><i class="fa fa-sliders" id="i_29f0_1"  ></i></span><%= shopPageHomeSetting.activity.get("title") %><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -367,7 +352,7 @@
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_29f0_30">
                                                     <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_3"><span class="gdlr-core-title-item-left-icon" id="span_29f0_2"  ><i class="fa fa-envelope-o" id="i_29f0_2"  ></i></span>Newsletter<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_3"><span class="gdlr-core-title-item-left-icon" id="span_29f0_2"  ><i class="fa fa-envelope-o" id="i_29f0_2"  ></i></span><%= shopPageHomeSetting.subcribe.get("title") %><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -400,7 +385,7 @@
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" id="div_29f0_31">
                                                     <div class="gdlr-core-text-box-item-content">
-                                                        <p>Subscribe for updates &#038; promotions</p>
+                                                        <p><%= shopPageHomeSetting.subcribe.get("description") %></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -410,10 +395,10 @@
                                                     <div class="newsletter newsletter-subscription">
                                                         <form class="gdlr-core-newsletter-form clearfix" method="post" action="#">
                                                             <div class="gdlr-core-newsletter-email">
-                                                                <input class="newsletter-email gdlr-core-skin-e-background gdlr-core-skin-e-content" placeholder="Your Email Address" type="email" name="ne" size="30" required />
+                                                                <input class="newsletter-email gdlr-core-skin-e-background gdlr-core-skin-e-content" placeholder="<%= shopPageHomeSetting.subcribe.get("placeholder_input") %>" type="email" name="ne" size="30" required />
                                                             </div>
                                                             <div class="gdlr-core-newsletter-submit">
-                                                                <input class="newsletter-submit" type="submit" value="Subscribe" />
+                                                                <input class="newsletter-submit" type="submit" value="<%= shopPageHomeSetting.subcribe.get("button_submit") %>" />
                                                             </div>
                                                         </form>
                                                     </div>
@@ -423,27 +408,26 @@
                                             
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-item-pdlr">
-                                                    <a href="mailto:#" target="_blank" class="gdlr-core-social-network-icon" title="email" id="a_29f0_0">
-                                                        <i class="fa fa-envelope" ></i>
-                                                    </a>
-                                                    <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="facebook" id="a_29f0_1">
-                                                        <i class="fa fa-facebook" ></i>
-                                                    </a>
-                                                    <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="google-plus" id="a_29f0_2">
-                                                        <i class="fa fa-google-plus" ></i>
-                                                    </a>
-                                                    <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="linkedin" id="a_29f0_3">
-                                                        <i class="fa fa-linkedin" ></i>
-                                                    </a>
-                                                    <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="pinterest" id="a_29f0_4">
-                                                        <i class="fa fa-pinterest-p" ></i>
-                                                    </a>
-                                                    <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="skype" id="a_29f0_5">
-                                                        <i class="fa fa-skype" ></i>
-                                                    </a>
-                                                    <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="twitter" id="a_29f0_6">
-                                                        <i class="fa fa-twitter" ></i>
-                                                    </a>
+                                                	 <% if(!infosSetting.data.get("shop_media_fb").equals("")){ %>
+									                 <a href="<%= infosSetting.data.get("shop_media_fb") %>" target="_blank" class="gdlr-core-social-network-icon" title="facebook">
+									                     <i class="fa fa-facebook" ></i>
+									                 </a>
+									                 <% } %>
+									                 <% if(!infosSetting.data.get("shop_media_yt").equals("")){ %>
+									                 <a href="<%= infosSetting.data.get("shop_media_yt") %>" target="_blank" class="gdlr-core-social-network-icon" title="youtube">
+									                     <i class="fa fa-youtube" ></i>
+									                 </a>
+									                 <% } %>
+									                 <% if(!infosSetting.data.get("shop_media_ig").equals("")){ %>
+									                 <a href="<%= infosSetting.data.get("shop_media_ig") %>" target="_blank" class="gdlr-core-social-network-icon" title="instagram">
+									                     <i class="fa fa-instagram" ></i>
+									                 </a>
+									                 <% } %>
+									                 <% if(!infosSetting.data.get("shop_media_tw").equals("")){ %>
+									                 <a href="<%= infosSetting.data.get("shop_media_tw") %>" target="_blank" class="gdlr-core-social-network-icon" title="twitter">
+									                     <i class="fa fa-twitter" ></i>
+									                 </a>
+									                 <% } %>
                                                 </div>
                                             </div>
                                         </div>
@@ -454,7 +438,7 @@
                     </div>
                     <div class="gdlr-core-pbf-wrapper " id="div_29f0_33">
                         <div class="gdlr-core-pbf-background-wrap">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_29f0_34" data-parallax-speed="0.2"></div>
+                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_29f0_34" data-parallax-speed="0.2" style="background-image: url(<%= shopPageHomeSetting.sale.get("bg") %>)"></div>
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
@@ -469,18 +453,18 @@
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_29f0_35">
                                                     <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_4">Discount <span id="span_29f0_11">10-30% Off</span><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_4"><%= shopPageHomeSetting.sale.get("title_white") %> <span id="span_29f0_11"><%= shopPageHomeSetting.sale.get("title_yellow") %></span><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
                                                 </div>
                                             </div>
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" id="div_29f0_36">
                                                     <div class="gdlr-core-text-box-item-content" id="div_29f0_37">
-                                                        <p>Curabitur blandit tempus porttitor. Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                                                        <p><%= shopPageHomeSetting.sale.get("description") %></p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align"><a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="#" id="gdlr-core-button-id-90320"><span class="gdlr-core-content" >See Promotion Tours</span></a></div>
+                                                <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align"><a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="#" id="gdlr-core-button-id-90320"><span class="gdlr-core-content" ><%= shopPageHomeSetting.sale.get("button_submit") %></span></a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -494,7 +478,16 @@
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_29f0_39">
                                         <div class="gdlr-core-title-item-title-wrap">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_5"><span class="gdlr-core-title-item-left-icon" id="span_29f0_12"  ><i class="icon_lightbulb_alt" id="i_29f0_8"  ></i></span>Travel Articles<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3><a href="<%= request.getAttribute("sitePath") %>/blogs" target="_self" class="gdlr-core-title-item-link"><span class="gdlr-core-separator" >/</span>Read All Articles</a></div>
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_5">
+                                            	<span class="gdlr-core-title-item-left-icon" id="span_29f0_12"  >
+                                            		<i class="icon_lightbulb_alt" id="i_29f0_8"  ></i>
+                                            	</span><%= shopPageHomeSetting.blog.get("title") %>
+                                            	<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span>
+                                            </h3>
+                                            <a href="<%= request.getAttribute("sitePath") %>/blogs" target="_self" class="gdlr-core-title-item-link">
+                                            	<span class="gdlr-core-separator" >/</span><%= shopPageHomeSetting.blog.get("link_label") %>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
@@ -533,23 +526,52 @@
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_29f0_49">
                                                     <div class="gdlr-core-title-item-title-wrap">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_10">Why Book With Us?<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title" id="h3_29f0_10"><%= shopPageHomeSetting.benefit.get("title") %><span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <% 
+                                	int benefitSectionCnt = shopPageHomeSetting.benefit.getJSONArray("list").length();
+                                	int benefitValue = 0;
+                                	switch(benefitSectionCnt){
+                                		case 0:
+                                			break;
+                                		case 1:
+                                			benefitValue = 60;
+                                			break;
+                                		case 2:
+                                			benefitValue = 30;
+                                			break;
+                                		case 3:
+                                			benefitValue = 20;
+                                			break;
+                                		case 4:
+                                			benefitValue = 15;
+                                			break;
+                                		default:
+                                			benefitSectionCnt = 4;
+                                			benefitValue = 15;
+                                			break;
+                                	}
+                                %>
+                                <% if(benefitSectionCnt > 0){ %>
+                                <% for(int i=0; i<benefitSectionCnt; i=i+1){ %>
+                                <%
+                                	JSONObject item = shopPageHomeSetting.benefit.getJSONArray("list").getJSONObject(i);
+                                %>
                                 <div class="gdlr-core-pbf-column gdlr-core-column-15" data-skin="Blue Icon">
                                     <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_29f0_50" data-sync-height="column-service-height">
                                         <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_29f0_51">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/icon-10.png" alt="" width="37" height="39" /></div>
+                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<%= item.get("thumb") %>" alt="" width="37" height="39" /></div>
                                                     <div class="gdlr-core-column-service-content-wrapper">
                                                         <div class="gdlr-core-column-service-title-wrap" id="div_29f0_52">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">40,000+ Customers</h3></div>
+                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title"><%= item.get("title") %></h3></div>
                                                         <div class="gdlr-core-column-service-content" id="div_29f0_53">
-                                                            <p>Morbi leo risus, porta ac</p>
+                                                            <p><%= item.get("sub_title") %></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -557,42 +579,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15" data-skin="Blue Icon">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_29f0_54" data-sync-height="column-service-height">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_29f0_55">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/icon-11.png" alt="" width="34" height="43" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_29f0_56">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">Award Winning</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_29f0_57">
-                                                            <p>Morbi leo risus, porta ac</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-15" data-skin="Blue Icon">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_29f0_58" data-sync-height="column-service-height">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_29f0_59">
-                                                    <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="<%= request.getAttribute("sitePath") %>/public/fe/upload/icon-12.png" alt="" width="27" height="37" /></div>
-                                                    <div class="gdlr-core-column-service-content-wrapper">
-                                                        <div class="gdlr-core-column-service-title-wrap" id="div_29f0_60">
-                                                            <h3 class="gdlr-core-column-service-title gdlr-core-skin-title">Secure Payment</h3></div>
-                                                        <div class="gdlr-core-column-service-content" id="div_29f0_61">
-                                                            <p>Morbi leo risus, porta ac</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <% } %>
+                                <% } %>
+
                             </div>
                         </div>
                     </div>
@@ -600,7 +589,7 @@
             </div>
 			<%@include file="./layout/footer.jsp" %>
         </div>
-    </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
+    </div>
 
 
     <%@include file="./layout/scripts.jsp" %>
@@ -788,6 +777,8 @@
             document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[0]);
         } /*]]>*/
     </script>
-
+	<script>
+		jQuery('#menu-main-navigation-1 li.menu-item[data-name="home"]').addClass("current-menu-item");
+	</script>
 </body>
 </html>

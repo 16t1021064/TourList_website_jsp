@@ -53,25 +53,25 @@
                     <div class="traveltour-navigation traveltour-item-pdlr clearfix ">
                         <div class="traveltour-main-menu" id="traveltour-main-menu">
                             <ul id="menu-main-navigation-1" class="sf-menu">
-							    <li class="menu-item traveltour-normal-menu current-menu-item menu-item-home"><a href="<%= request.getAttribute("sitePath") %>/">Home</a></li>
-							    <li class="menu-item menu-item-has-children traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/destinations" class="sf-with-ul-pre">Destinations</a>
+							    <li class="menu-item traveltour-normal-menu menu-item-home" data-name="home"><a href="<%= request.getAttribute("sitePath") %>/">Home</a></li>
+							    <li class="menu-item menu-item-has-children traveltour-normal-menu" data-name="destinations"><a href="<%= request.getAttribute("sitePath") %>/destinations" class="sf-with-ul-pre">Destinations</a>
 							        <ul class="sub-menu">
 							        	<% for(Destination des : header_headerView.destinations){ %>
 							            <li class="menu-item" data-size="60"><a href="<%= request.getAttribute("sitePath") %>/tours?des=<%= des.getId() %>"><%= des.getName() %></a></li>
 							            <% } %>
 							        </ul>
 							    </li>
-							    <li class="menu-item menu-item-has-children traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/tours" class="sf-with-ul-pre">List Tour</a>
+							    <li class="menu-item menu-item-has-children traveltour-normal-menu" data-name="tours"><a href="<%= request.getAttribute("sitePath") %>/tours" class="sf-with-ul-pre">List Tour</a>
 							        <ul class="sub-menu">
 							            <li class="menu-item" data-size="60"><a href="<%= request.getAttribute("sitePath") %>/tours?type=hot">Hot Tours</a></li>
 							            <li class="menu-item" data-size="60"><a href="<%= request.getAttribute("sitePath") %>/tours?type=promotion">Promotion Tours</a></li>
 							            <li class="menu-item" data-size="60"><a href="<%= request.getAttribute("sitePath") %>/tours?type=upcoming">Upcoming Tours</a></li>
 							        </ul>
 							    </li>
-							    <li class="menu-item traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/blogs">Blogs</a></li>
-							    <li class="menu-item traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/services">Services</a></li>
-							    <li class="menu-item traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/about">About</a></li>
-							    <li class="menu-item traveltour-normal-menu"><a href="<%= request.getAttribute("sitePath") %>/contact">Contact</a></li>
+							    <li class="menu-item traveltour-normal-menu" data-name="blogs"><a href="<%= request.getAttribute("sitePath") %>/blogs">Blogs</a></li>
+							    <li class="menu-item traveltour-normal-menu" data-name="services"><a href="<%= request.getAttribute("sitePath") %>/services">Services</a></li>
+							    <li class="menu-item traveltour-normal-menu" data-name="about"><a href="<%= request.getAttribute("sitePath") %>/about">About</a></li>
+							    <li class="menu-item traveltour-normal-menu" data-name="contact"><a href="<%= request.getAttribute("sitePath") %>/contact">Contact</a></li>
     						</ul>
                             <div class="traveltour-navigation-slide-bar" id="traveltour-navigation-slide-bar"></div>
                         </div>

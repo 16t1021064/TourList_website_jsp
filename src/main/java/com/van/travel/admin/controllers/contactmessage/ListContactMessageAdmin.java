@@ -1,4 +1,4 @@
-package com.van.travel.web.controllers;
+package com.van.travel.admin.controllers.contactmessage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.van.travel.common.controllers.ShopController;
-import com.van.travel.models.Destination;
-import com.van.travel.models.setting.ShopPageDestinationsSetting;
-import com.van.travel.web.factories.DestinationFactory;
+import com.van.travel.common.controllers.AdminController;
+import com.van.travel.models.Booking;
+import com.van.travel.models.ContactMessage;
+import com.van.travel.models.Tour;
 
 /**
- * Servlet implementation class DestinationController
+ * Servlet implementation class ListContactMessageAdmin
  */
-@WebServlet("/destinations")
-public class DestinationController extends ShopController {
+@WebServlet("/admin/contactmessage")
+public class ListContactMessageAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DestinationController() {
+    public ListContactMessageAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,16 +35,9 @@ public class DestinationController extends ShopController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		
-		DestinationFactory destinationFactory = new DestinationFactory();
-		
-		ArrayList<Destination> listHotDestinations = destinationFactory.getHotDestinations(50);
-		request.setAttribute("listHotDestinations", listHotDestinations);
-		
-		ShopPageDestinationsSetting shopPageDestinationsSetting = new ShopPageDestinationsSetting();
-		request.setAttribute("shopPageDestinationsSetting", shopPageDestinationsSetting);
-		
-		request.getRequestDispatcher("/WEB-INF/Shop/destinations.jsp").forward(request, response);
+		ArrayList<ContactMessage> list = (new ContactMessage()).all();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/WEB-INF/Admin/contactmessage-list.jsp").forward(request, response);
 	}
 
 	/**

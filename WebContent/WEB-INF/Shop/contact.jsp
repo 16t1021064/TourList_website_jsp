@@ -202,7 +202,7 @@
             </div>
  			<%@include file="./layout/footer.jsp" %>
         </div>
-    </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
+    </div>
  	
 	<%@include file="./layout/scripts.jsp" %>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
@@ -318,12 +318,12 @@
 				jQuery.ajax({
 				  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/contact/message",
 				  method: "post",
-					contentType: "application/json",
+					contentType: "application/json; charset=utf-8",
 					dataType: "json",
 				  data: JSON.stringify({
 					  name: jQuery('#formContact [name="name"]').val(),
 					  email: jQuery('#formContact [name="email"]').val(),
-					  note: jQuery('#formContact [name="message"]').val(),
+					  message: jQuery('#formContact [name="message"]').val(),
 				  }),
 				}).success(function(data){
 					swal("Message sent !", "Your message has been sent. Thank you for your message.", "success");
@@ -341,5 +341,8 @@
 		return false;
 	});
     </script>
+    <script>
+		jQuery('#menu-main-navigation-1 li.menu-item[data-name="contact"]').addClass("current-menu-item");
+	</script>
 </body>
 </html>

@@ -159,7 +159,7 @@
 
             <%@include file="./layout/footer.jsp" %>
         </div>
-    </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
+    </div>
 
     <%@include file="./layout/scripts.jsp" %>
     <script>
@@ -170,7 +170,7 @@
     		jQuery.ajax({
    			  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/blog/getcomment",
    			  method: "post",
-   				contentType: "application/json",
+   				contentType: "application/json; charset=utf-8",
    				dataType: "json",
    			  data: JSON.stringify({
    				  blog_slug: "<%= blog.getSlug() %>",
@@ -291,6 +291,8 @@
 		});
     
     </script>
-
+	<script>
+		jQuery('#menu-main-navigation-1 li.menu-item[data-name="blogs"]').addClass("current-menu-item");
+	</script>
 </body>
 </html>

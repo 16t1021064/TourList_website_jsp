@@ -202,12 +202,12 @@
                                     </div>
                                     <div id="text-10" class="widget widget_text traveltour-widget">
                                         <div class="textwidget">
-                                            <div class="gdlr-core-widget-box-shortcode " id="div_aeb3_14">
-                                                <h3 class="gdlr-core-widget-box-shortcode-title" id="h3_aeb3_7">Get a Question?</h3>
+                                            <div class="gdlr-core-widget-box-shortcode " id="div_aeb3_14" style="background-image: url(<%= shopPanelsSetting.support.get("bg") %>)">
+                                                <h3 class="gdlr-core-widget-box-shortcode-title" id="h3_aeb3_7"><%= shopPanelsSetting.support.get("title_h1") %></h3>
                                                 <div class="gdlr-core-widget-box-shortcode-content">
-                                                    <p>Do not hesitage to give us a call. We are an expert team and we are happy to talk to you.</p>
-                                                    <p><i class="fa fa-phone" id="i_aeb3_4"></i> <span id="span_aeb3_1">1.8445.3356.33</span></p>
-                                                    <p><span id="span_aeb3_2">Help@goodlayers.com</span></p>
+                                                    <p><%= shopPanelsSetting.support.get("description") %></p>
+                                                    <p><i class="fa fa-phone" id="i_aeb3_4"></i> <span id="span_aeb3_1"><%= shopPanelsSetting.support.get("phone") %></span></p>
+                                                    <p><span id="span_aeb3_2"><%= shopPanelsSetting.support.get("email") %></span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,7 +253,7 @@
             </div>
             <%@include file="./layout/footer.jsp" %>
         </div>
-    </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
+    </div>
 
     <%@include file="./layout/scripts.jsp" %>
     
@@ -279,6 +279,8 @@
 
 
     </script>
-
+	<script>
+		jQuery('#menu-main-navigation-1 li.menu-item[data-name="tours"]').addClass("current-menu-item");
+	</script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+<%@page import="org.json.JSONObject"%>
+<%@page import="com.van.travel.models.setting.ShopPanelsSetting"%>
 <%@page import="com.van.travel.models.Review"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.van.travel.models.Itinerary"%>
@@ -9,6 +11,7 @@
 	ArrayList<Tour> relativeTours = (ArrayList<Tour>) request.getAttribute("relativeTours");
 	DateConvertion dateConvertion = new DateConvertion("dd.MM");
 	DateConvertion dateConvertion2 = new DateConvertion("dd.MM.yyyy");
+	ShopPanelsSetting shopPanelsSetting = (ShopPanelsSetting) request.getAttribute("shopPanelsSetting");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -186,24 +189,23 @@
                                         <div id="text-11" class="widget widget_text traveltour-widget">
                                             <div class="textwidget"><span class="gdlr-core-space-shortcode" style="margin-top: -20px ;"></span>
                                                 <div class="gdlr-core-widget-list-shortcode" id="gdlr-core-widget-list-0">
-                                                    <h3 class="gdlr-core-widget-list-shortcode-title">Why Book With Us?</h3>
+                                                    <h3 class="gdlr-core-widget-list-shortcode-title"><%= shopPanelsSetting.benefit.get("title_h1") %></h3>
                                                     <ul>
-                                                        <li><i class="fa fa-dollar" style="font-size: 15px ;color: #ffa127 ;margin-right: 13px ;"></i>No-hassle best price guarantee</li>
-                                                        <li><i class="fa fa-headphones" style="font-size: 15px ;color: #ffa127 ;margin-right: 10px ;"></i>Customer care available 24/7</li>
-                                                        <li><i class="fa fa-star" style="font-size: 15px ;color: #ffa127 ;margin-right: 10px ;"></i>Hand-picked Tours & Activities</li>
-                                                        <li><i class="fa fa-support" style="font-size: 15px ;color: #ffa127 ;margin-right: 10px ;"></i>Free Travel Insureance</li>
+                                                    	<% for(Object jobj : shopPanelsSetting.benefit.getJSONArray("list")){ %>
+                                                        <li><i class="<%= ((JSONObject) jobj).get("icon") %>" style="font-size: 15px ;color: #ffa127 ;margin-right: 13px ;"></i><%= ((JSONObject) jobj).get("text") %></li>
+                                                        <% } %>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="text-12" class="widget widget_text traveltour-widget">
                                             <div class="textwidget"><span class="gdlr-core-space-shortcode" style="margin-top: -10px ;"></span>
-                                                <div class="gdlr-core-widget-box-shortcode " style="color: #c9e2ff ;background-image: url(<%= request.getAttribute("sitePath") %>/public/fe/upload/widget-bg.jpg) ;">
-                                                    <h3 class="gdlr-core-widget-box-shortcode-title" style="color: #ffffff ;">Get a Question?</h3>
+                                                <div class="gdlr-core-widget-box-shortcode " style="color: #c9e2ff ;background-image: url(<%= shopPanelsSetting.support.get("bg") %>) ;">
+                                                    <h3 class="gdlr-core-widget-box-shortcode-title" style="color: #ffffff ;"><%= shopPanelsSetting.support.get("title_h1") %></h3>
                                                     <div class="gdlr-core-widget-box-shortcode-content">
-                                                        <p>Do not hesitage to give us a call. We are an expert team and we are happy to talk to you.</p>
-                                                        <p><i class="fa fa-phone" style="font-size: 20px ;color: #ffcf2a ;margin-right: 10px ;"></i> <span style="font-size: 20px; color: #ffcf2a; font-weight: 600;">1.8445.3356.33</span></p>
-                                                        <p><i class="fa fa-envelope-o" style="font-size: 17px ;color: #ffcf2a ;margin-right: 10px ;"></i> <span style="font-size: 14px; color: #fff; font-weight: 600;">Help@goodlayers.com</span></p>
+                                                        <p><%= shopPanelsSetting.support.get("description") %></p>
+                                                        <p><i class="fa fa-phone" style="font-size: 20px ;color: #ffcf2a ;margin-right: 10px ;"></i> <span style="font-size: 20px; color: #ffcf2a; font-weight: 600;"><%= shopPanelsSetting.support.get("phone") %></span></p>
+                                                        <p><i class="fa fa-envelope-o" style="font-size: 17px ;color: #ffcf2a ;margin-right: 10px ;"></i> <span style="font-size: 14px; color: #fff; font-weight: 600;"><%= shopPanelsSetting.support.get("email") %></span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -681,7 +683,7 @@
             </div>
  			<%@include file="./layout/footer.jsp" %>
         </div>
-    </div><a href="#traveltour-top-anchor" class="traveltour-footer-back-to-top-button" id="traveltour-footer-back-to-top-button"><i class="fa fa-angle-up" ></i></a>
+    </div>
  	
 	<%@include file="./layout/scripts.jsp" %>
 	
@@ -734,7 +736,7 @@
 					jQuery.ajax({
 					  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/tour/booking",
 					  method: "post",
-						contentType: "application/json",
+						contentType: "application/json; charset=utf-8",
 						dataType: "json",
 					  data: JSON.stringify({
 						  tour_id: jQuery('#formBooking [name="tour_id"]').val(),
@@ -814,7 +816,7 @@
 					jQuery.ajax({
 					  url: "<%= request.getAttribute("sitePath") %>/webapi/shop/tour/enquiry",
 					  method: "post",
-						contentType: "application/json",
+						contentType: "application/json; charset=utf-8",
 						dataType: "json",
 					  data: JSON.stringify({
 						  tour_id: jQuery('#formEnquiry [name="tour_id"]').val(),
@@ -848,6 +850,9 @@
 		jQuery('a.tourmaster-content-navigation-tab').each(function(position){
 			jQuery(this).attr('href', window.location.href + jQuery(this).attr('href'));
 		});
+	</script>
+	<script>
+		jQuery('#menu-main-navigation-1 li.menu-item[data-name="tours"]').addClass("current-menu-item");
 	</script>
 </body>
 </html>

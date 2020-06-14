@@ -15,6 +15,9 @@ import com.van.travel.models.Banner;
 import com.van.travel.models.Blog;
 import com.van.travel.models.Destination;
 import com.van.travel.models.Tour;
+import com.van.travel.models.setting.InfosSetting;
+import com.van.travel.models.setting.ShopPageHomeSetting;
+import com.van.travel.models.setting.ShopPanelsSetting;
 import com.van.travel.web.factories.ActivityFactory;
 import com.van.travel.web.factories.BannerFactory;
 import com.van.travel.web.factories.BlogFactory;
@@ -70,6 +73,15 @@ public class HomeController extends ShopController {
 		
 		ArrayList<Banner> banners = bannerFactory.getBanners(3);
 		request.setAttribute("banners", banners);
+		
+		ShopPageHomeSetting shopPageHomeSetting = new ShopPageHomeSetting();
+		request.setAttribute("shopPageHomeSetting", shopPageHomeSetting);
+		
+		ShopPanelsSetting shopPanelsSetting = new ShopPanelsSetting();
+		request.setAttribute("shopPanelsSetting", shopPanelsSetting);
+		
+		InfosSetting infosSetting = new InfosSetting();
+		request.setAttribute("infosSetting", infosSetting);
 		
 		request.getRequestDispatcher("/WEB-INF/Shop/home.jsp").forward(request, response);
 		
