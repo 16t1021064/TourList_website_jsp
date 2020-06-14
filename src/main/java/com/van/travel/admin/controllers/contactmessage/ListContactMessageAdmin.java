@@ -35,7 +35,12 @@ public class ListContactMessageAdmin extends AdminController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		ArrayList<ContactMessage> list = (new ContactMessage()).all();
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+//		whereConditions.add(new Object[] {"tour_id", "=", this.id, "STRING"});
+		ArrayList<Object[]> orderBys = new ArrayList<Object[]>();
+		orderBys.add(new Object[] {"active", "desc"});
+		orderBys.add(new Object[] {"submit_time", "desc"});
+		ArrayList<ContactMessage> list = (new ContactMessage()).all(whereConditions, orderBys);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/Admin/contactmessage-list.jsp").forward(request, response);
 	}

@@ -98,7 +98,7 @@
                                     </span>
                                 </div>
                                 <div id="comments" class="traveltour-comments-area">
-                                    <div class="traveltour-comments-title"><%= blog.getComments().size() %> Comments</div>
+                                    <div class="traveltour-comments-title"><%= blog.getActiveComments().size() %> Comments</div>
                                     <ol class="comment-list" id="commentList">
                                         
                                     </ol>

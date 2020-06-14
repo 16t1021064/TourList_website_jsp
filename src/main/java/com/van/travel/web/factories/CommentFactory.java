@@ -94,7 +94,7 @@ public class CommentFactory {
 		query+="     travel_comment ";
 		if(blogId != null) {
 		query+=" WHERE ";
-		query+="     travel_comment.blog_id = '"+blogId+"' ";
+		query+="     travel_comment.blog_id = '"+blogId+"' and active=1 ";
 		}
 		query+=" ORDER BY travel_comment.created_time DESC ";
 		return query;

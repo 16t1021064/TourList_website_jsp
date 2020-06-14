@@ -56,6 +56,18 @@
                     <form id="formEdit" action="<%= request.getAttribute("sitePath") %>/admin/comment/edit" method="post" data-parsley-validate class="form-horizontal form-label-left">
 						<input type="hidden" name="blog_id" value="<%= comment.getBlogId() %>">
 						<input type="hidden" name="id" value="<%= comment.getId() %>">
+						
+					  <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Active <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="">
+                            <div class="checkbox">
+                            	<label><input type="checkbox" id="inputActive" class="js-switch" <% if(comment.isActive()){ %> checked <% } %>/><input type="hidden" name="active"/></label>
+	                        </div>
+	                      </div>
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Name <span class="required">*</span>
                         </label>
@@ -97,6 +109,7 @@
                           <a href="<%= request.getAttribute("sitePath") %>/admin/comment?blog_id=<%= comment.getBlogId() %>" class="btn btn-primary" type="button">Cancel</a>
 						  <button class="btn btn-primary" type="reset">Reset</button>
                           <button type="submit" class="btn btn-success">Submit</button>
+                          <button type="button" class="btn btn-danger btn-delete" data-id="<%= comment.getId() %>">Delete</button>
                         </div>
                       </div>
 
@@ -107,7 +120,9 @@
             </div>
 		</div>
 		
-		
+		<form id="formDelete" method="post" action="<%= request.getAttribute("sitePath") %>/admin/comment/delete" style="display: none;">
+			<input type="hidden" name="id">
+		</form>
 		
 		<%@include file="./layout/footer.jsp" %>
       </div>
@@ -121,5 +136,18 @@
     <script>
 		$('#myDatepicker').datetimepicker({format: 'MM-DD-YYYY HH:mm:ss', defaultDate: new Date()});
 	</script>
+	<script>
+		 $('#formEdit').on('submit', function() {
+			 var temp = $('#inputActive').is(":checked") ? 1 : 0;
+			 $('#inputActive').siblings('input[name="active"]').val(temp);
+		 });
+	</script>
+	<script>
+    	$(document).on('click', '.btn-delete' , function(){
+    		var dataId = $(this).attr('data-id');
+    		$('#formDelete input[name="id"]').val(dataId);
+    		$('#formDelete').submit();
+    	});
+    </script>
   </body>
 </html>

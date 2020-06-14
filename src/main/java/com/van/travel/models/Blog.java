@@ -294,6 +294,24 @@ public class Blog extends AbstractModel {
 		this.setHasManyRepos(key, comments);
 		return comments;
 	}
+	public ArrayList<Comment> getActiveComments(){
+		return this.getActiveComments(true);
+	}
+	public ArrayList<Comment> getActiveComments(boolean saveResources){
+		String key = "blog_comment2";
+		if(saveResources) {
+			Object repos =  this.getHasManyRepos(key);
+			if(repos != null) {
+				return (ArrayList<Comment>) repos;
+			}
+		}
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"blog_id", "=", this.id, "STRING"});
+		whereConditions.add(new Object[] {"active", "=", 1, "INT"});
+		ArrayList<Comment> comments = (new Comment()).all(whereConditions);
+		this.setHasManyRepos(key, comments);
+		return comments;
+	}
 	public void setTags(String tags) {
 		if(tags == null) {
 			return;

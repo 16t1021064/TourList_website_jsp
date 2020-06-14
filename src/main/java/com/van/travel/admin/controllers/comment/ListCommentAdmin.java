@@ -39,7 +39,12 @@ public class ListCommentAdmin extends AdminController {
 		String blogId = request.getParameter("blog_id");
 		Blog blog = (new Blog()).find(blogId);
 		request.setAttribute("blog", blog);
-		ArrayList<Comment> list = blog.getComments();
+		ArrayList<Object[]> whereConditions = new ArrayList<Object[]>();
+		whereConditions.add(new Object[] {"blog_id", "=", blog.getId(), "STRING"});
+		ArrayList<Object[]> orderBys = new ArrayList<Object[]>();
+		orderBys.add(new Object[] {"active", "asc"});
+		orderBys.add(new Object[] {"created_time", "desc"});
+		ArrayList<Comment> list = (new Comment()).all(whereConditions, orderBys);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/Admin/comment-list.jsp").forward(request, response);
 	}

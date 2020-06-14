@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
+
 import com.van.travel.common.Database;
 
 public abstract class AbstractModel {
@@ -164,6 +166,9 @@ public abstract class AbstractModel {
 		}
 	}
 	protected PreparedStatement queryWhereRS(String preQuery, ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys) {
+		return this.queryWhereRS(preQuery, true, whereConditions, orderBys);
+	}
+	protected PreparedStatement queryWhereRS(String preQuery, boolean isLimit, ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys) {
 		Connection conn = (new Database()).getConnection();
 		try {
 			String sql = preQuery + " from " + this.tableName + " ";
@@ -191,7 +196,9 @@ public abstract class AbstractModel {
 				}
 				sql += " " + col + " " + sort + " ";
 			}
-			sql += " limit " + this.queryLimit + " ";
+			if(isLimit) {
+				sql += " limit " + this.queryLimit + " ";
+			}
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			int cnt = 0;
 			for(Object[] conditions : whereConditions) {
@@ -235,5 +242,24 @@ public abstract class AbstractModel {
 			e.printStackTrace();
 		}
 		return arr;
+	}
+	public long allCount() {
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.allCount(arr);
+	}
+	public long allCount(ArrayList<Object[]> whereConditions) {
+		ArrayList<Object[]> arr = new ArrayList<Object[]>();
+		return this.allCount(whereConditions, arr);
+	}
+	public long allCount(ArrayList<Object[]> whereConditions, ArrayList<Object[]> orderBys) {
+		try {
+			ResultSet rs = this.queryWhereRS(" select count(*) as cnt ", false, whereConditions, orderBys).executeQuery();
+			rs.next();
+			return rs.getLong("cnt");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

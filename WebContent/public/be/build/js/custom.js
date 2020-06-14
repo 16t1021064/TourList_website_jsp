@@ -2482,7 +2482,7 @@ if (typeof NProgress != 'undefined') {
 				  };
 				}();
 
-				$('#datatable').dataTable();
+				$('#datatable').dataTable({"ordering": false});
 
 				$('#datatable-keytable').DataTable({
 				  keys: true

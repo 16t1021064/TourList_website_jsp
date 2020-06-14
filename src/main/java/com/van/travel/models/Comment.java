@@ -18,11 +18,18 @@ public class Comment extends AbstractModel {
 	private String email;
 	private String content;
 	private Date createdTime;
+	private boolean active;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	public String getBlogId() {
 		return blogId;
@@ -65,6 +72,7 @@ public class Comment extends AbstractModel {
 		try {
 			comment.setId(rs.getString("id"));
 			comment.setBlogId(rs.getString("blog_id"));
+			comment.setActive(rs.getBoolean("active"));
 			comment.setName(rs.getString("name"));
 			comment.setEmail(rs.getString("email"));
 			comment.setContent(rs.getString("content"));
@@ -83,28 +91,32 @@ public class Comment extends AbstractModel {
 			String sql;
 			if(isNew) {
 				sql = " INSERT INTO "+this.tableName+" ";
-				sql += "			(id, blog_id,  name, email, content, created_time) ";
-				sql += "    VALUES  (?, ?, ?, ?, ?, ?) ";
+				sql += "			(id, blog_id, active, name, email, content, created_time) ";
+				sql += "    VALUES  (?, ?, ?, ?, ?, ?, ?) ";
 			}else {
 				sql = " UPDATE "+this.tableName+" ";
-				sql += " 	SET blog_id=?, name=?, email=?, content=?, created_time=? ";
+				sql += " 	SET blog_id=?, active=?, name=?, email=?, content=?, created_time=? ";
 				sql += "	WHERE id=? ";
 			}
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			if(isNew) {
-				stmt.setString(1, this.id);
-				stmt.setString(2, this.blogId);
-				stmt.setString(3, this.name);
-				stmt.setString(4, this.email);
-				stmt.setString(5, this.content);
-				stmt.setTimestamp(6, dateConvertion.toTimestamp(this.createdTime));
+				int i=0;
+				stmt.setString(++i, this.id);
+				stmt.setString(++i, this.blogId);
+				stmt.setBoolean(++i, this.active);
+				stmt.setString(++i, this.name);
+				stmt.setString(++i, this.email);
+				stmt.setString(++i, this.content);
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.createdTime));
 			}else {
-				stmt.setString(1, this.blogId);
-				stmt.setString(2, this.name);
-				stmt.setString(3, this.email);
-				stmt.setString(4, this.content);
-				stmt.setTimestamp(5, dateConvertion.toTimestamp(this.createdTime));
-				stmt.setString(6, this.id);
+				int i=0;
+				stmt.setString(++i, this.blogId);
+				stmt.setBoolean(++i, this.active);
+				stmt.setString(++i, this.name);
+				stmt.setString(++i, this.email);
+				stmt.setString(++i, this.content);
+				stmt.setTimestamp(++i, dateConvertion.toTimestamp(this.createdTime));
+				stmt.setString(++i, this.id);
 			}
 			
 			stmt.executeUpdate();
@@ -133,18 +145,20 @@ public class Comment extends AbstractModel {
 			return (Comment) o;
 		}
 	}
-	public Comment create(String blogId, String name, String email, String content, Date createdTime) {
+	public Comment create(String blogId, boolean active, String name, String email, String content, Date createdTime) {
 		Comment comment = new Comment();
 		comment.setId(UUID.randomUUID().toString());
 		comment.setBlogId(blogId);
+		comment.setActive(active);
 		comment.setName(name);
 		comment.setEmail(email);
 		comment.setContent(content);
 		comment.setCreatedTime(createdTime);
 		return (Comment) comment.save(true);
 	}
-	public Comment update(String blogId, String name, String email, String content, Date createdTime) {
+	public Comment update(String blogId, boolean active, String name, String email, String content, Date createdTime) {
 		this.setBlogId(blogId);
+		this.setActive(active);
 		this.setName(name);
 		this.setEmail(email);
 		this.setContent(content);

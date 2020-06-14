@@ -54,6 +54,17 @@
                     <br />
                     <form id="formCreate" action="<%= request.getAttribute("sitePath") %>/admin/comment/create" method="post" data-parsley-validate class="form-horizontal form-label-left">
 						<input type="hidden" name="blog_id" value="<%= blog.getId() %>">
+					  <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Active <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="">
+                            <div class="checkbox">
+                            	<label><input type="checkbox" id="inputActive" class="js-switch" /><input type="hidden" name="active"/></label>
+	                        </div>
+	                      </div>
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Name <span class="required">*</span>
                         </label>
@@ -118,6 +129,12 @@
     
     <script>
 		$('#myDatepicker').datetimepicker({format: 'MM-DD-YYYY HH:mm:ss', defaultDate: new Date()});
+	</script>
+	<script>
+		 $('#formCreate').on('submit', function() {
+			 var temp = $('#inputActive').is(":checked") ? 1 : 0;
+			 $('#inputActive').siblings('input[name="active"]').val(temp);
+		 });
 	</script>
   </body>
 </html>

@@ -60,6 +60,7 @@
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
+                          <th>Active</th>
                           <th>Name</th>
                           <th>Email</th>
                           <th>Created Time</th>
@@ -69,6 +70,7 @@
                       <tbody>
                       	<% for(Comment comment : list){ %>
                         <tr>
+                        	<td><% if(comment.isActive()){ %>YES<% }else{ %>NO<% } %></td>
                           <td><%= comment.getName() %></td>
                           <td><%= comment.getEmail() %></td>
                           <td><%= dateConvertion.toStringDate(comment.getCreatedTime()) %></td>

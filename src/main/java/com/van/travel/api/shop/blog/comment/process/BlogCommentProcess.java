@@ -19,7 +19,7 @@ public class BlogCommentProcess extends AbstractProcess {
 		
 		Blog blog = (new Blog()).find(request.blog_id);
 		if(blog != null) {
-			(new Comment()).create(request.blog_id, request.name, request.email, request.content, new Date());
+			(new Comment()).create(request.blog_id, false, request.name, request.email, request.content, new Date());
 			response.isSuccess = true;
 		}else {
 			response.isSuccess = false;

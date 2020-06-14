@@ -54,13 +54,20 @@ public class EditCommentAdmin extends AdminController {
 		String id =  request.getParameter("id");
 		Comment comment = (new Comment()).find(id);
 		
+		String active_text = request.getParameter("active");
+		boolean active;
+		if(active_text.equals("1")) {
+			active = true;
+		}else {
+			active = false;
+		}
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String content = request.getParameter("content");
 		String createdTime_text = request.getParameter("created_time");
 		Date createdTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(createdTime_text.trim());
 		
-		Comment newComment = comment.update(comment.getBlogId(), name, email, content, createdTime);
+		Comment newComment = comment.update(comment.getBlogId(), active, name, email, content, createdTime);
 		
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/comment/edit?id="+newComment.getId());
 	}
