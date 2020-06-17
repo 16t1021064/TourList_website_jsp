@@ -61,7 +61,7 @@ public class ShopPageServiceSettingAdmin extends AdminController {
 		shopPageServiceSetting.forItem.put("stretch_button", request.getParameter("stretch_button"));
 		
 		shopPageServiceSetting.writeData();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/setting/shop-page-service");
 	}
 

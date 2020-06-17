@@ -62,7 +62,7 @@ public class CreateReviewAdmin extends AdminController {
 		Date reviewTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(reviewTime_text.trim());
 		
 		Review review = (new Review()).create(tour.getId(), name, email, phone, content, reviewTime);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Creadted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/review/edit?id="+review.getId());
 	}
 

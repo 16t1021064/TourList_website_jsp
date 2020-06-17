@@ -43,7 +43,7 @@ public class DeleteDestinationAdmin extends AdminController {
 		String id =  request.getParameter("id");
 		Destination destination = (new Destination()).find(id);
 		destination.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/destination");
 	}
 

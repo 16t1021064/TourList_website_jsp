@@ -44,7 +44,7 @@ public class DeleteTagAdmin extends AdminController {
 		String id =  request.getParameter("id");
 		Tag tag = (new Tag()).find(id);
 		tag.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/tag");
 	}
 

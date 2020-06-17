@@ -54,7 +54,7 @@ public class EditActivityAdmin extends AdminController {
 		String name = request.getParameter("name");
 		
 		activity = activity.update(name);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/activity/edit?id="+activity.getId());
 	}
 

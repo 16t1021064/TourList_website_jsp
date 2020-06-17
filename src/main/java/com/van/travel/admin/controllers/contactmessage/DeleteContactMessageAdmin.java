@@ -44,7 +44,7 @@ public class DeleteContactMessageAdmin extends AdminController {
 		String id =  request.getParameter("id");
 		ContactMessage contactMessage = (new ContactMessage()).find(id);
 		contactMessage.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/contactmessage");
 	}
 

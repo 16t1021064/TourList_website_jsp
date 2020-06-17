@@ -59,7 +59,7 @@ public class ShopPageDestinationsSettingAdmin extends AdminController {
 		
 		
 		shopPageDestinationsSetting.writeData();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/setting/shop-page-destinations");
 	}
 

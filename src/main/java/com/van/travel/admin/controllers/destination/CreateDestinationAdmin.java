@@ -49,7 +49,7 @@ public class CreateDestinationAdmin extends AdminController {
 		String thumbnail600x600 = request.getParameter("thumbnail600x600");
 		
 		Destination destination = (new Destination()).create(name, thumbnail, thumbnail600x600);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Creadted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/destination/edit?id="+destination.getId());
 	}
 

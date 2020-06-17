@@ -127,7 +127,7 @@ public class ShopPageAboutSettingAdmin extends AdminController {
 		shopPageAboutSetting.forItem.put("stretch_description", foritem_stretch_description);
 		
 		shopPageAboutSetting.writeData();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/setting/shop-page-about");
 	}
 

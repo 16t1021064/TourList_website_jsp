@@ -44,7 +44,7 @@ public class DeleteServiceItemAdmin extends AdminController {
 		String id =  request.getParameter("id");
 		ServiceItem serviceItem = (new ServiceItem()).find(id);
 		serviceItem.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/service-item");
 	}
 

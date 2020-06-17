@@ -62,7 +62,7 @@ CREATE TABLE `travel_admin` (
 
 LOCK TABLES `travel_admin` WRITE;
 /*!40000 ALTER TABLE `travel_admin` DISABLE KEYS */;
-INSERT INTO `travel_admin` VALUES ('defaultadmin','John Doe','admin@gmail.com','25d55ad283aa400af464c76d713c07ad',1);
+INSERT INTO `travel_admin` VALUES ('a3553f9d-4a09-4ad5-b3ab-e35095a8af87','ddd','ddd@gmail.com','25d55ad283aa400af464c76d713c07ad',0),('defaultadmin','John Doe','admin@gmail.com','25d55ad283aa400af464c76d713c07ad',1);
 /*!40000 ALTER TABLE `travel_admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -579,4 +579,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-14 20:28:51
+-- Dump completed on 2020-06-14 23:04:08

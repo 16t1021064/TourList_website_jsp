@@ -50,7 +50,7 @@ public class EditTagAdmin extends AdminController {
 		int clicked = Integer.parseInt(request.getParameter("clicked").trim());
 		
 		tag = tag.update(name, clicked);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/tag/edit?id="+tag.getId());
 	}
 

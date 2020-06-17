@@ -73,7 +73,7 @@ public class EditEnquiryAdmin extends AdminController {
 		Date submitTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(submitTime_text.trim());
 		
 		Enquiry newEnquiry = enquiry.update(enquiry.getTourId(), status, name, phone, email, travelTime, countPeople, note, submitTime);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/enquiry/edit?id="+newEnquiry.getId());
 	}
 

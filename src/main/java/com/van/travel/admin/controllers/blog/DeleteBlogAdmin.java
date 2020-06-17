@@ -44,7 +44,7 @@ public class DeleteBlogAdmin extends AdminController {
 		String id =  request.getParameter("id");
 		Blog blog = (new Blog()).find(id);
 		blog.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/blog");
 	}
 

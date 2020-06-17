@@ -56,6 +56,7 @@ public class CreateServiceItemAdmin extends AdminController {
 		int priority = Integer.parseInt(priority_text);
 		
 		ServiceItem serviceItem = (new ServiceItem()).create(title, icon, description, active, priority);
+		request.getSession().setAttribute("noti_success", new String[] {"Creadted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/service-item/edit?id="+serviceItem.getId());
 	}
 

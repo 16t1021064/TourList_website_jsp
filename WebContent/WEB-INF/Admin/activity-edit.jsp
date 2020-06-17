@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit Activity || Admin</title>
+    <title>Edit activity || Admin</title>
 	<%@include file="./layout/style.jsp" %>
   </head>
 
@@ -23,11 +23,12 @@
 		<%@include file="./layout/sidebar.jsp" %>
 		<%@include file="./layout/topbar.jsp" %>
         <div class="right_col" role="main">
+			<%@include file="./layout/noti.jsp" %>
 			<div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form Design <small>different form elements</small></h2>
+                    <h2>Edit activity <small><%= activity.getName() %></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>

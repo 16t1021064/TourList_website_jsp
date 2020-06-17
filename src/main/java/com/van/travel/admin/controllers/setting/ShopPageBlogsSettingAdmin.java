@@ -62,7 +62,7 @@ public class ShopPageBlogsSettingAdmin extends AdminController {
 		
 		
 		shopPageBlogsSetting.writeData();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/setting/shop-page-blogs");
 	}
 

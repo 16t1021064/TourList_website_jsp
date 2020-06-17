@@ -112,7 +112,7 @@ public class GeneralSettingAdmin extends AdminController {
 		default:
 			break;
 		}
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/setting");
 	}
 

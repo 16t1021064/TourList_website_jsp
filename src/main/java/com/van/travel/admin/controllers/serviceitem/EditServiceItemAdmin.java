@@ -61,7 +61,7 @@ public class EditServiceItemAdmin extends AdminController {
 		int priority = Integer.parseInt(priority_text);
 		
 		ServiceItem serviceItem2 = serviceItem.update(title, icon, description, active, priority);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/service-item/edit?id="+serviceItem2.getId());
 	}
 

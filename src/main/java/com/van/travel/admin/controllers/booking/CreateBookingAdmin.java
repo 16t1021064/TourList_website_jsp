@@ -69,7 +69,7 @@ public class CreateBookingAdmin extends AdminController {
 		Date submitTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(submitTime_text.trim());
 		
 		Booking booking = (new Booking()).create(tourId, status, name, phone, email, countPeople, note, submitTime);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Creadted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/booking/edit?id="+booking.getId());
 	}
 

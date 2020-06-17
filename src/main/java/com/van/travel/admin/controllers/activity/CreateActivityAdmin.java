@@ -46,6 +46,7 @@ public class CreateActivityAdmin extends AdminController {
 		String name = request.getParameter("name");
 		Activity activity = (new Activity()).create(name);
 		
+		request.getSession().setAttribute("noti_success", new String[] {"Creadted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/activity/edit?id="+activity.getId());
 		
 	}

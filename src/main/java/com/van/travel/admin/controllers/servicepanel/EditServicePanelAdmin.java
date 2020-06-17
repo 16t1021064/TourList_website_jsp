@@ -55,7 +55,7 @@ public class EditServicePanelAdmin extends AdminController {
 		int priority = Integer.parseInt(priority_text);
 		
 		ServicePanel servicePanel2 = servicePanel.update(textH1, textH2, description, image, priority);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/service-panel/edit?id="+servicePanel2.getId());
 	}
 

@@ -43,7 +43,7 @@ public class DeleteServicePanelAdmin extends HttpServlet {
 		String id =  request.getParameter("id");
 		ServicePanel servicePanel = (new ServicePanel()).find(id);
 		servicePanel.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/service-panel");
 	}
 

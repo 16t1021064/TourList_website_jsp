@@ -130,7 +130,7 @@ public class ShopPageHomeSettingAdmin extends AdminController {
 		}
 		
 		shopPageHomeSetting.writeData();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/setting/shop-page-home");
 		
 	

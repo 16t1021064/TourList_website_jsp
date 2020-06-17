@@ -65,7 +65,7 @@ public class EditBannerAdmin extends AdminController {
 		int priority = Integer.parseInt(priority_text);
 		
 		Banner banner2 = banner.update(type, textH1, textH2, textH3, image, link, linkLabel, active, priority);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/banner/edit?id="+banner2.getId());
 	}
 

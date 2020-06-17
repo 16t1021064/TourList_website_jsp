@@ -1,4 +1,4 @@
-package com.van.travel.admin.controllers.booking;
+package com.van.travel.admin.controllers.admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.van.travel.common.controllers.AdminController;
-import com.van.travel.models.Booking;
-import com.van.travel.models.Review;
+import com.van.travel.models.Admin;
+import com.van.travel.models.Banner;
 
 /**
- * Servlet implementation class DeleteBookingAdmin
+ * Servlet implementation class DeleteAdminAdmin
  */
-@WebServlet("/admin/booking/delete")
-public class DeleteBookingAdmin extends AdminController {
+@WebServlet("/admin/admin/delete")
+public class DeleteAdminAdmin extends AdminController {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteBookingAdmin() {
+    public DeleteAdminAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,10 +42,10 @@ public class DeleteBookingAdmin extends AdminController {
 		response.setCharacterEncoding("utf-8");
 		
 		String id =  request.getParameter("id");
-		Booking booking = (new Booking()).find(id);
-		String bookingId = booking.getTourId();
-		booking.delete();
+		Admin admin2 = (new Admin()).find(id);
+		admin2.delete();
 		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
-		response.sendRedirect(request.getAttribute("sitePath")+"/admin/booking?tour_id="+bookingId);
+		response.sendRedirect(request.getAttribute("sitePath")+"/admin/admin");
 	}
+
 }

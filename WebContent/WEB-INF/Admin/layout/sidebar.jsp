@@ -28,6 +28,14 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+                	<% if(((Admin) session.getAttribute("admin")).isSuperadmin()){ %>
+                  <li><a><i class="fa fa-wrench"></i> Staff <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/admin">List</a></li>
+                      <li><a href="<%= request.getAttribute("sitePath") %>/admin/admin/create">Create</a></li>
+                    </ul>
+                  </li>
+                  	<% } %>
                   <li><a><i class="fa fa-wrench"></i> Tour <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/tour">List</a></li>
@@ -100,6 +108,7 @@
                       <li><a href="<%= request.getAttribute("sitePath") %>/admin/preview/icon" target="_blank">Icon library</a></li>
                     </ul>
                   </li>
+                  
                 </ul>
               </div>
             </div>

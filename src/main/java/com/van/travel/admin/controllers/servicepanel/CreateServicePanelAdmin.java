@@ -50,6 +50,7 @@ public class CreateServicePanelAdmin extends AdminController {
 		int priority = Integer.parseInt(priority_text);
 		
 		ServicePanel servicePanel = (new ServicePanel()).create(textH1, textH2, description, image, priority);
+		request.getSession().setAttribute("noti_success", new String[] {"Creadted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/service-panel/edit?id="+servicePanel.getId());
 	}
 

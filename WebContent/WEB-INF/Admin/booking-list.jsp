@@ -30,6 +30,7 @@
 		<%@include file="./layout/sidebar.jsp" %>
 		<%@include file="./layout/topbar.jsp" %>
         <div class="right_col" role="main">
+			<%@include file="./layout/noti.jsp" %>
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -101,9 +102,21 @@
     <%@include file="./layout/scripts.jsp" %>
     <script>
     	$(document).on('click', '.btn-delete' , function(){
-    		var dataId = $(this).attr('data-id');
-    		$('#formDelete input[name="id"]').val(dataId);
-    		$('#formDelete').submit();
+    		Swal.fire({
+   			  title: 'Are you sure?',
+   			  text: "You won't be able to revert this!",
+   			  icon: 'warning',
+   			  showCancelButton: true,
+   			  confirmButtonColor: '#3085d6',
+   			  cancelButtonColor: '#d33',
+   			  confirmButtonText: 'Yes, delete it!'
+   			}).then((result) => {
+   			  if (result.value) {
+   				var dataId = $(this).attr('data-id');
+   	    		$('#formDelete input[name="id"]').val(dataId);
+   	    		$('#formDelete').submit();
+   			  }
+   			});
     	});
     </script>
   </body>

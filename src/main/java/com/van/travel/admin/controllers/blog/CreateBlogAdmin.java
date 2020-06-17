@@ -57,6 +57,7 @@ public class CreateBlogAdmin extends AdminController {
 		Blog blog = (new Blog()).create(title, thumbnail, thumbnail150x150, slug, summary, content, author, createdTime, viewCount);
 		String tags = request.getParameter("tags");
 		blog.setTags(tags);
+		request.getSession().setAttribute("noti_success", new String[] {"Creadted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/blog/edit?id="+blog.getId());
 	}
 

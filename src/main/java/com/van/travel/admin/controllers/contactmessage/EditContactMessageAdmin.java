@@ -63,7 +63,7 @@ public class EditContactMessageAdmin extends AdminController {
 		}
 		
 		ContactMessage newContactMessage = contactMessage.update(active, contactMessage.getName(), contactMessage.getEmail(), contactMessage.getMessage(), contactMessage.getSubmitTime());
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/contactmessage/edit?id="+newContactMessage.getId());
 	}
 

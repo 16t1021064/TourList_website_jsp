@@ -26,6 +26,7 @@
 		<%@include file="./layout/sidebar.jsp" %>
 		<%@include file="./layout/topbar.jsp" %>
         <div class="right_col" role="main">
+			<%@include file="./layout/noti.jsp" %>
         
         	<% if(listUnreadContactMessage.size() > 0){ %>
         	<h5><span class="label label-primary">New contact message:</span></h5>

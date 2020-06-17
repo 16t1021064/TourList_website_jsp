@@ -45,7 +45,7 @@ public class DeleteReviewAdmin extends AdminController {
 		Review review = (new Review()).find(id);
 		String tourId = review.getTourId();
 		review.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/review?tour_id="+tourId);
 	}
 

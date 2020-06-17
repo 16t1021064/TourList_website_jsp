@@ -44,7 +44,7 @@ public class DeleteActivityAdmin extends AdminController {
 		String id =  request.getParameter("id");
 		Activity activity = (new Activity()).find(id);
 		activity.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/activity");
 	}
 

@@ -59,6 +59,7 @@ public class CreateBannerAdmin extends AdminController {
 		int priority = Integer.parseInt(priority_text);
 		
 		Banner banner = (new Banner()).create(type, textH1, textH2, textH3, image, link, linkLabel, active, priority);
+		request.getSession().setAttribute("noti_success", new String[] {"Creadted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/banner/edit?id="+banner.getId());
 	}
 

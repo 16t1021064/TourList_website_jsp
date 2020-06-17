@@ -62,7 +62,7 @@ public class ShopBlogSidebarSettingAdmin extends AdminController {
 		shopBlogSidebarSetting.forItem.put("tag_h1", foritem_tag_h1);
 		
 		shopBlogSidebarSetting.writeData();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/setting/shop-blog-sidebar");
 	}
 

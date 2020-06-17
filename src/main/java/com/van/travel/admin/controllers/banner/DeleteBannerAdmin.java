@@ -42,7 +42,7 @@ public class DeleteBannerAdmin extends AdminController {
 		String id =  request.getParameter("id");
 		Banner banner = (new Banner()).find(id);
 		banner.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/banner");
 	}
 }

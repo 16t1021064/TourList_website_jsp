@@ -25,6 +25,7 @@
 		<%@include file="./layout/sidebar.jsp" %>
 		<%@include file="./layout/topbar.jsp" %>
         <div class="right_col" role="main">
+			<%@include file="./layout/noti.jsp" %>
             <div class="row">
               <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">

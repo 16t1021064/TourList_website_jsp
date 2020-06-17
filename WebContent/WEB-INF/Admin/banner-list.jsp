@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>List Banner || Admin</title>
+    <title>List banners || Admin</title>
 	<%@include file="./layout/style.jsp" %>
   </head>
 
@@ -22,20 +22,19 @@
 		<%@include file="./layout/sidebar.jsp" %>
 		<%@include file="./layout/topbar.jsp" %>
         <div class="right_col" role="main">
+			<%@include file="./layout/noti.jsp" %>
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Default Example <small>Users</small></h2>
+                    <h2>List banners</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
+                          <li><a href="<%= request.getAttribute("sitePath") %>/admin/banner/create">Create</a>
                           </li>
                         </ul>
                       </li>
@@ -45,9 +44,6 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
-                    </p>
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -93,9 +89,21 @@
     <%@include file="./layout/scripts.jsp" %>
     <script>
     	$(document).on('click', '.btn-delete' , function(){
-    		var dataId = $(this).attr('data-id');
-    		$('#formDelete input[name="id"]').val(dataId);
-    		$('#formDelete').submit();
+    		Swal.fire({
+   			  title: 'Are you sure?',
+   			  text: "You won't be able to revert this!",
+   			  icon: 'warning',
+   			  showCancelButton: true,
+   			  confirmButtonColor: '#3085d6',
+   			  cancelButtonColor: '#d33',
+   			  confirmButtonText: 'Yes, delete it!'
+   			}).then((result) => {
+   			  if (result.value) {
+   				var dataId = $(this).attr('data-id');
+   	    		$('#formDelete input[name="id"]').val(dataId);
+   	    		$('#formDelete').submit();
+   			  }
+   			});
     	});
     </script>
   </body>

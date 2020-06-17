@@ -67,7 +67,7 @@ public class CreateCommentAdmin extends AdminController {
 		Date createdTime = (new DateConvertion("MM-dd-yyyy HH:mm:ss")).toUtilDate(createdTime_text.trim());
 		
 		Comment comment = (new Comment()).create(blog.getId(), active, name, email, content, createdTime);
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Creadted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/comment/edit?id="+comment.getId());
 	}
 

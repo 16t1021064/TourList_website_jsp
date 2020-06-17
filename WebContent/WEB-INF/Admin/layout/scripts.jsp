@@ -38,6 +38,8 @@
     <!-- Custom Theme Scripts -->
     <script src="<%= request.getAttribute("sitePath") %>/public/be/build/js/custom.js"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    
     <script>
     	$('.btnLogout').click(function(){
     		$('#formLogout').submit();

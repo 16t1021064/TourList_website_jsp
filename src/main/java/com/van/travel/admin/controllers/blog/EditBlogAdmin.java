@@ -70,7 +70,7 @@ public class EditBlogAdmin extends AdminController {
 			String tags = request.getParameter("tags");
 			blog2.setTags(tags);
 		}
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Updated successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/blog/edit?id="+blog2.getId());
 	}
 

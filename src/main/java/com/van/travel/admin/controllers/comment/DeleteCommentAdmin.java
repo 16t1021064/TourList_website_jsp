@@ -45,7 +45,7 @@ public class DeleteCommentAdmin extends AdminController {
 		Comment comment = (new Comment()).find(id);
 		String blogId = comment.getBlogId();
 		comment.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/comment?blog_id="+blogId);
 	}
 

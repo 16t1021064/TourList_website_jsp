@@ -44,7 +44,7 @@ public class DeleteTourAdmin extends AdminController {
 		String id =  request.getParameter("id");
 		Tour tour = (new Tour()).find(id);
 		tour.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/tour");
 	}
 

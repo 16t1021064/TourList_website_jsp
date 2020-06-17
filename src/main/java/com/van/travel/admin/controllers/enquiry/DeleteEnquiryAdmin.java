@@ -45,7 +45,7 @@ public class DeleteEnquiryAdmin extends AdminController {
 		Enquiry enquiry = (new Enquiry()).find(id);
 		String enquiryId = enquiry.getTourId();
 		enquiry.delete();
-		
+		request.getSession().setAttribute("noti_success", new String[] {"Deleted successfully"});
 		response.sendRedirect(request.getAttribute("sitePath")+"/admin/enquiry?tour_id="+enquiryId);
 	}
 
